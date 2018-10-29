@@ -1,0 +1,58 @@
+{
+    "cordova-plugin-spinner": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-spinner@~1.1.0"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-x-toast": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-x-toast@~2.7.0"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "phonegap-plugin-barcodescanner": {
+        "source": {
+            "type": "registry",
+            "id": "phonegap-plugin-barcodescanner@~8.0.0"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-call-number": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-call-number@~1.0.1"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-flashlight": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-flashlight@~3.2.0"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-headsetdetection": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-headsetdetection@~3.0.0"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-app-version": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-app-version@~0.1.9"
+        },
+        "is_top_level": true,
+        "variables": {}
+    }
+}
