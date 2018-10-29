@@ -64,14 +64,13 @@ function showScanner() {
   );
 }
 function callMe() {
-  alert(getVersionNumber());
-  // window.plugins.CallNumber.callNumber(onSuccess, onError, "+919267965329", true);
-  // function onSuccess(result) {
-  //   console.log("Success: " + result);
-  // }
-  // function onError(result) {
-  //   window.plugins.toast.show("Error: " + result, 'long', 'bottom');
-  // }
+  window.plugins.CallNumber.callNumber(onSuccess, onError, "+919267965329", true);
+  function onSuccess(result) {
+    console.log("Success: " + result);
+  }
+  function onError(result) {
+    window.plugins.toast.show("Error: " + result, 'long', 'bottom');
+  }
 }
 function flashLight() {
   window.plugins.flashlight.available(function (isAvailable) {
@@ -98,5 +97,6 @@ function checkHeadset() {
   });
 }
 
-// var version_number = getVersionNumber();
-// $$('.version-number').text('Version: ' + version_number);
+cordova.getAppVersion.getVersionNumber(function (version) {
+  $$('.version-number').text('Version: ' + version);
+});
