@@ -1,11 +1,145 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-        <title>Blank App</title>
-    </head>
-    <body>
-        <script type="text/javascript" src="cordova.js"></script>
-    </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#2196f3">
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+  <title>Framework7</title>
+  <link rel="stylesheet" href="framework7/css/framework7.min.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+  <link rel="icon" href="img/f7-icon.png">
+</head>
+<body class="color-theme-red">
+  <div id="app">
+    <div class="statusbar"></div>
+    <div class="panel panel-left panel-cover">
+      <div class="page">
+        <div class="page-content">
+          <!-- Left Panel Content Goes Here -->
+          <div class="block-title">Navigation</div>
+          <div class="block block-strong text-align-justify">
+            Left Panel Content Goes Here
+          </div>
+          
+          <div class="version-number block block-strong no-margin-bottom" style="position: absolute;width: 100%;bottom: 0;">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-right panel-reveal">
+      <div class="view view-init view-right" name="right" data-url="/">
+        <div class="page">
+          <div class="navbar">
+            <div class="navbar-inner sliding">
+              <div class="title">Right Panel</div>
+            </div>
+          </div>
+          <div class="page-content">
+            <!-- Right Panel Content Goes Here -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="view view-main view-init ios-edges" data-url="/">
+      <div class="page">
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="left">
+              <a href="#" class="link icon-only panel-open" data-panel="left">
+                <i class="icon f7-icons ios-only">menu</i>
+                <i class="icon material-icons md-only">menu</i>
+              </a>
+            </div>
+            <div class="title sliding">Dashboard</div>
+            <div class="right">
+              <a class="link icon-only searchbar-enable" data-searchbar=".searchbar-components">
+                <i class="icon f7-icons ios-only">search_strong</i>
+                <i class="icon material-icons md-only">search</i>
+              </a>
+            </div>
+            <form data-search-container=".components-list" data-search-in="a" class="searchbar searchbar-expandable searchbar-components searchbar-init">
+              <div class="searchbar-inner">
+                <div class="searchbar-input-wrap">
+                  <input type="search" placeholder="Search components"/>
+                  <i class="searchbar-icon"></i>
+                  <span class="input-clear-button"></span>
+                </div>
+                <span class="searchbar-disable-button">Cancel</span>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="page-content">
+          <!-- Main Content Goes Here -->
+          <!-- Spinner -->
+          <div class="block-title">Spinner</div>
+          <div class="block block-strong">
+            <div class="row">
+              <div class="col-50">
+                <a href="#" onclick="showSpinner()" class="button button-raised button-fill">Show Spinner</a>
+              </div>
+              <div class="col-50">
+                <a href="#" onclick="showSpinner2()" class="button button-raised button-fill">Show Spinner</a>
+              </div>
+            </div>
+          </div>
+          <!-- Toast -->
+          <div class="block-title">Toast</div>
+          <div class="block block-strong">
+            <div class="row">
+              <div class="col-100">
+                <a href="#" onclick="showToast()" class="button button-raised button-fill">Show Toast</a>
+              </div>
+            </div>
+          </div>
+          <!-- Scanner -->
+          <div class="block-title">Scanner</div>
+          <div class="block block-strong">
+            <div class="row">
+              <div class="col-100">
+                <a href="#" onclick="showScanner()" class="button button-raised button-fill">Scan Me</a>
+              </div>
+            </div>
+          </div>
+          <!-- Native Dialer -->
+          <div class="block-title">Dialer</div>
+          <div class="block block-strong">
+            <div class="row">
+              <div class="col-100">
+                <a href="#" onclick="callMe()" class="button button-raised button-fill">Call Me</a>
+              </div>
+            </div>
+          </div>
+          <!-- Flash Light -->
+          <div class="block-title">Flash Light</div>
+          <div class="block block-strong">
+            <div class="row">
+              <div class="col-100">
+                <a href="#" onclick="flashLight()" class="button button-raised button-fill">Torch</a>
+              </div>
+            </div>
+          </div>
+          <!-- Headset Detection -->
+          <div class="block-title">Headset Detection</div>
+          <div class="block block-strong">
+            <div class="row">
+              <div class="col-100">
+                <a href="#" onclick="checkHeadset()" class="button button-raised button-fill">Check Status</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="framework7/js/framework7.min.js"></script>
+  <script src="js/routes.js"></script>
+  <script src="js/app.js"></script>
+  <script type="text/javascript" src="cordova.js"></script>
+</body>
 </html>
