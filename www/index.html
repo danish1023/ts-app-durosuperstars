@@ -141,5 +141,13 @@
   <script src="js/routes.js"></script>
   <script src="js/app.js"></script>
   <script type="text/javascript" src="cordova.js"></script>
+  <script>
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+      cordova.getAppVersion.getVersionNumber(function (version) {
+        $$('.version-number').text('Version: ' + version);
+      });
+    }
+  </script>
 </body>
 </html>

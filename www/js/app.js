@@ -64,17 +64,13 @@ function showScanner() {
   );
 }
 function callMe() {
-  cordova.getAppVersion.getVersionNumber(function (version) {
-    alert(version);
-    $$('.version-number').text('Version: ' + version);
-  });
-  // window.plugins.CallNumber.callNumber(onSuccess, onError, "+919267965329", true);
-  // function onSuccess(result) {
-  //   console.log("Success: " + result);
-  // }
-  // function onError(result) {
-  //   window.plugins.toast.show("Error: " + result, 'long', 'bottom');
-  // }
+  window.plugins.CallNumber.callNumber(onSuccess, onError, "+919267965329", true);
+  function onSuccess(result) {
+    console.log("Success: " + result);
+  }
+  function onError(result) {
+    window.plugins.toast.show("Error: " + result, 'long', 'bottom');
+  }
 }
 function flashLight() {
   window.plugins.flashlight.available(function (isAvailable) {
@@ -100,8 +96,3 @@ function checkHeadset() {
     window.plugins.toast.show(message, 'long', 'bottom');
   });
 }
-
-cordova.getAppVersion.getVersionNumber(function (version) {
-  alert(version);
-  $$('.version-number').text('Version: ' + version);
-});
