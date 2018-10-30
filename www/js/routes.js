@@ -11,6 +11,24 @@ var routes = [
     url: './pages/about.html',
     name: 'about',
   },
+  // Set Password page
+  {
+    path: '/set-password/',
+    url: './pages/set-password.html',
+    name: 'set-password',
+  },
+  // Signup page
+   {
+    path: '/sign-up/',
+    url: './pages/sign-up.html',
+    name: 'sign-up',
+  },
+  // Dashboard page
+  {
+    path: '/dashboard/',
+    url: './pages/dashboard.html',
+    name: 'dashboard',
+  },
   // Right Panel pages
   {
     path: '/panel-right-1/',
