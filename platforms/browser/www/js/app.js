@@ -106,8 +106,3 @@ function checkHeadset() {
 var mainView = app.views.create('.view-main', {
   url: '/'
 });
-
-$$(document).on('backbutton', function (e) {
-  e.preventDefault();
-  mainView.router.back();
-});
