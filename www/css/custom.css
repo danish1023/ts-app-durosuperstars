@@ -35,3 +35,11 @@
 li.with-border{
   border-bottom: 1px solid rgba(0,0,0,.12);
 }
+.ios .show-hairlines-ios {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.md .show-hairlines-ios {
+  border-top: none;
+  border-bottom: none;
+}
