@@ -1,39 +1,22 @@
 // Dom7
 var $$ = Dom7;
 
-// Theme
-var theme = 'auto';
-if (document.location.search.indexOf('theme=') >= 0) {
-  theme = document.location.search.split('theme=')[1].split('&')[0];
-}
-
 // Init App
 var app = new Framework7({
-  id: 'io.framework7.testapp',
+  id: 'com.techstreet.durosuperstars',
   root: '#app',
-  theme: theme,
+  theme: 'auto',
   view: {
     pushState: false,
     uniqueHistory: true,
     xhrCache: false,
   },
-  data: function () {
-    return {
-      user: {
-        firstName: 'John',
-        lastName: 'Doe',
-      },
-    };
-  },
-  methods: {
-    helloWorld: function () {
-      app.dialog.alert('Hello World!');
-    },
-  },
   routes: routes,
-  vi: {
-    placementId: 'pltd4o7ibb9rc653x14',
-  },
+});
+
+// Init/Create main view
+var mainView = app.views.create('.view-main', {
+  url: '/'
 });
 
 // Custom Functions
@@ -101,8 +84,3 @@ function checkHeadset() {
     window.plugins.toast.show(message, 'long', 'bottom');
   });
 }
-
-// Init/Create main view
-var mainView = app.views.create('.view-main', {
-  url: '/'
-});
