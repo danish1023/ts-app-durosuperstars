@@ -8,8 +8,6 @@ var app = new Framework7({
   theme: 'auto',
   view: {
     animate: false,
-    uniqueHistory: true,
-    xhrCache: false,
   },
   routes: routes,
 });
