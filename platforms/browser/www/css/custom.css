@@ -1,6 +1,9 @@
 .no-background-image{
   background-image: none !important;
 }
+.margin-top-8px{
+  margin-top: 8px !important
+}
 /* .page-content.user-selection{
   background: url('../img/bg_screen.png');
   background-size:100% 100%;
