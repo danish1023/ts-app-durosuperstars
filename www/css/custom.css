@@ -9,6 +9,9 @@
   background-size:100% 100%;
   background-position: center;
 } */
+.color-white{
+  color: #ffffff !important;
+}
 .i-color-white{
   color: #ffffff;
 }

@@ -7,7 +7,8 @@ var app = new Framework7({
   root: '#app',
   theme: 'auto',
   view: {
-    animate: false,
+    animate: true,
+    xhrCache: false,
   },
   routes: routes,
 });
