@@ -16,18 +16,27 @@ var routes = [
     path: '/set-password/',
     url: './pages/set-password.html',
     name: 'set-password',
+    options: {
+      animate: false,
+    },
   },
   // Signup page
    {
     path: '/sign-up/',
     url: './pages/sign-up.html',
     name: 'sign-up',
+    options: {
+      animate: false,
+    },
   },
   // Dashboard page
   {
     path: '/dashboard/',
     url: './pages/dashboard.html',
     name: 'dashboard',
+    options: {
+      animate: false,
+    },
   },
   // Right Panel pages
   {
