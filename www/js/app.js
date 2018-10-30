@@ -13,7 +13,7 @@ var app = new Framework7({
   root: '#app',
   theme: theme,
   view: {
-    pushState: true,
+    pushState: false,
     uniqueHistory: true,
     xhrCache: false,
   },
@@ -101,3 +101,13 @@ function checkHeadset() {
     window.plugins.toast.show(message, 'long', 'bottom');
   });
 }
+
+// Init/Create main view
+var mainView = app.views.create('.view-main', {
+  url: '/'
+});
+
+$$(document).on('backbutton', function (e) {
+  e.preventDefault();
+  mainView.router.back();
+});
