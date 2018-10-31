@@ -189,10 +189,12 @@
           <div class="block no-margin color-theme-red" style="position:relative; height: 100%;">
             <div class="text-align-center" style="position:absolute; transform:translateX(-50%) translateY(-50%);left:50%;top:45%;">
               <img src="img/logo-transparent.png" style="width:100%; margin-bottom: 60px">
-              <a href="/sign-up/" style="text-transform:none" class="button button-round button-outline font-1x">New Member
+              <a href="/sign-up/" style="text-transform:none" class="button button-round button-outline font-1x">New
+                Member
               </a>
               <br />
-              <a href="/set-password/" style="text-transform:none" class="button button-round button-outline font-1x">Existing Member
+              <a href="/set-password/" style="text-transform:none" class="button button-round button-outline font-1x">Existing
+                Member
               </a>
             </div>
           </div>
@@ -214,13 +216,18 @@
     }
     function onBackKeyDown(e) {
       e.preventDefault();
-      if (app.views.main.router.currentRoute.url == "/") {
+      if (app.views.main.router.currentRoute.url == "/" || app.views.main.router.currentRoute.url == "/dashboard/") {
         var r = confirm("Are you sure want to exit?");
         if (r == true) {
-            navigator.app.exitApp();
+          navigator.app.exitApp();
         } else {
-            return;
+          return;
         }
+      }
+      else if (app.views.main.router.currentRoute.url == "/login/") {
+        mainView.router.back('/', {
+          force : true,
+        });
       }
       else {
         mainView.router.back();

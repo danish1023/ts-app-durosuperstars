@@ -16,8 +16,14 @@ var routes = [
     path: '/set-password/',
     url: './pages/set-password.html',
     name: 'set-password',
+  },
+  // Login page
+  {
+    path: '/login/',
+    url: './pages/login.html',
+    name: 'login',
     // options: {
-    //   animate: false,
+    //   history: false,
     // },
   },
   // Signup page
