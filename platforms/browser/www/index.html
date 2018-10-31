@@ -210,6 +210,16 @@
     document.addEventListener("deviceready", onDeviceReady, false);
     document.addEventListener("backbutton", onBackKeyDown, false);
     function onDeviceReady() {
+      function onPrompt(results) {
+          alert("You selected button number " + results.buttonIndex + " and entered " + results.input1);
+      }
+      navigator.notification.prompt(
+        'Please enter your name',  // message
+        onPrompt,                  // callback to invoke
+        'Registration',            // title
+        ['Submit', 'Cancel'],      // buttonLabels
+        'Duro Superstars'          // defaultText
+      );
       cordova.getAppVersion.getVersionNumber(function (version) {
         $$('.version-number').text('Version: ' + version);
       });
@@ -226,7 +236,7 @@
       }
       else if (app.views.main.router.currentRoute.url == "/login/") {
         mainView.router.back('/', {
-          force : true,
+          force: true,
         });
       }
       else {
