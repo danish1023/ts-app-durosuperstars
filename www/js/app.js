@@ -1,11 +1,15 @@
 // Dom7
 var $$ = Dom7;
 
+// install plugin to Framework7
+Framework7.use(Framework7Keypad);
+
 // Init App
 var app = new Framework7({
   id: 'com.techstreet.durosuperstars',
   root: '#app',
   theme: 'auto',
+  name: 'Duro Superstars',
   view: {
     animate: true,
     xhrCache: false,

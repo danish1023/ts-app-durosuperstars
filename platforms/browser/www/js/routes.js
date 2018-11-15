@@ -17,7 +17,13 @@ var routes = [
     url: './pages/set-password.html',
     name: 'set-password',
   },
-  // Login page
+  // First Login
+  {
+    path: '/first-login/',
+    url: './pages/first-login.html',
+    name: 'first-login',
+  },
+  // Login
   {
     path: '/login/',
     url: './pages/login.html',
@@ -34,6 +40,43 @@ var routes = [
     // options: {
     //   animate: false,
     // },
+  },
+  // OTP page
+  {
+    path: '/otp/',
+    url: './pages/otp.html',
+    name: 'otp',
+    on: {
+      pageInit: function () {
+        var numpadInline = app.keypad.create({
+          inputEl: '#demo-numpad-inline',
+          containerEl: '#numpad-inline-container',
+          toolbar: false,
+          valueMaxLength: 6,
+          dotButton: false,
+          formatValue: function (value) {
+            value = value.toString();
+            return value+ ('______').substring(0, 6 - value.length);
+            //return ('****').substring(0, value.length) + ('____').substring(0, 4 - value.length);
+          },
+          on: {
+            change(keypad, value) {
+              value = value.toString();
+              if (value.length === 6) {
+                // app.dialog.alert('Thank you! Your passcode is<br><b>' + value + '</b>', function () {
+                //   app.views.main.router.back('/');
+                // });
+                app.dialog.alert('Thank you for registering !! Your registration request is accepted. Our team will contact you within 72 Hrs.', function () {
+                  app.views.main.router.back('/', {
+                    force: true,
+                  });
+                });
+              }
+            }
+          }
+        });
+      },
+    },
   },
   // Dashboard page
   {

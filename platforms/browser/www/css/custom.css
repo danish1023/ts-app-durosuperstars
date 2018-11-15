@@ -4,11 +4,12 @@
 .margin-top-8px{
   margin-top: 8px !important
 }
-/* .page-content.user-selection{
-  background: url('../img/bg_screen.png');
+.bg-image{
+  background: url('../img/background.png');
   background-size:100% 100%;
   background-position: center;
-} */
+  /* background-size: cover; */
+}
 .color-white{
   color: #ffffff !important;
 }
@@ -42,4 +43,80 @@ li.with-border{
 .md .show-hairlines-ios {
   border-top: none;
   border-bottom: none;
+}
+
+.img-center{
+  display: block;
+  position: absolute;
+  width: 50%;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button-auth{
+  display: block;
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button-login{
+  width: 180px;
+  text-transform:none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button-signup{
+  width: 180px;
+  text-transform:none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.custom-item-input-wrap:after{
+  background-color: #ffffff !important;
+}
+
+.custom-item-floating-label{
+  color:#ffffff !important;
+}
+
+.block.passcode-input {
+  position: relative;
+  z-index: 5;
+}
+.block.passcode-numpad {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 0;
+  max-width: none;
+  z-index: 10;
+}
+#demo-numpad-inline {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  .border-box();
+  border: none;
+  background: none;
+  border-radius: 0 0 0 0;
+  .box-shadow(none);
+  display: block;
+  padding: 0 0 0 5px;
+  margin: 0;
+  width: 100%;
+  height: 43px;
+  color: #000;
+  font-size: 17px;
+  font-family: inherit;
+  letter-spacing: 5px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 300;
 }
