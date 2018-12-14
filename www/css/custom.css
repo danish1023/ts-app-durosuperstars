@@ -16,6 +16,12 @@
 .i-color-white{
   color: #ffffff;
 }
+.i-color-red{
+  color: #f44336;
+}
+.color-red{
+  color: #f44336 !important;
+}
 .icon-2x{
   font-size: 60px;
 }

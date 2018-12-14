@@ -17,6 +17,12 @@ var routes = [
     url: './pages/set-password.html',
     name: 'set-password',
   },
+  // Change Password page
+  {
+    path: '/change-password/',
+    componentUrl: './pages/change-password.html',
+    name: 'change-password',
+  },
   // First Login
   {
     path: '/first-login/',
@@ -25,8 +31,8 @@ var routes = [
   },
   // Login
   {
-    path: '/login/',
-    url: './pages/login.html',
+    path: '/login/:UserName',
+    componentUrl: './pages/login.html',
     name: 'login',
     // options: {
     //   history: false,

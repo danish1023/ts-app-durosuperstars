@@ -30,6 +30,15 @@
         },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.techstreet.durosuperstars"
+        },
+        "cordova-plugin-nativestorage": {
+            "PACKAGE_NAME": "com.techstreet.durosuperstars"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.techstreet.durosuperstars"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.techstreet.durosuperstars"
         }
     },
     "dependent_plugins": {}

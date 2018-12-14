@@ -102,7 +102,7 @@
                 </a>
               </li>
               <li class="with-border">
-                <a href="#" class="item-link item-content">
+                <a href="/change-password/" class="item-link item-content panel-close">
                   <div class="item-media">
                     <i class="material-icons color-darkgray">vpn_key</i>
                   </div>
@@ -112,7 +112,7 @@
                 </a>
               </li>
               <li>
-                <a href="#" class="item-link item-content">
+                <a onclick="logout()" href="#" class="item-link item-content panel-close">
                   <div class="item-media">
                     <i class="material-icons color-darkgray">exit_to_app</i>
                   </div>
@@ -152,23 +152,24 @@
           <div class="block bg-color-red no-margin" style="position:relative; height: 60%;">
             <div class="color-theme-white" style="position:absolute; transform:translateX(-50%) translateY(-50%);left:50%;top:50%;width:90%">
                 <p class="font-1x text-align-center color-white" style="letter-spacing: 2px; font-weight: 400; margin-bottom: 80px;">Login</p>
-                <form class="list show-hairlines-ios no-hairlines" id="set-password-form">
+                <form class="list show-hairlines-ios no-hairlines" id="login-form-1">
                     <ul class="no-hairlines-between">
                       <li class="item-content item-input">
                         <div class="item-inner">
                           <div class="item-title item-floating-label custom-item-floating-label">Username</div>
                           <div class="item-input-wrap custom-item-input-wrap">
-                            <input type="text" placeholder="Please enter your username">
+                            <input type="text" name="username" placeholder="Please enter username">
                           </div>
                         </div>
                       </li>
                     </ul>
                     <br/>
-                    <a style="width:100px" href="/first-login/" class="button-signup button button-round button-outline">Next</a>
+                    <a onclick="login()" style="width:100px" href="#" class="button-signup button button-round button-outline">Next</a>
                 </form>
                 <div class="block text-align-center">
                   <p class="no-margin">New Member?</p>
-                  <a style="text-decoration:underline" href="/sign-up/" class="">Register Here</a>
+                  <!-- <a style="text-decoration:underline" href="/sign-up/" class="">Register Here</a> -->
+                  <a style="text-decoration:underline" href="#" class="">Register Here</a>
                 </div>
             </div>
           </div>
@@ -185,6 +186,15 @@
     document.addEventListener("deviceready", onDeviceReady, false);
     document.addEventListener("backbutton", onBackKeyDown, false);
     function onDeviceReady() {
+      var UserName = localStorage.UserName;
+      if(UserName){
+        var auth = localStorage.UserName;
+        if(auth != ""){
+          $$('.page-current').hide();
+          $$('.page-previous').hide();
+          mainView.router.navigate('/dashboard/');
+        }
+      }
       cordova.getAppVersion.getVersionNumber(function (version) {
         $$('.version-number').text('Version: ' + version);
       });

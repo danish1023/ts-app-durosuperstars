@@ -4,7 +4,22 @@
         "uninstalled": []
     },
     "config_munge": {
-        "files": {}
+        "files": {
+            "config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"NativeStorage\"><param name=\"browser-package\" value=\"NativeStorage\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Device\"><param name=\"browser-package\" value=\"Device\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
     },
     "installed_plugins": {
         "cordova-plugin-spinner": {
@@ -29,6 +44,15 @@
             "PACKAGE_NAME": "com.techstreet.durosuperstars"
         },
         "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.techstreet.durosuperstars"
+        },
+        "cordova-plugin-nativestorage": {
+            "PACKAGE_NAME": "com.techstreet.durosuperstars"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.techstreet.durosuperstars"
+        },
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.techstreet.durosuperstars"
         }
     },
@@ -109,6 +133,38 @@
             "id": "cordova-plugin-splashscreen.SplashScreenProxy",
             "pluginId": "cordova-plugin-splashscreen",
             "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-nativestorage/www/mainHandle.js",
+            "id": "cordova-plugin-nativestorage.mainHandle",
+            "pluginId": "cordova-plugin-nativestorage",
+            "clobbers": [
+                "NativeStorage"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-nativestorage/www/LocalStorageHandle.js",
+            "id": "cordova-plugin-nativestorage.LocalStorageHandle",
+            "pluginId": "cordova-plugin-nativestorage"
+        },
+        {
+            "file": "plugins/cordova-plugin-nativestorage/www/NativeStorageError.js",
+            "id": "cordova-plugin-nativestorage.NativeStorageError",
+            "pluginId": "cordova-plugin-nativestorage"
+        },
+        {
+            "file": "plugins/cordova-plugin-device/www/device.js",
+            "id": "cordova-plugin-device.device",
+            "pluginId": "cordova-plugin-device",
+            "clobbers": [
+                "device"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-device/src/browser/DeviceProxy.js",
+            "id": "cordova-plugin-device.DeviceProxy",
+            "pluginId": "cordova-plugin-device",
+            "runs": true
         }
     ],
     "plugin_metadata": {
@@ -119,6 +175,9 @@
         "cordova-plugin-headsetdetection": "3.0.0",
         "cordova-plugin-app-version": "0.1.9",
         "cordova-plugin-statusbar": "2.4.2",
-        "cordova-plugin-splashscreen": "5.0.2"
+        "cordova-plugin-splashscreen": "5.0.2",
+        "cordova-plugin-nativestorage": "2.3.2",
+        "cordova-plugin-device": "2.0.2",
+        "cordova-plugin-whitelist": "1.3.3"
     }
 }
