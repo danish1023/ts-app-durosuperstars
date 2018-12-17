@@ -54,9 +54,9 @@ function login() {
       contentType: 'application/json',
       beforeSend: function (xhr) {
         xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
-        app.preloader.show();
-        // var spinnerOptions = { dimBackground: false };
-        // SpinnerPlugin.activityStart(null, spinnerOptions);
+        //app.preloader.show();
+        var spinnerOptions = { dimBackground: false };
+        SpinnerPlugin.activityStart(null, spinnerOptions);
       },
       error: function (xhr, status) {
         alert("Error: " + status);
@@ -73,8 +73,8 @@ function login() {
         }
       },
       complete: function (xhr, status) {
-        app.preloader.hide();
-        //SpinnerPlugin.activityStop();
+        //app.preloader.hide();
+        SpinnerPlugin.activityStop();
       }
     })
   }

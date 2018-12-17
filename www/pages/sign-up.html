@@ -1,42 +1,291 @@
-<div class="page">
-  <div class="navbar">
-    <div class="navbar-inner sliding bg-color-red color-theme-white">
-      <div class="left">
-        <a href="#" class="link back">
-          <i class="material-icons">arrow_back</i>
-        </a>
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-inner sliding bg-color-red color-theme-white">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="material-icons">arrow_back</i>
+          </a>
+        </div>
+        <div class="title color-white">Sign Up</div>
       </div>
-      <div class="title color-white">Sign Up</div>
     </div>
-  </div>
-  <div class="toolbar toolbar-bottom-md bg-color-red color-theme-white">
-    <div class="toolbar-inner">
-      <a href="/otp/" style="width:100%;text-transform: uppercase" class="link font-1x">Submit</a>
+    <div class="toolbar toolbar-bottom-md bg-color-red color-theme-white">
+      <div class="toolbar-inner">
+        <!-- <a href="/otp/" style="width:100%;text-transform: uppercase" class="link font-1x">Submit</a> -->
+        <a href="#" @click="signup" style="width:100%;text-transform: uppercase" class="link font-1x">Submit</a>
+      </div>
     </div>
-  </div>
-  <div class="page-content bg-color-white">
-    <div class="block text-align-center">
-      <img src="img/logo-transparent.png" style="width:60%;">
-    </div>
-    <form class="list show-hairlines-ios no-hairlines" id="set-password-form">
-      <ul class="no-hairlines-between">
-        <li class="item-content item-input">
-          <div class="item-inner">
-            <div class="item-title item-floating-label">Name</div>
-            <div class="item-input-wrap">
-              <input type="text" placeholder="Please enter your name">
+    <div class="page-content bg-color-white">
+      <div class="block text-align-center">
+        <img src="img/logo-transparent.png" style="width:60%;">
+      </div>
+      <form class="list show-hairlines-ios no-hairlines" id="signup-form">
+        <ul class="no-hairlines-between">
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">*Contractor Contact No</div>
+              <div class="item-input-wrap">
+                <input type="number" name="ContractorContactNo">
+              </div>
             </div>
-          </div>
-        </li>
-        <li class="item-content item-input">
-          <div class="item-inner">
-            <div class="item-title item-floating-label">Email</div>
-            <div class="item-input-wrap">
-              <input type="email" placeholder="Please enter your email">
+          </li>
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">*Contractor First Name</div>
+              <div class="item-input-wrap">
+                <input type="text" name="ContractorFirstName">
+              </div>
             </div>
-          </div>
-        </li>
-      </ul>
-    </form>
+          </li>
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">*Contractor Last Name</div>
+              <div class="item-input-wrap">
+                <input type="text" name="ContractorLastName">
+              </div>
+            </div>
+          </li>
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Dealership Name</div>
+              <div class="item-input-wrap">
+                <input type="text" name="DealershipName">
+              </div>
+            </div>
+          </li>
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">ReferralCode</div>
+              <div class="item-input-wrap">
+                <input type="text" name="ReferralCode">
+              </div>
+            </div>
+          </li>
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">*State</div>
+              <div class="item-input-wrap input-dropdown-wrap">
+                <select name="StateName" placeholder="Please choose...">
+
+                </select>
+              </div>
+            </div>
+          </li>
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">*City</div>
+              <div class="item-input-wrap input-dropdown-wrap">
+                <select name="CityName" placeholder="Please choose...">
+
+                </select>
+              </div>
+            </div>
+          </li>
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Other City</div>
+              <div class="item-input-wrap">
+                <input type="text" name="OtherCity">
+              </div>
+            </div>
+          </li>
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Govt ID Proof</div>
+              <div class="item-input-wrap input-dropdown-wrap">
+                <select name="GovtProofId" placeholder="Please choose...">
+
+                </select>
+              </div>
+            </div>
+          </li>
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Govt ID Proof Number</div>
+              <div class="item-input-wrap">
+                <input type="text" name="GovtProofIdNumber">
+              </div>
+            </div>
+          </li>
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Employee Name</div>
+              <div class="item-input-wrap">
+                <input type="text" name="EmployeeName">
+              </div>
+            </div>
+          </li>
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Employee Contact No</div>
+              <div class="item-input-wrap">
+                <input type="number" name="EmployeeContactNo">
+              </div>
+            </div>
+          </li>
+        </ul>
+      </form>
+    </div>
   </div>
-</div>
+</template>
+<script>
+  return {
+    methods: {
+      signup: function () {
+        var ContractorContactNo = $$('#signup-form input[name=ContractorContactNo]').val();
+        var ContractorFirstName = $$('#signup-form input[name=ContractorFirstName]').val();
+        var ContractorLastName = $$('#signup-form input[name=ContractorLastName]').val();
+        var DealershipName = $$('#signup-form input[name=DealershipName]').val();
+        var ReferralCode = $$('#signup-form input[name=ReferralCode]').val();
+        var StateName = $$('#signup-form select[name=StateName]').val();
+        var CityName = $$('#signup-form select[name=CityName]').val();
+        var OtherCity = $$('#signup-form input[name=OtherCity]').val();
+        var GovtProofId = $$('#signup-form select[name=GovtProofId]').val();
+        var GovtProofIdNumber = $$('#signup-form input[name=GovtProofIdNumber]').val();
+        var EmployeeName = $$('#signup-form input[name=EmployeeName]').val();
+        var EmployeeContactNo = $$('#signup-form input[name=EmployeeContactNo]').val();
+
+        var obj = {
+          ContractorContactNo: ContractorContactNo,
+          ContractorFirstName: ContractorFirstName,
+          ContractorLastName: ContractorLastName,
+          DealershipName: DealershipName,
+          ReferralCode: ReferralCode,
+          StateName: StateName,
+          CityName: CityName,
+          OtherCity: OtherCity,
+          GovtProofId: GovtProofId,
+          GovtProofIdNumber: GovtProofIdNumber,
+          EmployeeName: EmployeeName,
+          EmployeeContactNo: EmployeeContactNo,
+        };
+
+        app.request({
+          url: BaseURL + '/SignupAPI',
+          method: 'POST',
+          dataType: 'json',
+          data: obj,
+          contentType: 'application/json',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+            app.preloader.show();
+            // var spinnerOptions = { dimBackground: false };
+            // SpinnerPlugin.activityStart(null, spinnerOptions);
+          },
+          error: function (xhr, status) {
+            alert("Error: " + status);
+          },
+          success: function (data, status, xhr) {
+            console.log(data);
+            if (data.ErrorCode == '-1020') {
+              var SignUpData = { 'ContractorContactNo': ContractorContactNo, 'ContractorFirstName': ContractorFirstName, 'ContractorLastName': ContractorLastName, 'DealershipName': DealershipName, 'ReferralCode': ReferralCode, 'StateName': StateName, 'CityName': CityName, 'OtherCity': OtherCity, 'GovtProofId': GovtProofId, 'GovtProofIdNumber': GovtProofIdNumber, 'EmployeeName': EmployeeName, 'EmployeeContactNo': EmployeeContactNo };
+              localStorage.setItem("SignUpData", JSON.stringify(SignUpData));
+              app.router.navigate({
+                name: 'otp',
+              });
+            }
+            else {
+              app.dialog.alert(data.ErrorMessage);
+            }
+          },
+          complete: function (xhr, status) {
+            app.preloader.hide();
+            //SpinnerPlugin.activityStop();
+          }
+        })
+      },
+    },
+    on: {
+      pageInit: function (page) {
+        // Govt ID Proof API
+        app.request({
+          url: BaseURL + '/GetGovtProofIdAPI',
+          method: 'POST',
+          dataType: 'json',
+          contentType: 'application/json',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+            app.preloader.show();
+            // var spinnerOptions = { dimBackground: false };
+            // SpinnerPlugin.activityStart(null, spinnerOptions);
+          },
+          error: function (xhr, status) {
+            alert("Error: " + status);
+          },
+          success: function (data, status, xhr) {
+            if (data.ErrorCode == '0') {
+              for (var i = 0; i < data.Response.GovtProofIdDetails.length; i++) {
+                var GovtProofName = data.Response.GovtProofIdDetails[i].Name;
+                var html = $$('<option value="' + GovtProofName + '">' + GovtProofName + '</option>');
+                $$('#signup-form select[name=GovtProofId').append(html);
+                $$('#signup-form select[name=GovtProofId').val('');
+              }
+            }
+            else {
+              app.dialog.alert(data.ErrorMessage);
+            }
+          },
+          complete: function (xhr, status) {
+            app.preloader.hide();
+            //SpinnerPlugin.activityStop();
+          }
+        })
+        // State City Mapping API
+        var stateArr = '';
+        app.request({
+          url: BaseURL + '/StateCityMappingAPI',
+          method: 'POST',
+          dataType: 'json',
+          contentType: 'application/json',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+            app.preloader.show();
+            // var spinnerOptions = { dimBackground: false };
+            // SpinnerPlugin.activityStart(null, spinnerOptions);
+          },
+          error: function (xhr, status) {
+            alert("Error: " + status);
+          },
+          success: function (data, status, xhr) {
+            if (data.ErrorCode == '0') {
+              stateArr = data.StateTypeDetails;
+              for (var i = 0; i < stateArr.length; i++) {
+                var StateId = stateArr[i].StateId;
+                var StateName = stateArr[i].StateName;
+                var html = $$('<option value="' + StateName + '">' + StateName + '</option>');
+                $$('#signup-form select[name=StateName').append(html);
+                $$('#signup-form select[name=StateName').val('');
+              }
+            }
+            else {
+              app.dialog.alert(data.ErrorMessage);
+            }
+          },
+          complete: function (xhr, status) {
+            app.preloader.hide();
+            //SpinnerPlugin.activityStop();
+          }
+        })
+        $$('#signup-form select[name=StateName').change(function () {
+          var selected_state = this.value;
+          for (var i = 0; i < stateArr.length; i++) {
+            var StateId = stateArr[i].StateId;
+            var StateName = stateArr[i].StateName;
+            if (StateName == selected_state) {
+              var cityArr = stateArr[i].CityTypeDetails;
+              $$('#signup-form select[name=CityName').html('');
+              for (var i = 0; i < cityArr.length; i++) {
+                var cityId = cityArr[i].CityId;
+                var CityName = cityArr[i].CityName;
+                var html = $$('<option value="' + CityName + '">' + CityName + '</option>');
+                $$('#signup-form select[name=CityName').append(html);
+              }
+              $$('select[name=CityName').val('');
+            }
+          }
+        });
+      }
+    }
+  }
+</script>
