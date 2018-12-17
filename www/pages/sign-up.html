@@ -12,7 +12,6 @@
     </div>
     <div class="toolbar toolbar-bottom-md bg-color-red color-theme-white">
       <div class="toolbar-inner">
-        <!-- <a href="/otp/" style="width:100%;text-transform: uppercase" class="link font-1x">Submit</a> -->
         <a href="#" @click="signup" style="width:100%;text-transform: uppercase" class="link font-1x">Submit</a>
       </div>
     </div>
@@ -169,15 +168,14 @@
           contentType: 'application/json',
           beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
-            app.preloader.show();
-            // var spinnerOptions = { dimBackground: false };
-            // SpinnerPlugin.activityStart(null, spinnerOptions);
+            //app.preloader.show();
+            var spinnerOptions = { dimBackground: false };
+            SpinnerPlugin.activityStart(null, spinnerOptions);
           },
           error: function (xhr, status) {
             alert("Error: " + status);
           },
           success: function (data, status, xhr) {
-            console.log(data);
             if (data.ErrorCode == '-1020') {
               var SignUpData = { 'ContractorContactNo': ContractorContactNo, 'ContractorFirstName': ContractorFirstName, 'ContractorLastName': ContractorLastName, 'DealershipName': DealershipName, 'ReferralCode': ReferralCode, 'StateName': StateName, 'CityName': CityName, 'OtherCity': OtherCity, 'GovtProofId': GovtProofId, 'GovtProofIdNumber': GovtProofIdNumber, 'EmployeeName': EmployeeName, 'EmployeeContactNo': EmployeeContactNo };
               localStorage.setItem("SignUpData", JSON.stringify(SignUpData));
@@ -190,8 +188,8 @@
             }
           },
           complete: function (xhr, status) {
-            app.preloader.hide();
-            //SpinnerPlugin.activityStop();
+            //app.preloader.hide();
+            SpinnerPlugin.activityStop();
           }
         })
       },
@@ -206,9 +204,9 @@
           contentType: 'application/json',
           beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
-            app.preloader.show();
-            // var spinnerOptions = { dimBackground: false };
-            // SpinnerPlugin.activityStart(null, spinnerOptions);
+            //app.preloader.show();
+            var spinnerOptions = { dimBackground: false };
+            SpinnerPlugin.activityStart(null, spinnerOptions);
           },
           error: function (xhr, status) {
             alert("Error: " + status);
@@ -227,8 +225,8 @@
             }
           },
           complete: function (xhr, status) {
-            app.preloader.hide();
-            //SpinnerPlugin.activityStop();
+            //app.preloader.hide();
+            SpinnerPlugin.activityStop();
           }
         })
         // State City Mapping API
@@ -240,9 +238,9 @@
           contentType: 'application/json',
           beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
-            app.preloader.show();
-            // var spinnerOptions = { dimBackground: false };
-            // SpinnerPlugin.activityStart(null, spinnerOptions);
+            //app.preloader.show();
+            var spinnerOptions = { dimBackground: false };
+            SpinnerPlugin.activityStart(null, spinnerOptions);
           },
           error: function (xhr, status) {
             alert("Error: " + status);
@@ -263,8 +261,8 @@
             }
           },
           complete: function (xhr, status) {
-            app.preloader.hide();
-            //SpinnerPlugin.activityStop();
+            //app.preloader.hide();
+            SpinnerPlugin.activityStop();
           }
         })
         $$('#signup-form select[name=StateName').change(function () {

@@ -93,10 +93,9 @@
                     alert("Error: " + status);
                   },
                   success: function (data, status, xhr) {
-                    console.log(data);
                     if (data.ErrorCode == '0') {
                       localStorage.removeItem("SignUpData");
-                      app.dialog.alert('Thank you for registering !! Your registration request is accepted. Our team will contact you within 72 Hrs.', function () {
+                      app.dialog.alert(data.ErrorMessage, function () {
                         app.views.main.router.back('/', {
                           force: true,
                         });
