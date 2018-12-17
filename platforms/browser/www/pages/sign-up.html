@@ -194,6 +194,7 @@
     },
     on: {
       pageInit: function (page) {
+        StatusBar.backgroundColorByHexString("#ba0002");
         // Govt ID Proof API
         app.request({
           url: BaseURL + '/GetGovtProofIdAPI',
