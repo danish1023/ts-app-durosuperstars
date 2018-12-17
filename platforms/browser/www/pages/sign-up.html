@@ -168,7 +168,6 @@
           contentType: 'application/json',
           beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
-            //app.preloader.show();
             var spinnerOptions = { dimBackground: false };
             SpinnerPlugin.activityStart(null, spinnerOptions);
           },
@@ -188,7 +187,6 @@
             }
           },
           complete: function (xhr, status) {
-            //app.preloader.hide();
             SpinnerPlugin.activityStop();
           }
         })
@@ -204,7 +202,6 @@
           contentType: 'application/json',
           beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
-            //app.preloader.show();
             var spinnerOptions = { dimBackground: false };
             SpinnerPlugin.activityStart(null, spinnerOptions);
           },
@@ -225,7 +222,6 @@
             }
           },
           complete: function (xhr, status) {
-            //app.preloader.hide();
             SpinnerPlugin.activityStop();
           }
         })
@@ -238,7 +234,6 @@
           contentType: 'application/json',
           beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
-            //app.preloader.show();
             var spinnerOptions = { dimBackground: false };
             SpinnerPlugin.activityStart(null, spinnerOptions);
           },
@@ -261,7 +256,6 @@
             }
           },
           complete: function (xhr, status) {
-            //app.preloader.hide();
             SpinnerPlugin.activityStop();
           }
         })

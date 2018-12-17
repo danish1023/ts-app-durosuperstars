@@ -54,7 +54,6 @@ function login() {
       contentType: 'application/json',
       beforeSend: function (xhr) {
         xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
-        //app.preloader.show();
         var spinnerOptions = { dimBackground: false };
         SpinnerPlugin.activityStart(null, spinnerOptions);
       },
@@ -68,12 +67,17 @@ function login() {
             params: { 'UserName': UserName },
           });
         }
+        else if (data.ErrorCode == '-1020') {
+          app.router.navigate({
+            name: 'first-login',
+            params: { 'UserName': UserName },
+          });
+        }
         else {
           app.dialog.alert(data.ErrorMessage);
         }
       },
       complete: function (xhr, status) {
-        //app.preloader.hide();
         SpinnerPlugin.activityStop();
       }
     })

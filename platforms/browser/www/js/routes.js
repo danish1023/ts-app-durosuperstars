@@ -13,8 +13,8 @@ var routes = [
   },
   // Set Password page
   {
-    path: '/set-password/',
-    url: './pages/set-password.html',
+    path: '/set-password/:UserName/:OTP/',
+    componentUrl: './pages/set-password.html',
     name: 'set-password',
   },
   // Change Password page
@@ -25,8 +25,8 @@ var routes = [
   },
   // First Login
   {
-    path: '/first-login/',
-    url: './pages/first-login.html',
+    path: '/first-login/:UserName/',
+    componentUrl: './pages/first-login.html',
     name: 'first-login',
   },
   // Login
