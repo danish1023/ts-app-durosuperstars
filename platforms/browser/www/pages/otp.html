@@ -17,7 +17,7 @@
         <div class="block passcode-input">
           <input type="text" value="______" id="demo-numpad-inline">
         </div>
-        <p class="text-align-center"><a href="#">Resend OTP</a></p>
+        <p class="text-align-center"><a href="#" @click="resendOTP">Resend OTP</a></p>
         <div class="block block-strong no-padding no-margin passcode-numpad">
           <div id="numpad-inline-container"></div>
         </div>
@@ -40,6 +40,11 @@
   var EmployeeName = SignUpData.EmployeeName;
   var EmployeeContactNo = SignUpData.EmployeeContactNo;
   return {
+    methods: {
+      resendOTP: function () {
+        app.dialog.alert('This feature will be available soon.');
+      }
+    },
     data: function () {
       return {
         ContractorContactNo: ContractorContactNo,
