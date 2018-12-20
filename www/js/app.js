@@ -88,6 +88,6 @@ function login() {
 }
 
 function logout() {
-  localStorage.removeItem("UserName");
+  localStorage.removeItem("User");
   app.router.navigate('/');
 }

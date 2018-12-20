@@ -75,7 +75,7 @@
           },
           success: function (data, status, xhr) {
             if (data.ErrorCode == '0') {
-              localStorage.setItem("UserName", UserName);
+              localStorage.setItem("User", JSON.stringify(data));
               app.router.navigate('/dashboard/');
             }
             else {
