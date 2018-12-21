@@ -1,0 +1,160 @@
+<template>
+  <div class="page" id="member-profile-page">
+    <div class="navbar">
+      <div class="navbar-inner sliding bg-color-red color-theme-white">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="material-icons">arrow_back</i>
+          </a>
+        </div>
+        <div class="title color-white">Profile</div>
+      </div>
+    </div>
+    <div class="page-content bg-color-white no-padding-top">
+      <div class="block bg-color-red">
+        <div class="text-align-center" style="padding-top:48px;padding-bottom:24px">
+          <img src="img/default-avatar.png" style="width:100px; border-radius: 100%" />
+          <h2 class="no-margin color-white profile-name">{{Name}}</h2>
+          <h4 class="no-margin color-white profile-mobile">{{MobileNo}}</h4>
+        </div>
+      </div>
+      <div class="block-title"><i class="material-icons" style="vertical-align: middle;">info_outline</i> General Info</div>
+      <div class="list media-list">
+        <ul class="member-info">
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  return {
+    data: function () {
+      return {
+        Name: UserData.FirstName+' '+UserData.LastName,
+        MobileNo: UserData.MobileNo,
+      }
+    },
+    on: {
+      pageInit: function (page) {
+        var obj = {
+          MobileNo: UserData.MobileNo,
+        };
+        app.request({
+          url: BaseURL + '/MyProfileAPI',
+          method: 'POST',
+          dataType: 'json',
+          data: obj,
+          contentType: 'application/json',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+            var spinnerOptions = { dimBackground: false };
+            SpinnerPlugin.activityStart(null, spinnerOptions);
+          },
+          error: function (xhr, status) {
+            alert("Error: " + status);
+          },
+          success: function (data, status, xhr) {
+            $$('#member-profile-page .profile-name').text(data.ContractorFirstName+' '+data.ContractorLastName);
+            $$('#member-profile-page .profile-mobile').text(data.MobileNo);
+            $$('#member-profile-page .member-info').html('');
+            var html = `<li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-subtitle color-red">Contractor Contact No</div>
+                  <div class="item-title-row">
+                    <div class="item-title ContractorContactNo">${NA(data.MobileNo)}</div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-subtitle color-red">Contractor First Name</div>
+                  <div class="item-title-row">
+                    <div class="item-title">${NA(data.ContractorFirstName)}</div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-subtitle color-red">Contractor Last Name</div>
+                  <div class="item-title-row">
+                    <div class="item-title">${NA(data.ContractorLastName)}</div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-subtitle color-red">Dealership Name</div>
+                  <div class="item-title-row">
+                    <div class="item-title">${NA(data.DealershipName)}</div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-subtitle color-red">State</div>
+                  <div class="item-title-row">
+                    <div class="item-title">${NA(data.State)}</div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-subtitle color-red">City</div>
+                  <div class="item-title-row">
+                    <div class="item-title">${NA(data.City)}</div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-subtitle color-red">Address</div>
+                  <div class="item-title-row">
+                    <div class="item-title">${NA(data.Address1)}</div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-subtitle color-red">Govt. ID Proof</div>
+                  <div class="item-title-row">
+                    <div class="item-title">${NA(data.GovernmentIDProof)}</div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-subtitle color-red">Govt. ID Proof No</div>
+                  <div class="item-title-row">
+                    <div class="item-title">${NA(data.GovernmentIDProofNumber)}</div>
+                  </div>
+                </div>
+              </div>
+            </li>`;
+            $$('#member-profile-page .member-info').append(html);
+          },
+          complete: function (xhr, status) {
+            SpinnerPlugin.activityStop();
+          }
+        })
+      }
+    }
+  }
+</script>

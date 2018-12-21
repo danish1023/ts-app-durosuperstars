@@ -64,6 +64,20 @@ var routes = [
     // },
   },
 
+  // User Profile page
+  {
+    path: '/user-profile/',
+    componentUrl: './pages/user-profile.html',
+    name: 'user-profile',
+  },
+
+  // Member Profile page
+  {
+    path: '/member-profile/',
+    componentUrl: './pages/member-profile.html',
+    name: 'member-profile',
+  },
+
   // Default route (404 page). MUST BE THE LAST
   {
     path: '(.*)',

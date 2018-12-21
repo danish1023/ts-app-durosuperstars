@@ -1,6 +1,15 @@
 // Dom7
 var $$ = Dom7;
 
+var User = localStorage.User;
+var UserData = JSON.parse(User);
+if(UserData.UserType == 'M'){
+  $$('.panel-left a.profile').attr('href', '/member-profile/');
+}
+else{
+  $$('.panel-left a.profile').attr('href', '/user-profile/');
+}
+
 // install plugin to Framework7
 Framework7.use(Framework7Keypad);
 
@@ -38,6 +47,15 @@ var AuthUsername = 'Novatis';
 var AuthPassword = '!!Novatis!!';
 
 // Custom Functions
+function NA(input){
+  if(input == ''){
+    return 'NA';
+  }
+  else{
+    return input;
+  }
+}
+
 function login() {
   var UserName = $$('#login-form-1 input[name=username]').val();
   if (UserName != '') {

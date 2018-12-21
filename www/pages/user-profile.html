@@ -1,0 +1,77 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-inner sliding bg-color-red color-theme-white">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="material-icons">arrow_back</i>
+          </a>
+        </div>
+        <div class="title color-white">Profile</div>
+      </div>
+    </div>
+    <div class="page-content bg-color-white no-padding-top">
+      <div class="block bg-color-red">
+        <div class="text-align-center" style="padding-top:48px;padding-bottom:24px">
+          <img src="img/default-avatar.png" style="width:100px; border-radius: 100%" />
+          <h2 class="no-margin color-white">{{data.FirstName}} {{data.LastName}}</h2>
+          <h4 class="no-margin color-white">{{data.MobileNo}}</h4>
+        </div>
+      </div>
+      <div class="block-title"><i class="material-icons" style="vertical-align: middle;">info_outline</i> General Info</div>
+      <div class="list media-list">
+        <ul class="user-profile-info">
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-subtitle color-red">First Name</div>
+                <div class="item-title-row">
+                  <div class="item-title">{{data.FirstName}}</div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-subtitle color-red">Last Name</div>
+                <div class="item-title-row">
+                  <div class="item-title">{{data.LastName}}</div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-subtitle color-red">Membership ID</div>
+                <div class="item-title-row">
+                  <div class="item-title">{{data.MembershipId}}</div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-inner">
+                <div class="item-subtitle color-red">Mobile Number</div>
+                <div class="item-title-row">
+                  <div class="item-title">{{data.MobileNo}}</div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  return {
+    data: function () {
+      return {
+        data: UserData,
+      }
+    }
+  }
+</script>
