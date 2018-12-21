@@ -2,12 +2,14 @@
 var $$ = Dom7;
 
 var User = localStorage.User;
-var UserData = JSON.parse(User);
-if(UserData.UserType == 'M'){
-  $$('.panel-left a.profile').attr('href', '/member-profile/');
-}
-else{
-  $$('.panel-left a.profile').attr('href', '/user-profile/');
+if(User){
+  var UserData = JSON.parse(User);
+  if(UserData.UserType == 'M'){
+    $$('.panel-left a.profile').attr('href', '/member-profile/');
+  }
+  else{
+    $$('.panel-left a.profile').attr('href', '/user-profile/');
+  }
 }
 
 // install plugin to Framework7

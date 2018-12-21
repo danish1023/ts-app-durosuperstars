@@ -186,8 +186,8 @@
     function onDeviceReady() {
       var User = localStorage.User;
       if (User) {
-        // $$('.page-current').hide();
-        // $$('.page-previous').hide();
+        $$('.page-current').hide();
+        $$('.page-previous').hide();
         mainView.router.navigate('/dashboard/');
       }
       cordova.getAppVersion.getVersionNumber(function (version) {

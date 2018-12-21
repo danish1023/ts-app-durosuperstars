@@ -55,7 +55,6 @@
             alert("Error: " + status);
           },
           success: function (data, status, xhr) {
-            console.log(data);
             $$('#member-profile-page .profile-name').text(data.ContractorFirstName+' '+data.ContractorLastName);
             $$('#member-profile-page .profile-mobile').text(data.MobileNo);
             $$('#member-profile-page .member-info').html('');
