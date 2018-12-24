@@ -57,7 +57,7 @@ var routes = [
   // Dashboard page
   {
     path: '/dashboard/',
-    url: './pages/dashboard.html',
+    componentUrl: './pages/dashboard.html',
     name: 'dashboard',
     // options: {
     //   animate: false,

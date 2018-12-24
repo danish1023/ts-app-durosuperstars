@@ -18,20 +18,22 @@
           <h4 class="no-margin color-white profile-mobile">{{MobileNo}}</h4>
         </div>
       </div>
-      <div class="block-title"><i class="material-icons" style="vertical-align: middle;">info_outline</i> General Info</div>
+      <div class="block-title">General Info</div>
       <div class="list media-list">
         <ul class="member-info">
-          
+
         </ul>
       </div>
     </div>
   </div>
 </template>
 <script>
+  var User = localStorage.User;
+  var UserData = JSON.parse(User);
   return {
     data: function () {
       return {
-        Name: UserData.FirstName+' '+UserData.LastName,
+        Name: UserData.FirstName + ' ' + UserData.LastName,
         MobileNo: UserData.MobileNo,
       }
     },
@@ -55,7 +57,7 @@
             alert("Error: " + status);
           },
           success: function (data, status, xhr) {
-            $$('#member-profile-page .profile-name').text(data.ContractorFirstName+' '+data.ContractorLastName);
+            $$('#member-profile-page .profile-name').text(data.ContractorFirstName + ' ' + data.ContractorLastName);
             $$('#member-profile-page .profile-mobile').text(data.MobileNo);
             $$('#member-profile-page .member-info').html('');
             var html = `<li>

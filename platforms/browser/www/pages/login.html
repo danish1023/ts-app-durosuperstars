@@ -22,7 +22,7 @@
                 <div class="item-inner">
                   <div class="item-title item-floating-label">Enter Username</div>
                   <div class="item-input-wrap">
-                    <input type="text" name="UserName" value="{{UserName}}" maxlength="10">
+                    <input type="text" name="UserName" value="{{UserName}}">
                   </div>
                 </div>
               </li>
@@ -76,6 +76,14 @@
           success: function (data, status, xhr) {
             if (data.ErrorCode == '0') {
               localStorage.setItem("User", JSON.stringify(data));
+              var User = localStorage.User;
+              var UserData = JSON.parse(User);
+              if (UserData.UserType == 'M') {
+                $$('.panel-left a.profile').attr('href', '/member-profile/');
+              }
+              else {
+                $$('.panel-left a.profile').attr('href', '/user-profile/');
+              }
               app.router.navigate('/dashboard/');
             }
             else {

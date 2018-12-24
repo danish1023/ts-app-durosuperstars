@@ -126,3 +126,11 @@ li.with-border{
   font-size: 25px;
   font-weight: 300;
 }
+
+.dashboard-bottom-border {
+  border-bottom: 1px solid #ff9500;
+}
+
+.dashboard-right-border {
+  border-right: 1px solid #ff9500;
+}

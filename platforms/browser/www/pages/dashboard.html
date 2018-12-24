@@ -1,20 +1,142 @@
-<div class="page">
-  <div class="navbar">
-    <div class="navbar-inner sliding bg-color-red color-theme-white">
-      <div class="left">
-        <a href="#" class="link icon-only panel-open" data-panel="left">
-          <i class="icon material-icons">menu</i>
-        </a>
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-inner sliding bg-color-red color-theme-white">
+        <div class="left">
+          <a href="#" class="link icon-only panel-open" data-panel="left">
+            <i class="icon material-icons">menu</i>
+          </a>
+        </div>
+        <div class="title color-white">Dashboard</div>
+        <div class="right">
+          <a class="link icon-only">
+            <i class="icon material-icons">notifications</i>
+          </a>
+        </div>
       </div>
-      <div class="title color-white">Dashboard</div>
-      <div class="right">
-        <a class="link icon-only">
-          <i class="icon material-icons">notifications</i>
-        </a>
+    </div>
+    <div class="page-content" id="MemberHomePage">
+      <div class="card">
+        <div class="card-content card-content-padding">
+          <div class="row text-align-center">
+            <div class="col">
+              <h2 class="no-margin-top Name"></h2>
+            </div>
+          </div>
+          <div class="row text-align-center color-white">
+            <div class="col bg-color-red padding">
+              <h3 class="no-margin">Tier</h3>
+              <div class="chip">
+                <div class="chip-label color-white Tier"></div>
+              </div>
+            </div>
+            <div class="col bg-color-red padding">
+              <h3 class="no-margin">Point Balance</h3>
+              <div class="chip">
+                <div class="chip-label color-white PointBalance"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row padding-top">
+            <div class="col">
+              <div class="list">
+                <ul class="ExpiryDetails">
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="block text-align-center">
+        <div class="row dashboard-bottom-border">
+          <div class="col padding dashboard-right-border">
+            <a href="#" class="color-black">
+              <div><img src="img/info.svg" width="50" /></div>
+              <div>Program Information Booklet</div>
+            </a>
+          </div>
+          <div class="col padding">
+              <a href="#" class="color-black">
+              <div><img src="img/barcode.svg" width="50" /></div>
+              <div>Scan/Enter coupon</div>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col padding dashboard-right-border">
+              <a href="#" class="color-black">
+              <div><img src="img/campaign.svg" width="50" /></div>
+              <div>Campaign</div>
+            </a>
+          </div>
+          <div class="col padding">
+              <a href="#" class="color-black">
+              <div><img src="img/statement.svg" width="50" /></div>
+              <div>Account Statement</div>
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
-  <div class="page-content">
-
-  </div>
-</div>
+</template>
+<script>
+  return {
+    on: {
+      pageInit: function (e, page) {
+        var obj = {
+          MobileNo: UserData.MobileNo,
+        };
+        app.request({
+          url: BaseURL + '/DashboardAPI',
+          method: 'POST',
+          dataType: 'json',
+          data: obj,
+          contentType: 'application/json',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+            var spinnerOptions = { dimBackground: false };
+            SpinnerPlugin.activityStart(null, spinnerOptions);
+          },
+          error: function (xhr, status) {
+            alert("Error: " + status);
+          },
+          success: function (data, status, xhr) {
+            if (data.ErrorCode == '0') {
+              var DashboardDetail = data.DashboardDetail[0];
+              var Name = DashboardDetail.Name;
+              var CurrentBalance = DashboardDetail.CurrentBalance;
+              var TierName = DashboardDetail.TierName;
+              var ExpiryDetails = DashboardDetail.ExpiryDetails;
+              $$('#MemberHomePage .Name').text(Name);
+              $$('#MemberHomePage .Tier').text(TierName);
+              $$('#MemberHomePage .PointBalance').text(CurrentBalance);
+              $$('#MemberHomePage .ExpiryDetails').html('');
+              for (var i = 0; i < ExpiryDetails.length; i++) {
+                var PointExpiryDate = ExpiryDetails[i].PointExpiryDate;
+                var res = PointExpiryDate.split(":");
+                var html = `<li>
+                <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title">${res[0].trim()}</div>
+                      <div class="item-after"><span class="badge color-red"><span class="color-white">${res[1].trim()}</span></span></div>
+                    </div>
+                  </div>
+                </li>`;
+                $$('#MemberHomePage .ExpiryDetails').append(html);
+              }
+            }
+            else {
+              app.dialog.alert(data.ErrorMessage);
+            }
+          },
+          complete: function (xhr, status) {
+            SpinnerPlugin.activityStop();
+          }
+        })
+      }
+    }
+  }
+</script>

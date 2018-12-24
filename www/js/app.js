@@ -2,12 +2,12 @@
 var $$ = Dom7;
 
 var User = localStorage.User;
-if(User){
+if (User) {
   var UserData = JSON.parse(User);
-  if(UserData.UserType == 'M'){
+  if (UserData.UserType == 'M') {
     $$('.panel-left a.profile').attr('href', '/member-profile/');
   }
-  else{
+  else {
     $$('.panel-left a.profile').attr('href', '/user-profile/');
   }
 }
@@ -56,6 +56,10 @@ function NA(input){
   else{
     return input;
   }
+}
+
+function testMe(){
+  alert('ok');
 }
 
 function login() {
