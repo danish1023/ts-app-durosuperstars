@@ -86,6 +86,8 @@
   return {
     on: {
       pageInit: function (e, page) {
+        var User = localStorage.User;
+        var UserData = JSON.parse(User);
         var obj = {
           MobileNo: UserData.MobileNo,
         };
