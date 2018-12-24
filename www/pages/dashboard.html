@@ -38,12 +38,8 @@
             </div>
           </div>
           <div class="row padding-top">
-            <div class="col">
-              <div class="list">
-                <ul class="ExpiryDetails">
+            <div class="col ExpiryDetails text-align-center">
 
-                </ul>
-              </div>
             </div>
           </div>
         </div>
@@ -57,27 +53,40 @@
             </a>
           </div>
           <div class="col padding">
-              <a href="#" class="color-black">
+            <a href="#" class="color-black">
               <div><img src="img/barcode.svg" width="50" /></div>
               <div>Scan/Enter coupon</div>
             </a>
           </div>
         </div>
-        <div class="row">
+        <div class="row dashboard-bottom-border">
           <div class="col padding dashboard-right-border">
-              <a href="#" class="color-black">
+            <a href="#" class="color-black">
               <div><img src="img/campaign.svg" width="50" /></div>
               <div>Campaign</div>
             </a>
           </div>
           <div class="col padding">
-              <a href="#" class="color-black">
+            <a href="#" class="color-black">
               <div><img src="img/statement.svg" width="50" /></div>
               <div>Account Statement</div>
             </a>
           </div>
         </div>
-
+        <div class="row">
+          <div class="col padding dashboard-right-border">
+            <a href="#" class="color-black">
+              <div><img src="img/video.svg" width="50" /></div>
+              <div>Video</div>
+            </a>
+          </div>
+          <div class="col padding">
+            <a href="#" class="color-black">
+              <div><img src="img/calculator.svg" width="50" /></div>
+              <div>Calculator</div>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -118,15 +127,7 @@
               $$('#MemberHomePage .ExpiryDetails').html('');
               for (var i = 0; i < ExpiryDetails.length; i++) {
                 var PointExpiryDate = ExpiryDetails[i].PointExpiryDate;
-                var res = PointExpiryDate.split(":");
-                var html = `<li>
-                <div class="item-content">
-                    <div class="item-inner">
-                      <div class="item-title">${res[0].trim()}</div>
-                      <div class="item-after"><span class="badge color-red"><span class="color-white">${res[1].trim()}</span></span></div>
-                    </div>
-                  </div>
-                </li>`;
+                var html = `<h4>${PointExpiryDate}</h4>`;
                 $$('#MemberHomePage .ExpiryDetails').append(html);
               }
             }
