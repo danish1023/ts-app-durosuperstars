@@ -107,6 +107,14 @@ module.exports = [
         "id": "cordova-plugin-device.DeviceProxy",
         "pluginId": "cordova-plugin-device",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-pdf-viewer/www/pdfviewer.js",
+        "id": "cordova-plugin-pdf-viewer.PDFViewer",
+        "pluginId": "cordova-plugin-pdf-viewer",
+        "clobbers": [
+            "PDFViewer"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -122,7 +130,8 @@ module.exports.metadata =
     "cordova-plugin-splashscreen": "5.0.2",
     "cordova-plugin-nativestorage": "2.3.2",
     "cordova-plugin-device": "2.0.2",
-    "cordova-plugin-whitelist": "1.3.3"
+    "cordova-plugin-whitelist": "1.3.3",
+    "cordova-plugin-pdf-viewer": "0.0.1"
 }
 // BOTTOM OF METADATA
 });
