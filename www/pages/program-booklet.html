@@ -10,20 +10,17 @@
         <div class="title color-white">{{data}}</div>
       </div>
     </div>
-    <div class="page-content">
-      <iframe src="http://sardaplydemo.netcarrots.in/Admin/ProgramBooklet/ProgramBookletV1.0.pdf" width="100%" height="100%" style="border: none;">
-        <p>Your browser does not support PDFs.
-          <a class="external" href="http://sardaplydemo.netcarrots.in/Admin/ProgramBooklet/ProgramBookletV1.0.pdf">Download the PDF</a>.</p>
-      </iframe>
+    <div class="page-content" id="pib">
+      
     </div>
   </div>
 </template>
 <script>
   return {
     data: function () {
-      return {
-        data: 'Program Information Booklet',
-      }
+      app.request.get('http://sardaplydemo.netcarrots.in/Admin/ProgramBooklet/ProgramBookletV1.0.pdf', function (data) {
+        $$('#pib').html(data);
+      });
     }
   }
 </script>
