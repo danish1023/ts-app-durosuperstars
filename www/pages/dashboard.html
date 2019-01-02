@@ -125,10 +125,12 @@
               $$('#MemberHomePage .Tier').text(TierName);
               $$('#MemberHomePage .PointBalance').text(CurrentBalance);
               $$('#MemberHomePage .ExpiryDetails').html('');
-              for (var i = 0; i < ExpiryDetails.length; i++) {
-                var PointExpiryDate = ExpiryDetails[i].PointExpiryDate;
-                var html = `<h4>${PointExpiryDate}</h4>`;
-                $$('#MemberHomePage .ExpiryDetails').append(html);
+              if(ExpiryDetails){
+                for (var i = 0; i < ExpiryDetails.length; i++) {
+                  var PointExpiryDate = ExpiryDetails[i].PointExpiryDate;
+                  var html = `<h4>${PointExpiryDate}</h4>`;
+                  $$('#MemberHomePage .ExpiryDetails').append(html);
+                }
               }
             }
             else {

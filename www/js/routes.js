@@ -51,7 +51,11 @@ var routes = [
   {
     path: '/otp/',
     componentUrl: './pages/otp.html',
-    name: 'otp'
+    name: 'otp',
+    options: {
+      reloadCurrent: true,
+      ignoreCache: true,
+    },
   },
 
   // Dashboard page
