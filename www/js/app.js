@@ -117,5 +117,5 @@ function logout() {
 }
 
 function booklet(){
-  PDFViewer.openPDF('http://sardaplydemo.netcarrots.in/Admin/ProgramBooklet/ProgramBookletV1.0.pdf');
+  PDFViewer.openPDF('http://brandstudioz.co.in/iframe-test/ProgramBookletV1.0.pdf');
 }
