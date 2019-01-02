@@ -115,3 +115,7 @@ function logout() {
   localStorage.removeItem("User");
   app.router.navigate('/');
 }
+
+function booklet(){
+  PDFViewer.openPDF('http://sardaplydemo.netcarrots.in/Admin/ProgramBooklet/ProgramBookletV1.0.pdf');
+}
