@@ -47,7 +47,7 @@
       <div class="block text-align-center no-margin">
         <div class="row dashboard-bottom-border">
           <div class="col padding dashboard-right-border">
-            <a href="#" @click="openBooklet" class="color-black">
+            <a href="/program-booklet/" class="color-black">
               <div><img src="img/info.svg" width="50" /></div>
               <div>Program Information Booklet</div>
             </a>
@@ -93,11 +93,6 @@
 </template>
 <script>
   return {
-    methods: {
-      openBooklet: function () {
-        window.open('https://docs.google.com/viewer?url=http://sardaplydemo.netcarrots.in/Admin/ProgramBooklet/ProgramBookletV1.0.pdf&embedded=true', '_system', 'location=no');
-      }
-    },
     on: {
       pageInit: function (e, page) {
         var User = localStorage.User;

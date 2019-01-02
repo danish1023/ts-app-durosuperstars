@@ -82,6 +82,13 @@ var routes = [
     name: 'member-profile',
   },
 
+  // Program Booklet
+  {
+    path: '/program-booklet/',
+    componentUrl: './pages/program-booklet.html',
+    name: 'program-booklet',
+  },
+
   // Default route (404 page). MUST BE THE LAST
   {
     path: '(.*)',
