@@ -52,10 +52,10 @@ var routes = [
     path: '/otp/',
     componentUrl: './pages/otp.html',
     name: 'otp',
-    options: {
-      reloadCurrent: true,
-      ignoreCache: true,
-    },
+    // options: {
+    //   reloadCurrent: true,
+    //   ignoreCache: true,
+    // },
   },
 
   // Dashboard page

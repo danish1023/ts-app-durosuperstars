@@ -207,8 +207,6 @@
       else if (app.views.main.router.currentRoute.url == "/login/" || app.views.main.router.currentRoute.url == "/otp/") {
         mainView.router.back('/', {
           force: true,
-          reloadCurrent: true,
-          ignoreCache: true,
         });
       }
       else {

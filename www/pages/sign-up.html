@@ -180,6 +180,7 @@
               localStorage.setItem("SignUpData", JSON.stringify(SignUpData));
               app.router.navigate({
                 name: 'otp',
+                ignoreCache: true,
               });
             }
             else {

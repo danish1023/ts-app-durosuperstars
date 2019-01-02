@@ -3,7 +3,7 @@
     <div class="navbar">
       <div class="navbar-inner sliding bg-color-red color-theme-white">
         <div class="left">
-          <a href="/" data-force="true" data-reload-current="true" data-ignore-cache="true" class="link back">
+          <a href="/" data-force="true" class="link back">
             <i class="material-icons">arrow_back</i>
           </a>
         </div>
@@ -26,19 +26,6 @@
   </div>
 </template>
 <script>
-  var SignUpData = JSON.parse(localStorage.SignUpData);
-  var ContractorContactNo = SignUpData.ContractorContactNo;
-  var ContractorFirstName = SignUpData.ContractorFirstName;
-  var ContractorLastName = SignUpData.ContractorLastName;
-  var DealershipName = SignUpData.DealershipName;
-  var ReferralCode = SignUpData.ReferralCode;
-  var StateName = SignUpData.StateName;
-  var CityName = SignUpData.CityName;
-  var OtherCity = SignUpData.OtherCity;
-  var GovtProofId = SignUpData.GovtProofId;
-  var GovtProofIdNumber = SignUpData.GovtProofIdNumber;
-  var EmployeeName = SignUpData.EmployeeName;
-  var EmployeeContactNo = SignUpData.EmployeeContactNo;
   return {
     methods: {
       resendOTP: function () {
@@ -46,12 +33,27 @@
       }
     },
     data: function () {
+      var SignUpData = JSON.parse(localStorage.SignUpData);
+      var ContractorContactNo = SignUpData.ContractorContactNo;
       return {
         ContractorContactNo: ContractorContactNo,
       }
     },
     on: {
       pageInit: function () {
+        var SignUpData = JSON.parse(localStorage.SignUpData);
+        var ContractorContactNo = SignUpData.ContractorContactNo;
+        var ContractorFirstName = SignUpData.ContractorFirstName;
+        var ContractorLastName = SignUpData.ContractorLastName;
+        var DealershipName = SignUpData.DealershipName;
+        var ReferralCode = SignUpData.ReferralCode;
+        var StateName = SignUpData.StateName;
+        var CityName = SignUpData.CityName;
+        var OtherCity = SignUpData.OtherCity;
+        var GovtProofId = SignUpData.GovtProofId;
+        var GovtProofIdNumber = SignUpData.GovtProofIdNumber;
+        var EmployeeName = SignUpData.EmployeeName;
+        var EmployeeContactNo = SignUpData.EmployeeContactNo;
         var numpadInline = app.keypad.create({
           inputEl: '#demo-numpad-inline',
           containerEl: '#numpad-inline-container',
