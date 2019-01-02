@@ -95,7 +95,7 @@
   return {
     methods: {
       openBooklet: function () {
-        cordova.plugins.SitewaertsDocumentViewer.viewDocument('http://sardaplydemo.netcarrots.in/Admin/ProgramBooklet/ProgramBookletV1.0.pdf', 'application/pdf');
+        window.open('http://sardaplydemo.netcarrots.in/Admin/ProgramBooklet/ProgramBookletV1.0.pdf', '_blank', 'location=no,closebuttoncaption=Close,enableViewportScale=yes'); 
       }
     },
     on: {
