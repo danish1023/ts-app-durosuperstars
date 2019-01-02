@@ -47,7 +47,7 @@
       <div class="block text-align-center no-margin">
         <div class="row dashboard-bottom-border">
           <div class="col padding dashboard-right-border">
-            <a href="/program-booklet/" class="color-black">
+            <a href="#" @click="openBooklet" class="color-black">
               <div><img src="img/info.svg" width="50" /></div>
               <div>Program Information Booklet</div>
             </a>
@@ -93,6 +93,11 @@
 </template>
 <script>
   return {
+    methods: {
+      openBooklet: function () {
+        PDFViewer.openPDF('ProgramBookletV1.0.pdf');
+      }
+    },
     on: {
       pageInit: function (e, page) {
         var User = localStorage.User;
