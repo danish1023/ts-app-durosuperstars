@@ -28,10 +28,9 @@
   </div>
 </template>
 <script>
-  var User = localStorage.User;
-  var UserData = JSON.parse(User);
   return {
     data: function () {
+      var UserData = JSON.parse(localStorage.User);
       return {
         Name: UserData.FirstName + ' ' + UserData.LastName,
         MobileNo: UserData.MobileNo,
@@ -39,6 +38,7 @@
     },
     on: {
       pageInit: function (page) {
+        var UserData = JSON.parse(localStorage.User);
         var obj = {
           MobileNo: UserData.MobileNo,
         };
