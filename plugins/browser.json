@@ -45,6 +45,9 @@
         },
         "cordova-open": {
             "PACKAGE_NAME": "com.techstreet.durosuperstars"
+        },
+        "cordova-plugin-document-viewer": {
+            "PACKAGE_NAME": "com.techstreet.durosuperstars"
         }
     },
     "dependent_plugins": {

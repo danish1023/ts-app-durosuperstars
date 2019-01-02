@@ -95,18 +95,7 @@
   return {
     methods: {
       openBooklet: function () {
-        cordova.plugins.disusered.open('http://sardaplydemo.netcarrots.in/Admin/ProgramBooklet/ProgramBookletV1.0.pdf', success, error);
-        
-        function success() {
-          console.log('Success');
-        }
-        function error(code) {
-          if (code === 1) {
-            console.log('No file opener found');
-          } else {
-            console.log('Undefined error');
-          }
-        }
+        cordova.plugins.SitewaertsDocumentViewer.viewDocument('http://sardaplydemo.netcarrots.in/Admin/ProgramBooklet/ProgramBookletV1.0.pdf', 'application/pdf');
       }
     },
     on: {

@@ -326,6 +326,15 @@ module.exports = [
         "merges": [
             "cordova.plugins.disusered"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-document-viewer/www/sitewaertsdocumentviewer.js",
+        "id": "cordova-plugin-document-viewer.SitewaertsDocumentViewer",
+        "pluginId": "cordova-plugin-document-viewer",
+        "clobbers": [
+            "cordova.plugins.SitewaertsDocumentViewer",
+            "SitewaertsDocumentViewer"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -345,7 +354,8 @@ module.exports.metadata =
     "cordova-plugin-pdf-viewer": "0.0.1",
     "cordova-plugin-file": "6.0.1",
     "cordova-plugin-file-transfer": "1.7.1",
-    "cordova-open": "1.0.12"
+    "cordova-open": "1.0.12",
+    "cordova-plugin-document-viewer": "0.9.10"
 }
 // BOTTOM OF METADATA
 });
