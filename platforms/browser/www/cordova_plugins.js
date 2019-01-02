@@ -335,6 +335,21 @@ module.exports = [
             "cordova.plugins.SitewaertsDocumentViewer",
             "SitewaertsDocumentViewer"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+        "id": "cordova-plugin-inappbrowser.inappbrowser",
+        "pluginId": "cordova-plugin-inappbrowser",
+        "clobbers": [
+            "cordova.InAppBrowser.open",
+            "window.open"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-inappbrowser/src/browser/InAppBrowserProxy.js",
+        "id": "cordova-plugin-inappbrowser.InAppBrowserProxy",
+        "pluginId": "cordova-plugin-inappbrowser",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -355,7 +370,8 @@ module.exports.metadata =
     "cordova-plugin-file": "6.0.1",
     "cordova-plugin-file-transfer": "1.7.1",
     "cordova-open": "1.0.12",
-    "cordova-plugin-document-viewer": "0.9.10"
+    "cordova-plugin-document-viewer": "0.9.10",
+    "cordova-plugin-inappbrowser": "1.7.2"
 }
 // BOTTOM OF METADATA
 });

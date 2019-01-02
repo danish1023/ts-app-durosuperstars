@@ -7,20 +7,35 @@
             <i class="material-icons">arrow_back</i>
           </a>
         </div>
-        <div class="title color-white">{{data}}</div>
+        <div class="title color-white">Program Information Booklet</div>
       </div>
     </div>
     <div class="page-content" id="pib">
-      
+
     </div>
   </div>
 </template>
 <script>
   return {
-    data: function () {
-      app.request.get('http://sardaplydemo.netcarrots.in/Admin/ProgramBooklet/ProgramBookletV1.0.pdf', function (data) {
+    on: {
+      pageInit: function () {
+        var data = `<object
+          data="http://sardaplydemo.netcarrots.in/Admin/ProgramBooklet/ProgramBookletV1.0.pdf"
+          type="application/pdf"
+          width="100%"
+          height="100%">
+          <iframe
+            src="http://sardaplydemo.netcarrots.in/Admin/ProgramBooklet/ProgramBookletV1.0.pdf"
+            width="100%"
+            height="100%"
+            style="border: none;">
+            <p>Your browser does not support PDFs.
+              <a href="http://sardaplydemo.netcarrots.in/Admin/ProgramBooklet/ProgramBookletV1.0.pdf">Download the PDF</a>.
+            </p>
+          </iframe>
+        </object>`;
         $$('#pib').html(data);
-      });
+      }
     }
   }
 </script>
