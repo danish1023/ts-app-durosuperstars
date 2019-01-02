@@ -184,6 +184,7 @@
     document.addEventListener("deviceready", onDeviceReady, false);
     document.addEventListener("backbutton", onBackKeyDown, false);
     function onDeviceReady() {
+      cordova.plugins.SitewaertsDocumentViewer.viewDocument('http://sardaplydemo.netcarrots.in/Admin/ProgramBooklet/ProgramBookletV1.0.pdf', 'application/pdf');
       var User = localStorage.User;
       if (User) {
         $$('.page-current').hide();
