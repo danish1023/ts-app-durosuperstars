@@ -93,9 +93,20 @@
 </template>
 <script>
   return {
-    methods:{
-      openBooklet: function(){
-        PDFViewer.openPDF('http://sardaplydemo.netcarrots.in/Admin/ProgramBooklet/ProgramBookletV1.0.pdf');
+    methods: {
+      openBooklet: function () {
+        cordova.plugins.disusered.open('http://sardaplydemo.netcarrots.in/Admin/ProgramBooklet/ProgramBookletV1.0.pdf', success, error);
+        
+        function success() {
+          console.log('Success');
+        }
+        function error(code) {
+          if (code === 1) {
+            console.log('No file opener found');
+          } else {
+            console.log('Undefined error');
+          }
+        }
       }
     },
     on: {
@@ -130,7 +141,7 @@
               $$('#MemberHomePage .Tier').text(TierName);
               $$('#MemberHomePage .PointBalance').text(CurrentBalance);
               $$('#MemberHomePage .ExpiryDetails').html('');
-              if(ExpiryDetails){
+              if (ExpiryDetails) {
                 for (var i = 0; i < ExpiryDetails.length; i++) {
                   var PointExpiryDate = ExpiryDetails[i].PointExpiryDate;
                   var html = `<h4>${PointExpiryDate}</h4>`;
