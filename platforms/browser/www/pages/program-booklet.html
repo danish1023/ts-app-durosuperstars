@@ -18,8 +18,6 @@
         <p><b>Example fallback content</b>: This browser does not support PDFs. Please download the PDF to view it: 
         <a href="../ProgramBookletV1.0.pdf">Download PDF</a>.</p>
       </object> -->
-      <iframe src="ProgramBookletV1.0.pdf" width="100%" height="100%" style="border: none;">
-      </iframe>
     </div>
   </div>
 </template>
@@ -34,6 +32,21 @@
       pageInit: function () {
         // var spinnerOptions = { dimBackground: false };
         // SpinnerPlugin.activityStart(null, spinnerOptions);
+        var options = {
+          headerColor: "#000000",
+          showScroll: true,
+          showShareButton: true,
+          showCloseButton: true,
+          swipeHorizontal: false
+        };
+        AndroidNativePdfViewer.openPdfUrl('http://sardaplydemo.netcarrots.in/Admin/ProgramBooklet/ProgramBookletV1.0.pdf', 'Program Information Booklet', options,
+          function (success) {
+            // success callback
+            alert('success');
+          }, function (error) {
+            // error callback
+            alert('error');
+          });
       }
     }
   }

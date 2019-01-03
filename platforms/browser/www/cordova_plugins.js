@@ -350,6 +350,14 @@ module.exports = [
         "id": "cordova-plugin-inappbrowser.InAppBrowserProxy",
         "pluginId": "cordova-plugin-inappbrowser",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-android-native-pdfviewer/www/AndroidNativePdfViewer.js",
+        "id": "cordova-plugin-android-native-pdfviewer.AndroidNativePdfViewer",
+        "pluginId": "cordova-plugin-android-native-pdfviewer",
+        "clobbers": [
+            "window.AndroidNativePdfViewer"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -371,7 +379,8 @@ module.exports.metadata =
     "cordova-plugin-file-transfer": "1.7.1",
     "cordova-open": "1.0.12",
     "cordova-plugin-document-viewer": "0.9.10",
-    "cordova-plugin-inappbrowser": "1.7.2"
+    "cordova-plugin-inappbrowser": "1.7.2",
+    "cordova-plugin-android-native-pdfviewer": "0.0.1"
 }
 // BOTTOM OF METADATA
 });

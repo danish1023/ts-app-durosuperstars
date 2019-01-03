@@ -51,6 +51,9 @@
         },
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.techstreet.durosuperstars"
+        },
+        "cordova-plugin-android-native-pdfviewer": {
+            "PACKAGE_NAME": "com.techstreet.durosuperstars"
         }
     },
     "dependent_plugins": {

@@ -72,6 +72,9 @@
         },
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.techstreet.durosuperstars"
+        },
+        "cordova-plugin-android-native-pdfviewer": {
+            "PACKAGE_NAME": "com.techstreet.durosuperstars"
         }
     },
     "dependent_plugins": {},
@@ -426,6 +429,14 @@
             "id": "cordova-plugin-inappbrowser.InAppBrowserProxy",
             "pluginId": "cordova-plugin-inappbrowser",
             "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-android-native-pdfviewer/www/AndroidNativePdfViewer.js",
+            "id": "cordova-plugin-android-native-pdfviewer.AndroidNativePdfViewer",
+            "pluginId": "cordova-plugin-android-native-pdfviewer",
+            "clobbers": [
+                "window.AndroidNativePdfViewer"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -445,6 +456,7 @@
         "cordova-plugin-file-transfer": "1.7.1",
         "cordova-open": "1.0.12",
         "cordova-plugin-document-viewer": "0.9.10",
-        "cordova-plugin-inappbrowser": "1.7.2"
+        "cordova-plugin-inappbrowser": "1.7.2",
+        "cordova-plugin-android-native-pdfviewer": "0.0.1"
     }
 }
