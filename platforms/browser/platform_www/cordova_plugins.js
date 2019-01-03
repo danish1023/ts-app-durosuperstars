@@ -358,6 +358,14 @@ module.exports = [
         "clobbers": [
             "window.AndroidNativePdfViewer"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-streaming-media/www/StreamingMedia.js",
+        "id": "cordova-plugin-streaming-media.StreamingMedia",
+        "pluginId": "cordova-plugin-streaming-media",
+        "clobbers": [
+            "streamingMedia"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -380,7 +388,8 @@ module.exports.metadata =
     "cordova-open": "1.0.12",
     "cordova-plugin-document-viewer": "0.9.10",
     "cordova-plugin-inappbrowser": "1.7.2",
-    "cordova-plugin-android-native-pdfviewer": "0.0.1"
+    "cordova-plugin-android-native-pdfviewer": "0.0.1",
+    "cordova-plugin-streaming-media": "2.2.0"
 }
 // BOTTOM OF METADATA
 });

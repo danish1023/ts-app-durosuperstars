@@ -115,3 +115,7 @@ function logout() {
   localStorage.removeItem("User");
   app.router.navigate('/');
 }
+
+function playVideo(videoUrl){
+  window.plugins.streamingMedia.playVideo(videoUrl);
+}

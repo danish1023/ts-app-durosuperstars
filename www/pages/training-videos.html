@@ -12,7 +12,10 @@
     </div>
     <div class="page-content">
       <div class="block">
-
+        <div class="card card-outline">
+          <div class="card-content card-content-padding"><img style="width:100%" src="img/video-thumb.png"></div>
+          <div class="card-footer">Card Footer</div>
+        </div>
       </div>
     </div>
   </div>
@@ -40,20 +43,21 @@
             alert("Error: " + status);
           },
           success: function (data, status, xhr) {
-            var videoUrl = 'https://www.w3schools.com/html/mov_bbb.mp4';
-            window.plugins.streamingMedia.playVideo(videoUrl);
-            // if (data.ErrorCode == '0') {
-            //   $$('#training-videos-page .page-content .block').html('');
-            //   var html = `<h1>Test</h1>`;
-            //   var TrainingVideoDetails = data.Response.TrainingVideoDetails;
-            //   if (TrainingVideoDetails) {
-            //     for (var i = 0; i < TrainingVideoDetails.length; i++) {
-            //       var video = TrainingVideoDetails[i].UploadedVideo;
-            //       var video_title = TrainingVideoDetails[i].VedioTitle;
-            //     }
-            //   }
-            //   $$('#training-videos-page .page-content .block').append(html);
-            // }
+            if (data.ErrorCode == '0') {
+              $$('#training-videos-page .page-content .block').html('');
+              var TrainingVideoDetails = data.Response.TrainingVideoDetails;
+              if (TrainingVideoDetails) {
+                for (var i = 0; i < TrainingVideoDetails.length; i++) {
+                  var video = TrainingVideoDetails[i].UploadedVideo;
+                  var video_title = TrainingVideoDetails[i].VedioTitle;
+                  var html = `<div class="card card-outline">
+                                <div class="card-content card-content-padding"><img onclick="playVideo('https://www.w3schools.com/html/mov_bbb.mp4')" style="width:100%" src="img/video-thumb.png"></div>
+                                <div class="card-footer">${video_title}</div>
+                              </div>`;
+                  $$('#training-videos-page .page-content .block').append(html);
+                }
+              }
+            }
           },
           complete: function (xhr, status) {
             SpinnerPlugin.activityStop();
