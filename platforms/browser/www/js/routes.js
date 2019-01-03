@@ -89,6 +89,13 @@ var routes = [
     name: 'program-booklet',
   },
 
+  // Training Videos
+  {
+    path: '/training-videos/',
+    componentUrl: './pages/training-videos.html',
+    name: 'training-videos',
+  },
+
   // Default route (404 page). MUST BE THE LAST
   {
     path: '(.*)',

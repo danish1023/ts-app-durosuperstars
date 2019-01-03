@@ -1,0 +1,65 @@
+<template>
+  <div class="page" id="training-videos-page">
+    <div class="navbar">
+      <div class="navbar-inner sliding bg-color-red color-theme-white">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="material-icons">arrow_back</i>
+          </a>
+        </div>
+        <div class="title color-white">Training Videos</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="block">
+
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  return {
+    on: {
+      pageInit: function () {
+        var UserData = JSON.parse(localStorage.User);
+        var obj = {
+          MobileNo: UserData.MobileNo,
+        };
+        app.request({
+          url: BaseURL + '/TrainingVideoAPI',
+          method: 'POST',
+          dataType: 'json',
+          data: obj,
+          contentType: 'application/json',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+            var spinnerOptions = { dimBackground: false };
+            SpinnerPlugin.activityStart(null, spinnerOptions);
+          },
+          error: function (xhr, status) {
+            alert("Error: " + status);
+          },
+          success: function (data, status, xhr) {
+            var videoUrl = 'http://brandstudioz.co.in/sample-videos/5mb.mp4';
+            window.plugins.streamingMedia.playVideo(videoUrl);
+            // if (data.ErrorCode == '0') {
+            //   $$('#training-videos-page .page-content .block').html('');
+            //   var html = `<h1>Test</h1>`;
+            //   var TrainingVideoDetails = data.Response.TrainingVideoDetails;
+            //   if (TrainingVideoDetails) {
+            //     for (var i = 0; i < TrainingVideoDetails.length; i++) {
+            //       var video = TrainingVideoDetails[i].UploadedVideo;
+            //       var video_title = TrainingVideoDetails[i].VedioTitle;
+            //     }
+            //   }
+            //   $$('#training-videos-page .page-content .block').append(html);
+            // }
+          },
+          complete: function (xhr, status) {
+            SpinnerPlugin.activityStop();
+          }
+        })
+      }
+    }
+  }
+</script>
