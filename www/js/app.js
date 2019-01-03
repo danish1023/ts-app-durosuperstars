@@ -115,7 +115,3 @@ function logout() {
   localStorage.removeItem("User");
   app.router.navigate('/');
 }
-
-function booklet(){
-  PDFViewer.openPDF('http://brandstudioz.co.in/iframe-test/ProgramBookletV1.0.pdf');
-}
