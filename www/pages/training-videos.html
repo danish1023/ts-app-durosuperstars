@@ -40,19 +40,8 @@
             alert("Error: " + status);
           },
           success: function (data, status, xhr) {
-            var videoUrl = 'http://brandstudioz.co.in/sample-videos/5mb.mp4';
-            var options = {
-              successCallback: function () {
-                console.log("Video was closed without error.");
-              },
-              errorCallback: function (errMsg) {
-                console.log("Error! " + errMsg);
-              },
-              orientation: 'landscape',
-              shouldAutoClose: true,  // true(default)/false
-              controls: true // true(default)/false. Used to hide controls on fullscreen
-            };
-            window.plugins.streamingMedia.playVideo(videoUrl, options);
+            var videoUrl = 'https://www.w3schools.com/html/mov_bbb.mp4';
+            window.plugins.streamingMedia.playVideo(videoUrl);
             // if (data.ErrorCode == '0') {
             //   $$('#training-videos-page .page-content .block').html('');
             //   var html = `<h1>Test</h1>`;
