@@ -96,6 +96,27 @@ var routes = [
     name: 'training-videos',
   },
 
+  // Calculator
+  {
+    path: '/calculator/',
+    componentUrl: './pages/calculator.html',
+    name: 'calculator',
+  },
+
+  // Campaign
+  {
+    path: '/campaign/',
+    componentUrl: './pages/campaign.html',
+    name: 'campaign',
+  },
+
+  // Account Statement
+  {
+    path: '/account-statement/',
+    componentUrl: './pages/account-statement.html',
+    name: 'account-statement',
+  },
+
   // Default route (404 page). MUST BE THE LAST
   {
     path: '(.*)',

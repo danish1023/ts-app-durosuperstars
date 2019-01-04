@@ -1,0 +1,146 @@
+<template>
+  <div class="page" id="account-statement-page">
+    <div class="navbar">
+      <div class="navbar-inner sliding bg-color-red color-theme-white">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="material-icons">arrow_back</i>
+          </a>
+        </div>
+        <div class="title color-white">Account Statement</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="block">
+        <form class="list show-hairlines-ios no-hairlines text-align-left no-margin-bottom" id="account-statement-form">
+          <ul class="no-hairlines-between">
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-floating-label">From Date</div>
+                <div class="item-input-wrap">
+                  <input type="text" name="FromDate">
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-floating-label">To Date</div>
+                <div class="item-input-wrap">
+                  <input type="text" name="ToDate">
+                </div>
+              </div>
+            </li>
+          </ul>
+        </form>
+        <a href="#" @click="accountStatement" style="width:100px; text-transform:none; margin: 16px 16px 0 16px;" class="button button-raised button-fill font-1x">Search
+        </a>
+      </div>
+      <div class="data-table">
+        
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  return {
+    on: {
+      pageInit: function () {
+        var FromDateCalendar = app.calendar.create({
+          inputEl: '#account-statement-page input[name=FromDate]',
+          openIn: 'customModal',
+          header: true,
+          dateFormat: 'dd-M-yyyy',
+          closeOnSelect: true
+        });
+        var ToDateCalendar = app.calendar.create({
+          inputEl: '#account-statement-page input[name=ToDate]',
+          openIn: 'customModal',
+          header: true,
+          dateFormat: 'dd-M-yyyy',
+          closeOnSelect: true
+        });
+      }
+    },
+    methods: {
+      accountStatement: function () {
+        var UserData = JSON.parse(localStorage.User);
+        var Amount = $$('#account-statement-form input[name=Amount]').val();
+        var obj = {
+          MobileNo: UserData.MobileNo,
+          Amount: Amount,
+        };
+        app.request({
+          url: BaseURL + '/AccountStatementAPI',
+          method: 'POST',
+          dataType: 'json',
+          data: obj,
+          contentType: 'application/json',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+            var spinnerOptions = { dimBackground: false };
+            SpinnerPlugin.activityStart(null, spinnerOptions);
+          },
+          error: function (xhr, status) {
+            alert("Error: " + status);
+          },
+          success: function (data, status, xhr) {
+            if (data.ErrorCode == '0') {
+              $$('#account-statement-page .page-content .data-table').html('');
+              var AccountStatementDetails = data.Response.AccountStatementDetails;
+              if (AccountStatementDetails) {
+                for (var i = 0; i < AccountStatementDetails.length; i++) {
+                  var TransactionDate = AccountStatementDetails[i].TransactionDate;
+                  var InvoiceDate = AccountStatementDetails[i].InvoiceDate;
+                  var SeriesCode = AccountStatementDetails[i].SeriesCode;
+                  var TransactionType = AccountStatementDetails[i].TransactionType;
+                  var CouponCode = AccountStatementDetails[i].CouponCode;
+                  var CampaignName = AccountStatementDetails[i].CampaignName;
+                  var EarnPoints = AccountStatementDetails[i].EarnPoints;
+                  var RedeemedPoints = AccountStatementDetails[i].RedeemedPoints;
+                  var AvailablePointBalance = AccountStatementDetails[i].AvailablePointBalance;
+                  var html = `
+                  <table>
+                    <thead>
+                      <tr>
+                        <th class="label-cell color-red">Transaction Date</th>
+                        <th class="label-cell color-red">Invoice Date</th>
+                        <th class="label-cell color-red">Series Code</th>
+                        <th class="label-cell color-red">Transaction Type</th>
+                        <th class="label-cell color-red">Coupon Code</th>
+                        <th class="label-cell color-red">Campaign Name</th>
+                        <th class="numeric-cell color-red">Earn Points</th>
+                        <th class="numeric-cell color-red">Redeemed Points</th>
+                        <th class="numeric-cell color-red">Available Point Balance</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="label-cell">${TransactionDate}</td>
+                        <td class="label-cell">${InvoiceDate}</td>
+                        <td class="label-cell">${SeriesCode}</td>
+                        <td class="label-cell">${TransactionType}</td>
+                        <td class="label-cell">${CouponCode}</td>
+                        <td class="label-cell">${CampaignName}</td>
+                        <td class="numeric-cell">${EarnPoints}</td>
+                        <td class="numeric-cell">${RedeemedPoints}</td>
+                        <td class="numeric-cell">${AvailablePointBalance}</td>
+                      </tr>
+                    </tbody>
+                  </table>`;
+                  $$('#account-statement-page .page-content .data-table').append(html);
+                }
+                
+              }
+            }
+            else {
+              app.dialog.alert(data.ErrorMessage);
+            }
+          },
+          complete: function (xhr, status) {
+            SpinnerPlugin.activityStop();
+          }
+        })
+      }
+    }
+  }
+</script>
