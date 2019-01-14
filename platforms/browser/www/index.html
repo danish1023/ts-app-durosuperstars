@@ -202,7 +202,7 @@
     }
     function onBackKeyDown(e) {
       e.preventDefault();
-      if (app.views.main.router.currentRoute.url == "/" || app.views.main.router.currentRoute.url == "/dashboard/") {
+      if (app.views.main.router.currentRoute.url == "/" || app.views.main.router.currentRoute.url == "/dashboard/" || app.views.main.router.currentRoute.url == "/user-dashboard/") {
         var r = confirm("Are you sure want to exit?");
         if (r == true) {
           navigator.app.exitApp();
