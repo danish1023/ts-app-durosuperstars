@@ -68,6 +68,13 @@ var routes = [
     // },
   },
 
+  // User Dashboard page
+  {
+    path: '/user-dashboard/',
+    componentUrl: './pages/user-dashboard.html',
+    name: 'user-dashboard',
+  },
+
   // User Profile page
   {
     path: '/user-profile/',

@@ -186,9 +186,15 @@
     function onDeviceReady() {
       var User = localStorage.User;
       if (User) {
+        var UserData = JSON.parse(User);
         $$('.page-current').hide();
         $$('.page-previous').hide();
-        mainView.router.navigate('/dashboard/');
+        if (UserData.UserType == 'M') {
+          mainView.router.navigate('/dashboard/');
+        }
+        else {
+          mainView.router.navigate('/user-dashboard/');
+        }
       }
       cordova.getAppVersion.getVersionNumber(function (version) {
         $$('.version-number').text('Version: ' + version);

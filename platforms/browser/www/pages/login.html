@@ -80,11 +80,12 @@
               var UserData = JSON.parse(User);
               if (UserData.UserType == 'M') {
                 $$('.panel-left a.profile').attr('href', '/member-profile/');
+                app.router.navigate('/dashboard/');
               }
               else {
                 $$('.panel-left a.profile').attr('href', '/user-profile/');
+                app.router.navigate('/user-dashboard/');
               }
-              app.router.navigate('/dashboard/');
             }
             else {
               app.dialog.alert(data.ErrorMessage);

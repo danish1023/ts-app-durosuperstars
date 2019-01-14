@@ -1,0 +1,165 @@
+<template>
+  <div class="page">
+    <div class="navbar">
+      <div class="navbar-inner sliding bg-color-red color-theme-white">
+        <div class="left">
+          <a href="#" class="link icon-only panel-open" data-panel="left">
+            <i class="icon material-icons">menu</i>
+          </a>
+        </div>
+        <div class="title color-white">Dashboard</div>
+        <div class="right">
+          <a class="link icon-only">
+            <i class="icon material-icons">notifications</i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="page-content" id="UserHomePage">
+      <div class="card" style="box-shadow:none;">
+        <div class="card-content card-content-padding text-align-center" style="background: mistyrose;">
+          
+        </div>
+      </div>
+    </div>
+</template>
+<script>
+  return {
+    on: {
+      pageInit: function (e, page) {
+        var User = localStorage.User;
+        var UserData = JSON.parse(User);
+        var obj = {
+          UserName: UserData.MembershipId,
+        };
+        app.request({
+          url: BaseURL + '/UserDashboardAPI',
+          method: 'POST',
+          dataType: 'json',
+          data: obj,
+          contentType: 'application/json',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+            var spinnerOptions = { dimBackground: false };
+            SpinnerPlugin.activityStart(null, spinnerOptions);
+          },
+          error: function (xhr, status) {
+            alert("Error: " + status);
+          },
+          success: function (data, status, xhr) {
+            if (data.ErrorCode == '0') {
+              if (data.UserTypeCode == 'S') {
+                var view_details_btn = '<a style="width:125px" class="button button-fill button-raised margin" href="#">View Details</a>';
+
+              }
+              else {
+                var view_details_btn = '<a style="width:125px" class="button button-fill button-raised margin" href="#">View Details</a>';
+              }
+              var html = `<div class="card" style="box-shadow:none;">
+                <div class="card-content card-content-padding text-align-center" style="background: mistyrose;">
+                  <div class="row margin-bottom">
+                    <div class="col">
+                      <h3 class="no-margin">Name</h3>
+                      <p class="no-margin">${data.EmployeeName}</p>
+                    </div>
+                    <div class="col">
+                      <h3 class="no-margin">Employee Code</h3>
+                      <p class="no-margin">${data.EmployeeCode}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <h3 class="no-margin">State</h3>
+                      <p class="no-margin">${data.StateName}</p>
+                    </div>
+                    <div class="col">
+                      <h3 class="no-margin">City</h3>
+                      <p class="no-margin">${data.CityName}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="block no-margin">
+                <div class="block-title font-16"><b>Contractors</b></div>
+                <div class="list no-margin">
+                  <ul>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">Enrolled Members</div>
+                          <div class="item-after">${data.MappedMemberCount}</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">Active Members</div>
+                          <div class="item-after">${data.ActiveMembercount}</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">Inactive Members</div>
+                          <div class="item-after">${data.Inactivemembercount}</div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                ${view_details_btn}
+                <div class="block-title font-16"><b>Dealers</b></div>
+                <div class="list no-margin">
+                  <ul>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">Mapped Dealer</div>
+                          <div class="item-after">${data.MappedDealerCount}</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">Coupon Allocated</div>
+                          <div class="item-after">${data.CouponsAllocatedDealer}</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">Coupon Claimed</div>
+                          <div class="item-after">${data.CouponsClaimedDealer}</div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <div class="item-title">Coupon Pending</div>
+                          <div class="item-after">${data.CouponsPendingDealer}</div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                ${view_details_btn}
+              </div>`;
+              $$('#UserHomePage').html(html);
+            }
+            else {
+              app.dialog.alert(data.ErrorMessage);
+            }
+          },
+          complete: function (xhr, status) {
+            SpinnerPlugin.activityStop();
+          }
+        })
+      }
+    }
+  }
+</script>
