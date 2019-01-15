@@ -1,23 +1,23 @@
 var routes = [
-  // Index page
+  // Index
   {
     path: '/',
     url: './index.html',
     name: 'home',
   },
-  // About page
+  // About
   {
     path: '/about/',
     url: './pages/about.html',
     name: 'about',
   },
-  // Set Password page
+  // Set Password
   {
     path: '/set-password/:UserName/:OTP/',
     componentUrl: './pages/set-password.html',
     name: 'set-password',
   },
-  // Change Password page
+  // Change Password
   {
     path: '/change-password/',
     componentUrl: './pages/change-password.html',
@@ -38,7 +38,7 @@ var routes = [
     //   history: false,
     // },
   },
-  // Signup page
+  // Signup
    {
     path: '/sign-up/',
     componentUrl: './pages/sign-up.html',
@@ -47,7 +47,7 @@ var routes = [
     //   animate: false,
     // },
   },
-  // OTP page
+  // OTP
   {
     path: '/otp/',
     componentUrl: './pages/otp.html',
@@ -58,35 +58,46 @@ var routes = [
     // },
   },
 
-  // Dashboard page
+  // Member Dashboard
   {
     path: '/dashboard/',
     componentUrl: './pages/dashboard.html',
     name: 'dashboard',
-    // options: {
-    //   animate: false,
-    // },
   },
 
-  // User Dashboard page
+  // User Dashboard
   {
     path: '/user-dashboard/',
     componentUrl: './pages/user-dashboard.html',
     name: 'user-dashboard',
   },
 
-  // User Profile page
+  // Member Profile
+  {
+    path: '/member-profile/',
+    componentUrl: './pages/member-profile.html',
+    name: 'member-profile',
+  },
+
+  // User Profile
   {
     path: '/user-profile/',
     componentUrl: './pages/user-profile.html',
     name: 'user-profile',
   },
 
-  // Member Profile page
+  // Contractor List
   {
-    path: '/member-profile/',
-    componentUrl: './pages/member-profile.html',
-    name: 'member-profile',
+    path: '/contractor-list/',
+    componentUrl: './pages/contractor-list.html',
+    name: 'contractor-list',
+  },
+
+  // Dealer List
+  {
+    path: '/dealer-list/',
+    componentUrl: './pages/dealer-list.html',
+    name: 'dealer-list',
   },
 
   // Program Booklet

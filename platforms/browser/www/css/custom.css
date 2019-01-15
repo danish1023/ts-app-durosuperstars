@@ -133,6 +133,7 @@ li.with-border{
 
 .dashboard-right-border {
   border-right: 1px solid #ccc;
+  height: 130px;
 }
 
 .font-16{

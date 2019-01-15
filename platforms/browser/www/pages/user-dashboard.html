@@ -49,11 +49,11 @@
           success: function (data, status, xhr) {
             if (data.ErrorCode == '0') {
               if (data.UserTypeCode == 'S') {
-                var view_details_btn = '<a style="width:125px" class="button button-fill button-raised margin" href="#">View Details</a>';
+                var contractor_list_btn = '<a style="width:125px" class="button button-fill button-raised margin" href="/contractor-list/">View Details</a>';
 
               }
               else {
-                var view_details_btn = '<a style="width:125px" class="button button-fill button-raised margin" href="#">View Details</a>';
+                var contractor_list_btn = '<a style="width:125px" class="button button-fill button-raised margin" href="/contractor-list/">View Details</a>';
               }
               var html = `<div class="card" style="box-shadow:none;">
                 <div class="card-content card-content-padding text-align-center" style="background: mistyrose;">
@@ -109,7 +109,7 @@
                     </li>
                   </ul>
                 </div>
-                ${view_details_btn}
+                ${contractor_list_btn}
                 <div class="block-title font-16"><b>Dealers</b></div>
                 <div class="list no-margin">
                   <ul>
@@ -147,7 +147,7 @@
                     </li>
                   </ul>
                 </div>
-                ${view_details_btn}
+                <a style="width:125px" class="button button-fill button-raised margin" href="/dealer-list/">View Details</a>
               </div>`;
               $$('#UserHomePage').html(html);
             }

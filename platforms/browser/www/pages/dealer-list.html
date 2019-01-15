@@ -1,0 +1,62 @@
+<template>
+  <div class="page" id="user-profile-page">
+    <div class="navbar">
+      <div class="navbar-inner sliding bg-color-red color-theme-white">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="material-icons">arrow_back</i>
+          </a>
+        </div>
+        <div class="title color-white">Dealers</div>
+      </div>
+    </div>
+    <div class="page-content bg-color-white no-padding-top">
+      
+    </div>
+  </div>
+</template>
+<script>
+  return {
+    data: function () {
+      var UserData = JSON.parse(localStorage.User);
+      return {
+        data: UserData,
+      }
+    },
+    on: {
+      pageInit: function (e, page) {
+        var User = localStorage.User;
+        var UserData = JSON.parse(User);
+        var obj = {
+          UserName: UserData.MembershipId,
+        };
+        app.request({
+          url: BaseURL + '/UserMyProfileAPI',
+          method: 'POST',
+          dataType: 'json',
+          data: obj,
+          contentType: 'application/json',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+            var spinnerOptions = { dimBackground: false };
+            SpinnerPlugin.activityStart(null, spinnerOptions);
+          },
+          error: function (xhr, status) {
+            alert("Error: " + status);
+          },
+          success: function (data, status, xhr) {
+            if (data.ErrorCode == '0') {
+              
+            }
+            else {
+              app.dialog.alert(data.ErrorMessage);
+            }
+          },
+          complete: function (xhr, status) {
+            SpinnerPlugin.activityStop();
+          }
+        })
+      }
+    }
+  }
+</script>
