@@ -135,6 +135,34 @@ var routes = [
     name: 'account-statement',
   },
 
+  // Query/Complaints
+  {
+    path: '/query/',
+    componentUrl: './pages/query.html',
+    name: 'query',
+  },
+
+  // Executive Appointment
+  {
+    path: '/executive-appointment/',
+    componentUrl: './pages/executive-appointment.html',
+    name: 'executive-appointment',
+  },
+
+  // News
+  {
+    path: '/news/',
+    componentUrl: './pages/news.html',
+    name: 'news',
+  },
+
+  // Company Profile
+  {
+    path: '/company-profile/',
+    componentUrl: './pages/company-profile.html',
+    name: 'company-profile',
+  },
+
   // Default route (404 page). MUST BE THE LAST
   {
     path: '(.*)',

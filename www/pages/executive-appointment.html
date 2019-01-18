@@ -1,0 +1,142 @@
+<template>
+  <div class="page" id="executive-appointment-page">
+    <div class="navbar">
+      <div class="navbar-inner sliding bg-color-red color-theme-white">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="material-icons">arrow_back</i>
+          </a>
+        </div>
+        <div class="title color-white">Executive Appointment</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="block">
+        <form class="list show-hairlines-ios no-hairlines text-align-left" id="executive-appointment-form">
+          <ul class="no-hairlines-between">
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-floating-label">Type</div>
+                <div class="item-input-wrap input-dropdown-wrap">
+                  <select name="RequestType" placeholder="Please choose...">
+  
+                  </select>
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-floating-label">Date of Appointment</div>
+                <div class="item-input-wrap">
+                  <input type="text" name="DateofAppointment">
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-floating-label">Reason</div>
+                <div class="item-input-wrap">
+                  <textarea name="Reason" class="resizable"></textarea>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </form>
+        <a href="#" @click="executiveappointment" style="text-transform:none;" class="button button-raised button-fill button-big font-1x margin">Submit
+        </a>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  return {
+    on: {
+      pageInit: function () {
+        app.calendar.create({
+          inputEl: '#executive-appointment-page input[name=DateofAppointment]',
+          openIn: 'customModal',
+          header: true,
+          dateFormat: 'dd-M-yyyy',
+          closeOnSelect: true
+        });
+        var obj = {
+          RequestType: 'E',
+        };
+        app.request({
+          url: BaseURL + '/GetRequestTypeAPI',
+          method: 'POST',
+          data: obj,
+          dataType: 'json',
+          contentType: 'application/json',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+            var spinnerOptions = { dimBackground: false };
+            SpinnerPlugin.activityStart(null, spinnerOptions);
+          },
+          error: function (xhr, status) {
+            alert("Error: " + status);
+          },
+          success: function (data, status, xhr) {
+            if (data.ErrorCode == '0') {
+              for (var i = 0; i < data.Response.RequestTypeDetails.length; i++) {
+                var RequestTypeId = data.Response.RequestTypeDetails[i].Id;
+                var RequestTypeName = data.Response.RequestTypeDetails[i].Name;
+                var html = $$('<option value="' + RequestTypeId + '">' + RequestTypeName + '</option>');
+                $$('#executive-appointment-form select[name=RequestType').append(html);
+                $$('#executive-appointment-form select[name=RequestType').val('');
+              }
+            }
+            else {
+              app.dialog.alert(data.ErrorMessage);
+            }
+          },
+          complete: function (xhr, status) {
+            SpinnerPlugin.activityStop();
+          }
+        })
+      }
+    },
+    methods: {
+      executiveappointment: function () {
+        var UserData = JSON.parse(localStorage.User);
+        var RequestType = $$('#executive-appointment-form select[name=RequestType]').val();
+        var Reason = $$('#executive-appointment-form textarea[name=Reason]').val();
+        var DateofAppointment = $$('#executive-appointment-form input[name=DateofAppointment]').val();
+        var obj = {
+          MobileNo: UserData.MobileNo,
+          RequestType: RequestType,
+          Reason: Reason,
+          DateofAppointment: DateofAppointment,
+        };
+        app.request({
+          url: BaseURL + '/ExecutiveAppointmentAPI',
+          method: 'POST',
+          dataType: 'json',
+          data: obj,
+          contentType: 'application/json',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+            var spinnerOptions = { dimBackground: false };
+            SpinnerPlugin.activityStart(null, spinnerOptions);
+          },
+          error: function (xhr, status) {
+            alert("Error: " + status);
+          },
+          success: function (data, status, xhr) {
+            if (data.ErrorCode == '0') {
+              app.dialog.alert(data.ErrorMessage, function(){
+                app.router.navigate('/dashboard/');
+              });
+            }
+            else {
+              app.dialog.alert(data.ErrorMessage);
+            }
+          },
+          complete: function (xhr, status) {
+            SpinnerPlugin.activityStop();
+          }
+        })
+      }
+    }
+  }
+</script>

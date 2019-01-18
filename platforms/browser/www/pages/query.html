@@ -1,0 +1,125 @@
+<template>
+  <div class="page" id="query-page">
+    <div class="navbar">
+      <div class="navbar-inner sliding bg-color-red color-theme-white">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="material-icons">arrow_back</i>
+          </a>
+        </div>
+        <div class="title color-white">Query/Complaints</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="block">
+        <form class="list show-hairlines-ios no-hairlines text-align-left" id="query-form">
+          <ul class="no-hairlines-between">
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-floating-label">Type</div>
+                <div class="item-input-wrap input-dropdown-wrap">
+                  <select name="RequestType" placeholder="Please choose...">
+  
+                  </select>
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-floating-label">Remarks</div>
+                <div class="item-input-wrap">
+                  <textarea name="Remarks" class="resizable"></textarea>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </form>
+        <a href="#" @click="query" style="text-transform:none;" class="button button-raised button-fill button-big font-1x margin">Submit
+        </a>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  return {
+    on: {
+      pageInit: function () {
+        var obj = {
+          RequestType: 'R',
+        };
+        app.request({
+          url: BaseURL + '/GetRequestTypeAPI',
+          method: 'POST',
+          data: obj,
+          dataType: 'json',
+          contentType: 'application/json',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+            var spinnerOptions = { dimBackground: false };
+            SpinnerPlugin.activityStart(null, spinnerOptions);
+          },
+          error: function (xhr, status) {
+            alert("Error: " + status);
+          },
+          success: function (data, status, xhr) {
+            if (data.ErrorCode == '0') {
+              for (var i = 0; i < data.Response.RequestTypeDetails.length; i++) {
+                var RequestTypeId = data.Response.RequestTypeDetails[i].Id;
+                var RequestTypeName = data.Response.RequestTypeDetails[i].Name;
+                var html = $$('<option value="' + RequestTypeId + '">' + RequestTypeName + '</option>');
+                $$('#query-form select[name=RequestType').append(html);
+                $$('#query-form select[name=RequestType').val('');
+              }
+            }
+            else {
+              app.dialog.alert(data.ErrorMessage);
+            }
+          },
+          complete: function (xhr, status) {
+            SpinnerPlugin.activityStop();
+          }
+        })
+      }
+    },
+    methods: {
+      query: function () {
+        var UserData = JSON.parse(localStorage.User);
+        var RequestType = $$('#query-form select[name=RequestType]').val();
+        var Remarks = $$('#query-form textarea[name=Remarks]').val();
+        var obj = {
+          MobileNo: UserData.MobileNo,
+          RequestType: RequestType,
+          Remarks: Remarks,
+        };
+        app.request({
+          url: BaseURL + '/QueryRequestAPI',
+          method: 'POST',
+          dataType: 'json',
+          data: obj,
+          contentType: 'application/json',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+            var spinnerOptions = { dimBackground: false };
+            SpinnerPlugin.activityStart(null, spinnerOptions);
+          },
+          error: function (xhr, status) {
+            alert("Error: " + status);
+          },
+          success: function (data, status, xhr) {
+            if (data.ErrorCode == '0') {
+              app.dialog.alert(data.ErrorMessage, function(){
+                app.router.navigate('/dashboard/');
+              });
+            }
+            else {
+              app.dialog.alert(data.ErrorMessage);
+            }
+          },
+          complete: function (xhr, status) {
+            SpinnerPlugin.activityStop();
+          }
+        })
+      }
+    }
+  }
+</script>
