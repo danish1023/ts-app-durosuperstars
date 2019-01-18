@@ -35,9 +35,11 @@
         <a href="#" @click="accountStatement" style="width:100px; text-transform:none; margin: 16px 16px 0 16px;" class="button button-raised button-fill font-1x">Search
         </a>
       </div>
+
       <div class="data-table">
         
       </div>
+
     </div>
   </div>
 </template>
@@ -64,10 +66,12 @@
     methods: {
       accountStatement: function () {
         var UserData = JSON.parse(localStorage.User);
-        var Amount = $$('#account-statement-form input[name=Amount]').val();
+        var FromDate = $$('#account-statement-form input[name=FromDate]').val();
+        var ToDate = $$('#account-statement-form input[name=ToDate]').val();
         var obj = {
           MobileNo: UserData.MobileNo,
-          Amount: Amount,
+          FromDate: FromDate,
+          ToDate: ToDate,
         };
         app.request({
           url: BaseURL + '/AccountStatementAPI',
@@ -88,6 +92,7 @@
               $$('#account-statement-page .page-content .data-table').html('');
               var AccountStatementDetails = data.Response.AccountStatementDetails;
               if (AccountStatementDetails) {
+                var tbody = '';
                 for (var i = 0; i < AccountStatementDetails.length; i++) {
                   var TransactionDate = AccountStatementDetails[i].TransactionDate;
                   var InvoiceDate = AccountStatementDetails[i].InvoiceDate;
@@ -98,38 +103,27 @@
                   var EarnPoints = AccountStatementDetails[i].EarnPoints;
                   var RedeemedPoints = AccountStatementDetails[i].RedeemedPoints;
                   var AvailablePointBalance = AccountStatementDetails[i].AvailablePointBalance;
-                  var html = `
-                  <table>
-                    <thead>
-                      <tr>
-                        <th class="label-cell color-red">Transaction Date</th>
-                        <th class="label-cell color-red">Invoice Date</th>
-                        <th class="label-cell color-red">Series Code</th>
-                        <th class="label-cell color-red">Transaction Type</th>
-                        <th class="label-cell color-red">Coupon Code</th>
-                        <th class="label-cell color-red">Campaign Name</th>
-                        <th class="numeric-cell color-red">Earn Points</th>
-                        <th class="numeric-cell color-red">Redeemed Points</th>
-                        <th class="numeric-cell color-red">Available Point Balance</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td class="label-cell">${TransactionDate}</td>
-                        <td class="label-cell">${InvoiceDate}</td>
-                        <td class="label-cell">${SeriesCode}</td>
-                        <td class="label-cell">${TransactionType}</td>
-                        <td class="label-cell">${CouponCode}</td>
-                        <td class="label-cell">${CampaignName}</td>
-                        <td class="numeric-cell">${EarnPoints}</td>
-                        <td class="numeric-cell">${RedeemedPoints}</td>
-                        <td class="numeric-cell">${AvailablePointBalance}</td>
-                      </tr>
-                    </tbody>
-                  </table>`;
-                  $$('#account-statement-page .page-content .data-table').append(html);
+                  var tbody_el = `
+                  <tr>
+                    <td class="label-cell">${TransactionDate}</td>
+                    <td class="label-cell">${SeriesCode}</td>
+                    <td class="label-cell">${CouponCode}</td>
+                  </tr>`;
+                  tbody = tbody+tbody_el;
                 }
-                
+                var table = `<table>
+                  <thead>
+                    <tr>
+                      <th class="label-cell color-red">Transaction Date</th>
+                      <th class="label-cell color-red">Series Code</th>
+                      <th class="label-cell color-red">Coupon Code</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${tbody}
+                  </tbody>
+                </table>`;
+                $$('#account-statement-page .page-content .data-table').append(table);
               }
             }
             else {
