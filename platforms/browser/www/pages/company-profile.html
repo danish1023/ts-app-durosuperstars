@@ -10,17 +10,30 @@
         <div class="title color-white">Company Profile</div>
       </div>
     </div>
-    <div class="page-content">
-      <div class="block no-margin">
-
-        <!-- <div class="card demo-card-header-pic no-margin margin-top">
-          <div style="background-image:url(http://lorempixel.com/1000/600/people/6/)" valign="bottom" class="card-header"></div>
-          <div class="card-content card-content-padding">
-            <p class="date">AC002</p>
-            <p>Quisque eget vestibulum nulla. Quisque quis dui quis ex ultricies efficitur vitae non felis. Phasellus quis nibh hendrerit...</p>
+    <div class="toolbar tabbar">
+      <div class="toolbar-inner">
+        <a href="#tab-1" class="tab-link tab-link-active">PDF</a>
+        <a href="#tab-2" class="tab-link">Images</a>
+        <a href="#tab-3" class="tab-link">Videos</a>
+      </div>
+    </div>
+    <div class="tabs-swipeable-wrap">
+      <div class="tabs">
+        <div id="tab-1" class="page-content tab tab-active">
+          <div class="block no-margin">
+            <!-- <p>Tab 1 content</p> -->
           </div>
-        </div> -->
-
+        </div>
+        <div id="tab-2" class="page-content tab">
+          <div class="block no-margin">
+            <!-- <p>Tab 2 content</p> -->
+          </div>
+        </div>
+        <div id="tab-3" class="page-content tab">
+          <div class="block no-margin">
+            <!-- <p>Tab 3 content</p> -->
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -48,26 +61,69 @@
             alert("Error: " + status);
           },
           success: function (data, status, xhr) {
+            var no_pdf = true;
+            var no_image = true;
+            var no_video = true;
             if (data.ErrorCode == '0') {
-              $$('#company-profile-page .page-content .block').html('');
               var CompanyDetails = data.Response.CompanyDetails;
               if (CompanyDetails) {
                 for (var i = 0; i < CompanyDetails.length; i++) {
                   var Title = CompanyDetails[i].Title;
                   var Description = CompanyDetails[i].Description;
                   var FilePath = CompanyDetails[i].FilePath;
-                  var html = '';
-                  $$('#company-profile-page .page-content .block').append(html);
+                  var Type = 'CompanyDetails[i].Type';
+                  if (Type == 'PDF') {
+                    no_pdf = false;
+                    $$('#company-profile-page #tab-1 .block').html('');
+                    $$('#company-profile-page #tab-1 .block').append(`<p class="margin">Under construction</p>`);
+                  }
+                  if (Type == 'Image') {
+                    no_image = false;
+                    $$('#company-profile-page #tab-2 .block').html('');
+                    var html = `<div class="card demo-card-header-pic no-margin margin-top">
+                      <div style="background-image:url(http://lorempixel.com/1000/600/people/6/)" valign="bottom" class="card-header"></div>
+                      <div class="card-content card-content-padding">
+                        <p class="date">${Title}</p>
+                        <p>${Description}</p>
+                      </div>
+                    </div>`;
+                    $$('#company-profile-page #tab-2 .block').append(html);
+                  }
+                  if (Type == 'Video') {
+                    no_video = false;
+                    $$('#company-profile-page #tab-3 .block').html('');
+                    var html = `<div class="card demo-card-header-pic no-margin margin-top">
+                      <div onclick="playVideo(${FilePath})" style="background-image:url(img/video-thumb.png)" valign="bottom" class="card-header"></div>
+                      <div class="card-content card-content-padding">
+                        <p class="date">${Title}</p>
+                        <p>${Description}</p>
+                      </div>
+                    </div>`;
+                    $$('#company-profile-page #tab-3 .block').append(html);
+                  }
                 }
               }
             }
-            else {
-              $$('#company-profile-page .page-content .block').html(`
-              <div class="block no-margin text-align-center color-gray">
-                <i style="font-size:125px; margin-top: 35vh;" class="f7-icons">box</i>
+            if (no_pdf == true) {
+              $$('#company-profile-page #tab-1 .block').html('');
+              $$('#company-profile-page #tab-1 .block').append(`<div class="block no-margin text-align-center color-gray">
+                <i style="font-size:125px; margin-top: 30vh;" class="f7-icons">box</i>
                 <p class="no-margin">No Data Found!</p>
-              </div>
-              `);
+              </div>`);
+            }
+            if (no_image == true) {
+              $$('#company-profile-page #tab-2 .block').html('');
+              $$('#company-profile-page #tab-2 .block').append(`<div class="block no-margin text-align-center color-gray">
+                <i style="font-size:125px; margin-top: 30vh;" class="f7-icons">box</i>
+                <p class="no-margin">No Data Found!</p>
+              </div>`);
+            }
+            if (no_video == true) {
+              $$('#company-profile-page #tab-3 .block').html('');
+              $$('#company-profile-page #tab-3 .block').append(`<div class="block no-margin text-align-center color-gray">
+                <i style="font-size:125px; margin-top: 30vh;" class="f7-icons">box</i>
+                <p class="no-margin">No Data Found!</p>
+              </div>`);
             }
           },
           complete: function (xhr, status) {
