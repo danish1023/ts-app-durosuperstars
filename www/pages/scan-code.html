@@ -26,7 +26,8 @@
               </div> -->
               <div id="divOuter">
                 <div id="divInner">
-                  <input @keydown="stopCaret" @keyup="stopCaret" id="partitioned" name="CouponCode" type="text" maxlength="9" />
+                  <input @keydown="stopCaret" @keyup="stopCaret" id="partitioned" name="CouponCode" type="text"
+                    maxlength="9" />
                 </div>
                 <div>
             </li>
@@ -59,11 +60,6 @@
 </template>
 <script>
   return {
-    on: {
-      pageInit: function (e, page) {
-        //console.log('page init');
-      }
-    },
     methods: {
       submitCode: function () {
         var UserData = JSON.parse(localStorage.User);
@@ -104,7 +100,38 @@
         cordova.plugins.barcodeScanner.scan(
           function (result) {
             if (!result.cancelled) {
-              this.submitScanCode(result.text);
+              var UserData = JSON.parse(localStorage.User);
+              var obj = {
+                ContractorNumber: UserData.MobileNo,
+                CouponCode: result.text,
+                UserName: '',
+              };
+              app.request({
+                url: BaseURL + '/ScanValidateCouponCodeAPI',
+                method: 'POST',
+                dataType: 'json',
+                data: obj,
+                contentType: 'application/json',
+                beforeSend: function (xhr) {
+                  xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+                  var spinnerOptions = { dimBackground: false };
+                  SpinnerPlugin.activityStart(null, spinnerOptions);
+                },
+                error: function (xhr, status) {
+                  alert("Error: " + status);
+                },
+                success: function (data, status, xhr) {
+                  if (data.ErrorCode == '0') {
+                    app.dialog.alert(data.ErrorMessage);
+                  }
+                  else {
+                    app.dialog.alert(data.ErrorMessage);
+                  }
+                },
+                complete: function (xhr, status) {
+                  SpinnerPlugin.activityStop();
+                }
+              })
             }
           },
           function (error) {
@@ -114,40 +141,6 @@
             prompt: "Place QR code/Barcode inside the scan area"
           }
         );
-      },
-      submitScanCode: function (CouponCode) {
-        var UserData = JSON.parse(localStorage.User);
-        var obj = {
-          ContractorNumber: UserData.MobileNo,
-          CouponCode: CouponCode,
-          UserName: '',
-        };
-        app.request({
-          url: BaseURL + '/ScanValidateCouponCodeAPI',
-          method: 'POST',
-          dataType: 'json',
-          data: obj,
-          contentType: 'application/json',
-          beforeSend: function (xhr) {
-            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
-            var spinnerOptions = { dimBackground: false };
-            SpinnerPlugin.activityStart(null, spinnerOptions);
-          },
-          error: function (xhr, status) {
-            alert("Error: " + status);
-          },
-          success: function (data, status, xhr) {
-            if (data.ErrorCode == '0') {
-              app.dialog.alert(data.ErrorMessage);
-            }
-            else {
-              app.dialog.alert(data.ErrorMessage);
-            }
-          },
-          complete: function (xhr, status) {
-            SpinnerPlugin.activityStop();
-          }
-        })
       },
       stopCaret: function () {
         var obj = document.getElementById('partitioned');
