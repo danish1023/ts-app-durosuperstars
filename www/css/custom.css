@@ -143,3 +143,30 @@ li.with-border{
 .color-gray{
   color: gray !important;
 }
+
+/* Seperated input box */
+
+#partitioned {
+  padding-left: 11px;
+  letter-spacing: 26px;
+  border: 0;
+  background-image: linear-gradient(to left, black 70%, rgba(255, 255, 255, 0) 0%);
+  background-position: bottom;
+  background-size: 35px 1px;
+  background-repeat: repeat-x;
+  background-position-x: 28px;
+}
+
+#divInner{
+  left: 0;
+  position: sticky;
+  margin: 0 auto;
+  width:312px;
+}
+
+#divOuter{
+  padding-left: 16px;
+  padding-right: 16px;
+  width:100%;
+  overflow:hidden
+}

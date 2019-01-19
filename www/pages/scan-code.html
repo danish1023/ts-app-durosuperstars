@@ -1,0 +1,58 @@
+<template>
+  <div class="page" id="scan-code-page">
+    <div class="navbar">
+      <div class="navbar-inner sliding bg-color-red color-theme-white">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="material-icons">arrow_back</i>
+          </a>
+        </div>
+        <div class="title color-white">Scan Code</div>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="block">
+        <form class="list show-hairlines-ios no-hairlines text-align-left" id="scan-code-form">
+          <ul class="no-hairlines-between">
+            <li class="item-content item-input no-padding">
+              <!-- <div class="item-inner">
+                <div class="item-title item-floating-label">Enter Coupon Code</div>
+                <div class="item-input-wrap">
+                  <input type="number" name="CouponCode">
+                </div>
+              </div> -->
+              <div id="divOuter">
+                <div id="divInner">
+                  <input @keydown="stopCaret" @keyup="stopCaret" id="partitioned" type="text" maxlength="9" />
+                </div>
+                <div>
+            </li>
+          </ul>
+        </form>
+        <a href="#" style="text-transform:none; margin: 16px 16px 0 16px;" class="button button-raised button-fill font-1x">Rejected
+          Coupon History
+        </a>
+        <a href="/account-statement/" style="text-transform:none; margin: 16px 16px 0 16px;" class="button button-raised button-fill font-1x">Account
+          Statement
+        </a>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  return {
+    on: {
+      pageInit: function (e, page) {
+        //console.log('page init');
+      }
+    },
+    methods: {
+      stopCaret: function () {
+        // var obj = document.getElementById('partitioned');
+        // if (obj.value.length > 8) {
+        //   obj.blur();
+        // }
+      },
+    }
+  }
+</script>

@@ -163,6 +163,13 @@ var routes = [
     name: 'company-profile',
   },
 
+  // Scan code
+  {
+    path: '/scan-code/',
+    componentUrl: './pages/scan-code.html',
+    name: 'scan-code',
+  },
+
   // Default route (404 page). MUST BE THE LAST
   {
     path: '(.*)',
