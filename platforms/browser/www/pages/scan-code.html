@@ -100,6 +100,21 @@
           }
         })
       },
+      scanCode: function () {
+        cordova.plugins.barcodeScanner.scan(
+          function (result) {
+            if (!result.cancelled) {
+              this.submitScanCode(result.text);
+            }
+          },
+          function (error) {
+            alert("Error: " + error);
+          },
+          {
+            prompt: "Place QR code/Barcode inside the scan area"
+          }
+        );
+      },
       submitScanCode: function (CouponCode) {
         var UserData = JSON.parse(localStorage.User);
         var obj = {
@@ -133,22 +148,6 @@
             SpinnerPlugin.activityStop();
           }
         })
-      },
-      scanCode: function () {
-        cordova.plugins.barcodeScanner.scan(
-          function (result) {
-            if (!result.cancelled) {
-              alert(result.text);
-              this.submitScanCode(result.text);
-            }
-          },
-          function (error) {
-            alert("Error: " + error);
-          },
-          {
-            prompt: "Place QR code/Barcode inside the scan area"
-          }
-        );
       },
       stopCaret: function () {
         var obj = document.getElementById('partitioned');
