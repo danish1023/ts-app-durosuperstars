@@ -39,11 +39,11 @@
         <div class="block">
           <div class="row text-align-center">
             <div class="col-50 padding">
-              <span class="badge bg-color-red font-16" style="padding: 8px 16px 8px 16px;">0</span>
+              <span class="badge bg-color-red font-16 coupon-submitted" style="padding: 8px 16px 8px 16px;">0</span>
               <p class="no-margin-bottom">Total Submitted</p>
             </div>
             <div class="col-50 padding">
-              <span class="badge color-green font-16" style="padding: 8px 16px 8px 16px;">0</span>
+              <span class="badge color-green font-16 coupon-rejected" style="padding: 8px 16px 8px 16px;">0</span>
               <p class="no-margin-bottom">Total Rejected</p>
             </div>
           </div>
@@ -60,6 +60,12 @@
 </template>
 <script>
   return {
+    on: {
+      pageInit: function () {
+        // $$('#scan-code-page .coupon-submitted').text('0');
+        // $$('#scan-code-page .coupon-rejected').text('0');
+      }
+    },
     methods: {
       submitCode: function () {
         var UserData = JSON.parse(localStorage.User);
@@ -85,9 +91,12 @@
           },
           success: function (data, status, xhr) {
             if (data.ErrorCode == '0') {
-              app.dialog.alert(data.ErrorMessage);
+              var coupon_submitted = $$('#scan-code-page .coupon-submitted').text();
+              $$('#scan-code-page .coupon-submitted').text(parseInt(coupon_submitted) + 1);
             }
             else {
+              var coupon_rejected = $$('#scan-code-page .coupon-rejected').text();
+              $$('#scan-code-page .coupon-rejected').text(parseInt(coupon_rejected) + 1);
               app.dialog.alert(data.ErrorMessage);
             }
           },
@@ -122,9 +131,12 @@
                 },
                 success: function (data, status, xhr) {
                   if (data.ErrorCode == '0') {
-                    app.dialog.alert(data.ErrorMessage);
+                    var coupon_submitted = $$('#scan-code-page .coupon-submitted').text();
+                    $$('#scan-code-page .coupon-submitted').text(parseInt(coupon_submitted) + 1);
                   }
                   else {
+                    var coupon_rejected = $$('#scan-code-page .coupon-rejected').text();
+                    $$('#scan-code-page .coupon-rejected').text(parseInt(coupon_rejected) + 1);
                     app.dialog.alert(data.ErrorMessage);
                   }
                 },
