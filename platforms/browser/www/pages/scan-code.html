@@ -12,7 +12,10 @@
     </div>
     <div class="page-content">
       <div class="block">
-        <form class="list show-hairlines-ios no-hairlines text-align-left" id="scan-code-form">
+        <img @click="scanCode" style="width:160px; display:block; margin: 0 auto" src="img/scan.png" />
+        <h3 style="margin:16px 0 0" class="text-align-center">OR</h3>
+        <p class="text-align-center no-margin">Enter Coupon Code below</p>
+        <form class="list show-hairlines-ios no-hairlines text-align-left no-margin" id="scan-code-form">
           <ul class="no-hairlines-between">
             <li class="item-content item-input no-padding">
               <!-- <div class="item-inner">
@@ -23,23 +26,23 @@
               </div> -->
               <div id="divOuter">
                 <div id="divInner">
-                  <input @keydown="stopCaret" @keyup="stopCaret" id="partitioned" type="text" maxlength="9" />
+                  <input @keydown="stopCaret" @keyup="stopCaret" id="partitioned" name="CouponCode" type="text" maxlength="9" />
                 </div>
                 <div>
             </li>
           </ul>
         </form>
-        <a href="#" style="text-transform:none;width:100px; margin: 32px auto;" class="button button-raised button-fill font-1x">
+        <a @click="submitCode" href="#" style="text-transform:none;width:100px; margin: 16px auto;" class="button button-raised button-fill font-1x">
           Submit
         </a>
         <div class="block">
           <div class="row text-align-center">
             <div class="col-50 padding">
-              <span class="badge bg-color-red font-16">0</span>
+              <span class="badge bg-color-red font-16" style="padding: 8px 16px 8px 16px;">0</span>
               <p class="no-margin-bottom">Total Submitted</p>
             </div>
             <div class="col-50 padding">
-              <span class="badge color-green font-16">0</span>
+              <span class="badge color-green font-16" style="padding: 8px 16px 8px 16px;">0</span>
               <p class="no-margin-bottom">Total Rejected</p>
             </div>
           </div>
@@ -62,10 +65,94 @@
       }
     },
     methods: {
+      submitCode: function () {
+        var UserData = JSON.parse(localStorage.User);
+        var CouponCode = $$('#scan-code-form input[name=CouponCode]').val();
+        var obj = {
+          ContractorNumber: UserData.MobileNo,
+          CouponCode: CouponCode,
+          UserName: '',
+        };
+        app.request({
+          url: BaseURL + '/ScanValidateCouponCodeAPI',
+          method: 'POST',
+          dataType: 'json',
+          data: obj,
+          contentType: 'application/json',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+            var spinnerOptions = { dimBackground: false };
+            SpinnerPlugin.activityStart(null, spinnerOptions);
+          },
+          error: function (xhr, status) {
+            alert("Error: " + status);
+          },
+          success: function (data, status, xhr) {
+            if (data.ErrorCode == '0') {
+              app.dialog.alert(data.ErrorMessage);
+            }
+            else {
+              app.dialog.alert(data.ErrorMessage);
+            }
+          },
+          complete: function (xhr, status) {
+            SpinnerPlugin.activityStop();
+          }
+        })
+      },
+      submitScanCode: function (CouponCode) {
+        var UserData = JSON.parse(localStorage.User);
+        var obj = {
+          ContractorNumber: UserData.MobileNo,
+          CouponCode: CouponCode,
+          UserName: '',
+        };
+        app.request({
+          url: BaseURL + '/ScanValidateCouponCodeAPI',
+          method: 'POST',
+          dataType: 'json',
+          data: obj,
+          contentType: 'application/json',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+            var spinnerOptions = { dimBackground: false };
+            SpinnerPlugin.activityStart(null, spinnerOptions);
+          },
+          error: function (xhr, status) {
+            alert("Error: " + status);
+          },
+          success: function (data, status, xhr) {
+            if (data.ErrorCode == '0') {
+              app.dialog.alert(data.ErrorMessage);
+            }
+            else {
+              app.dialog.alert(data.ErrorMessage);
+            }
+          },
+          complete: function (xhr, status) {
+            SpinnerPlugin.activityStop();
+          }
+        })
+      },
+      scanCode: function () {
+        cordova.plugins.barcodeScanner.scan(
+          function (result) {
+            if (!result.cancelled) {
+              this.submitScanCode(result.text);
+            }
+          },
+          function (error) {
+            alert("Error: " + error);
+          },
+          {
+            prompt: "Place QR code/Barcode inside the scan area"
+          }
+        );
+      },
       stopCaret: function () {
         var obj = document.getElementById('partitioned');
         if (obj.value.length > 8) {
-          
+          // Enter logic
         }
       },
     }
