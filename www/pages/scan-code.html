@@ -29,10 +29,25 @@
             </li>
           </ul>
         </form>
-        <a href="#" style="text-transform:none; margin: 16px 16px 0 16px;" class="button button-raised button-fill font-1x">Rejected
+        <a href="#" style="text-transform:none;width:100px; margin: 32px auto;" class="button button-raised button-fill font-1x">
+          Submit
+        </a>
+        <div class="block">
+          <div class="row text-align-center">
+            <div class="col-50 padding">
+              <span class="badge bg-color-red font-16">0</span>
+              <p class="no-margin-bottom">Total Submitted</p>
+            </div>
+            <div class="col-50 padding">
+              <span class="badge color-green font-16">0</span>
+              <p class="no-margin-bottom">Total Rejected</p>
+            </div>
+          </div>
+        </div>
+        <a href="/rejectedcoupon-history/" style="text-transform:none; margin: 16px 16px 0 16px;" class="button button-raised button-outline font-1x">Rejected
           Coupon History
         </a>
-        <a href="/account-statement/" style="text-transform:none; margin: 16px 16px 0 16px;" class="button button-raised button-fill font-1x">Account
+        <a href="/account-statement/" style="text-transform:none; margin: 16px 16px 0 16px;" class="button button-raised button-outline font-1x">Account
           Statement
         </a>
       </div>
@@ -48,10 +63,10 @@
     },
     methods: {
       stopCaret: function () {
-        // var obj = document.getElementById('partitioned');
-        // if (obj.value.length > 8) {
-        //   obj.blur();
-        // }
+        var obj = document.getElementById('partitioned');
+        if (obj.value.length > 8) {
+          
+        }
       },
     }
   }

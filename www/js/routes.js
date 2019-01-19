@@ -170,6 +170,13 @@ var routes = [
     name: 'scan-code',
   },
 
+  // Rejected coupon history
+  {
+    path: '/rejectedcoupon-history/',
+    componentUrl: './pages/rejectedcoupon-history.html',
+    name: 'rejectedcoupon-history',
+  },
+
   // Default route (404 page). MUST BE THE LAST
   {
     path: '(.*)',

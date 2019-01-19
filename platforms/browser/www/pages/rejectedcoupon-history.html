@@ -1,0 +1,95 @@
+<template>
+  <div class="page" id="rejectedcoupon-history-page">
+    <div class="navbar">
+      <div class="navbar-inner sliding bg-color-red color-theme-white">
+        <div class="left">
+          <a href="#" class="link back">
+            <i class="material-icons">arrow_back</i>
+          </a>
+        </div>
+        <div class="title color-white">Rejected Coupon History</div>
+      </div>
+    </div>
+    <div class="page-content">
+
+      <div class="data-table">
+        
+      </div>
+
+    </div>
+  </div>
+</template>
+<script>
+  return {
+    on: {
+      pageInit: function () {
+        var UserData = JSON.parse(localStorage.User);
+        var FromDate = moment().subtract(3, 'months').format('DD-MMM-Y');
+        var ToDate = moment().format('DD-MMM-Y');
+        var obj = {
+          MobileNo: UserData.MobileNo,
+          FromDate: FromDate,
+          ToDate: ToDate,
+        };
+        app.request({
+          url: BaseURL + '/RejectedCouponHistoryAPI',
+          method: 'POST',
+          dataType: 'json',
+          data: obj,
+          contentType: 'application/json',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+            var spinnerOptions = { dimBackground: false };
+            SpinnerPlugin.activityStart(null, spinnerOptions);
+          },
+          error: function (xhr, status) {
+            alert("Error: " + status);
+          },
+          success: function (data, status, xhr) {
+            if (data.ErrorCode == '0') {
+              $$('#rejectedcoupon-history-page .page-content .data-table').html('');
+              var RejectedCouponHistoryDetails = data.Response.RejectedCouponHistoryDetails;
+              if (RejectedCouponHistoryDetails) {
+                var tbody = '';
+                for (var i = 0; i < RejectedCouponHistoryDetails.length; i++) {
+                  var RejectedDate = RejectedCouponHistoryDetails[i].Date;
+                  var CouponCode = RejectedCouponHistoryDetails[i].CouponCode;
+                  var ReasonofRejection = RejectedCouponHistoryDetails[i].ReasonofRejection;
+                  var tbody_el = `
+                  <tr>
+                    <td class="label-cell">${RejectedDate}</td>
+                    <td class="label-cell">${CouponCode}</td>
+                    <td class="label-cell">${ReasonofRejection}</td>
+                  </tr>`;
+                  tbody = tbody + tbody_el;
+                }
+                var table = `<table>
+                  <thead>
+                    <tr>
+                      <th class="label-cell color-red">Date</th>
+                      <th class="label-cell color-red">Coupon Code</th>
+                      <th class="label-cell color-red">Reason</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${tbody}
+                  </tbody>
+                </table>`;
+                $$('#rejectedcoupon-history-page .page-content .data-table').append(table);
+              }
+            }
+            else {
+              $$('#rejectedcoupon-history-page .page-content .data-table').append(`<div class="block no-margin text-align-center color-gray">
+                <i style="font-size:125px; margin-top: 30vh;" class="f7-icons">box</i>
+                <p class="no-margin">No Data Found!</p>
+              </div>`);
+            }
+          },
+          complete: function (xhr, status) {
+            SpinnerPlugin.activityStop();
+          }
+        })
+      }
+    },
+  }
+</script>

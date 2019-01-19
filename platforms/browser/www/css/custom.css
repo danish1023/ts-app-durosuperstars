@@ -137,7 +137,7 @@ li.with-border{
 }
 
 .font-16{
-  font-size: 16px;
+  font-size: 16px !important;
 }
 
 .color-gray{
@@ -169,4 +169,8 @@ li.with-border{
   padding-right: 16px;
   width:100%;
   overflow:hidden
+}
+
+.overflow-wrap{
+  overflow-wrap: break-word;
 }
