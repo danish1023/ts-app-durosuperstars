@@ -20,8 +20,8 @@
   return {
     on: {
       pageInit: function () {
-        var spinnerOptions = { dimBackground: true };
-        SpinnerPlugin.activityStart("Loading...", spinnerOptions);
+        var spinnerOptions = { dimBackground: false };
+        SpinnerPlugin.activityStart(null, spinnerOptions);
       }
     },
     methods: {

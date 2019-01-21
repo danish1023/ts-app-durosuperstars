@@ -107,6 +107,13 @@ var routes = [
     name: 'program-booklet',
   },
 
+  // User Guide
+  {
+    path: '/user-guide/',
+    componentUrl: './pages/user-guide.html',
+    name: 'user-guide',
+  },
+
   // Training Videos
   {
     path: '/training-videos/',
