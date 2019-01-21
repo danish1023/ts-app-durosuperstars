@@ -156,7 +156,55 @@
       }
     },
     on: {
-      pageInit: function (e, page) {
+      pageInit: function(e, page){
+        var User = localStorage.User;
+        var UserData = JSON.parse(User);
+        var obj = {
+          MobileNo: UserData.MobileNo,
+        };
+        app.request({
+          url: BaseURL + '/DashboardAPI',
+          method: 'POST',
+          dataType: 'json',
+          data: obj,
+          contentType: 'application/json',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+            var spinnerOptions = { dimBackground: false };
+            SpinnerPlugin.activityStart(null, spinnerOptions);
+          },
+          error: function (xhr, status) {
+            alert("Error: " + status);
+          },
+          success: function (data, status, xhr) {
+            if (data.ErrorCode == '0') {
+              var DashboardDetail = data.DashboardDetail[0];
+              var Name = DashboardDetail.Name;
+              var CurrentBalance = DashboardDetail.CurrentBalance;
+              var TierName = DashboardDetail.TierName;
+              var ExpiryDetails = DashboardDetail.ExpiryDetails;
+              $$('#MemberHomePage .Name').text(Name);
+              $$('#MemberHomePage .Tier').text(TierName);
+              $$('#MemberHomePage .PointBalance').text(CurrentBalance);
+              $$('#MemberHomePage .ExpiryDetails').html('');
+              if (ExpiryDetails) {
+                for (var i = 0; i < ExpiryDetails.length; i++) {
+                  var PointExpiryDate = ExpiryDetails[i].PointExpiryDate;
+                  var html = `<h4>${PointExpiryDate}</h4>`;
+                  $$('#MemberHomePage .ExpiryDetails').append(html);
+                }
+              }
+            }
+            else {
+              app.dialog.alert(data.ErrorMessage);
+            }
+          },
+          complete: function (xhr, status) {
+            SpinnerPlugin.activityStop();
+          }
+        })
+      },
+      pageReinit: function (e, page) {
         var User = localStorage.User;
         var UserData = JSON.parse(User);
         var obj = {
