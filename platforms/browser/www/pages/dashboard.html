@@ -23,16 +23,16 @@
               <h2 class="no-margin-top Name"></h2>
             </div>
           </div>
-          <div class="row text-align-center color-white">
-            <div class="col bg-color-red padding">
+          <div class="row text-align-center color-black">
+            <div class="col bg-color-white padding">
               <h3 class="no-margin">Tier</h3>
-              <div class="chip">
-                <div class="chip-label color-white Tier"></div>
+              <div class="chip TierColor">
+                <div class="chip-label color-white TierName"></div>
               </div>
             </div>
-            <div class="col bg-color-red padding">
+            <div class="col bg-color-white padding">
               <h3 class="no-margin">Point Balance</h3>
-              <div class="chip">
+              <div class="chip TierColor">
                 <div class="chip-label color-white PointBalance"></div>
               </div>
             </div>
@@ -44,10 +44,10 @@
           </div>
         </div>
       </div>
-      <div class="block text-align-center no-margin" style="padding: 0 8px 0 8px">
+      <div class="block dashboard-menu-block text-align-center no-margin" style="padding: 0 8px 0 8px">
         <div class="row dashboard-bottom-border">
           <div class="col padding-top padding-bottom dashboard-right-border">
-            <a href="#" class="color-black">
+            <a href="/program-booklet/" class="color-black">
               <div><img src="img/info.svg" width="50" /></div>
               <div>Program Information Booklet</div>
             </a>
@@ -182,9 +182,11 @@
               var Name = DashboardDetail.Name;
               var CurrentBalance = DashboardDetail.CurrentBalance;
               var TierName = DashboardDetail.TierName;
+              var TierColor = DashboardDetail.TierColor;
               var ExpiryDetails = DashboardDetail.ExpiryDetails;
               $$('#MemberHomePage .Name').text(Name);
-              $$('#MemberHomePage .Tier').text(TierName);
+              $$('#MemberHomePage .TierName').text(TierName);
+              $$('#MemberHomePage .TierColor').css("background-color", TierColor);
               $$('#MemberHomePage .PointBalance').text(CurrentBalance);
               $$('#MemberHomePage .ExpiryDetails').html('');
               if (ExpiryDetails) {
