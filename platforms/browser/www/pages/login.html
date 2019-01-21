@@ -31,6 +31,7 @@
                   <div class="item-title item-floating-label">Enter Password*</div>
                   <div class="item-input-wrap">
                     <input type="password" name="Password">
+                    <div @click="hideshowPassword" class="hideshow-toggle" style="position: absolute;top: 50%;user-select: none;right: 0px;margin-top: -11.5px;display: block;"><i class="material-icons color-darkgray">visibility</i></div>
                   </div>
                 </div>
               </li>
@@ -50,6 +51,16 @@
 <script>
   return {
     methods: {
+      hideshowPassword: function () {
+        var PasswordType = $$('#login-form-2 input[name=Password]').prop('type');
+        if (PasswordType === "password") {
+          $$('#login-form-2 .hideshow-toggle i').text('visibility_off');
+          $$('#login-form-2 input[name=Password]').prop('type','text');
+        } else {
+          $$('#login-form-2 .hideshow-toggle i').text('visibility');
+          $$('#login-form-2 input[name=Password]').prop('type','password');
+        }
+      },
       login: function () {
         var UserName = $$('#login-form-2 input[name=UserName]').val();
         var Password = $$('#login-form-2 input[name=Password]').val();
