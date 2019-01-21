@@ -125,7 +125,7 @@ function notificationClick(NotificationId) {
   var obj = {
     NotificationId: NotificationId,
     MobileNo: UserData.MobileNo,
-    Flag: 'N'
+    Flag: 'Y'
   };
   app.request({
     url: BaseURL + '/UpdateNotificationResponse',
