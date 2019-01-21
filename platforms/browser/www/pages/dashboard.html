@@ -136,9 +136,6 @@
 <script>
   return {
     methods: {
-      openBooklet: function () {
-        PDFViewer.openPDF('ProgramBookletV1.0.pdf');
-      },
       scanCode: function () {
         cordova.plugins.barcodeScanner.scan(
           function (result) {

@@ -11,9 +11,8 @@
       </div>
     </div>
     <div class="page-content" id="pib">
-      <iframe src="https://docs.google.com/viewer?url=http://www.pdf995.com/samples/pdf.pdf&embedded=true" width="100%" height="100%" style="border: none;">
+      <iframe @load="hideLoader" src="https://docs.google.com/viewer?url=http://sardaplydemo.netcarrots.in/Admin/ProgramBooklet/ProgramBookletV1.0.pdf&embedded=true" width="100%" height="100%" style="border: none;">
       </iframe>
-      <!-- <iframe src="https://www.slideshare.net/slideshow/embed_code/key/yMLBcYaF9xvP89" width="100%" height="100%" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> -->
     </div>
   </div>
 </template>
@@ -21,8 +20,14 @@
   return {
     on: {
       pageInit: function () {
-        console.log('Program Information Booklet');
+        var spinnerOptions = { dimBackground: true };
+        SpinnerPlugin.activityStart("Loading...", spinnerOptions);
       }
+    },
+    methods: {
+      hideLoader: function () {
+        SpinnerPlugin.activityStop();
+      },
     }
   }
 </script>
