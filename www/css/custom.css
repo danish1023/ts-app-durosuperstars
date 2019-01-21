@@ -183,3 +183,7 @@ li.with-border{
   bottom: 0px;
   overflow-y: scroll;
 }
+
+.card-read{
+  background: #E8E8E8;
+}

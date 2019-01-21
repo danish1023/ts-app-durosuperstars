@@ -163,6 +163,13 @@ var routes = [
     name: 'news',
   },
 
+   // Notifications
+  {
+    path: '/notifications/',
+    componentUrl: './pages/notifications.html',
+    name: 'notifications',
+  },
+
   // Company Profile
   {
     path: '/company-profile/',

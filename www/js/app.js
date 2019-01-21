@@ -49,16 +49,16 @@ var AuthUsername = 'Novatis';
 var AuthPassword = '!!Novatis!!';
 
 // Custom Functions
-function NA(input){
-  if(input == ''){
+function NA(input) {
+  if (input == '') {
     return 'NA';
   }
-  else{
+  else {
     return input;
   }
 }
 
-function testMe(){
+function testMe() {
   alert('ok');
 }
 
@@ -106,7 +106,7 @@ function login() {
       }
     })
   }
-  else{
+  else {
     app.dialog.alert("Please enter username");
   }
 }
@@ -116,6 +116,28 @@ function logout() {
   app.router.navigate('/');
 }
 
-function playVideo(videoUrl){
+function playVideo(videoUrl) {
   window.plugins.streamingMedia.playVideo(videoUrl);
+}
+
+function notificationClick(NotificationId) {
+  var UserData = JSON.parse(localStorage.User);
+  var obj = {
+    NotificationId: NotificationId,
+    MobileNo: UserData.MobileNo,
+    Flag: 'N'
+  };
+  app.request({
+    url: BaseURL + '/UpdateNotificationResponse',
+    method: 'POST',
+    dataType: 'json',
+    data: obj,
+    contentType: 'application/json',
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+    },
+    success: function (data, status, xhr) {
+      //console.log(data);
+    },
+  })
 }

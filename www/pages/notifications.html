@@ -1,0 +1,85 @@
+<template>
+    <div class="page" id="notifications-page">
+      <div class="navbar">
+        <div class="navbar-inner sliding bg-color-red color-theme-white">
+          <div class="left">
+            <a href="#" class="link back">
+              <i class="material-icons">arrow_back</i>
+            </a>
+          </div>
+          <div class="title color-white">Notifications</div>
+        </div>
+      </div>
+      <div class="page-content">
+        <div class="block no-margin">
+  
+        </div>
+      </div>
+    </div>
+  </template>
+  <script>
+    return {
+      on: {
+        pageInit: function () {
+          var UserData = JSON.parse(localStorage.User);
+          var obj = {
+            MobileNo: UserData.MobileNo,
+          };
+          app.request({
+            url: BaseURL + '/GetNotification',
+            method: 'POST',
+            dataType: 'json',
+            data: obj,
+            contentType: 'application/json',
+            beforeSend: function (xhr) {
+              xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+              var spinnerOptions = { dimBackground: false };
+              SpinnerPlugin.activityStart(null, spinnerOptions);
+            },
+            error: function (xhr, status) {
+              alert("Error: " + status);
+            },
+            success: function (data, status, xhr) {
+              if (data.ErrorCode == '0') {
+                $$('#notifications-page .page-content .block').html('');
+                var NotificationDetails = data.Response.NotificationDetails;
+                if (NotificationDetails) {
+                  for (var i = 0; i < NotificationDetails.length; i++) {
+                    var NotificationID = NotificationDetails[i].NotificationID;
+                    var NotificationContent = NotificationDetails[i].NotificationContent;
+                    var Responded = NotificationDetails[i].Responded;
+                    var Respondedclass = '';
+                    if(Responded == 'Y'){
+                        Respondedclass = ' card-read';
+                    }
+                    var html = `<div class="card no-margin margin-top">
+                      <div onclick="notificationClick(${NotificationID})" class="card-content card-content-padding${Respondedclass}">
+                        <p class="overflow-wrap">${NotificationContent}</p>
+                      </div>
+                    </div>`;
+                    $$('#notifications-page .page-content .block').append(html);
+                  }
+                }
+              }
+              else {
+                $$('#notifications-page .page-content .block').html(`
+                <div class="block no-margin text-align-center color-gray">
+                  <i style="font-size:125px; margin-top: 35vh;" class="f7-icons">box</i>
+                  <p class="no-margin">No Data Found!</p>
+                </div>
+                `);
+              }
+            },
+            complete: function (xhr, status) {
+              SpinnerPlugin.activityStop();
+            }
+          })
+        }
+      },
+      methods: {
+        notificationClick: function(NotificationID){
+            console.log('ggg');
+        }
+      }
+    }
+  </script>
