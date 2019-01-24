@@ -225,6 +225,13 @@ var routes = [
     name: 'rejectedcoupon-history',
   },
 
+  // Rejected coupon history
+  {
+    path: '/rejectedcoupon-history/:ContractorContactNo/',
+    componentUrl: './pages/rejectedcoupon-history.html',
+    name: 'rejectedcoupon-history',
+  },
+
   // Default route (404 page). MUST BE THE LAST
   {
     path: '(.*)',

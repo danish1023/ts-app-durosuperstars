@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="page" id="program-booklet-page">
     <div class="navbar">
       <div class="navbar-inner sliding bg-color-red color-theme-white">
         <div class="left">
@@ -10,9 +10,12 @@
         <div class="title color-white">Program Information Booklet</div>
       </div>
     </div>
-    <div class="page-content" id="pib">
+    <div class="page-content">
       <iframe @load="hideLoader" src="https://docs.google.com/viewer?url=http://sardaplydemo.netcarrots.in/Admin/ProgramBooklet/ProgramBookletV1.0.pdf&embedded=true" width="100%" height="100%" style="border: none;">
       </iframe>
+      <div class="preloader-parent" style="height:100vh">
+        <div style="position: absolute;transform: translate(-50%,-50%);left: 46%;top: 46%;" class="preloader color-red"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -20,13 +23,12 @@
   return {
     on: {
       pageInit: function () {
-        var spinnerOptions = { dimBackground: false };
-        SpinnerPlugin.activityStart(null, spinnerOptions);
+        
       }
     },
     methods: {
       hideLoader: function () {
-        SpinnerPlugin.activityStop();
+        $$('#program-booklet-page .preloader-parent').hide();
       },
     }
   }

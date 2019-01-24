@@ -33,10 +33,13 @@
             </li>
           </ul>
         </form>
-        <a @click="submitCode" href="#" style="text-transform:none;width:100px; margin: 16px auto;" class="button button-raised button-fill font-1x">
+        <a @click="submitCode" href="#" style="text-transform:none;width:100px; margin: 16px auto;" class="button button-raised button-fill font-1x" id="submit-button">
           Submit
         </a>
         <div class="block no-margin">
+          <div class="row text-align-center coupon-status">
+            
+          </div>
           <div class="row text-align-center">
             <div class="col-50 padding">
               <span class="badge bg-color-red font-16 coupon-submitted" style="padding: 8px 16px 8px 16px;">0</span>
@@ -48,10 +51,12 @@
             </div>
           </div>
         </div>
-        <a href="/rejectedcoupon-history/{{ContractorContactNo}}/" style="text-transform:none; margin: 16px 16px 0 16px;" class="button button-raised button-outline font-1x">Rejected
+        <a href="/rejectedcoupon-history/{{ContractorContactNo}}/" style="text-transform:none; margin: 16px 16px 0 16px;"
+          class="button button-raised button-outline font-1x">Rejected
           Coupon History
         </a>
-        <a href="/account-statement/{{ContractorContactNo}}/" style="text-transform:none; margin: 16px 16px 0 16px;" class="button button-raised button-outline font-1x">Account
+        <a href="/user-account-statement/{{ContractorContactNo}}/" style="text-transform:none; margin: 16px 16px 0 16px;"
+          class="button button-raised button-outline font-1x">Account
           Statement
         </a>
       </div>
@@ -61,14 +66,14 @@
 <script>
   return {
     data: function () {
-      if(this.$route.params.ContractorContactNo){
+      if (this.$route.params.ContractorContactNo) {
         var ContractorNumber = this.$route.params.ContractorContactNo;
       }
-      else{
+      else {
         var ContractorNumber = UserData.MobileNo;
       }
       return {
-          ContractorContactNo: ContractorNumber,
+        ContractorContactNo: ContractorNumber,
       }
     },
     on: {
@@ -81,10 +86,10 @@
         var UserData = JSON.parse(localStorage.User);
         var CouponCode = $$('#scan-code-form input[name=CouponCode]').val();
 
-        if(this.$route.params.ContractorContactNo){
+        if (this.$route.params.ContractorContactNo) {
           var ContractorNumber = this.$route.params.ContractorContactNo;
         }
-        else{
+        else {
           var ContractorNumber = UserData.MobileNo;
         }
 
@@ -109,10 +114,32 @@
           },
           success: function (data, status, xhr) {
             if (data.ErrorCode == '0') {
+              var statusHTML = `
+              <div class="col-50 padding">
+                <h2 class="no-margin" style="border:1px solid #ccc">${CouponCode}</h2>
+              </div>
+              <div class="col-50 padding">
+                <div class="chip">
+                  <div class="chip-media bg-color-green"><i class="icon material-icons md-only">check</i></div>
+                  <div class="chip-label">Submitted</div>
+                </div>
+              </div>`;
+              $$('#scan-code-page .coupon-status').html(statusHTML);
               var coupon_submitted = $$('#scan-code-page .coupon-submitted').text();
               $$('#scan-code-page .coupon-submitted').text(parseInt(coupon_submitted) + 1);
             }
             else {
+              var statusHTML = `
+              <div class="col-50 padding">
+              <h2 class="no-margin" style="border:1px solid #ccc">${CouponCode}</h2>
+              </div>
+              <div class="col-50 padding">
+                <div class="chip">
+                  <div class="chip-media bg-color-red"><i class="icon material-icons md-only">close</i></div>
+                  <div class="chip-label">Rejected</div>
+                </div>
+              </div>`;
+              $$('#scan-code-page .coupon-status').html(statusHTML);
               var coupon_rejected = $$('#scan-code-page .coupon-rejected').text();
               $$('#scan-code-page .coupon-rejected').text(parseInt(coupon_rejected) + 1);
               app.dialog.alert(data.ErrorMessage);
@@ -128,10 +155,10 @@
           function (result) {
             if (!result.cancelled) {
               var UserData = JSON.parse(localStorage.User);
-              if(this.$route.params.ContractorContactNo){
+              if (this.$route.params.ContractorContactNo) {
                 var ContractorNumber = this.$route.params.ContractorContactNo;
               }
-              else{
+              else {
                 var ContractorNumber = UserData.MobileNo;
               }
               var obj = {
@@ -155,10 +182,32 @@
                 },
                 success: function (data, status, xhr) {
                   if (data.ErrorCode == '0') {
+                    var statusHTML = `
+                    <div class="col-50 padding">
+                      <h2 class="no-margin" style="border:1px solid #ccc">${result.text}</h2>
+                    </div>
+                    <div class="col-50 padding">
+                      <div class="chip">
+                        <div class="chip-media bg-color-green"><i class="icon material-icons md-only">check</i></div>
+                        <div class="chip-label">Submitted</div>
+                      </div>
+                    </div>`;
+                    $$('#scan-code-page .coupon-status').html(statusHTML);
                     var coupon_submitted = $$('#scan-code-page .coupon-submitted').text();
                     $$('#scan-code-page .coupon-submitted').text(parseInt(coupon_submitted) + 1);
                   }
                   else {
+                    var statusHTML = `
+                    <div class="col-50 padding">
+                    <h2 class="no-margin" style="border:1px solid #ccc">${result.text}</h2>
+                    </div>
+                    <div class="col-50 padding">
+                      <div class="chip">
+                        <div class="chip-media bg-color-red"><i class="icon material-icons md-only">close</i></div>
+                        <div class="chip-label">Rejected</div>
+                      </div>
+                    </div>`;
+                    $$('#scan-code-page .coupon-status').html(statusHTML);
                     var coupon_rejected = $$('#scan-code-page .coupon-rejected').text();
                     $$('#scan-code-page .coupon-rejected').text(parseInt(coupon_rejected) + 1);
                     app.dialog.alert(data.ErrorMessage);
@@ -181,7 +230,7 @@
       stopCaret: function () {
         var obj = document.getElementById('partitioned');
         if (obj.value.length > 8) {
-          // Enter logic
+          $$('#scan-code-page #submit-button').focus();
         }
       },
     }

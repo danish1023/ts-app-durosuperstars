@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="page-content bg-color-white">
-      
+
     </div>
   </div>
 </template>
@@ -49,34 +49,6 @@
               var TotalMappedDealer = data.TotalMappedDealer;
               var ActiveMappedDealer = data.ActiveMappedDealer;
               var InActiveMappedDealer = data.InActiveMappedDealer;
-              var enrolledHTML = `<div class="list">
-                <ul>
-                  <li>
-                    <div class="item-content" style="background: #fff1f0;">
-                      <div class="item-inner">
-                        <div class="item-title">Enrolled Members</div>
-                        <div class="item-after">${TotalMappedDealer}</div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>`;
-              var activeHTML = `<div class="list no-margin-bottom">
-                <ul>
-                  <li>
-                    <div class="item-content" style="background: #fff1f0;">
-                      <div class="item-inner">
-                        <div class="item-title">Active Members</div>
-                        <div class="item-after">${ActiveMappedDealer}</div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>`;
-
-              $$('#dealer-list-page .page-content').append(enrolledHTML);
-              $$('#dealer-list-page .page-content').append(activeHTML);
-
               var DealerListDetails = data.Response.DealerListDetails;
               if (DealerListDetails) {
                 var tbody_active = '';
@@ -96,61 +68,80 @@
                       <td class="label-cell">${CouponPending}</td>
                       <td class="label-cell">${CouponClaimed}</td>
                     </tr>`;
-                  if(DealerStatus == 'Yes'){
-                    tbody_active = tbody_active+tbody_el;
+                  if (DealerStatus == 'Yes') {
+                    tbody_active = tbody_active + tbody_el;
                   }
-                  else{
-                    tbody_inactive = tbody_inactive+tbody_el;
+                  else {
+                    tbody_inactive = tbody_inactive + tbody_el;
                   }
                 }
               }
-              var activetableHTML = `<div class="data-table">
-                <table>
-                  <thead>
-                    <tr>
-                      <th class="label-cell color-red">Dealer Name</th>
-                      <th class="label-cell color-red">Dealer Mobile</th>
-                      <th class="label-cell color-red">Copoun Alloted</th>
-                      <th class="label-cell color-red">Coupon Pending</th>
-                      <th class="label-cell color-red">Coupon Claimed</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    ${tbody_active}
-                  </tbody>
-                </table>
-              </div>`;
-              $$('#dealer-list-page .page-content').append(activetableHTML);
-              var inactiveHTML = `<div class="list no-margin-bottom no-margin-top">
+              var html = `
+              <div class="list accordion-list margin-top">
                 <ul>
-                  <li>
-                    <div class="item-content" style="background: #fff1f0;">
+                  <li class="accordion-item">
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Enrolled Members</div>
+                        <div class="item-after" style="padding-right: 26px">${TotalMappedDealer}</div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="accordion-item">
+                    <a href="#" class="item-link item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Active Members</div>
+                        <div class="item-after">${ActiveMappedDealer}</div>
+                      </div>
+                    </a>
+                    <div class="accordion-item-content active-dealers">
+                        <div class="data-table">
+                          <table>
+                            <thead>
+                              <tr>
+                                <th class="label-cell color-red">Dealer Name</th>
+                                <th class="label-cell color-red">Dealer Mobile</th>
+                                <th class="label-cell color-red">Copoun Alloted</th>
+                                <th class="label-cell color-red">Coupon Pending</th>
+                                <th class="label-cell color-red">Coupon Claimed</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              ${tbody_active}
+                            </tbody>
+                          </table>
+                        </div>
+                    </div>
+                  </li>
+                  <li class="accordion-item">
+                    <a href="#" class="item-link item-content">
                       <div class="item-inner">
                         <div class="item-title">Inactive Members</div>
                         <div class="item-after">${InActiveMappedDealer}</div>
                       </div>
+                    </a>
+                    <div class="accordion-item-content inactive-dealers">
+                        <div class="data-table">
+                          <table>
+                            <thead>
+                              <tr>
+                                <th class="label-cell color-red">Dealer Name</th>
+                                <th class="label-cell color-red">Dealer Mobile</th>
+                                <th class="label-cell color-red">Copoun Alloted</th>
+                                <th class="label-cell color-red">Coupon Pending</th>
+                                <th class="label-cell color-red">Coupon Claimed</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              ${tbody_inactive}
+                            </tbody>
+                          </table>
+                        </div>
                     </div>
                   </li>
                 </ul>
               </div>`;
-              $$('#dealer-list-page .page-content').append(inactiveHTML);
-              var inactivetableHTML = `<div class="data-table">
-                <table style="margin-bottom:32px">
-                  <thead>
-                    <tr>
-                      <th class="label-cell color-red">Dealer Name</th>
-                      <th class="label-cell color-red">Dealer Mobile</th>
-                      <th class="label-cell color-red">Copoun Alloted</th>
-                      <th class="label-cell color-red">Coupon Pending</th>
-                      <th class="label-cell color-red">Coupon Claimed</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    ${tbody_inactive}
-                  </tbody>
-                </table>
-              </div>`;
-              $$('#dealer-list-page .page-content').append(inactivetableHTML);
+            $$('#dealer-list-page .page-content').html(html);
             }
             else {
               app.dialog.alert(data.ErrorMessage);

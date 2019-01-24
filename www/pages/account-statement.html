@@ -18,7 +18,7 @@
               <div class="item-inner">
                 <div class="item-title item-floating-label">From Date</div>
                 <div class="item-input-wrap">
-                  <input type="text" name="FromDate">
+                  <input type="text" value="{{FromDate}}" name="FromDate">
                 </div>
               </div>
             </li>
@@ -26,7 +26,7 @@
               <div class="item-inner">
                 <div class="item-title item-floating-label">To Date</div>
                 <div class="item-input-wrap">
-                  <input type="text" name="ToDate">
+                  <input type="text" value="{{ToDate}}" name="ToDate">
                 </div>
               </div>
             </li>
@@ -47,6 +47,20 @@
   return {
     on: {
       pageInit: function () {
+        var UserData = JSON.parse(localStorage.User);
+        var UserType = UserData.UserType;
+
+        if(UserType == 'U'){
+          $$('#account-statement-page form ul').prepend(`<li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-floating-label">Contractor Number</div>
+                <div class="item-input-wrap">
+                  <input type="number" min="0" name="MobileNo">
+                </div>
+              </div>
+            </li>`);
+        }
+        
         var FromDateCalendar = app.calendar.create({
           inputEl: '#account-statement-page input[name=FromDate]',
           openIn: 'customModal',
@@ -68,8 +82,13 @@
         var UserData = JSON.parse(localStorage.User);
         var FromDate = $$('#account-statement-form input[name=FromDate]').val();
         var ToDate = $$('#account-statement-form input[name=ToDate]').val();
+        var UserType = UserData.UserType;
+        var MobileNo = UserData.MobileNo;
+        if(UserType == 'U'){
+          MobileNo = $$('#account-statement-form input[name=MobileNo]').val();
+        }
         var obj = {
-          MobileNo: UserData.MobileNo,
+          MobileNo: MobileNo,
           FromDate: FromDate,
           ToDate: ToDate,
         };
@@ -147,6 +166,12 @@
           }
         })
       }
-    }
+    },
+    data: function () {
+      return {
+        FromDate: moment().format('DD-MMM-Y'),
+        ToDate: moment().format('DD-MMM-Y')
+      }
+    },
   }
 </script>

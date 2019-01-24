@@ -126,12 +126,12 @@ function playVideo(videoUrl) {
   window.plugins.streamingMedia.playVideo(videoUrl);
 }
 
-function notificationClick(NotificationId) {
+function notificationClick(NotificationId,Flag) {
   var UserData = JSON.parse(localStorage.User);
   var obj = {
     NotificationId: NotificationId,
     MobileNo: UserData.MobileNo,
-    Flag: 'Y'
+    Flag: Flag
   };
   app.request({
     url: BaseURL + '/UpdateNotificationResponse',
@@ -143,7 +143,10 @@ function notificationClick(NotificationId) {
       xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
     },
     success: function (data, status, xhr) {
-      //console.log(data);
+      app.router.navigate('/notifications/', {
+        reloadCurrent: true,
+        ignoreCache: true,
+      });
     },
   })
 }

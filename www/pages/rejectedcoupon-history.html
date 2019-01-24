@@ -13,7 +13,7 @@
     <div class="page-content">
 
       <div class="data-table">
-        
+
       </div>
 
     </div>
@@ -26,8 +26,14 @@
         var UserData = JSON.parse(localStorage.User);
         var FromDate = moment().subtract(3, 'months').format('DD-MMM-Y');
         var ToDate = moment().format('DD-MMM-Y');
+        if (this.$route.params.ContractorContactNo) {
+          var MobileNo = this.$route.params.ContractorContactNo;
+        }
+        else {
+          var MobileNo = UserData.MobileNo;
+        }
         var obj = {
-          MobileNo: UserData.MobileNo,
+          MobileNo: MobileNo,
           FromDate: FromDate,
           ToDate: ToDate,
         };

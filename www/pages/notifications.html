@@ -48,14 +48,21 @@
                     var NotificationID = NotificationDetails[i].NotificationID;
                     var NotificationContent = NotificationDetails[i].NotificationContent;
                     var Responded = NotificationDetails[i].Responded;
-                    var Respondedclass = '';
-                    if(Responded == 'Y'){
-                        Respondedclass = ' card-read';
+                    var card_footer = '';
+                    if(Responded == 'P'){
+                        card_footer = `<div class="card-footer">
+                          <a onclick="notificationClick(${NotificationID},'Y')" href="#" class="link">Yes</a>
+                          <a onclick="notificationClick(${NotificationID},'N')" href="#" class="link">No</a>
+                          </div>`;
+                    }
+                    else{
+                        card_footer = `<div class="card-footer">Response: ${Responded}</div>`;
                     }
                     var html = `<div class="card no-margin margin-top">
-                      <div onclick="notificationClick(${NotificationID})" class="card-content card-content-padding${Respondedclass}">
+                      <div class="card-content card-content-padding">
                         <p class="overflow-wrap">${NotificationContent}</p>
                       </div>
+                      ${card_footer}
                     </div>`;
                     $$('#notifications-page .page-content .block').append(html);
                   }
@@ -79,6 +86,9 @@
       methods: {
         notificationClick: function(NotificationID){
             console.log('ggg');
+        },
+        noc: function(){
+          console.log(this);
         }
       }
     }

@@ -9,16 +9,36 @@
         </div>
         <div class="title color-white">Dashboard</div>
         <div class="right">
-          <a class="link icon-only">
+          <a href="/notifications/" class="link icon-only">
             <i class="icon material-icons">notifications</i>
           </a>
         </div>
       </div>
     </div>
+    <!-- <div class="toolbar tabbar">
+      <div class="toolbar-inner">
+        <a href="#tab-1" class="tab-link tab-link-active">Contractors</a>
+        <a href="#tab-2" class="tab-link">Dealers</a>
+      </div>
+    </div> -->
+    <!-- <div class="tabs-swipeable-wrap">
+      <div class="tabs">
+        <div id="tab-1" class="page-content tab tab-active">
+          <div class="block">
+            <p>Tab 1 content</p>
+          </div>
+        </div>
+        <div id="tab-2" class="page-content tab">
+          <div class="block">
+            <p>Tab 2 content</p>
+          </div>
+        </div>
+      </div>
+    </div> -->
     <div class="page-content" id="UserHomePage">
       <div class="card" style="box-shadow:none;">
         <div class="card-content card-content-padding text-align-center" style="background: mistyrose;">
-          
+
         </div>
       </div>
     </div>
@@ -49,7 +69,7 @@
           success: function (data, status, xhr) {
             if (data.ErrorCode == '0') {
               if (data.UserTypeCode == 'S') {
-                var contractor_list_btn = '<a style="width:125px" class="button button-fill button-raised margin" href="/contractor-list/">View Details</a>';
+                var contractor_list_btn = '<a style="width:125px" class="button button-outline button-round margin" href="/contractor-list/">View Details</a>';
 
               }
               else {
@@ -147,7 +167,7 @@
                     </li>
                   </ul>
                 </div>
-                <a style="width:125px" class="button button-fill button-raised margin" href="/dealer-list/">View Details</a>
+                <a style="width:125px" class="button button-outline button-round margin" href="/dealer-list/">View Details</a>
               </div>`;
               $$('#UserHomePage').html(html);
             }

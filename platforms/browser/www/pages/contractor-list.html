@@ -43,52 +43,15 @@
               var TotalMappedContractors = data.TotalMappedContractors;
               var ActiveMappedContractors = data.ActiveMappedContractors;
               var InActiveMappedContractors = data.InActiveMappedContractors;
-              var enrolledHTML = `<div class="list">
-                <ul>
-                  <li>
-                    <div class="item-content" style="background: #fff1f0;">
-                      <div class="item-inner">
-                        <div class="item-title">Enrolled Members</div>
-                        <div class="item-after">${TotalMappedContractors}</div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>`;
-              var activeHTML = `<div class="list no-margin-bottom">
-                <ul>
-                  <li>
-                    <div class="item-content" style="background: #fff1f0;">
-                      <div class="item-inner">
-                        <div class="item-title">Active Members</div>
-                        <div class="item-after">${ActiveMappedContractors}</div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>`;
-
-              $$('#contractor-list-page .page-content').append(enrolledHTML);
-              $$('#contractor-list-page .page-content').append(activeHTML);
-
               var ContractorListDetails = data.Response.ContractorListDetails;
               if (ContractorListDetails) {
                 var tbody_active = '';
                 var tbody_inactive = '';
                 for (var i = 0; i < ContractorListDetails.length; i++) {
-                  // var MembershipDate = ContractorListDetails[i].MembershipDate;
-                  // var MembershipId = ContractorListDetails[i].MembershipId;
                   var ContractorName = ContractorListDetails[i].ContractorName;
                   var ContractorMobileNo = ContractorListDetails[i].ContractorMobileNo;
                   var ContractorPoints = ContractorListDetails[i].ContractorPoints;
                   var ContractorStatus = ContractorListDetails[i].ContractorStatus;
-                  // var DealerName = ContractorListDetails[i].DealerName;
-                  // var TierName = ContractorListDetails[i].TierName;
-                  // var StateName = ContractorListDetails[i].StateName;
-                  // var CityName = ContractorListDetails[i].CityName;
-                  // var PointExpiry1 = ContractorListDetails[i].PointExpiry1;
-                  // var PointExpiry2 = ContractorListDetails[i].PointExpiry2;
-                  // var LastCouponSubmissionDate = ContractorListDetails[i].LastCouponSubmissionDate;
                   var tbody_el = `
                     <tr>
                       <td class="label-cell"><a href="/contractor-details/${ContractorMobileNo}/">${ContractorName}</a></td>
@@ -103,49 +66,68 @@
                   }
                 }
               }
-              var activetableHTML = `<div class="data-table">
-                <table>
-                  <thead>
-                    <tr>
-                      <th class="label-cell color-red">Contractor Name</th>
-                      <th class="label-cell color-red">Contractor Mobile</th>
-                      <th class="label-cell color-red">Contractor Points</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    ${tbody_active}
-                  </tbody>
-                </table>
-              </div>`;
-              $$('#contractor-list-page .page-content').append(activetableHTML);
-              var inactiveHTML = `<div class="list no-margin-bottom no-margin-top">
+              var html = `
+              <div class="list accordion-list margin-top">
                 <ul>
-                  <li>
-                    <div class="item-content" style="background: #fff1f0;">
+                  <li class="accordion-item">
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Enrolled Members</div>
+                        <div class="item-after" style="padding-right: 26px">${TotalMappedContractors}</div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="accordion-item">
+                    <a href="#" class="item-link item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Active Members</div>
+                        <div class="item-after">${ActiveMappedContractors}</div>
+                      </div>
+                    </a>
+                    <div class="accordion-item-content active-dealers">
+                        <div class="data-table">
+                          <table>
+                            <thead>
+                                <tr>
+                                  <th class="label-cell color-red">Contractor Name</th>
+                                  <th class="label-cell color-red">Contractor Mobile</th>
+                                  <th class="label-cell color-red">Contractor Points</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              ${tbody_active}
+                            </tbody>
+                          </table>
+                        </div>
+                    </div>
+                  </li>
+                  <li class="accordion-item">
+                    <a href="#" class="item-link item-content">
                       <div class="item-inner">
                         <div class="item-title">Inactive Members</div>
                         <div class="item-after">${InActiveMappedContractors}</div>
                       </div>
+                    </a>
+                    <div class="accordion-item-content inactive-dealers">
+                        <div class="data-table">
+                          <table>
+                            <thead>
+                                <tr>
+                                  <th class="label-cell color-red">Contractor Name</th>
+                                  <th class="label-cell color-red">Contractor Mobile</th>
+                                  <th class="label-cell color-red">Contractor Points</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              ${tbody_inactive}
+                            </tbody>
+                          </table>
+                        </div>
                     </div>
                   </li>
                 </ul>
               </div>`;
-              $$('#contractor-list-page .page-content').append(inactiveHTML);
-              var inactivetableHTML = `<div class="data-table">
-                <table style="margin-bottom:32px">
-                  <thead>
-                    <tr>
-                      <th class="label-cell color-red">Contractor Name</th>
-                      <th class="label-cell color-red">Contractor Mobile</th>
-                      <th class="label-cell color-red">Contractor Points</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    ${tbody_inactive}
-                  </tbody>
-                </table>
-              </div>`;
-              $$('#contractor-list-page .page-content').append(inactivetableHTML);
+            $$('#contractor-list-page .page-content').html(html);
             }
             else {
               app.dialog.alert(data.ErrorMessage);
