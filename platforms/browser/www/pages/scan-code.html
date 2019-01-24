@@ -48,10 +48,10 @@
             </div>
           </div>
         </div>
-        <a href="/rejectedcoupon-history/" style="text-transform:none; margin: 16px 16px 0 16px;" class="button button-raised button-outline font-1x">Rejected
+        <a href="/rejectedcoupon-history/{{ContractorContactNo}}/" style="text-transform:none; margin: 16px 16px 0 16px;" class="button button-raised button-outline font-1x">Rejected
           Coupon History
         </a>
-        <a href="/account-statement/" style="text-transform:none; margin: 16px 16px 0 16px;" class="button button-raised button-outline font-1x">Account
+        <a href="/account-statement/{{ContractorContactNo}}/" style="text-transform:none; margin: 16px 16px 0 16px;" class="button button-raised button-outline font-1x">Account
           Statement
         </a>
       </div>
@@ -60,18 +60,36 @@
 </template>
 <script>
   return {
+    data: function () {
+      if(this.$route.params.ContractorContactNo){
+        var ContractorNumber = this.$route.params.ContractorContactNo;
+      }
+      else{
+        var ContractorNumber = UserData.MobileNo;
+      }
+      return {
+          ContractorContactNo: ContractorNumber,
+      }
+    },
     on: {
       pageInit: function () {
-        // $$('#scan-code-page .coupon-submitted').text('0');
-        // $$('#scan-code-page .coupon-rejected').text('0');
+        //console.log(this.$route.params.ContractorContactNo);
       }
     },
     methods: {
       submitCode: function () {
         var UserData = JSON.parse(localStorage.User);
         var CouponCode = $$('#scan-code-form input[name=CouponCode]').val();
+
+        if(this.$route.params.ContractorContactNo){
+          var ContractorNumber = this.$route.params.ContractorContactNo;
+        }
+        else{
+          var ContractorNumber = UserData.MobileNo;
+        }
+
         var obj = {
-          ContractorNumber: UserData.MobileNo,
+          ContractorNumber: ContractorNumber,
           CouponCode: CouponCode,
           UserName: '',
         };
@@ -110,8 +128,14 @@
           function (result) {
             if (!result.cancelled) {
               var UserData = JSON.parse(localStorage.User);
+              if(this.$route.params.ContractorContactNo){
+                var ContractorNumber = this.$route.params.ContractorContactNo;
+              }
+              else{
+                var ContractorNumber = UserData.MobileNo;
+              }
               var obj = {
-                ContractorNumber: UserData.MobileNo,
+                ContractorNumber: ContractorNumber,
                 CouponCode: result.text,
                 UserName: '',
               };

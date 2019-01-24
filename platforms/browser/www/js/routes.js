@@ -58,6 +58,13 @@ var routes = [
     // },
   },
 
+  // Submit Coupon OTP
+  {
+    path: '/submitcoupon-otp/:ContractorContactNo/',
+    componentUrl: './pages/submitcoupon-otp.html',
+    name: 'submitcoupon-otp',
+  },
+
   // Member Dashboard
   {
     path: '/dashboard/',
@@ -93,11 +100,25 @@ var routes = [
     name: 'contractor-list',
   },
 
+  // Contractor Details
+  {
+    path: '/contractor-details/:ContractorMobileNo/',
+    componentUrl: './pages/contractor-details.html',
+    name: 'contractor-details',
+  },
+
   // Dealer List
   {
     path: '/dealer-list/',
     componentUrl: './pages/dealer-list.html',
     name: 'dealer-list',
+  },
+
+  // Dealer Details
+  {
+    path: '/dealer-details/:DealerMobileNo/',
+    componentUrl: './pages/dealer-details.html',
+    name: 'dealer-details',
   },
 
   // Program Booklet
@@ -142,6 +163,13 @@ var routes = [
     name: 'account-statement',
   },
 
+  // User Account Statement
+  {
+    path: '/user-account-statement/:ContractorMobileNo/',
+    componentUrl: './pages/user-account-statement.html',
+    name: 'user-account-statement',
+  },
+
   // Query/Complaints
   {
     path: '/query/',
@@ -183,6 +211,12 @@ var routes = [
     componentUrl: './pages/scan-code.html',
     name: 'scan-code',
   },
+
+    // Scan code
+    {
+      path: '/scan-code/:ContractorContactNo/',
+      componentUrl: './pages/scan-code.html',
+    },
 
   // Rejected coupon history
   {

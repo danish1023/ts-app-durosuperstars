@@ -1,5 +1,5 @@
 <template>
-  <div class="page" id="user-profile-page">
+  <div class="page" id="dealer-list-page">
     <div class="navbar">
       <div class="navbar-inner sliding bg-color-red color-theme-white">
         <div class="left">
@@ -7,10 +7,10 @@
             <i class="material-icons">arrow_back</i>
           </a>
         </div>
-        <div class="title color-white">Dealers</div>
+        <div class="title color-white">Mapped Dealers</div>
       </div>
     </div>
-    <div class="page-content bg-color-white no-padding-top">
+    <div class="page-content bg-color-white">
       
     </div>
   </div>
@@ -31,7 +31,7 @@
           UserName: UserData.MembershipId,
         };
         app.request({
-          url: BaseURL + '/UserMyProfileAPI',
+          url: BaseURL + '/ListDealerAPI',
           method: 'POST',
           dataType: 'json',
           data: obj,
@@ -46,7 +46,111 @@
           },
           success: function (data, status, xhr) {
             if (data.ErrorCode == '0') {
-              
+              var TotalMappedDealer = data.TotalMappedDealer;
+              var ActiveMappedDealer = data.ActiveMappedDealer;
+              var InActiveMappedDealer = data.InActiveMappedDealer;
+              var enrolledHTML = `<div class="list">
+                <ul>
+                  <li>
+                    <div class="item-content" style="background: #fff1f0;">
+                      <div class="item-inner">
+                        <div class="item-title">Enrolled Members</div>
+                        <div class="item-after">${TotalMappedDealer}</div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>`;
+              var activeHTML = `<div class="list no-margin-bottom">
+                <ul>
+                  <li>
+                    <div class="item-content" style="background: #fff1f0;">
+                      <div class="item-inner">
+                        <div class="item-title">Active Members</div>
+                        <div class="item-after">${ActiveMappedDealer}</div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>`;
+
+              $$('#dealer-list-page .page-content').append(enrolledHTML);
+              $$('#dealer-list-page .page-content').append(activeHTML);
+
+              var DealerListDetails = data.Response.DealerListDetails;
+              if (DealerListDetails) {
+                var tbody_active = '';
+                var tbody_inactive = '';
+                for (var i = 0; i < DealerListDetails.length; i++) {
+                  var DealerName = DealerListDetails[i].DealerName;
+                  var DealerMobileNo = DealerListDetails[i].DealerMobileNo;
+                  var DealerStatus = DealerListDetails[i].DealerStatus;
+                  var CopounAlloted = DealerListDetails[i].CopounAlloted;
+                  var CouponPending = DealerListDetails[i].CouponPending;
+                  var CouponClaimed = DealerListDetails[i].CouponClaimed;
+                  var tbody_el = `
+                    <tr>
+                      <td class="label-cell"><a href="/dealer-details/${DealerMobileNo}/">${DealerName}</a></td>
+                      <td class="label-cell">${DealerMobileNo}</td>
+                      <td class="label-cell">${CopounAlloted}</td>
+                      <td class="label-cell">${CouponPending}</td>
+                      <td class="label-cell">${CouponClaimed}</td>
+                    </tr>`;
+                  if(DealerStatus == 'Yes'){
+                    tbody_active = tbody_active+tbody_el;
+                  }
+                  else{
+                    tbody_inactive = tbody_inactive+tbody_el;
+                  }
+                }
+              }
+              var activetableHTML = `<div class="data-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th class="label-cell color-red">Dealer Name</th>
+                      <th class="label-cell color-red">Dealer Mobile</th>
+                      <th class="label-cell color-red">Copoun Alloted</th>
+                      <th class="label-cell color-red">Coupon Pending</th>
+                      <th class="label-cell color-red">Coupon Claimed</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${tbody_active}
+                  </tbody>
+                </table>
+              </div>`;
+              $$('#dealer-list-page .page-content').append(activetableHTML);
+              var inactiveHTML = `<div class="list no-margin-bottom no-margin-top">
+                <ul>
+                  <li>
+                    <div class="item-content" style="background: #fff1f0;">
+                      <div class="item-inner">
+                        <div class="item-title">Inactive Members</div>
+                        <div class="item-after">${InActiveMappedDealer}</div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>`;
+              $$('#dealer-list-page .page-content').append(inactiveHTML);
+              var inactivetableHTML = `<div class="data-table">
+                <table style="margin-bottom:32px">
+                  <thead>
+                    <tr>
+                      <th class="label-cell color-red">Dealer Name</th>
+                      <th class="label-cell color-red">Dealer Mobile</th>
+                      <th class="label-cell color-red">Copoun Alloted</th>
+                      <th class="label-cell color-red">Coupon Pending</th>
+                      <th class="label-cell color-red">Coupon Claimed</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${tbody_inactive}
+                  </tbody>
+                </table>
+              </div>`;
+              $$('#dealer-list-page .page-content').append(inactivetableHTML);
             }
             else {
               app.dialog.alert(data.ErrorMessage);

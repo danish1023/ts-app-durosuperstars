@@ -6,9 +6,15 @@ if (User) {
   var UserData = JSON.parse(User);
   if (UserData.UserType == 'M') {
     $$('.panel-left a.profile').attr('href', '/member-profile/');
+    $$('.panel-left .ScanCouponMenu').show();
+    $$('.panel-left .TCMenu').hide();
+    $$('.panel-left .RedeemRewardMenu').hide();
   }
   else {
     $$('.panel-left a.profile').attr('href', '/user-profile/');
+    $$('.panel-left .ScanCouponMenu').hide();
+    $$('.panel-left .TCMenu').show();
+    $$('.panel-left .RedeemRewardMenu').show();
   }
 }
 

@@ -1,0 +1,116 @@
+<template>
+    <div class="page" id="user-account-statement-page">
+        <div class="navbar">
+            <div class="navbar-inner sliding bg-color-red color-theme-white">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="material-icons">arrow_back</i>
+                    </a>
+                </div>
+                <div class="title color-white">Account Statement</div>
+            </div>
+        </div>
+        <div class="page-content bg-color-white">
+            <div class="data-table">
+    
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {
+            pageInit: function (e, page) {
+                var User = localStorage.User;
+                var UserData = JSON.parse(User);
+                var ContractorMobileNo = this.$route.params.ContractorMobileNo;
+                var FromDate = moment().subtract(3, 'months').format('DD-MMM-Y');
+                var ToDate = moment().format('DD-MMM-Y');
+                var obj = {
+                    UserName: UserData.MembershipId,
+                    ContractorMobileNo: ContractorMobileNo,
+                    FromDate: FromDate,
+                    ToDate: ToDate,
+                };
+                app.request({
+                    url: BaseURL + '/SearchContractorAPI',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: obj,
+                    contentType: 'application/json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+                        var spinnerOptions = { dimBackground: false };
+                        SpinnerPlugin.activityStart(null, spinnerOptions);
+                    },
+                    error: function (xhr, status) {
+                        alert("Error: " + status);
+                    },
+                    success: function (data, status, xhr) {
+                        if (data.ErrorCode == '0') {
+                            var SearchContractorDetails = data.Response.SearchContractorDetails;
+                            if (SearchContractorDetails) {
+                                var tbody = '';
+                                for (var i = 0; i < SearchContractorDetails.length; i++) {
+                                    var TransactionDate = SearchContractorDetails[i].TransactionDate;
+                                    var InvoiceDate = SearchContractorDetails[i].InvoiceDate;
+                                    var SeriesCode = SearchContractorDetails[i].SeriesCode;
+                                    var TransactionType = SearchContractorDetails[i].TransactionType;
+                                    var CouponCode = SearchContractorDetails[i].CouponCode;
+                                    var CampaignName = SearchContractorDetails[i].CampaignName;
+                                    var EarnPoints = SearchContractorDetails[i].EarnPoints;
+                                    var RedeemedPoints = SearchContractorDetails[i].RedeemedPoints;
+                                    var TotalAvailablePointBalance = SearchContractorDetails[i].TotalAvailablePointBalance;
+                                    var tbody_el = `
+                                    <tr>
+                                        <td class="label-cell">${TransactionDate}</td>
+                                        <td class="label-cell">${TransactionType}</td>
+                                        <td class="label-cell">${SeriesCode}</td>
+                                        <td class="label-cell">${CouponCode}</td>
+                                        <td class="label-cell">${InvoiceDate}</td>
+                                        <td class="label-cell">${CampaignName}</td>
+                                        <td class="label-cell">${EarnPoints}</td>
+                                        <td class="label-cell">${RedeemedPoints}</td>
+                                        <td class="label-cell">${TotalAvailablePointBalance}</td>
+                                    </tr>`;
+                                    tbody = tbody + tbody_el;
+                                    }
+                                    var table = `<table>
+                                    <thead>
+                                        <tr>
+                                        <th class="label-cell color-red">Transaction Date</th>
+                                        <th class="label-cell color-red">Transaction Type</th>
+                                        <th class="label-cell color-red">Series Code</th>
+                                        <th class="label-cell color-red">Coupon Code</th>
+                                        <th class="label-cell color-red">Invoice Date</th>
+                                        <th class="label-cell color-red">Campaign Name</th>
+                                        <th class="label-cell color-red">Earn Points</th>
+                                        <th class="label-cell color-red">Redeemed Points</th>
+                                        <th class="label-cell color-red">Available Point Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${tbody}
+                                    </tbody>
+                                    </table>`;
+                                $$('#user-account-statement-page .page-content .data-table').html(table);
+                            }
+                        }
+                        else {
+                            $$('#user-account-statement-page .page-content').html(`
+                                <div class="block no-margin text-align-center color-gray">
+                                <i style="font-size:125px; margin-top: 35vh;" class="f7-icons">box</i>
+                                <p class="no-margin">No Data Found!</p>
+                                </div>
+                            `);
+                        }
+                    },
+                    complete: function (xhr, status) {
+                        SpinnerPlugin.activityStop();
+                    }
+                })
+
+            }
+        }
+    }
+</script>
