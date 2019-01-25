@@ -100,6 +100,13 @@ var routes = [
     name: 'contractor-list',
   },
 
+   // Contractor List Upper
+   {
+    path: '/contractorlist-upper/',
+    componentUrl: './pages/contractorlist-upper.html',
+    name: 'contractorlist-upper',
+  },
+
   // Contractor Details
   {
     path: '/contractor-details/:ContractorMobileNo/',

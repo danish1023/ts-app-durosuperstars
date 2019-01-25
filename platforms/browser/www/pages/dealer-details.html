@@ -1,144 +1,97 @@
 <template>
-        <div class="page" id="dealer-details-page">
-            <div class="navbar">
-                <div class="navbar-inner sliding bg-color-red color-theme-white">
-                    <div class="left">
-                        <a href="#" class="link back">
-                            <i class="material-icons">arrow_back</i>
-                        </a>
-                    </div>
-                    <div class="title color-white">Dealer Details</div>
+    <div class="page" id="dealer-details-page">
+        <div class="navbar">
+            <div class="navbar-inner sliding bg-color-red color-theme-white">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="material-icons">arrow_back</i>
+                    </a>
                 </div>
-            </div>
-            <div class="page-content bg-color-white">
-                
+                <div class="title color-white">Dealer Details</div>
             </div>
         </div>
-    </template>
-    <script>
-        return {
-            on: {
-                pageInit: function (e, page) {
-                    var User = localStorage.User;
-                    var UserData = JSON.parse(User);
-                    var ContractorMobileNo = this.$route.params.ContractorMobileNo;
-                    var FromDate = moment().subtract(3, 'months').format('DD-MMM-Y');
-                    var ToDate = moment().format('DD-MMM-Y');
-                    var obj = {
-                        UserName: UserData.MembershipId,
-                        ContractorMobileNo: ContractorMobileNo,
-                        FromDate: FromDate,
-                        ToDate: ToDate,
-                    };
-                    app.request({
-                        url: BaseURL + '/SearchContractorAPI',
-                        method: 'POST',
-                        dataType: 'json',
-                        data: obj,
-                        contentType: 'application/json',
-                        beforeSend: function (xhr) {
-                            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
-                            var spinnerOptions = { dimBackground: false };
-                            SpinnerPlugin.activityStart(null, spinnerOptions);
-                        },
-                        error: function (xhr, status) {
-                            alert("Error: " + status);
-                        },
-                        success: function (data, status, xhr) {
-                            if (data.ErrorCode == '0') {
-                                var MembershipID = data.MembershipID;
-                                var MemberName = data.MemberName;
-                                var MembershipDate = data.MembershipDate;
-                                var DealerName = data.DealerName;
-                                var TierName = data.TierName;
-                                var TotalPoints = data.TotalPoints;
-                                var PointExpiry1 = data.PointExpiry1;
-                                var PointExpiry2 = data.PointExpiry2;
-                                var ContractorMobileNo = data.ContractorMobileNo;
-                                var html = `<div class="list no-hairlines margin-top no-margin-bottom">
-                                <ul>
-                                    <li>
-                                        <div class="item-content">
-                                            <div class="item-inner">
-                                                <div class="item-title">Membership ID</div>
-                                                <div class="item-after">${MembershipID}</div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="item-content">
-                                            <div class="item-inner">
-                                                <div class="item-title">Member Name</div>
-                                                <div class="item-after">${MemberName}</div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="item-content">
-                                            <div class="item-inner">
-                                                <div class="item-title">Membership Date</div>
-                                                <div class="item-after">${MembershipDate}</div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="item-content">
-                                            <div class="item-inner">
-                                                <div class="item-title">Dealer Name</div>
-                                                <div class="item-after">${DealerName}</div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="item-content">
-                                            <div class="item-inner">
-                                                <div class="item-title">Tier Name</div>
-                                                <div class="item-after">${TierName}</div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="item-content">
-                                            <div class="item-inner">
-                                                <div class="item-title">Total Points</div>
-                                                <div class="item-after">${TotalPoints}</div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="item-content">
-                                            <div class="item-inner">
-                                                <div class="item-title">Mobile Number</div>
-                                                <div class="item-after">${ContractorMobileNo}</div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="text-align-center margin" style="border: 1px solid #ccc">
-                                <p>${PointExpiry1}</p>
-                                <p>${PointExpiry2}</p>
-                            </div>
-                            <a href="/submitcoupon-otp/${ContractorMobileNo}/" style="width: fit-content; margin: 16px auto; margin-top: 24px;" class="button button-outline">Submit Coupon</a>
-                            <a href="#" style="width: fit-content; margin: 16px auto" class="button button-outline">Redeem Now</a>
-                            <a href="/user-account-statement/${ContractorMobileNo}/" style="width: fit-content; margin: 16px auto" class="button button-outline">Account Statement</a>`;
-                            $$('#contractor-details-page .page-content').html(html);
+        <div class="page-content bg-color-white">
+            <div class="data-table">
+        
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {
+            pageInit: function (e, page) {
+                var User = localStorage.User;
+                var UserData = JSON.parse(User);
+                var DealerMobileNo = this.$route.params.DealerMobileNo;
+                var obj = {
+                    UserName: UserData.MembershipId,
+                    DealerMobileNo: DealerMobileNo,
+                };
+                app.request({
+                    url: BaseURL + '/DealerWiseContractorPerformanceAPI',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: obj,
+                    contentType: 'application/json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+                        var spinnerOptions = { dimBackground: false };
+                        SpinnerPlugin.activityStart(null, spinnerOptions);
+                    },
+                    error: function (xhr, status) {
+                        alert("Error: " + status);
+                    },
+                    success: function (data, status, xhr) {
+                        if (data.ErrorCode == '0') {
+                            var DealerWiseContractorPerformance = data.Response.DealerWiseContractorPerformance;
+                            if (DealerWiseContractorPerformance) {
+                                var tbody = '';
+                                for (var i = 0; i < DealerWiseContractorPerformance.length; i++) {
+                                    var ContractorName = DealerWiseContractorPerformance[i].ContractorName;
+                                    var PointsEarned = DealerWiseContractorPerformance[i].PointsEarned;
+                                    var CountofCouponsSubmitted = DealerWiseContractorPerformance[i].CountofCouponsSubmitted;
+                                    var TierName = DealerWiseContractorPerformance[i].TierName;
+                                    var tbody_el = `
+                                    <tr>
+                                        <td class="label-cell">${ContractorName}</td>
+                                        <td class="label-cell">${PointsEarned}</td>
+                                        <td class="label-cell">${CountofCouponsSubmitted}</td>
+                                        <td class="label-cell">${TierName}</td>
+                                    </tr>`;
+                                    tbody = tbody+tbody_el;
+                                }
+                                var table = `<table>
+                                <thead>
+                                    <tr>
+                                    <th class="label-cell color-red">Contractor Name</th>
+                                    <th class="label-cell color-red">Points Earned</th>
+                                    <th class="label-cell color-red">Coupons Submitted</th>
+                                    <th class="label-cell color-red">Tier Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${tbody}
+                                </tbody>
+                                </table>`;
+                                $$('#dealer-details-page .page-content .data-table').html(table);
                             }
-                            else {
-                                $$('#contractor-details-page .page-content').html(`
+                        }
+                        else {
+                            $$('#dealer-details-page .page-content').html(`
                                 <div class="block no-margin text-align-center color-gray">
                                 <i style="font-size:125px; margin-top: 35vh;" class="f7-icons">box</i>
                                 <p class="no-margin">No Data Found!</p>
                                 </div>
-                                `);
-                            }
-                        },
-                        complete: function (xhr, status) {
-                            SpinnerPlugin.activityStop();
+                            `);
                         }
-                    })
-    
-                }
+                    },
+                    complete: function (xhr, status) {
+                        SpinnerPlugin.activityStop();
+                    }
+                })
+
             }
         }
-    </script>
+    }
+</script>

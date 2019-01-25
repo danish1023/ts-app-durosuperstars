@@ -1,0 +1,198 @@
+<template>
+    <div class="page" id="contractorlist-upper-page">
+        <div class="navbar">
+            <div class="navbar-inner sliding bg-color-red color-theme-white">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="material-icons">arrow_back</i>
+                    </a>
+                </div>
+                <div class="title color-white">Mapped Contractors</div>
+            </div>
+        </div>
+        <div class="page-content bg-color-white">
+
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {
+            pageInit: function (e, page) {
+                var User = localStorage.User;
+                var UserData = JSON.parse(User);
+                var obj = {
+                    UserName: UserData.MembershipId,
+                };
+                app.request({
+                    url: BaseURL + '/UserMappingAPI',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: obj,
+                    contentType: 'application/json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+                        var spinnerOptions = { dimBackground: false };
+                        SpinnerPlugin.activityStart(null, spinnerOptions);
+                    },
+                    error: function (xhr, status) {
+                        alert("Error: " + status);
+                    },
+                    success: function (data, status, xhr) {
+                        if (data.ErrorCode == '0') {
+                            var Level1Details = data.Level1Details;
+                            if (Level1Details) {
+                                for (var i = 0; i < Level1Details.length; i++) {
+                                    var Level1Id = Level1Details[i].Level1Id;
+                                    var Level1Name = Level1Details[i].Level1Name;
+                                    var Level1MappedContractorCount = Level1Details[i].Level1MappedContractorCount;
+                                    var Level1ActiveMemberCount = Level1Details[i].Level1ActiveMemberCount;
+                                    var Level1InactiveMemberCount = Level1Details[i].Level1InactiveMemberCount;
+                                    var Level2Details = Level1Details[i].Level2Details;
+                                }
+                                for (var j = 0; j < Level2Details.length; j++) {
+                                    var Level2Id = Level2Details[j].Level2Id;
+                                    var Level2Name = Level2Details[j].Level2Name;
+                                    var Level2MappedContractorCount = Level2Details[j].Level2MappedContractorCount;
+                                    var Level2ActiveMemberCount = Level2Details[j].Level2ActiveMemberCount;
+                                    var Level2InactiveMemberCount = Level2Details[j].Level2InactiveMemberCount;
+                                    var Level3Details = Level2Details[j].Level3Details;
+                                }
+                                for (var k = 0; k < Level3Details.length; k++) {
+                                    var Level3Id = Level3Details[k].Level3Id;
+                                    var Level3Name = Level3Details[k].Level3Name;
+                                    var Level3MappedContractorCount = Level3Details[k].Level3MappedContractorCount;
+                                    var Level3ActiveMemberCount = Level3Details[k].Level3ActiveMemberCount;
+                                    var Level3InactiveMemberCount = Level3Details[k].Level3InactiveMemberCount;
+                                }
+                            }
+                            var html = `
+                            <div class="list no-hairlines accordion-list margin-top">
+                            <ul>
+                                <li class="accordion-item accordion-item-opened padding-bottom">
+                                <a href="#" class="item-link item-content bg-color-orange color-white">
+                                    <div class="item-inner">
+                                    <div class="item-title">${Level1Name}</div>
+                                    </div>
+                                </a>
+                                <div class="accordion-item-content">
+                                    <div class="list">
+                                    <ul>
+                                        <li class="padding-left">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                            <div class="item-title">Enrolled Members</div>
+                                            <div class="item-after"> <span class="badge">${Level1MappedContractorCount}</span></div>
+                                            </div>
+                                        </div>
+                                        </li>
+                                        <li class="padding-left">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                            <div class="item-title">Active Members</div>
+                                            <div class="item-after"> <span class="badge">${Level1ActiveMemberCount}</span></div>
+                                            </div>
+                                        </div>
+                                        </li>
+                                        <li class="padding-left">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                            <div class="item-title">Inactive Members</div>
+                                            <div class="item-after"> <span class="badge">${Level1InactiveMemberCount}</span></div>
+                                            </div>
+                                        </div>
+                                        </li>
+                                    </ul>
+                                    </div>
+                                </div>
+                                </li>
+                                <li class="accordion-item padding-bottom">
+                                <a href="#" class="item-link item-content bg-color-blue color-white">
+                                    <div class="item-inner">
+                                    <div class="item-title">${Level2Name}</div>
+                                    </div>
+                                </a>
+                                <div class="accordion-item-content">
+                                    <div class="list">
+                                    <ul>
+                                        <li class="padding-left">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                            <div class="item-title">Enrolled Members</div>
+                                            <div class="item-after"> <span class="badge">${Level2MappedContractorCount}</span></div>
+                                            </div>
+                                        </div>
+                                        </li>
+                                        <li class="padding-left">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                            <div class="item-title">Active Members</div>
+                                            <div class="item-after"> <span class="badge">${Level2ActiveMemberCount}</span></div>
+                                            </div>
+                                        </div>
+                                        </li>
+                                        <li class="padding-left">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                            <div class="item-title">Inactive Members</div>
+                                            <div class="item-after"> <span class="badge">${Level3InactiveMemberCount}</span></div>
+                                            </div>
+                                        </div>
+                                        </li>
+                                    </ul>
+                                    </div>
+                                </div>
+                                </li>
+                                <li class="accordion-item">
+                                <a href="#" class="item-link item-content bg-color-green color-white">
+                                    <div class="item-inner">
+                                    <div class="item-title">${Level3Name}</div>
+                                    </div>
+                                </a>
+                                <div class="accordion-item-content">
+                                    <div class="list">
+                                    <ul>
+                                        <li class="padding-left">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                            <div class="item-title">Enrolled Members</div>
+                                            <div class="item-after"> <span class="badge">${Level3MappedContractorCount}</span></div>
+                                            </div>
+                                        </div>
+                                        </li>
+                                        <li class="padding-left">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                            <div class="item-title">Active Members</div>
+                                            <div class="item-after"> <span class="badge">${Level3ActiveMemberCount}</span></div>
+                                            </div>
+                                        </div>
+                                        </li>
+                                        <li class="padding-left">
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                            <div class="item-title">Inactive Members</div>
+                                            <div class="item-after"> <span class="badge">${Level3InactiveMemberCount}</span></div>
+                                            </div>
+                                        </div>
+                                        </li>
+                                    </ul>
+                                    </div>
+                                </div>
+                                </li>
+                            </ul>
+                            </div>`;
+                            $$('#contractorlist-upper-page .page-content').html(html);
+                        }
+                        else {
+                            app.dialog.alert(data.ErrorMessage);
+                        }
+                    },
+                    complete: function (xhr, status) {
+                        SpinnerPlugin.activityStop();
+                    }
+                })
+            },
+        }
+    }
+</script>
