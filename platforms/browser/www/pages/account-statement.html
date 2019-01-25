@@ -11,8 +11,8 @@
       </div>
     </div>
     <div class="page-content">
-      <div class="block">
-        <form class="list show-hairlines-ios no-hairlines text-align-left no-margin-bottom" id="account-statement-form">
+      <div class="block no-margin">
+        <form class="list show-hairlines-ios no-hairlines text-align-left no-margin-bottom margin-top" id="account-statement-form">
           <ul class="no-hairlines-between">
             <li class="item-content item-input">
               <div class="item-inner">
@@ -58,7 +58,8 @@
                   <input type="number" min="0" name="MobileNo">
                 </div>
               </div>
-            </li>`);
+          </li>`);
+          $$('#account-statement-form input[name=MobileNo]').focus();
         }
         
         var FromDateCalendar = app.calendar.create({
