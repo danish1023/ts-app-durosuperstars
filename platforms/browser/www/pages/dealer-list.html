@@ -8,6 +8,21 @@
           </a>
         </div>
         <div class="title color-white">Mapped Dealers</div>
+        <div class="right">
+          <a class="link icon-only searchbar-enable" data-searchbar=".searchbar-dealer">
+            <i class="icon material-icons md-only">search</i>
+          </a>
+        </div>
+        <form class="searchbar searchbar-expandable searchbar-dealer searchbar-init">
+          <div class="searchbar-inner">
+            <div class="searchbar-input-wrap">
+              <input @keydown="checkLength" @keyup="checkLength" type="search" placeholder="Mobile Number">
+              <i class="searchbar-icon"></i>
+              <span class="input-clear-button"></span>
+            </div>
+            <span class="searchbar-disable-button">Cancel</span>
+          </div>
+        </form>
       </div>
     </div>
     <div class="page-content bg-color-white">
@@ -25,6 +40,9 @@
     },
     on: {
       pageInit: function (e, page) {
+        // var searchbar = app.searchbar.create({
+        //   el: '.searchbar',
+        // })
         var User = localStorage.User;
         var UserData = JSON.parse(User);
         var obj = {
@@ -151,6 +169,20 @@
             SpinnerPlugin.activityStop();
           }
         })
+      },
+      pageReinit: function(e,page){
+        app.searchbar.disable('.searchbar');
+      }
+    },
+    methods: {
+      checkLength: function () {
+        var MobileNo = $$('#dealer-list-page input[type=search]').val();
+        if (MobileNo.length == 10) {
+          app.router.navigate({
+            name: 'dealersearch-details',
+            params: { 'DealerMobileNo': MobileNo },
+          });
+        }
       }
     }
   }

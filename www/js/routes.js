@@ -121,6 +121,13 @@ var routes = [
     name: 'dealer-details',
   },
 
+  // Dealer Search Details
+  {
+    path: '/dealersearch-details/:DealerMobileNo/',
+    componentUrl: './pages/dealersearch-details.html',
+    name: 'dealersearch-details',
+  },
+
   // Program Booklet
   {
     path: '/program-booklet/',

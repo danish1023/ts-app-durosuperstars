@@ -1,0 +1,133 @@
+<template>
+    <div class="page" id="dealersearch-details-page">
+        <div class="navbar">
+            <div class="navbar-inner sliding bg-color-red color-theme-white">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="material-icons">arrow_back</i>
+                    </a>
+                </div>
+                <div class="title color-white">Dealer Details</div>
+            </div>
+        </div>
+        <div class="page-content bg-color-white">
+            
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        on: {
+            pageInit: function (e, page) {
+                var User = localStorage.User;
+                var UserData = JSON.parse(User);
+                var DealerMobileNo = this.$route.params.DealerMobileNo;
+                var FromDate = moment().subtract(3, 'months').format('DD-MMM-Y');
+                var ToDate = moment().format('DD-MMM-Y');
+                var obj = {
+                    UserName: UserData.MembershipId,
+                    DealerMobileNo: DealerMobileNo,
+                };
+                app.request({
+                    url: BaseURL + '/SearchDealerAPI',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: obj,
+                    contentType: 'application/json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+                        var spinnerOptions = { dimBackground: false };
+                        SpinnerPlugin.activityStart(null, spinnerOptions);
+                    },
+                    error: function (xhr, status) {
+                        alert("Error: " + status);
+                    },
+                    success: function (data, status, xhr) {
+                        if (data.ErrorCode == '0') {
+                            var MappedContractorCount = data.MappedContractorCount;
+                            var CountofActiveContractor = data.CountofActiveContractor;
+                            var CountofInactiveContractor = data.CountofInactiveContractor;
+                            var DealerMobileNo = data.DealerMobileNo;
+                            var CouponClaimed = data.CouponClaimed;
+                            var CouponPending = data.CouponPending;
+                            var CopounAlloted = data.CopounAlloted;
+                            var html = `<div class="list no-hairlines margin-top no-margin-bottom">
+                            <ul>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title">Enrolled Members</div>
+                                            <div class="item-after">${MappedContractorCount}</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title">Active Members</div>
+                                            <div class="item-after">${CountofActiveContractor}</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title">Inactive Members</div>
+                                            <div class="item-after">${CountofInactiveContractor}</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title">Mobile Number</div>
+                                            <div class="item-after">${DealerMobileNo}</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title">Coupon Claimed</div>
+                                            <div class="item-after">${CouponClaimed}</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title">Coupon Pending</div>
+                                            <div class="item-after">${CouponPending}</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title">Copoun Alloted</div>
+                                            <div class="item-after">${CopounAlloted}</div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>`;
+                        $$('#dealersearch-details-page .page-content').html(html);
+                        }
+                        else {
+                            $$('#dealersearch-details-page .page-content').html(`
+                            <div class="block no-margin text-align-center color-gray">
+                            <i style="font-size:125px; margin-top: 35vh;" class="f7-icons">box</i>
+                            <p class="no-margin">No Data Found!</p>
+                            </div>
+                            `);
+                        }
+                    },
+                    complete: function (xhr, status) {
+                        SpinnerPlugin.activityStop();
+                    }
+                })
+
+            }
+        }
+    }
+</script>

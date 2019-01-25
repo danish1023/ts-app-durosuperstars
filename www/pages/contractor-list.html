@@ -8,6 +8,21 @@
           </a>
         </div>
         <div class="title color-white">Mapped Contractors</div>
+        <div class="right">
+          <a class="link icon-only searchbar-enable" data-searchbar=".searchbar-contractor">
+            <i class="icon material-icons md-only">search</i>
+          </a>
+        </div>
+        <form class="searchbar searchbar-expandable searchbar-contractor searchbar-init">
+          <div class="searchbar-inner">
+            <div class="searchbar-input-wrap">
+              <input @keydown="checkLength" @keyup="checkLength" type="search" placeholder="Mobile Number">
+              <i class="searchbar-icon"></i>
+              <span class="input-clear-button"></span>
+            </div>
+            <span class="searchbar-disable-button">Cancel</span>
+          </div>
+        </form>
       </div>
     </div>
     <div class="page-content bg-color-white">
@@ -58,11 +73,11 @@
                       <td class="label-cell">${ContractorMobileNo}</td>
                       <td class="label-cell">${ContractorPoints}</td>
                     </tr>`;
-                  if(ContractorStatus == 'Yes'){
-                    tbody_active = tbody_active+tbody_el;
+                  if (ContractorStatus == 'Yes') {
+                    tbody_active = tbody_active + tbody_el;
                   }
-                  else{
-                    tbody_inactive = tbody_inactive+tbody_el;
+                  else {
+                    tbody_inactive = tbody_inactive + tbody_el;
                   }
                 }
               }
@@ -127,7 +142,7 @@
                   </li>
                 </ul>
               </div>`;
-            $$('#contractor-list-page .page-content').html(html);
+              $$('#contractor-list-page .page-content').html(html);
             }
             else {
               app.dialog.alert(data.ErrorMessage);
@@ -137,6 +152,20 @@
             SpinnerPlugin.activityStop();
           }
         })
+      },
+      pageReinit: function(e,page){
+        app.searchbar.disable('.searchbar');
+      }
+    },
+    methods: {
+      checkLength: function () {
+        var MobileNo = $$('#contractor-list-page input[type=search]').val();
+        if (MobileNo.length == 10) {
+          app.router.navigate({
+            name: 'contractor-details',
+            params: { 'ContractorMobileNo': MobileNo },
+          });
+        }
       }
     }
   }
