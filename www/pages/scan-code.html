@@ -115,13 +115,10 @@
           success: function (data, status, xhr) {
             if (data.ErrorCode == '0') {
               var statusHTML = `
-              <div class="col-50 padding">
-                <h2 class="no-margin" style="border:1px solid #ccc">${CouponCode}</h2>
-              </div>
-              <div class="col-50 padding">
+              <div class="col-100">
                 <div class="chip">
                   <div class="chip-media bg-color-green"><i class="icon material-icons md-only">check</i></div>
-                  <div class="chip-label">Submitted</div>
+                  <div class="chip-label">${data.ErrorMessage}</div>
                 </div>
               </div>`;
               $$('#scan-code-page .coupon-status').html(statusHTML);
@@ -130,19 +127,16 @@
             }
             else {
               var statusHTML = `
-              <div class="col-50 padding">
-              <h2 class="no-margin" style="border:1px solid #ccc">${CouponCode}</h2>
-              </div>
-              <div class="col-50 padding">
+              <div class="col-100">
                 <div class="chip">
                   <div class="chip-media bg-color-red"><i class="icon material-icons md-only">close</i></div>
-                  <div class="chip-label">Rejected</div>
+                  <div class="chip-label">${data.ErrorMessage}</div>
                 </div>
               </div>`;
               $$('#scan-code-page .coupon-status').html(statusHTML);
               var coupon_rejected = $$('#scan-code-page .coupon-rejected').text();
               $$('#scan-code-page .coupon-rejected').text(parseInt(coupon_rejected) + 1);
-              app.dialog.alert(data.ErrorMessage);
+              //app.dialog.alert(data.ErrorMessage);
             }
           },
           complete: function (xhr, status) {
@@ -183,13 +177,13 @@
                 success: function (data, status, xhr) {
                   if (data.ErrorCode == '0') {
                     var statusHTML = `
-                    <div class="col-50 padding">
-                      <h2 class="no-margin" style="border:1px solid #ccc">${result.text}</h2>
+                    <div class="col-100 margin-bottom">
+                    <h2 class="no-margin" style="border:1px solid #ccc">${result.text}</h2>
                     </div>
-                    <div class="col-50 padding">
+                    <div class="col-100">
                       <div class="chip">
                         <div class="chip-media bg-color-green"><i class="icon material-icons md-only">check</i></div>
-                        <div class="chip-label">Submitted</div>
+                        <div class="chip-label">${data.ErrorMessage}</div>
                       </div>
                     </div>`;
                     $$('#scan-code-page .coupon-status').html(statusHTML);
@@ -198,19 +192,19 @@
                   }
                   else {
                     var statusHTML = `
-                    <div class="col-50 padding">
-                    <h2 class="no-margin" style="border:1px solid #ccc">${result.text}</h2>
+                    <div class="col-100 margin-bottom">
+                    <h2 class="no-margin" style="border:1px solid #ccc">${CouponCode}</h2>
                     </div>
-                    <div class="col-50 padding">
+                    <div class="col-100">
                       <div class="chip">
                         <div class="chip-media bg-color-red"><i class="icon material-icons md-only">close</i></div>
-                        <div class="chip-label">Rejected</div>
+                        <div class="chip-label">${data.ErrorMessage}</div>
                       </div>
                     </div>`;
                     $$('#scan-code-page .coupon-status').html(statusHTML);
                     var coupon_rejected = $$('#scan-code-page .coupon-rejected').text();
                     $$('#scan-code-page .coupon-rejected').text(parseInt(coupon_rejected) + 1);
-                    app.dialog.alert(data.ErrorMessage);
+                    //app.dialog.alert(data.ErrorMessage);
                   }
                 },
                 complete: function (xhr, status) {
