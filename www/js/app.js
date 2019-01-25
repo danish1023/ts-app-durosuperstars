@@ -1,5 +1,10 @@
 // Dom7
 var $$ = Dom7;
+// Platform
+var platform = 'android';
+// API Version
+var AppVersionAndroid = '1.1';
+var AppVersionIOS = '1.0';
 
 var User = localStorage.User;
 if (User) {
@@ -37,6 +42,9 @@ var app = new Framework7({
   routes: routes,
 });
 
+// API Base URL
+var BaseURL = 'http://sardaplydemo.netcarrots.in/API/AllServices.svc';
+
 // Init/Create main view
 var mainView = app.views.create('.view-main', {
   url: '/',
@@ -46,9 +54,6 @@ var mainView = app.views.create('.view-main', {
     },
   }
 });
-
-// API Base URL
-var BaseURL = 'http://sardaplydemo.netcarrots.in/API/AllServices.svc';
 
 // Basic Authorization
 var AuthUsername = 'Novatis';
@@ -64,8 +69,44 @@ function NA(input) {
   }
 }
 
-function testMe() {
-  alert('ok');
+function checkVersion() {
+  app.request({
+    url: BaseURL + '/GetAPPVersionAPI',
+    method: 'POST',
+    dataType: 'json',
+    contentType: 'application/json',
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+    },
+    success: function (data, status, xhr) {
+      if (platform == 'ios') {
+        if (data.AppVersionIOS > AppVersionIOS) {
+          app.dialog.confirm('A new version of the application is available. Please update your app.', 'New Version Available', 
+            function () {
+              navigator.app.exitApp();
+            },
+            function () {
+              navigator.app.exitApp();
+            }
+          );
+        }
+      }
+      if (platform == 'android') {
+        if (data.AppVersionAndroid > AppVersionAndroid) {
+          app.dialog.confirm('A new version of the application is available. Please update your app.', 'New Version Available', 
+            function () {
+              window.location.href = "https://play.google.com/store/apps/details?id=com.techstreet.durosuperstars";
+              navigator.app.exitApp();
+            },
+            function () {
+              navigator.app.exitApp();
+            }
+          );
+        }
+      }
+    }
+  })
+
 }
 
 function login() {
@@ -126,7 +167,7 @@ function playVideo(videoUrl) {
   window.plugins.streamingMedia.playVideo(videoUrl);
 }
 
-function notificationClick(NotificationId,Flag) {
+function notificationClick(NotificationId, Flag) {
   var UserData = JSON.parse(localStorage.User);
   var obj = {
     NotificationId: NotificationId,

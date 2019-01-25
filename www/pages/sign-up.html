@@ -184,6 +184,16 @@
                 ignoreCache: true,
               });
             }
+            else if (data.ErrorCode == '-1046') {
+              var SignUpData = { 'ContractorContactNo': ContractorContactNo, 'ContractorFirstName': ContractorFirstName, 'ContractorLastName': ContractorLastName, 'DealershipName': DealershipName, 'ReferralCode': ReferralCode, 'StateName': StateName, 'CityName': CityName, 'OtherCity': OtherCity, 'GovtProofId': GovtProofId, 'GovtProofIdNumber': GovtProofIdNumber, 'EmployeeName': EmployeeName, 'EmployeeContactNo': EmployeeContactNo };
+              localStorage.setItem("SignUpData", JSON.stringify(SignUpData));
+              app.dialog.alert(data.ErrorMessage, function(){
+                app.router.navigate({
+                  name: 'otp',
+                  ignoreCache: true,
+                });
+              });
+            }
             else {
               app.dialog.alert(data.ErrorMessage);
             }
