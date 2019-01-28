@@ -99,7 +99,39 @@
                 };
 
                 localStorage.setItem("EditProfile",JSON.stringify(obj));
-                app.router.navigate('/editprofile-otp/');
+
+                app.request({
+                    url: BaseURL + '/UpdateRequestProfileAPI',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: obj,
+                    contentType: 'application/json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+                        var spinnerOptions = { dimBackground: false };
+                        SpinnerPlugin.activityStart(null, spinnerOptions);
+                    },
+                    error: function (xhr, status) {
+                        alert("Error: " + status);
+                    },
+                    success: function (data, status, xhr) {
+                        if(data.ErrorCode == '0'){
+                            window.plugins.toast.show(data.ErrorMessage, 'long', 'bottom');
+                            app.views.main.router.back('/dashboard/', {
+                                force: true,
+                            });
+                        }
+                        else if(data.ErrorCode == '-1020'){
+                            app.router.navigate('/editprofile-otp/');
+                        }
+                        else{
+                            app.dialog.alert(data.ErrorMessage);
+                        }
+                    },
+                    complete: function (xhr, status) {
+                        SpinnerPlugin.activityStop();
+                    }
+                })
             },
         },
         on: {
