@@ -161,6 +161,8 @@
                 CouponCode: result.text,
                 UserName: '',
               };
+              alert(JSON.stringify(obj));
+              alert(JSON.parse(obj));
               app.request({
                 url: BaseURL + '/ScanValidateCouponCodeAPI',
                 method: 'POST',
@@ -176,6 +178,7 @@
                   alert("Error: " + status);
                 },
                 success: function (data, status, xhr) {
+                  alert(JSON.stringify('Data'+data));
                   if (data.ErrorCode == '0') {
                     var statusHTML = `
                     <div class="col-100 margin-bottom">
