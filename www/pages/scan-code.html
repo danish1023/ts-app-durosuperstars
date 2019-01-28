@@ -161,6 +161,7 @@
                 CouponCode: result.text,
                 UserName: '',
               };
+              alert(JSON.stringify(obj));
               app.request({
                 url: BaseURL + '/ScanValidateCouponCodeAPI',
                 method: 'POST',
