@@ -153,13 +153,16 @@
             }
             else {
               var UserData = JSON.parse(localStorage.User);
-              alert(UserData.MobileNo);
               if (this.$route.params.ContractorContactNo) {
+                alert('1');
                 var ContractorNumber = this.$route.params.ContractorContactNo;
               }
               else {
+                alert('2');
                 var ContractorNumber = UserData.MobileNo;
               }
+
+              alert(UserData.MobileNo);
               
               // var obj = {
               //   ContractorNumber: ContractorNumber,
