@@ -152,14 +152,14 @@
               alert('Cancelled');
             }
             else {
-              alert(JSON.stringify(result));
-              // var UserData = JSON.parse(localStorage.User);
-              // if (this.$route.params.ContractorContactNo) {
-              //   var ContractorNumber = this.$route.params.ContractorContactNo;
-              // }
-              // else {
-              //   var ContractorNumber = UserData.MobileNo;
-              // }
+              var UserData = JSON.parse(localStorage.User);
+              if (this.$route.params.ContractorContactNo) {
+                var ContractorNumber = this.$route.params.ContractorContactNo;
+              }
+              else {
+                var ContractorNumber = UserData.MobileNo;
+              }
+              alert(ContractorNumber);
               // var obj = {
               //   ContractorNumber: ContractorNumber,
               //   CouponCode: result.text,
