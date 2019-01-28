@@ -99,6 +99,20 @@ var routes = [
     name: 'member-profile',
   },
 
+  // Edit Profile
+  {
+    path: '/edit-profile/',
+    componentUrl: './pages/edit-profile.html',
+    name: 'edit-profile',
+  },
+
+  // Edit Profile OTP
+  {
+    path: '/editprofile-otp/',
+    componentUrl: './pages/editprofile-otp.html',
+    name: 'editprofile-otp',
+  },
+
   // User Profile
   {
     path: '/user-profile/',

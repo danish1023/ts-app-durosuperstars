@@ -1,0 +1,139 @@
+<template>
+        <div class="page">
+          <div class="navbar">
+            <div class="navbar-inner sliding bg-color-red color-theme-white">
+              <div class="left">
+                <a href="#" class="link back">
+                  <i class="material-icons">arrow_back</i>
+                </a>
+              </div>
+              <div class="title color-white">One Time Password</div>
+            </div>
+          </div>
+          <div class="page-content bg-color-white">
+            <h2 class="text-align-center margin">Enter OTP</h2>
+            <p class="text-align-center">Please enter the verification code sent to {{ContractorContactNo}}</p>
+            <form>
+              <div class="block passcode-input">
+                <input type="text" value="______" id="demo-numpad-inline">
+              </div>
+              <p class="text-align-center"><a href="#" @click="resendOTP">Resend OTP</a></p>
+              <div class="block block-strong no-padding no-margin passcode-numpad">
+                <div id="numpad-inline-container"></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </template>
+      <script>
+        return {
+          methods: {
+            resendOTP: function () {
+                var EditProfileData = JSON.parse(localStorage.EditProfile);
+                var obj = {
+                    MembershipId: EditProfileData.MembershipId,
+                    MobileNo: EditProfileData.MobileNo,
+                    Address: EditProfileData.Address,
+                    State: EditProfileData.State,
+                    City: EditProfileData.City,
+                    Flag: EditProfileData.Flag,
+                    OTP: '',
+                };
+                app.request({
+                    url: BaseURL + '/UpdateRequestProfileAPI',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: obj,
+                    contentType: 'application/json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+                        var spinnerOptions = { dimBackground: false };
+                        SpinnerPlugin.activityStart(null, spinnerOptions);
+                    },
+                    error: function (xhr, status) {
+                        alert("Error: " + status);
+                    },
+                    success: function (data, status, xhr) {
+                        app.dialog.alert(data.ErrorMessage);
+                    },
+                    complete: function (xhr, status) {
+                        SpinnerPlugin.activityStop();
+                    }
+                })
+            }
+          },
+          data: function () {
+            var MyProfileData = JSON.parse(localStorage.MyProfile);
+            var ContractorContactNo = MyProfileData.MobileNo;
+            return {
+              ContractorContactNo: ContractorContactNo,
+            }
+          },
+          on: {
+            pageInit: function () {
+              var EditProfileData = JSON.parse(localStorage.EditProfile);
+              var MembershipId = EditProfileData.MembershipId;
+              var MobileNo = EditProfileData.MobileNo;
+              var Address = EditProfileData.Address;
+              var State = EditProfileData.State;
+              var City = EditProfileData.City;
+              var Flag = EditProfileData.Flag;
+
+              var numpadInline = app.keypad.create({
+                inputEl: '#demo-numpad-inline',
+                containerEl: '#numpad-inline-container',
+                toolbar: false,
+                valueMaxLength: 6,
+                dotButton: false,
+                formatValue: function (value) {
+                  value = value.toString();
+                  return value + ('______').substring(0, 6 - value.length);
+                  //return ('****').substring(0, value.length) + ('____').substring(0, 4 - value.length);
+                },
+                on: {
+                  change(keypad, value) {
+                    value = value.toString();
+                    if (value.length === 6) {
+                      var obj = {
+                        MembershipId: MembershipId,
+                        MobileNo: MobileNo,
+                        Address: Address,
+                        State: State,
+                        City: City,
+                        Flag: Flag,
+                        OTP: value,
+                      };
+                      app.request({
+                        url: BaseURL + '/UpdateRequestProfileAPI',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: obj,
+                        contentType: 'application/json',
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+                            var spinnerOptions = { dimBackground: false };
+                            SpinnerPlugin.activityStart(null, spinnerOptions);
+                        },
+                        error: function (xhr, status) {
+                            alert("Error: " + status);
+                        },
+                        success: function (data, status, xhr) {
+                            localStorage.removeItem("EditProfile");
+                            localStorage.removeItem("MyProfile");
+                            window.plugins.toast.show(data.ErrorMessage, 'long', 'bottom');
+                            app.views.main.router.back('/dashboard/', {
+                                force: true,
+                            });
+                        },
+                        complete: function (xhr, status) {
+                            SpinnerPlugin.activityStop();
+                        }
+                      })
+                    }
+                  }
+                }
+              });
+            },
+          }
+        }
+      </script>

@@ -8,6 +8,11 @@
           </a>
         </div>
         <div class="title color-white">Profile</div>
+        <div class="right">
+          <a href="/edit-profile/" class="link icon-only">
+            <i class="icon material-icons">edit</i>
+          </a>
+        </div>
       </div>
     </div>
     <div class="page-content bg-color-white no-padding-top">
@@ -57,23 +62,14 @@
             alert("Error: " + status);
           },
           success: function (data, status, xhr) {
+            localStorage.setItem("MyProfile", JSON.stringify(data));
             $$('#member-profile-page .profile-name').text(data.ContractorFirstName + ' ' + data.ContractorLastName);
             $$('#member-profile-page .profile-mobile').text(data.MobileNo);
             $$('#member-profile-page .member-info').html('');
             var html = `<li>
               <div class="item-content">
                 <div class="item-inner">
-                  <div class="item-subtitle color-red">Contractor Contact No</div>
-                  <div class="item-title-row">
-                    <div class="item-title ContractorContactNo">${NA(data.MobileNo)}</div>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="item-content">
-                <div class="item-inner">
-                  <div class="item-subtitle color-red">Contractor First Name</div>
+                  <div class="item-subtitle color-red">First Name</div>
                   <div class="item-title-row">
                     <div class="item-title">${NA(data.ContractorFirstName)}</div>
                   </div>
@@ -83,9 +79,28 @@
             <li>
               <div class="item-content">
                 <div class="item-inner">
-                  <div class="item-subtitle color-red">Contractor Last Name</div>
+                  <div class="item-subtitle color-red">Last Name</div>
                   <div class="item-title-row">
                     <div class="item-title">${NA(data.ContractorLastName)}</div>
+                  </div>
+                </div>
+              </div>
+            </li><li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-subtitle color-red">Membership ID</div>
+                  <div class="item-title-row">
+                    <div class="item-title">${NA(data.MembershipID)}</div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-subtitle color-red">Mobile Number</div>
+                  <div class="item-title-row">
+                    <div class="item-title ContractorContactNo">${NA(data.MobileNo)}</div>
                   </div>
                 </div>
               </div>
