@@ -54,6 +54,9 @@
     methods: {
       submitOTP: function () {
         var DeviceId = localStorage.fcm_token;
+        if(!DeviceId){
+          DeviceId = 'null';
+        }
         var UserName = $$('#firstlogin-form input[name=UserName]').val();
         var OTP = $$('#firstlogin-form input[name=OTP]').val();
         var obj = {
@@ -95,6 +98,9 @@
       },
       resendOTP: function () {
         var DeviceId = localStorage.fcm_token;
+        if(!DeviceId){
+          DeviceId = 'null';
+        }
         var UserName = $$('#firstlogin-form input[name=UserName]').val();
         var obj = {
           UserName: UserName,

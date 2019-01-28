@@ -111,6 +111,9 @@ function checkVersion() {
 
 function login() {
   var DeviceId = localStorage.fcm_token;
+  if(!DeviceId){
+    DeviceId = 'null';
+  }
   var UserName = $$('#login-form-1 input[name=username]').val();
   if (UserName != '') {
     var obj = {
