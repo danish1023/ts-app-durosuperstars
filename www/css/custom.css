@@ -187,3 +187,8 @@ li.with-border{
 .card-read{
   background: #E8E8E8;
 }
+
+.t50vh{
+  top: 50vh !important;
+  bottom: 0 !important;
+}
