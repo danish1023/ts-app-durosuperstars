@@ -161,60 +161,58 @@
                 CouponCode: result.text,
                 UserName: '',
               };
-              alert(JSON.stringify(obj));
-              alert(JSON.parse(obj));
-              app.request({
-                url: BaseURL + '/ScanValidateCouponCodeAPI',
-                method: 'POST',
-                dataType: 'json',
-                data: obj,
-                contentType: 'application/json',
-                beforeSend: function (xhr) {
-                  xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
-                  var spinnerOptions = { dimBackground: false };
-                  SpinnerPlugin.activityStart(null, spinnerOptions);
-                },
-                error: function (xhr, status) {
-                  alert("Error: " + status);
-                },
-                success: function (data, status, xhr) {
-                  alert(JSON.stringify('Data'+data));
-                  if (data.ErrorCode == '0') {
-                    var statusHTML = `
-                    <div class="col-100 margin-bottom">
-                    <h2 class="no-margin" style="border:1px solid #ccc">${result.text}</h2>
-                    </div>
-                    <div class="col-100">
-                      <div class="chip">
-                        <div class="chip-media bg-color-green"><i class="icon material-icons md-only">check</i></div>
-                        <div class="chip-label">${data.ErrorMessage}</div>
-                      </div>
-                    </div>`;
-                    $$('#scan-code-page .coupon-status').html(statusHTML);
-                    var coupon_submitted = $$('#scan-code-page .coupon-submitted').text();
-                    $$('#scan-code-page .coupon-submitted').text(parseInt(coupon_submitted) + 1);
-                  }
-                  else {
-                    var statusHTML = `
-                    <div class="col-100 margin-bottom">
-                    <h2 class="no-margin" style="border:1px solid #ccc">${CouponCode}</h2>
-                    </div>
-                    <div class="col-100">
-                      <div class="chip">
-                        <div class="chip-media bg-color-red"><i class="icon material-icons md-only">close</i></div>
-                        <div class="chip-label">${data.ErrorMessage}</div>
-                      </div>
-                    </div>`;
-                    $$('#scan-code-page .coupon-status').html(statusHTML);
-                    var coupon_rejected = $$('#scan-code-page .coupon-rejected').text();
-                    $$('#scan-code-page .coupon-rejected').text(parseInt(coupon_rejected) + 1);
-                    //app.dialog.alert(data.ErrorMessage);
-                  }
-                },
-                complete: function (xhr, status) {
-                  SpinnerPlugin.activityStop();
-                }
-              })
+              alert(result.text);
+              // app.request({
+              //   url: BaseURL + '/ScanValidateCouponCodeAPI',
+              //   method: 'POST',
+              //   dataType: 'json',
+              //   data: obj,
+              //   contentType: 'application/json',
+              //   beforeSend: function (xhr) {
+              //     xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+              //     var spinnerOptions = { dimBackground: false };
+              //     SpinnerPlugin.activityStart(null, spinnerOptions);
+              //   },
+              //   error: function (xhr, status) {
+              //     alert("Error: " + status);
+              //   },
+              //   success: function (data, status, xhr) {
+              //     if (data.ErrorCode == '0') {
+              //       var statusHTML = `
+              //       <div class="col-100 margin-bottom">
+              //       <h2 class="no-margin" style="border:1px solid #ccc">${result.text}</h2>
+              //       </div>
+              //       <div class="col-100">
+              //         <div class="chip">
+              //           <div class="chip-media bg-color-green"><i class="icon material-icons md-only">check</i></div>
+              //           <div class="chip-label">${data.ErrorMessage}</div>
+              //         </div>
+              //       </div>`;
+              //       $$('#scan-code-page .coupon-status').html(statusHTML);
+              //       var coupon_submitted = $$('#scan-code-page .coupon-submitted').text();
+              //       $$('#scan-code-page .coupon-submitted').text(parseInt(coupon_submitted) + 1);
+              //     }
+              //     else {
+              //       var statusHTML = `
+              //       <div class="col-100 margin-bottom">
+              //       <h2 class="no-margin" style="border:1px solid #ccc">${CouponCode}</h2>
+              //       </div>
+              //       <div class="col-100">
+              //         <div class="chip">
+              //           <div class="chip-media bg-color-red"><i class="icon material-icons md-only">close</i></div>
+              //           <div class="chip-label">${data.ErrorMessage}</div>
+              //         </div>
+              //       </div>`;
+              //       $$('#scan-code-page .coupon-status').html(statusHTML);
+              //       var coupon_rejected = $$('#scan-code-page .coupon-rejected').text();
+              //       $$('#scan-code-page .coupon-rejected').text(parseInt(coupon_rejected) + 1);
+              //       //app.dialog.alert(data.ErrorMessage);
+              //     }
+              //   },
+              //   complete: function (xhr, status) {
+              //     SpinnerPlugin.activityStop();
+              //   }
+              // })
             }
           },
           function (error) {
