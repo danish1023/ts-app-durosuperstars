@@ -153,16 +153,13 @@
             }
             else {
               var UserData = JSON.parse(localStorage.User);
-              if (this.$route.params.ContractorContactNo) {
-                alert('1');
-                var ContractorNumber = this.$route.params.ContractorContactNo;
-              }
-              else {
-                alert('2');
-                var ContractorNumber = UserData.MobileNo;
-              }
-
-              alert(UserData.MobileNo);
+              alert(this.$route.params.ContractorContactNo);
+              // if (this.$route.params.ContractorContactNo) {
+              //   var ContractorNumber = this.$route.params.ContractorContactNo;
+              // }
+              // else {
+              //   var ContractorNumber = UserData.MobileNo;
+              // }
               
               // var obj = {
               //   ContractorNumber: ContractorNumber,
