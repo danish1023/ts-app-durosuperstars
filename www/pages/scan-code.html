@@ -148,6 +148,7 @@
       scanCode: function () {
         cordova.plugins.barcodeScanner.scan(
           function (result) {
+            alert(result);
             if (!result.cancelled) {
               var UserData = JSON.parse(localStorage.User);
               if (this.$route.params.ContractorContactNo) {
@@ -161,7 +162,7 @@
                 CouponCode: result.text,
                 UserName: '',
               };
-              alert(result.text);
+              
               // app.request({
               //   url: BaseURL + '/ScanValidateCouponCodeAPI',
               //   method: 'POST',
