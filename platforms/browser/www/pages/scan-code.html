@@ -38,7 +38,7 @@
         </a>
         <div class="block no-margin">
           <div class="row text-align-center coupon-status">
-            
+              
           </div>
           <div class="row text-align-center">
             <div class="col-50 padding">
@@ -137,7 +137,6 @@
               $$('#scan-code-page .coupon-status').html(statusHTML);
               var coupon_rejected = $$('#scan-code-page .coupon-rejected').text();
               $$('#scan-code-page .coupon-rejected').text(parseInt(coupon_rejected) + 1);
-              //app.dialog.alert(data.ErrorMessage);
             }
           },
           complete: function (xhr, status) {
@@ -179,7 +178,7 @@
                   if (data.ErrorCode == '0') {
                     var statusHTML = `
                     <div class="col-100 margin-bottom">
-                    <h2 class="no-margin" style="border:1px solid #ccc">${result.text}</h2>
+                    <h2 style="border:1px solid #ccc;overflow: scroll; width:fit-content;margin:0 auto;padding:0 8px 0 8px">${result.text}</h2>
                     </div>
                     <div class="col-100">
                       <div class="chip">
@@ -194,7 +193,7 @@
                   else {
                     var statusHTML = `
                     <div class="col-100 margin-bottom">
-                    <h2 class="no-margin" style="border:1px solid #ccc">${result.text}</h2>
+                    <h2 style="border:1px solid #ccc;overflow: scroll; width:fit-content;margin:0 auto;padding:0 8px 0 8px">${result.text}</h2>
                     </div>
                     <div class="col-100">
                       <div class="chip">
