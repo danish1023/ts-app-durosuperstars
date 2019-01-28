@@ -85,6 +85,7 @@
             alert("Error: " + status);
           },
           success: function (data, status, xhr) {
+            console.log(data);
             if (data.ErrorCode == '0') {
               localStorage.setItem("User", JSON.stringify(data));
               var User = localStorage.User;

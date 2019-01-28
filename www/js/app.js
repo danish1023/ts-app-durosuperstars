@@ -132,6 +132,7 @@ function login() {
         alert("Error: " + status);
       },
       success: function (data, status, xhr) {
+        console.log(data);
         if (data.ErrorCode == '-1016') {
           app.router.navigate({
             name: 'login',
@@ -160,6 +161,7 @@ function login() {
 
 function logout() {
   localStorage.removeItem("User");
+  localStorage.removeItem("SignUpData");
   app.router.navigate('/');
 }
 

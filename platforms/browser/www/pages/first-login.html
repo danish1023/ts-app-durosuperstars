@@ -76,6 +76,7 @@
             alert("Error: " + status);
           },
           success: function (data, status, xhr) {
+            console.log(data);
             if (data.ErrorCode == '-1021') {
               app.router.navigate({
                 name: 'set-password',
