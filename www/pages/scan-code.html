@@ -181,8 +181,8 @@
                 success: function (data, status, xhr) {
                   if (data.ErrorCode == '0') {
                     var statusHTML = `
-                    <div class="col-100 margin-bottom">
-                    <h2 style="border:1px solid #ccc;overflow-wrap: break-word; width:fit-content;margin:0 auto;padding:0 8px 0 8px">${result.text}</h2>
+                    <div class="col-100 margin-bottom" style="overflow-x: scroll;">
+                    <h2 style="border:1px solid #ccc;width:fit-content;margin:0 auto;padding:0 8px 0 8px">${result.text}</h2>
                     </div>
                     <div class="col-100">
                       <div class="chip">
@@ -196,8 +196,8 @@
                   }
                   else {
                     var statusHTML = `
-                    <div class="col-100 margin-bottom">
-                    <h2 style="border:1px solid #ccc;overflow-wrap: break-word; width:fit-content;margin:0 auto;padding:0 8px 0 8px">${result.text}</h2>
+                    <div class="col-100 margin-bottom" style="overflow-x: scroll;">
+                    <h2 style="border:1px solid #ccc;width:fit-content;margin:0 auto;padding:0 8px 0 8px">${result.text}</h2>
                     </div>
                     <div class="col-100">
                       <div class="chip">
