@@ -53,12 +53,13 @@
   return {
     methods: {
       submitOTP: function () {
+        var DeviceId = localStorage.fcm_token;
         var UserName = $$('#firstlogin-form input[name=UserName]').val();
         var OTP = $$('#firstlogin-form input[name=OTP]').val();
         var obj = {
           UserName: UserName,
           OTP: OTP,
-          DeviceId: 'D-Device',
+          DeviceId: DeviceId,
           OSType: device.platform
         };
         app.request({
@@ -93,10 +94,11 @@
         })
       },
       resendOTP: function () {
+        var DeviceId = localStorage.fcm_token;
         var UserName = $$('#firstlogin-form input[name=UserName]').val();
         var obj = {
           UserName: UserName,
-          DeviceId: 'D-Device',
+          DeviceId: DeviceId,
           OSType: device.platform
         };
         app.request({

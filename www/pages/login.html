@@ -62,12 +62,13 @@
         }
       },
       login: function () {
+        var DeviceId = localStorage.fcm_token;
         var UserName = $$('#login-form-2 input[name=UserName]').val();
         var Password = $$('#login-form-2 input[name=Password]').val();
         var obj = {
           UserName: UserName,
           Password: Password,
-          DeviceId: 'D-Device',
+          DeviceId: DeviceId,
           OSType: device.platform
         };
         app.request({

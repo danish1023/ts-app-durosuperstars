@@ -110,11 +110,13 @@ function checkVersion() {
 }
 
 function login() {
+  var DeviceId = localStorage.fcm_token;
+  alert(DeviceId);
   var UserName = $$('#login-form-1 input[name=username]').val();
   if (UserName != '') {
     var obj = {
       UserName: UserName,
-      DeviceId: 'D-Device',
+      DeviceId: DeviceId,
       OSType: device.platform
     };
     app.request({
