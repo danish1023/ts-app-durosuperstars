@@ -207,6 +207,25 @@
           mainView.router.navigate('/user-dashboard/');
         }
       }
+      const push = PushNotification.init({
+        android: {
+        },
+        browser: {
+          pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+        },
+        ios: {
+          alert: "true",
+          badge: "true",
+          sound: "true"
+        },
+        windows: {}
+      });
+
+      push.on('registration', (data) => {
+        alert(data.registrationId);
+        localStorage.setItem("fcm_token", data.registrationId);
+      });
+
       cordova.getAppVersion.getVersionNumber(function (version) {
         $$('.version-number').text('Version: ' + version);
       });
