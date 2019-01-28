@@ -192,10 +192,9 @@
                     $$('#scan-code-page .coupon-submitted').text(parseInt(coupon_submitted) + 1);
                   }
                   else {
-                    app.dialog.alert(data.ErrorCode);
                     var statusHTML = `
                     <div class="col-100 margin-bottom">
-                    <h2 class="no-margin" style="border:1px solid #ccc">${CouponCode}</h2>
+                    <h2 class="no-margin" style="border:1px solid #ccc">${result.text}</h2>
                     </div>
                     <div class="col-100">
                       <div class="chip">
