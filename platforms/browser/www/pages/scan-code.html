@@ -70,6 +70,7 @@
         var ContractorNumber = this.$route.params.ContractorContactNo;
       }
       else {
+        var UserData = JSON.parse(localStorage.User);
         var ContractorNumber = UserData.MobileNo;
       }
       return {
