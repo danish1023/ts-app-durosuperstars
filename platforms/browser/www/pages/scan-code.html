@@ -89,15 +89,17 @@
 
         if (this.$route.params.ContractorContactNo) {
           var ContractorNumber = this.$route.params.ContractorContactNo;
+          var UserName = UserData.MembershipId;
         }
         else {
           var ContractorNumber = UserData.MobileNo;
+          var UserName = "";
         }
 
         var obj = {
           ContractorNumber: ContractorNumber,
           CouponCode: CouponCode,
-          UserName: '',
+          UserName: UserName,
         };
         app.request({
           url: BaseURL + '/ScanValidateCouponCodeAPI',
@@ -148,9 +150,11 @@
         var UserData = JSON.parse(localStorage.User);
         if (this.$route.params.ContractorContactNo) {
           var ContractorNumber = this.$route.params.ContractorContactNo;
+          var UserName = UserData.MembershipId;
         }
         else {
           var ContractorNumber = UserData.MobileNo;
+          var UserName = "";
         }
         cordova.plugins.barcodeScanner.scan(
           function (result) {
@@ -158,7 +162,7 @@
               var obj = {
                 ContractorNumber: ContractorNumber,
                 CouponCode: result.text,
-                UserName: '',
+                UserName: UserName,
               };
               app.request({
                 url: BaseURL + '/ScanValidateCouponCodeAPI',

@@ -58,6 +58,19 @@ var routes = [
     // },
   },
 
+  // Scan code
+  {
+    path: '/scan-code/',
+    componentUrl: './pages/scan-code.html',
+    name: 'scan-code',
+  },
+
+  // Scan code
+  {
+    path: '/scan-code/:ContractorContactNo/',
+    componentUrl: './pages/scan-code.html',
+  },
+
   // Submit Coupon OTP
   {
     path: '/submitcoupon-otp/:ContractorContactNo/',
@@ -218,19 +231,6 @@ var routes = [
     componentUrl: './pages/company-profile.html',
     name: 'company-profile',
   },
-
-  // Scan code
-  {
-    path: '/scan-code/',
-    componentUrl: './pages/scan-code.html',
-    name: 'scan-code',
-  },
-
-    // Scan code
-    {
-      path: '/scan-code/:ContractorContactNo/',
-      componentUrl: './pages/scan-code.html',
-    },
 
   // Rejected coupon history
   {
