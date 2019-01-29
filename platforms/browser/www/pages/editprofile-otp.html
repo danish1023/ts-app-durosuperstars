@@ -119,9 +119,11 @@
                         },
                         success: function (data, status, xhr) {
                             window.plugins.toast.show(data.ErrorMessage, 'long', 'bottom');
-                            app.views.main.router.back('/dashboard/', {
-                                force: true,
-                            });
+                            if (data.ErrorCode == '0') {
+                              app.views.main.router.back('/dashboard/', {
+                                  force: true,
+                              });
+                            }
                         },
                         complete: function (xhr, status) {
                             SpinnerPlugin.activityStop();
