@@ -176,6 +176,20 @@ var routes = [
     name: 'user-guide',
   },
 
+  // Reward Catalogue
+  {
+    path: '/reward-catalogue/',
+    componentUrl: './pages/reward-catalogue.html',
+    name: 'reward-catalogue',
+  },
+
+  // Reward Catalogue
+  {
+    path: '/reward-catalogue/:MobileNo/',
+    componentUrl: './pages/reward-catalogue.html',
+    name: 'reward-catalogue',
+  },
+
   // Training Videos
   {
     path: '/training-videos/',
