@@ -70,8 +70,8 @@
             }
           },
           on: {
-            pageInit: function () {
-              var EditProfileData = JSON.parse(localStorage.EditProfile);
+            pageInit: function (e,page) {
+              var EditProfileData = JSON.parse(page.route.context.edit_profile);
               var MembershipId = EditProfileData.MembershipId;
               var MobileNo = EditProfileData.MobileNo;
               var Address = EditProfileData.Address;
@@ -118,8 +118,6 @@
                             alert("Error: " + status);
                         },
                         success: function (data, status, xhr) {
-                            localStorage.removeItem("EditProfile");
-                            localStorage.removeItem("MyProfile");
                             window.plugins.toast.show(data.ErrorMessage, 'long', 'bottom');
                             app.views.main.router.back('/dashboard/', {
                                 force: true,

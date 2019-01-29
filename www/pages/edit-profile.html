@@ -98,8 +98,6 @@
                     OTP: '',
                 };
 
-                localStorage.setItem("EditProfile",JSON.stringify(obj));
-
                 app.request({
                     url: BaseURL + '/UpdateRequestProfileAPI',
                     method: 'POST',
@@ -115,16 +113,22 @@
                         alert("Error: " + status);
                     },
                     success: function (data, status, xhr) {
-                        if(data.ErrorCode == '0'){
+                        if (data.ErrorCode == '0') {
                             window.plugins.toast.show(data.ErrorMessage, 'long', 'bottom');
                             app.views.main.router.back('/dashboard/', {
                                 force: true,
                             });
                         }
-                        else if(data.ErrorCode == '-1020'){
-                            app.router.navigate('/editprofile-otp/');
+                        else if (data.ErrorCode == '-1020') {
+                            app.router.navigate('/editprofile-otp/', {
+                                route: {
+                                    context: {
+                                        edit_profile: JSON.stringify(obj),
+                                    }
+                                }
+                            });
                         }
-                        else{
+                        else {
                             app.dialog.alert(data.ErrorMessage);
                         }
                     },
@@ -140,7 +144,7 @@
                 var obj = {
                     MobileNo: UserData.MobileNo,
                 };
-                
+
                 app.request({
                     url: BaseURL + '/MyProfileAPI',
                     method: 'POST',
@@ -185,12 +189,12 @@
                                         var StateName = stateArr[i].StateName;
 
                                         var selected = '';
-                                        if(StateName == Prev_State){
+                                        if (StateName == Prev_State) {
                                             selected = ' selected';
                                         }
-                                        
-                                        var html = $$('<option value="' + StateName + '"'+selected+'>' + StateName + '</option>');
-                                        
+
+                                        var html = $$('<option value="' + StateName + '"' + selected + '>' + StateName + '</option>');
+
                                         $$('#editprofile-form select[name=State').append(html);
                                         $$('#editprofile-form select[name=State').val('');
                                     }
@@ -207,10 +211,10 @@
                                                     var cityId = cityArr[j].CityId;
                                                     var CityName = cityArr[j].CityName;
                                                     var selected = '';
-                                                    if(CityName == Prev_City){
+                                                    if (CityName == Prev_City) {
                                                         selected = ' selected';
                                                     }
-                                                    var html = $$('<option value="' + CityName + '"'+selected+'>' + CityName + '</option>');
+                                                    var html = $$('<option value="' + CityName + '"' + selected + '>' + CityName + '</option>');
                                                     $$('#editprofile-form select[name=City').append(html);
                                                 }
                                                 $$('#editprofile-form select[name=City').val('');
