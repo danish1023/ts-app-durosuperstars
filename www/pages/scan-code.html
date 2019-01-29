@@ -79,7 +79,6 @@
     },
     on: {
       pageInit: function () {
-        console.log(app.views.main.router.currentRoute.route.path);
         if (this.$route.params.ContractorContactNo) {
           $$('#scan-code-page a.back').attr('href','/contractor-details/'+this.$route.params.ContractorContactNo+'/');
           $$('#scan-code-page a.back').attr('data-force','true');

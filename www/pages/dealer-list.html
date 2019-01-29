@@ -81,10 +81,10 @@
                   var tbody_el = `
                     <tr>
                       <td class="label-cell"><a href="/dealer-details/${DealerMobileNo}/">${DealerName}</a></td>
-                      <td class="label-cell">${DealerMobileNo}</td>
-                      <td class="label-cell">${CopounAlloted}</td>
-                      <td class="label-cell">${CouponPending}</td>
-                      <td class="label-cell">${CouponClaimed}</td>
+                      <td class="label-cell"><a href="/dealer-details/${DealerMobileNo}/">${DealerMobileNo}</a></td>
+                      <td class="label-cell"><a href="/dealer-details/${DealerMobileNo}/">${CopounAlloted}</a></td>
+                      <td class="label-cell"><a href="/dealer-details/${DealerMobileNo}/">${CouponPending}</a></td>
+                      <td class="label-cell"><a href="/dealer-details/${DealerMobileNo}/">${CouponClaimed}</a></td>
                     </tr>`;
                   if (DealerStatus == 'Yes') {
                     tbody_active = tbody_active + tbody_el;
@@ -117,11 +117,11 @@
                           <table>
                             <thead>
                               <tr>
-                                <th class="label-cell color-red">Dealer Name</th>
-                                <th class="label-cell color-red">Dealer Mobile</th>
-                                <th class="label-cell color-red">Copoun Alloted</th>
-                                <th class="label-cell color-red">Coupon Pending</th>
-                                <th class="label-cell color-red">Coupon Claimed</th>
+                                <th class="label-cell">Dealer Name</th>
+                                <th class="label-cell">Dealer Mobile</th>
+                                <th class="label-cell">Copoun Alloted</th>
+                                <th class="label-cell">Coupon Pending</th>
+                                <th class="label-cell">Coupon Claimed</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -143,11 +143,11 @@
                           <table>
                             <thead>
                               <tr>
-                                <th class="label-cell color-red">Dealer Name</th>
-                                <th class="label-cell color-red">Dealer Mobile</th>
-                                <th class="label-cell color-red">Copoun Alloted</th>
-                                <th class="label-cell color-red">Coupon Pending</th>
-                                <th class="label-cell color-red">Coupon Claimed</th>
+                                <th class="label-cell">Dealer Name</th>
+                                <th class="label-cell">Dealer Mobile</th>
+                                <th class="label-cell">Copoun Alloted</th>
+                                <th class="label-cell">Coupon Pending</th>
+                                <th class="label-cell">Coupon Claimed</th>
                               </tr>
                             </thead>
                             <tbody>

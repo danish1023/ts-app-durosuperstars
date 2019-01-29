@@ -198,3 +198,7 @@ function notificationClick(NotificationId, Flag) {
     },
   })
 }
+
+function hideLoader(){
+  $$('.preloader-parent').hide();
+}
