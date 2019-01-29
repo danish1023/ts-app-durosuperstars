@@ -42,21 +42,21 @@
           </div>
           <div class="row text-align-center">
             <div class="col-50 padding">
-              <span class="badge bg-color-red font-16 coupon-submitted" style="padding: 8px 16px 8px 16px;">0</span>
+              <span class="badge color-green font-16 coupon-submitted" style="padding: 8px 16px 8px 16px;">0</span>
               <p class="no-margin-bottom">Total Submitted</p>
             </div>
             <div class="col-50 padding">
-              <span class="badge color-green font-16 coupon-rejected" style="padding: 8px 16px 8px 16px;">0</span>
+              <span class="badge bg-color-red font-16 coupon-rejected" style="padding: 8px 16px 8px 16px;">0</span>
               <p class="no-margin-bottom">Total Rejected</p>
             </div>
           </div>
         </div>
         <a href="/rejectedcoupon-history/{{ContractorContactNo}}/" style="text-transform:none; margin: 16px 16px 0 16px;"
-          class="button button-round button-outline font-1x">Rejected
+          class="button button-round button-outline font-1x rejectedcouponhistory-button">Rejected
           Coupon History
         </a>
         <a href="/user-account-statement/{{ContractorContactNo}}/" style="text-transform:none; margin: 16px 16px 0 16px;"
-          class="button button-round button-outline font-1x">Account
+          class="button button-round button-outline font-1x accountstatement-button">Account
           Statement
         </a>
       </div>
@@ -79,6 +79,17 @@
     },
     on: {
       pageInit: function () {
+        console.log(app.views.main.router.currentRoute.route.path);
+        if (this.$route.params.ContractorContactNo) {
+          $$('#scan-code-page a.back').attr('href','/contractor-details/'+this.$route.params.ContractorContactNo+'/');
+          $$('#scan-code-page a.back').attr('data-force','true');
+        }
+        var UserData = JSON.parse(localStorage.User);
+        var UserType = UserData.UserType;
+        if(UserType == 'M'){
+          $$('#scan-code-page a.rejectedcouponhistory-button').attr('href','/rejectedcoupon-history/');
+          $$('#scan-code-page a.accountstatement-button').attr('href','/account-statement/');
+        }
         //console.log(this.$route.params.ContractorContactNo);
       }
     },
@@ -116,8 +127,12 @@
             alert("Error: " + status);
           },
           success: function (data, status, xhr) {
+            $$('#scan-code-form input[name=CouponCode]').val('');
             if (data.ErrorCode == '0') {
               var statusHTML = `
+              <div class="col-100 margin-bottom" style="overflow-x: scroll;">
+                <h2 style="border:1px solid #ccc;width:fit-content;margin:0 auto;padding:0 8px 0 8px">${CouponCode}</h2>
+              </div>
               <div class="col-100">
                 <div class="chip">
                   <div class="chip-media bg-color-green"><i class="icon material-icons md-only">check</i></div>
@@ -130,6 +145,9 @@
             }
             else {
               var statusHTML = `
+              <div class="col-100 margin-bottom" style="overflow-x: scroll;">
+                <h2 style="border:1px solid #ccc;width:fit-content;margin:0 auto;padding:0 8px 0 8px">${CouponCode}</h2>
+              </div>
               <div class="col-100">
                 <div class="chip">
                   <div class="chip-media bg-color-red"><i class="icon material-icons md-only">close</i></div>

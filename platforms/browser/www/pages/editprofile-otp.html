@@ -28,8 +28,8 @@
       <script>
         return {
           methods: {
-            resendOTP: function () {
-                var EditProfileData = JSON.parse(localStorage.EditProfile);
+            resendOTP: function (e,page) {
+                var EditProfileData = JSON.parse(page.route.context.edit_profile);
                 var obj = {
                     MembershipId: EditProfileData.MembershipId,
                     MobileNo: EditProfileData.MobileNo,

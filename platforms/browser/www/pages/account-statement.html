@@ -49,13 +49,19 @@
       pageInit: function () {
         var UserData = JSON.parse(localStorage.User);
         var UserType = UserData.UserType;
+        if (this.$route.params.ContractorMobileNo) {
+          var ContractorMobileNo = this.$route.params.ContractorMobileNo;
+        }
+        else {
+          var ContractorMobileNo = '';
+        }
 
         if(UserType == 'U'){
           $$('#account-statement-page form ul').prepend(`<li class="item-content item-input">
               <div class="item-inner">
                 <div class="item-title item-floating-label">Contractor Number</div>
                 <div class="item-input-wrap">
-                  <input type="tel" name="MobileNo">
+                  <input type="tel" value="${ContractorMobileNo}" name="MobileNo">
                 </div>
               </div>
           </li>`);

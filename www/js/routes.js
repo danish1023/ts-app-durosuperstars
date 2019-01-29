@@ -204,6 +204,13 @@ var routes = [
     name: 'account-statement',
   },
 
+  // Account Statement
+  {
+    path: '/account-statement/:ContractorMobileNo/',
+    componentUrl: './pages/account-statement.html',
+    name: 'account-statement',
+  },
+
   // User Account Statement
   {
     path: '/user-account-statement/:ContractorMobileNo/',
