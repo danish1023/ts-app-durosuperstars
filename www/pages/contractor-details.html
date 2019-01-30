@@ -145,10 +145,27 @@
                                 <p>${pe2_b}</p>
                             </div>
                         </div>
-                        <a href="/submitcoupon-otp/${ContractorMobileNo}/" style="width: fit-content; margin: 16px auto; margin-top: 24px;" class="button button-fill">Submit Coupon</a>
-                        <a href="/reward-catalogue/${ContractorMobileNo}/" style="width: fit-content; margin: 16px auto" class="button button-fill">Redeem Now</a>
-                        <a href="/account-statement/${ContractorMobileNo}/" style="width: fit-content; margin: 16px auto" class="button button-fill">Account Statement</a>`;
-                            $$('#contractor-details-page .page-content').html(html);
+                        <div class="row text-align-center" style="margin-top: 24px; margin-bottom: 24px;">
+                            <div class="col">
+                                <a href="/submitcoupon-otp/${ContractorMobileNo}/" style="width: fit-content; margin: 16px auto; margin-top: 24px;">
+                                <img style="width: 100%;height: 42px;" src="img/barcode.svg"/>
+                                Submit Coupon
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a href="/reward-catalogue/${ContractorMobileNo}/" style="width: fit-content; margin: 16px auto; margin-top: 24px;">
+                                <img style="width: 100%;height: 42px;" src="img/reward.svg"/>
+                                Redeem Now
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a href="/account-statement/${ContractorMobileNo}/" style="width: fit-content; margin: 16px auto; margin-top: 24px;">
+                                <img style="width: 100%;height: 42px;" src="img/statement.svg"/>
+                                A/C Statement
+                                </a>
+                            </div>
+                        </div>`;
+                        $$('#contractor-details-page .page-content').html(html);
                         }
                         else {
                             $$('#contractor-details-page .page-content').html(`

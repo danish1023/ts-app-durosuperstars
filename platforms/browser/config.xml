@@ -23,7 +23,7 @@
     <allow-intent href="geo:*" />
     <allow-navigation href="*" />
     <icon src="icon.png" />
-    <splash src="splash.png" />
+    <splash src="splash.SVG" />
     <preference name="phonegap-version" value="cli-8.1.1" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="ShowSplashScreenSpinner" value="false" />
