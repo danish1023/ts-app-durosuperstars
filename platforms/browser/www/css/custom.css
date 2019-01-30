@@ -127,6 +127,10 @@ li.with-border{
   font-weight: 300;
 }
 
+.dashboard-top-border {
+  border-top: 1px solid #ccc;
+}
+
 .dashboard-bottom-border {
   border-bottom: 1px solid #ccc;
 }
