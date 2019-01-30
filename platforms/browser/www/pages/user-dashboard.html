@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="page" id="UserHomePage">
     <div class="navbar">
       <div class="navbar-inner sliding bg-color-red color-theme-white">
         <div class="left">
@@ -15,27 +15,23 @@
         </div>
       </div>
     </div>
-    <!-- <div class="toolbar tabbar">
+    <div class="toolbar tabbar">
       <div class="toolbar-inner">
         <a href="#tab-1" class="tab-link tab-link-active">Contractors</a>
         <a href="#tab-2" class="tab-link">Dealers</a>
       </div>
-    </div> -->
-    <!-- <div class="tabs-swipeable-wrap">
+    </div>
+    <div class="tabs-swipeable-wrap">
       <div class="tabs">
         <div id="tab-1" class="page-content tab tab-active">
-          <div class="block">
-            <p>Tab 1 content</p>
-          </div>
+          
         </div>
         <div id="tab-2" class="page-content tab">
-          <div class="block">
-            <p>Tab 2 content</p>
-          </div>
+          
         </div>
       </div>
-    </div> -->
-    <div class="page-content" id="UserHomePage">
+    </div>
+    <div class="page-content">
       
     </div>
 </template>
@@ -71,33 +67,37 @@
               else {
                 var contractor_list_btn = '<a style="width:125px" class="button button-fill button-raised margin" href="/contractorlist-upper/">View Details</a>';
               }
-              var html = `<div class="card" style="box-shadow:none;">
+              var html1 = `<div class="card" style="box-shadow:none;">
                 <div class="card-content card-content-padding text-align-center" style="background: mistyrose;">
                   <div class="row margin-bottom">
                     <div class="col">
-                      <h3 class="no-margin">Employee Name</h3>
-                      <p class="no-margin">${data.EmployeeName}</p>
+                      <h1 class="no-margin">${data.EmployeeName}</h1>
                     </div>
+                  </div>
+                  <div class="row margin-bottom">
                     <div class="col">
                       <h3 class="no-margin">Employee Code</h3>
                       <p class="no-margin">${data.EmployeeCode}</p>
                     </div>
-                  </div>
-                  <div class="row">
                     <div class="col">
                       <h3 class="no-margin">State</h3>
                       <p class="no-margin">${data.StateName}</p>
                     </div>
+                  </div>
+                  <div class="row margin-bottom">
                     <div class="col">
                       <h3 class="no-margin">City</h3>
                       <p class="no-margin">${data.CityName}</p>
                     </div>
+                    <div class="col">
+                      <h3 class="no-margin">Total Points</h3>
+                      <p class="no-margin">${data.TotalPoints}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="block">
-                <div class="block-title font-16"><b>Contractors</b></div>
-                <div class="list no-margin">
+              <div class="block margin-top margin-bottom">
+                <div class="list no-hairlines no-margin">
                   <ul>
                     <li>
                       <div class="item-content">
@@ -126,8 +126,38 @@
                   </ul>
                 </div>
                 ${contractor_list_btn}
-                <div class="block-title font-16"><b>Dealers</b></div>
-                <div class="list no-margin">
+              </div>`;
+              var html2 = `<div class="card" style="box-shadow:none;">
+                <div class="card-content card-content-padding text-align-center" style="background: mistyrose;">
+                  <div class="row margin-bottom">
+                    <div class="col">
+                      <h1 class="no-margin">${data.EmployeeName}</h1>
+                    </div>
+                  </div>
+                  <div class="row margin-bottom">
+                    <div class="col">
+                      <h3 class="no-margin">Employee Code</h3>
+                      <p class="no-margin">${data.EmployeeCode}</p>
+                    </div>
+                    <div class="col">
+                      <h3 class="no-margin">State</h3>
+                      <p class="no-margin">${data.StateName}</p>
+                    </div>
+                  </div>
+                  <div class="row margin-bottom">
+                    <div class="col">
+                      <h3 class="no-margin">City</h3>
+                      <p class="no-margin">${data.CityName}</p>
+                    </div>
+                    <div class="col">
+                      <h3 class="no-margin">Total Points</h3>
+                      <p class="no-margin">${data.TotalPoints}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="block margin-top margin-bottom">
+                <div class="list no-hairlines no-margin">
                   <ul>
                     <li>
                       <div class="item-content">
@@ -165,7 +195,8 @@
                 </div>
                 <a style="width:125px" class="button button-outline button-round margin" href="/dealer-list/">View Details</a>
               </div>`;
-              $$('#UserHomePage').html(html);
+              $$('#UserHomePage #tab-1').html(html1);
+              $$('#UserHomePage #tab-2').html(html2);
             }
             else {
               app.dialog.alert(data.ErrorMessage);
