@@ -8,10 +8,15 @@
                     </a>
                 </div>
                 <div class="title color-white">Contractor Details</div>
+                <div class="right">
+                    <a href="/notifications/" class="link icon-only">
+                        <i class="icon material-icons">notifications</i>
+                    </a>
+                </div>
             </div>
         </div>
         <div class="page-content bg-color-white">
-            
+
         </div>
     </div>
 </template>
@@ -122,7 +127,7 @@
                         <a href="/submitcoupon-otp/${ContractorMobileNo}/" style="width: fit-content; margin: 16px auto; margin-top: 24px;" class="button button-fill">Submit Coupon</a>
                         <a href="/reward-catalogue/${ContractorMobileNo}/" style="width: fit-content; margin: 16px auto" class="button button-fill">Redeem Now</a>
                         <a href="/account-statement/${ContractorMobileNo}/" style="width: fit-content; margin: 16px auto" class="button button-fill">Account Statement</a>`;
-                        $$('#contractor-details-page .page-content').html(html);
+                            $$('#contractor-details-page .page-content').html(html);
                         }
                         else {
                             $$('#contractor-details-page .page-content').html(`
