@@ -50,6 +50,7 @@
                         alert("Error: " + status);
                     },
                     success: function (data, status, xhr) {
+                        console.log(data);
                         if (data.ErrorCode == '0') {
                             var MembershipID = data.MembershipID;
                             var MemberName = data.MemberName;
@@ -60,6 +61,20 @@
                             var PointExpiry1 = data.PointExpiry1;
                             var PointExpiry2 = data.PointExpiry2;
                             var ContractorMobileNo = data.ContractorMobileNo;
+                            var pe1_a = 'NA';
+                            var pe1_b = 'NA';
+                            var pe2_a = 'NA';
+                            var pe2_b = 'NA';
+                            if(PointExpiry1 != ''){
+                                var EXP_PointExpiry1 = PointExpiry1.split("~");
+                                pe1_a = EXP_PointExpiry1[0];
+                                pe1_b = EXP_PointExpiry1[1];
+                            }
+                            if(PointExpiry2 != ''){
+                                var EXP_PointExpiry2 = PointExpiry2.split("~");
+                                pe2_a = EXP_PointExpiry2[0];
+                                pe2_b = EXP_PointExpiry2[1];
+                            }
                             var html = `<div class="list no-hairlines margin-top no-margin-bottom">
                             <ul>
                                 <li>
@@ -120,9 +135,15 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="text-align-center margin" style="border: 1px solid #ccc">
-                            <p>${PointExpiry1}</p>
-                            <p>${PointExpiry2}</p>
+                        <div class="row text-align-center margin" style="border: 1px solid #ccc">
+                            <div class="col">
+                                <p><strong>Point Expiry 1: ${pe1_a}</strong></p>
+                                <p>${pe1_b}</p>
+                            </div>
+                            <div class="col">
+                                <p><strong>Point Expiry 2: ${pe2_a}</strong></p>
+                                <p>${pe2_b}</p>
+                            </div>
                         </div>
                         <a href="/submitcoupon-otp/${ContractorMobileNo}/" style="width: fit-content; margin: 16px auto; margin-top: 24px;" class="button button-fill">Submit Coupon</a>
                         <a href="/reward-catalogue/${ContractorMobileNo}/" style="width: fit-content; margin: 16px auto" class="button button-fill">Redeem Now</a>
