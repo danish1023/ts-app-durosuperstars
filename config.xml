@@ -12,6 +12,7 @@
     </platform>
     <platform name="ios">
         <resource-file src="GoogleService-Info.plist" />
+        <icon src="icon.png" width="180" height="180" />
     </platform>
     <content src="index.html" />
     <access origin="*" />
