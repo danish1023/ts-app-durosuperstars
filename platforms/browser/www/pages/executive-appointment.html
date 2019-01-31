@@ -83,7 +83,7 @@
           },
           success: function (data, status, xhr) {
             if (data.ErrorCode == '0') {
-              alert(data.Response.RequestTypeDetails);
+              alert(JSON.stringify(data.Response.RequestTypeDetails));
               alert(data.Response.RequestTypeDetails.length);
               //var optionhtml = $$('<option value="" selected disabled>Select</option>');
               //$$('#executive-appointment-form select[name=RequestType').append(optionhtml);
