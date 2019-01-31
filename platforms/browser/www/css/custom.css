@@ -197,12 +197,27 @@ li.with-border{
   bottom: 0 !important;
 }
 
-.dashboard-menu-block::-webkit-scrollbar {
+/* .scrollbar-visible::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 5px;
   height: 5px;
 }
-.dashboard-menu-block::-webkit-scrollbar-thumb {
+.scrollbar-visible::-webkit-scrollbar-thumb {
   border-radius: 2px;
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0,0,0,.4);
+} */
+
+.scrollbar-hide::-webkit-scrollbar {
+  width: 0px !important;
+  height: 0px !important;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: rgba(0,0,0,.4);
 }
