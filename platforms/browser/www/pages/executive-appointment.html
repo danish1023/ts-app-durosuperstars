@@ -83,6 +83,8 @@
           },
           success: function (data, status, xhr) {
             if (data.ErrorCode == '0') {
+              alert(data.Response.RequestTypeDetails);
+              alert(data.Response.RequestTypeDetails.length);
               //var optionhtml = $$('<option value="" selected disabled>Select</option>');
               //$$('#executive-appointment-form select[name=RequestType').append(optionhtml);
               for (var i = 0; i < data.Response.RequestTypeDetails.length; i++) {
@@ -90,7 +92,7 @@
                 var RequestTypeName = data.Response.RequestTypeDetails[i].Name;
                 var html = $$('<option value="' + RequestTypeId + '">' + RequestTypeName + '</option>');
                 $$('#executive-appointment-form select[name=RequestType').append(html);
-                //$$('#executive-appointment-form select[name=RequestType').val('');
+                $$('#executive-appointment-form select[name=RequestType').val('');
                 //$$('#executive-appointment-form select[name=RequestType').trigger('focus');
               }
             }
