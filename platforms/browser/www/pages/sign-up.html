@@ -258,25 +258,25 @@
                 var StateId = stateArr[i].StateId;
                 var StateName = stateArr[i].StateName;
                 var html = $$('<option value="' + StateName + '">' + StateName + '</option>');
-                $$('#signup-form select[name=StateName').append(html);
-                $$('#signup-form select[name=StateName').val('');
+                $$('#signup-form select[name=StateName]').append(html);
+                $$('#signup-form select[name=StateName]').val('');
               }
 
-              $$('#signup-form select[name=StateName').change(function () {
+              $$('#signup-form select[name=StateName]').change(function () {
                 var selected_state = this.value;
                 for (var i = 0; i < stateArr.length; i++) {
                   var StateId = stateArr[i].StateId;
                   var StateName = stateArr[i].StateName;
                   var cityArr = stateArr[i].CityTypeDetails;
                   if (StateName == selected_state) {
-                    $$('#signup-form select[name=CityName').html('');
+                    $$('#signup-form select[name=CityName]').html('');
                     for (var j = 0; j < cityArr.length; j++) {
                       var cityId = cityArr[j].CityId;
                       var CityName = cityArr[j].CityName;
                       var html = $$('<option value="' + CityName + '">' + CityName + '</option>');
-                      $$('#signup-form select[name=CityName').append(html);
+                      $$('#signup-form select[name=CityName]').append(html);
                     }
-                    $$('#signup-form select[name=CityName').val('');
+                    $$('#signup-form select[name=CityName]').val('');
                   }
                 }
               });

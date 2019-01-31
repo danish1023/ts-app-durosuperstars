@@ -200,18 +200,18 @@
 
                                         var html = $$('<option value="' + StateName + '"' + selected + '>' + StateName + '</option>');
 
-                                        $$('#editprofile-form select[name=State').append(html);
-                                        $$('#editprofile-form select[name=State').val('');
+                                        $$('#editprofile-form select[name=State]').append(html);
+                                        $$('#editprofile-form select[name=State]').val('');
                                     }
 
-                                    $$('#editprofile-form select[name=State').change(function () {
+                                    $$('#editprofile-form select[name=State]').change(function () {
                                         var selected_state = this.value;
                                         for (var i = 0; i < stateArr.length; i++) {
                                             var StateId = stateArr[i].StateId;
                                             var StateName = stateArr[i].StateName;
                                             var cityArr = stateArr[i].CityTypeDetails;
                                             if (StateName == selected_state) {
-                                                $$('#editprofile-form select[name=City').html('');
+                                                $$('#editprofile-form select[name=City]').html('');
                                                 for (var j = 0; j < cityArr.length; j++) {
                                                     var cityId = cityArr[j].CityId;
                                                     var CityName = cityArr[j].CityName;
@@ -220,9 +220,9 @@
                                                         selected = ' selected';
                                                     }
                                                     var html = $$('<option value="' + CityName + '"' + selected + '>' + CityName + '</option>');
-                                                    $$('#editprofile-form select[name=City').append(html);
+                                                    $$('#editprofile-form select[name=City]').append(html);
                                                 }
-                                                $$('#editprofile-form select[name=City').val('');
+                                                $$('#editprofile-form select[name=City]').val('');
                                             }
                                         }
                                     });

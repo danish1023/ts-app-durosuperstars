@@ -72,8 +72,8 @@
                 var RequestTypeId = data.Response.RequestTypeDetails[i].Id;
                 var RequestTypeName = data.Response.RequestTypeDetails[i].Name;
                 var html = $$('<option value="' + RequestTypeId + '">' + RequestTypeName + '</option>');
-                $$('#query-form select[name=RequestType').append(html);
-                $$('#query-form select[name=RequestType').val('');
+                $$('#query-form select[name=RequestType]').append(html);
+                $$('#query-form select[name=RequestType]').val('');
               }
             }
             else {

@@ -24,7 +24,7 @@
                 <div class="item-title item-floating-label">Type*</div>
                 <div class="item-input-wrap input-dropdown-wrap">
                   <select name="RequestType" placeholder="Please choose...">
-                    
+  
                   </select>
                 </div>
               </div>
@@ -76,24 +76,19 @@
           beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
             var spinnerOptions = { dimBackground: false };
-            //SpinnerPlugin.activityStart(null, spinnerOptions);
+            SpinnerPlugin.activityStart(null, spinnerOptions);
           },
           error: function (xhr, status) {
             alert("Error: " + status);
           },
           success: function (data, status, xhr) {
             if (data.ErrorCode == '0') {
-              alert(JSON.stringify(data.Response.RequestTypeDetails));
-              alert(data.Response.RequestTypeDetails.length);
-              //var optionhtml = $$('<option value="" selected disabled>Select</option>');
-              //$$('#executive-appointment-form select[name=RequestType').append(optionhtml);
               for (var i = 0; i < data.Response.RequestTypeDetails.length; i++) {
                 var RequestTypeId = data.Response.RequestTypeDetails[i].Id;
                 var RequestTypeName = data.Response.RequestTypeDetails[i].Name;
                 var html = $$('<option value="' + RequestTypeId + '">' + RequestTypeName + '</option>');
-                $$('#executive-appointment-form select[name=RequestType').append(html);
-                $$('#executive-appointment-form select[name=RequestType').val('');
-                //$$('#executive-appointment-form select[name=RequestType').trigger('focus');
+                $$('#executive-appointment-form select[name=RequestType]').append(html);
+                $$('#executive-appointment-form select[name=RequestType]').val('');
               }
             }
             else {
@@ -101,7 +96,7 @@
             }
           },
           complete: function (xhr, status) {
-            //SpinnerPlugin.activityStop();
+            SpinnerPlugin.activityStop();
           }
         })
       }
