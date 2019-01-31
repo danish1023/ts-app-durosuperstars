@@ -9,14 +9,19 @@
         </div>
         <div class="title color-white">Profile</div>
         <div class="right">
-          <a href="/edit-profile/" class="link icon-only">
+          <a href="#" @click="edit" class="link icon-only">
             <i class="icon material-icons">edit</i>
           </a>
         </div>
       </div>
     </div>
+    <div class="toolbar toolbar-bottom-md bg-color-red color-theme-white" style="display:none">
+      <div class="toolbar-inner">
+        <a href="#" @click="editProfile" style="width:100%;text-transform: uppercase" class="link font-1x">Update</a>
+      </div>
+    </div>
     <div class="page-content bg-color-white">
-      
+
     </div>
   </div>
 </template>
@@ -50,7 +55,66 @@
             alert("Error: " + status);
           },
           success: function (data, status, xhr) {
-            localStorage.setItem("MyProfile", JSON.stringify(data));
+            //localStorage.setItem("MyProfile", JSON.stringify(data));
+            var Prev_State = data.State;
+            var Prev_City = data.City;
+            app.request({
+              url: BaseURL + '/AddressStateCityMappingAPI',
+              method: 'POST',
+              dataType: 'json',
+              contentType: 'application/json',
+              beforeSend: function (xhr) {
+                xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+              },
+              error: function (xhr, status) {
+                alert("Error: " + status);
+              },
+              success: function (data, status, xhr) {
+                if (data.ErrorCode == '0') {
+                  var stateArr = data.StateTypeDetails;
+                  for (var i = 0; i < stateArr.length; i++) {
+                    var StateId = stateArr[i].StateId;
+                    var StateName = stateArr[i].StateName;
+
+                    var selected = '';
+                    if (StateName == Prev_State) {
+                      selected = ' selected';
+                    }
+
+                    var html = $$('<option value="' + StateName + '"' + selected + '>' + StateName + '</option>');
+
+                    $$('#editprofile-form select[name=State]').append(html);
+                    $$('#editprofile-form select[name=State]').val('');
+                  }
+
+                  $$('#editprofile-form select[name=State]').change(function () {
+                    var selected_state = this.value;
+                    for (var i = 0; i < stateArr.length; i++) {
+                      var StateId = stateArr[i].StateId;
+                      var StateName = stateArr[i].StateName;
+                      var cityArr = stateArr[i].CityTypeDetails;
+                      if (StateName == selected_state) {
+                        $$('#editprofile-form select[name=City]').html('');
+                        for (var j = 0; j < cityArr.length; j++) {
+                          var cityId = cityArr[j].CityId;
+                          var CityName = cityArr[j].CityName;
+                          var selected = '';
+                          if (CityName == Prev_City) {
+                            selected = ' selected';
+                          }
+                          var html = $$('<option value="' + CityName + '"' + selected + '>' + CityName + '</option>');
+                          $$('#editprofile-form select[name=City]').append(html);
+                        }
+                        $$('#editprofile-form select[name=City]').val('');
+                      }
+                    }
+                  });
+                }
+                else {
+                  app.dialog.alert(data.ErrorMessage);
+                }
+              },
+            })
             var html = `<div class="block text-align-center no-margin bg-color-red">
               <div style="width: fit-content;margin: 0 auto;padding: 16px;">
               <h2 class="no-margin color-white">${NA(data.ContractorFirstName + ' ' + data.ContractorLastName)}</h2>
@@ -58,6 +122,7 @@
               </div>
             </div>
             <div class="list media-list no-hairlines no-margin">
+            <form id="editprofile-form">
             <ul class="member-info">
             <li>
               <div class="item-content">
@@ -88,7 +153,7 @@
                 </div>
               </div>
             </li>
-            <li>
+            <li class="MobileNo-View">
               <div class="item-content">
                 <div class="item-inner">
                   <div class="item-subtitle color-red">Mobile Number</div>
@@ -98,17 +163,33 @@
                 </div>
               </div>
             </li>
-            <li>
+            <li class="item-content item-input MobileNo-Edit" style="display:none">
+                <div class="item-inner">
+                    <div class="item-title item-floating-label">Mobile Number</div>
+                    <div class="item-input-wrap">
+                        <input type="tel" maxlength="10" value="${data.MobileNo}" name="MobileNo">
+                    </div>
+                </div>
+            </li>
+            <li class="Address-View">
               <div class="item-content">
                 <div class="item-inner">
-                  <div class="item-subtitle color-red">Dealership Name</div>
+                  <div class="item-subtitle color-red">Address</div>
                   <div class="item-title-row">
-                    <div class="item-title">${NA(data.DealershipName)}</div>
+                    <div class="item-title">${NA(data.Address1)}</div>
                   </div>
                 </div>
               </div>
             </li>
-            <li>
+            <li class="item-content item-input Address-Edit" style="display:none">
+                <div class="item-inner">
+                    <div class="item-title item-floating-label">Address</div>
+                    <div class="item-input-wrap">
+                        <textarea class="resizable" name="Address" placeholder="Address">${data.Address1}</textarea>
+                    </div>
+                </div>
+            </li>
+            <li class="State-View">
               <div class="item-content">
                 <div class="item-inner">
                   <div class="item-subtitle color-red">State</div>
@@ -118,7 +199,17 @@
                 </div>
               </div>
             </li>
-            <li>
+            <li class="item-content item-input State-Edit" style="display:none">
+                <div class="item-inner">
+                    <div class="item-title item-floating-label">State*</div>
+                    <div class="item-input-wrap input-dropdown-wrap">
+                        <select name="State" placeholder="Please choose...">
+
+                        </select>
+                    </div>
+                </div>
+            </li>
+            <li class="City-View">
               <div class="item-content">
                 <div class="item-inner">
                   <div class="item-subtitle color-red">City</div>
@@ -128,12 +219,22 @@
                 </div>
               </div>
             </li>
+            <li class="item-content item-input City-Edit" style="display:none">
+                <div class="item-inner">
+                    <div class="item-title item-floating-label">City*</div>
+                    <div class="item-input-wrap input-dropdown-wrap">
+                        <select name="City" placeholder="Please choose...">
+
+                        </select>
+                    </div>
+                </div>
+            </li>
             <li>
               <div class="item-content">
                 <div class="item-inner">
-                  <div class="item-subtitle color-red">Address</div>
+                  <div class="item-subtitle color-red">Dealership Name</div>
                   <div class="item-title-row">
-                    <div class="item-title">${NA(data.Address1)}</div>
+                    <div class="item-title">${NA(data.DealershipName)}</div>
                   </div>
                 </div>
               </div>
@@ -159,6 +260,7 @@
               </div>
             </li>
             </ul>
+            </form>
             </div>`;
             $$('#member-profile-page .page-content').html(html);
           },
@@ -167,6 +269,100 @@
           }
         })
       }
-    }
+    },
+    methods: {
+      edit: function () {
+        $$('#member-profile-page .toolbar').show();
+
+        $$('#member-profile-page .MobileNo-View').hide();
+        $$('#member-profile-page .MobileNo-Edit').show();
+        $$('#member-profile-page input[name=MobileNo]').trigger('focus');
+
+        $$('#member-profile-page .Address-View').hide();
+        $$('#member-profile-page .Address-Edit').show();
+        $$('#member-profile-page textarea[name=Address]').trigger('focus');
+
+        $$('#member-profile-page .State-View').hide();
+        $$('#member-profile-page .State-Edit').show();
+
+        $$('#member-profile-page .City-View').hide();
+        $$('#member-profile-page .City-Edit').show();
+      },
+      editProfile: function () {
+        var UserData = JSON.parse(User);
+        var MembershipId = UserData.MembershipId;
+        var MobileNo = $$('#editprofile-form input[name=MobileNo]').val();
+        var Address = $$('#editprofile-form textarea[name=Address]').val();
+        var State = $$('#editprofile-form select[name=State]').val();
+        var City = $$('#editprofile-form select[name=City]').val();
+
+        var MyProfile = localStorage.MyProfile;
+        var MyProfileData = JSON.parse(MyProfile);
+        var MyProfile_MobileNo = MyProfileData.MobileNo;
+        var MyProfile_Address = MyProfileData.Address1;
+
+        if (Address != MyProfile_Address && MobileNo != MyProfile_MobileNo) {
+          var Flag = 'O';
+        }
+        else if (Address != MyProfile_Address) {
+          var Flag = 'A';
+        }
+        else if (MobileNo != MyProfile_MobileNo) {
+          var Flag = 'M';
+        }
+        else {
+          var Flag = '';
+        }
+
+        var obj = {
+          MembershipId: MembershipId,
+          MobileNo: MobileNo,
+          Address: Address,
+          State: State,
+          City: City,
+          Flag: Flag,
+          OTP: '',
+        };
+
+        app.request({
+          url: BaseURL + '/UpdateRequestProfileAPI',
+          method: 'POST',
+          dataType: 'json',
+          data: obj,
+          contentType: 'application/json',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+            var spinnerOptions = { dimBackground: false };
+            SpinnerPlugin.activityStart(null, spinnerOptions);
+          },
+          error: function (xhr, status) {
+            alert("Error: " + status);
+          },
+          success: function (data, status, xhr) {
+            if (data.ErrorCode == '0') {
+              window.plugins.toast.show(data.ErrorMessage, 'long', 'bottom');
+              app.views.main.router.back('/dashboard/', {
+                force: true,
+              });
+            }
+            else if (data.ErrorCode == '-1020') {
+              app.router.navigate('/editprofile-otp/', {
+                route: {
+                  context: {
+                    edit_profile: JSON.stringify(obj),
+                  }
+                }
+              });
+            }
+            else {
+              app.dialog.alert(data.ErrorMessage);
+            }
+          },
+          complete: function (xhr, status) {
+            SpinnerPlugin.activityStop();
+          }
+        })
+      },
+    },
   }
 </script>
