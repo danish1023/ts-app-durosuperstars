@@ -196,3 +196,13 @@ li.with-border{
   top: 50vh !important;
   bottom: 0 !important;
 }
+
+.dashboard-menu-block::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 5px;
+  height: 5px;
+}
+.dashboard-menu-block::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: rgba(0,0,0,.3);
+}
