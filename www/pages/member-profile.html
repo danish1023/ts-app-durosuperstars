@@ -169,9 +169,9 @@
                 </div>
               </div>
             </li>
-            <li class="item-content item-input MobileNo-Edit" style="display:none">
+            <li class="item-content item-input item-input-with-value MobileNo-Edit" style="display:none">
                 <div class="item-inner">
-                    <div class="item-title item-floating-label">Mobile Number</div>
+                    <div class="item-title item-floating-label color-red">Mobile Number</div>
                     <div class="item-input-wrap">
                         <input type="tel" maxlength="10" value="${data.MobileNo}" name="MobileNo">
                     </div>
@@ -187,9 +187,9 @@
                 </div>
               </div>
             </li>
-            <li class="item-content item-input Address-Edit" style="display:none">
+            <li class="item-content item-input item-input-with-value Address-Edit" style="display:none">
                 <div class="item-inner">
-                    <div class="item-title item-floating-label">Address</div>
+                    <div class="item-title item-floating-label color-red">Address</div>
                     <div class="item-input-wrap">
                         <textarea class="resizable" name="Address" placeholder="Address">${data.Address1}</textarea>
                     </div>
@@ -207,7 +207,7 @@
             </li>
             <li class="item-content item-input State-Edit" style="display:none">
                 <div class="item-inner">
-                    <div class="item-title item-floating-label">State*</div>
+                    <div class="item-title item-floating-label color-red">State*</div>
                     <div class="item-input-wrap input-dropdown-wrap">
                         <select name="State" placeholder="Please choose...">
 
@@ -227,7 +227,7 @@
             </li>
             <li class="item-content item-input City-Edit" style="display:none">
                 <div class="item-inner">
-                    <div class="item-title item-floating-label">City*</div>
+                    <div class="item-title item-floating-label color-red">City*</div>
                     <div class="item-input-wrap input-dropdown-wrap">
                         <select name="City" placeholder="Please choose...">
 
@@ -290,9 +290,11 @@
 
         $$('#member-profile-page .State-View').hide();
         $$('#member-profile-page .State-Edit').show();
+        $$('#member-profile-page select[name=State]').trigger('focus');
 
         $$('#member-profile-page .City-View').hide();
         $$('#member-profile-page .City-Edit').show();
+        $$('#member-profile-page select[name=City]').trigger('focus');
       },
       editProfile: function () {
         var UserData = JSON.parse(User);
