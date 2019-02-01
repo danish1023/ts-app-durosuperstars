@@ -32,6 +32,10 @@ var app = new Framework7({
   root: '#app',
   theme: 'md',
   name: 'Duro Superstars',
+  touch: {
+    materialRipple: false,
+    fastClicks: false
+  },
   view: {
     animate: true,
     xhrCache: false,
