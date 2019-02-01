@@ -56,9 +56,10 @@
           </li>
           <li class="item-content item-input">
             <div class="item-inner">
-              <div class="item-title item-floating-label">ReferralCode</div>
+              <div class="item-title item-floating-label">Referral Code</div>
               <div class="item-input-wrap">
-                <input type="text" name="ReferralCode">
+                <input type="text" name="ReferralCode" maxlength="10" validate pattern="[A-Za-z0-9]{10,10}" placeholder="Enter 10 Digit Referral Code"
+                  data-error-message="Enter 10 Digit Referral Code">
               </div>
             </div>
           </li>
@@ -133,75 +134,80 @@
   return {
     methods: {
       signup: function () {
-        var ContractorContactNo = $$('#signup-form input[name=ContractorContactNo]').val();
-        var ContractorFirstName = $$('#signup-form input[name=ContractorFirstName]').val();
-        var ContractorLastName = $$('#signup-form input[name=ContractorLastName]').val();
-        var DealershipName = $$('#signup-form input[name=DealershipName]').val();
-        var ReferralCode = $$('#signup-form input[name=ReferralCode]').val();
-        var StateName = $$('#signup-form select[name=StateName]').val();
-        var CityName = $$('#signup-form select[name=CityName]').val();
-        var OtherCity = $$('#signup-form input[name=OtherCity]').val();
-        var GovtProofId = $$('#signup-form select[name=GovtProofId]').val();
-        var GovtProofIdNumber = $$('#signup-form input[name=GovtProofIdNumber]').val();
-        var EmployeeName = $$('#signup-form input[name=EmployeeName]').val();
-        var EmployeeContactNo = $$('#signup-form input[name=EmployeeContactNo]').val();
+        if (!$$('#signup-form')[0].checkValidity()) {
+          app.dialog.alert('Please fill out the form correctly');
+        }
+        else {
+          var ContractorContactNo = $$('#signup-form input[name=ContractorContactNo]').val();
+          var ContractorFirstName = $$('#signup-form input[name=ContractorFirstName]').val();
+          var ContractorLastName = $$('#signup-form input[name=ContractorLastName]').val();
+          var DealershipName = $$('#signup-form input[name=DealershipName]').val();
+          var ReferralCode = $$('#signup-form input[name=ReferralCode]').val();
+          var StateName = $$('#signup-form select[name=StateName]').val();
+          var CityName = $$('#signup-form select[name=CityName]').val();
+          var OtherCity = $$('#signup-form input[name=OtherCity]').val();
+          var GovtProofId = $$('#signup-form select[name=GovtProofId]').val();
+          var GovtProofIdNumber = $$('#signup-form input[name=GovtProofIdNumber]').val();
+          var EmployeeName = $$('#signup-form input[name=EmployeeName]').val();
+          var EmployeeContactNo = $$('#signup-form input[name=EmployeeContactNo]').val();
 
-        var obj = {
-          ContractorContactNo: ContractorContactNo,
-          ContractorFirstName: ContractorFirstName,
-          ContractorLastName: ContractorLastName,
-          DealershipName: DealershipName,
-          ReferralCode: ReferralCode,
-          StateName: StateName,
-          CityName: CityName,
-          OtherCity: OtherCity,
-          GovtProofId: GovtProofId,
-          GovtProofIdNumber: GovtProofIdNumber,
-          EmployeeName: EmployeeName,
-          EmployeeContactNo: EmployeeContactNo,
-        };
+          var obj = {
+            ContractorContactNo: ContractorContactNo,
+            ContractorFirstName: ContractorFirstName,
+            ContractorLastName: ContractorLastName,
+            DealershipName: DealershipName,
+            ReferralCode: ReferralCode,
+            StateName: StateName,
+            CityName: CityName,
+            OtherCity: OtherCity,
+            GovtProofId: GovtProofId,
+            GovtProofIdNumber: GovtProofIdNumber,
+            EmployeeName: EmployeeName,
+            EmployeeContactNo: EmployeeContactNo,
+          };
 
-        app.request({
-          url: BaseURL + '/SignupAPI',
-          method: 'POST',
-          dataType: 'json',
-          data: obj,
-          contentType: 'application/json',
-          beforeSend: function (xhr) {
-            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
-            var spinnerOptions = { dimBackground: false };
-            SpinnerPlugin.activityStart(null, spinnerOptions);
-          },
-          error: function (xhr, status) {
-            alert("Error: " + status);
-          },
-          success: function (data, status, xhr) {
-            if (data.ErrorCode == '-1020') {
-              var SignUpData = { 'ContractorContactNo': ContractorContactNo, 'ContractorFirstName': ContractorFirstName, 'ContractorLastName': ContractorLastName, 'DealershipName': DealershipName, 'ReferralCode': ReferralCode, 'StateName': StateName, 'CityName': CityName, 'OtherCity': OtherCity, 'GovtProofId': GovtProofId, 'GovtProofIdNumber': GovtProofIdNumber, 'EmployeeName': EmployeeName, 'EmployeeContactNo': EmployeeContactNo };
-              localStorage.setItem("SignUpData", JSON.stringify(SignUpData));
-              app.router.navigate({
-                name: 'otp',
-                ignoreCache: true,
-              });
-            }
-            else if (data.ErrorCode == '-1046') {
-              var SignUpData = { 'ContractorContactNo': ContractorContactNo, 'ContractorFirstName': ContractorFirstName, 'ContractorLastName': ContractorLastName, 'DealershipName': DealershipName, 'ReferralCode': ReferralCode, 'StateName': StateName, 'CityName': CityName, 'OtherCity': OtherCity, 'GovtProofId': GovtProofId, 'GovtProofIdNumber': GovtProofIdNumber, 'EmployeeName': EmployeeName, 'EmployeeContactNo': EmployeeContactNo };
-              localStorage.setItem("SignUpData", JSON.stringify(SignUpData));
-              app.dialog.alert(data.ErrorMessage, function(){
+          app.request({
+            url: BaseURL + '/SignupAPI',
+            method: 'POST',
+            dataType: 'json',
+            data: obj,
+            contentType: 'application/json',
+            beforeSend: function (xhr) {
+              xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+              var spinnerOptions = { dimBackground: false };
+              SpinnerPlugin.activityStart(null, spinnerOptions);
+            },
+            error: function (xhr, status) {
+              alert("Error: " + status);
+            },
+            success: function (data, status, xhr) {
+              if (data.ErrorCode == '-1020') {
+                var SignUpData = { 'ContractorContactNo': ContractorContactNo, 'ContractorFirstName': ContractorFirstName, 'ContractorLastName': ContractorLastName, 'DealershipName': DealershipName, 'ReferralCode': ReferralCode, 'StateName': StateName, 'CityName': CityName, 'OtherCity': OtherCity, 'GovtProofId': GovtProofId, 'GovtProofIdNumber': GovtProofIdNumber, 'EmployeeName': EmployeeName, 'EmployeeContactNo': EmployeeContactNo };
+                localStorage.setItem("SignUpData", JSON.stringify(SignUpData));
                 app.router.navigate({
                   name: 'otp',
                   ignoreCache: true,
                 });
-              });
+              }
+              else if (data.ErrorCode == '-1046') {
+                var SignUpData = { 'ContractorContactNo': ContractorContactNo, 'ContractorFirstName': ContractorFirstName, 'ContractorLastName': ContractorLastName, 'DealershipName': DealershipName, 'ReferralCode': ReferralCode, 'StateName': StateName, 'CityName': CityName, 'OtherCity': OtherCity, 'GovtProofId': GovtProofId, 'GovtProofIdNumber': GovtProofIdNumber, 'EmployeeName': EmployeeName, 'EmployeeContactNo': EmployeeContactNo };
+                localStorage.setItem("SignUpData", JSON.stringify(SignUpData));
+                app.dialog.alert(data.ErrorMessage, function () {
+                  app.router.navigate({
+                    name: 'otp',
+                    ignoreCache: true,
+                  });
+                });
+              }
+              else {
+                app.dialog.alert(data.ErrorMessage);
+              }
+            },
+            complete: function (xhr, status) {
+              SpinnerPlugin.activityStop();
             }
-            else {
-              app.dialog.alert(data.ErrorMessage);
-            }
-          },
-          complete: function (xhr, status) {
-            SpinnerPlugin.activityStop();
-          }
-        })
+          })
+        }
       },
     },
     on: {

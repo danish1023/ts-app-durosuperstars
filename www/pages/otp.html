@@ -29,7 +29,54 @@
   return {
     methods: {
       resendOTP: function () {
-        app.dialog.alert('This feature will be available soon.');
+        var SignUpData = JSON.parse(localStorage.SignUpData);
+        var ContractorContactNo = SignUpData.ContractorContactNo;
+        var ContractorFirstName = SignUpData.ContractorFirstName;
+        var ContractorLastName = SignUpData.ContractorLastName;
+        var DealershipName = SignUpData.DealershipName;
+        var ReferralCode = SignUpData.ReferralCode;
+        var StateName = SignUpData.StateName;
+        var CityName = SignUpData.CityName;
+        var OtherCity = SignUpData.OtherCity;
+        var GovtProofId = SignUpData.GovtProofId;
+        var GovtProofIdNumber = SignUpData.GovtProofIdNumber;
+        var EmployeeName = SignUpData.EmployeeName;
+        var EmployeeContactNo = SignUpData.EmployeeContactNo;
+        var obj = {
+          ContractorContactNo: ContractorContactNo,
+          ContractorFirstName: ContractorFirstName,
+          ContractorLastName: ContractorLastName,
+          DealershipName: DealershipName,
+          ReferralCode: ReferralCode,
+          StateName: StateName,
+          CityName: CityName,
+          OtherCity: OtherCity,
+          GovtProofId: GovtProofId,
+          GovtProofIdNumber: GovtProofIdNumber,
+          EmployeeName: EmployeeName,
+          EmployeeContactNo: EmployeeContactNo,
+        };
+        app.request({
+          url: BaseURL + '/SignupAPI',
+          method: 'POST',
+          dataType: 'json',
+          data: obj,
+          contentType: 'application/json',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+            var spinnerOptions = { dimBackground: false };
+            SpinnerPlugin.activityStart(null, spinnerOptions);
+          },
+          error: function (xhr, status) {
+            alert("Error: " + status);
+          },
+          success: function (data, status, xhr) {
+            app.dialog.alert(data.ErrorMessage);
+          },
+          complete: function (xhr, status) {
+            SpinnerPlugin.activityStop();
+          }
+        })
       }
     },
     data: function () {
