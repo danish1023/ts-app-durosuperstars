@@ -26,6 +26,10 @@
   </div>
 </template>
 <script>
+  var Prev_MobileNo = '';
+  var Prev_Address = '';
+  var Prev_State = '';
+  var Prev_City = '';
   return {
     data: function () {
       var UserData = JSON.parse(localStorage.User);
@@ -56,8 +60,10 @@
           },
           success: function (data, status, xhr) {
             //localStorage.setItem("MyProfile", JSON.stringify(data));
-            var Prev_State = data.State;
-            var Prev_City = data.City;
+            Prev_MobileNo = data.MobileNo;
+            Prev_Address = data.Address1;
+            Prev_State = data.State;
+            Prev_City = data.City;
             app.request({
               url: BaseURL + '/AddressStateCityMappingAPI',
               method: 'POST',
@@ -296,18 +302,13 @@
         var State = $$('#editprofile-form select[name=State]').val();
         var City = $$('#editprofile-form select[name=City]').val();
 
-        var MyProfile = localStorage.MyProfile;
-        var MyProfileData = JSON.parse(MyProfile);
-        var MyProfile_MobileNo = MyProfileData.MobileNo;
-        var MyProfile_Address = MyProfileData.Address1;
-
-        if (Address != MyProfile_Address && MobileNo != MyProfile_MobileNo) {
+        if (Address != Prev_Address && MobileNo != Prev_MobileNo) {
           var Flag = 'O';
         }
-        else if (Address != MyProfile_Address) {
+        else if (Address != Prev_Address) {
           var Flag = 'A';
         }
-        else if (MobileNo != MyProfile_MobileNo) {
+        else if (MobileNo != Prev_MobileNo) {
           var Flag = 'M';
         }
         else {
