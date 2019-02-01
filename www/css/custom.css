@@ -222,5 +222,5 @@ li.with-border{
   background-color: rgba(0,0,0,.4);
 }
 .page-content {
-  -webkit-overflow-scrolling: auto !important;
+  -webkit-overflow-scrolling: visible !important;
 }
