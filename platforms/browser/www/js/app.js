@@ -139,14 +139,15 @@ function login() {
         alert("Error: " + status);
       },
       success: function (data, status, xhr) {
-        console.log(data);
+        console.log(data.ErrorCode);
+        console.log(JSON.stringify(obj));
         if (data.ErrorCode == '-1016') {
           app.router.navigate({
             name: 'login',
             params: { 'UserName': UserName },
           });
         }
-        else if (data.ErrorCode == '-1020') {
+        else if (data.ErrorCode == '-1020' || data.ErrorCode == '-1019') {
           app.router.navigate({
             name: 'first-login',
             params: { 'UserName': UserName },

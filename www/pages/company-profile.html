@@ -28,7 +28,7 @@
           <div class="preloader-parent">
             <div style="position: absolute;transform: translate(-50%,-50%);left: 46%;top: 46%;" class="preloader color-red"></div>
           </div>
-          <div class="block no-margin-top no-padding" style="height: 100%;">
+          <div class="block no-margin-top no-padding">
             <!-- <p>Tab 1 content</p> -->
           </div>
         </div>
@@ -82,12 +82,17 @@
                   var Type = CompanyDetails[i].Type;
                   if (Type == 'C') {
                     no_pdf = no_pdf+1;
-                    $$('#company-profile-page #tab-1 .block').append(`<iframe onload="hideLoader()" src="https://docs.google.com/viewer?url=${FilePath}&embedded=true" width="100%" height="100%" style="border: none;">
-                    </iframe>`);
+                    var html = `<div class="card">
+                      <div class="card-content card-content-padding">
+                        <h4 style="overflow-wrap: break-word;" class="no-margin">${Title}</h4>
+                        <p style="overflow-wrap: break-word;">${Description}</p>
+                        <iframe onload="hideLoader()" src="https://docs.google.com/viewer?url=${FilePath}&embedded=true" width="100%" height="100%" style="border: none;height:70vh"></iframe>
+                      </div>
+                    </div>`;
+                    $$('#company-profile-page #tab-1 .block').append(html);
                   }
                   if (Type == 'I') {
                     no_image = no_image+1;
-                    $$('#company-profile-page #tab-2 .block').html('');
                     var html = `<div class="card demo-card-header-pic no-margin margin-top">
                       <div style="background-image:url(${FilePath})" valign="bottom" class="card-header"></div>
                       <div class="card-content card-content-padding">
@@ -99,7 +104,6 @@
                   }
                   if (Type == 'V') {
                     no_video = no_video+1;
-                    $$('#company-profile-page #tab-3 .block').html('');
                     var html = `<div class="card demo-card-header-pic no-margin margin-top">
                       <div onclick="playVideo('${FilePath}')" style="background-image:url(img/video-thumb.png)" valign="bottom" class="card-header"></div>
                       <div class="card-content card-content-padding">
