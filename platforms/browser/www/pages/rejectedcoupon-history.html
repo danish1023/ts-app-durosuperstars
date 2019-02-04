@@ -15,7 +15,31 @@
         </div>
       </div>
     </div>
-    <div class="page-content">
+    <div class="page-content scrollbar-visible">
+      <div class="block no-margin">
+        <form class="list show-hairlines-ios no-hairlines text-align-left no-margin-bottom margin-top" id="rejected-coupon-form">
+          <ul class="no-hairlines-between">
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-floating-label">From Date</div>
+                <div class="item-input-wrap">
+                  <input type="text" value="{{FromDate}}" name="FromDate">
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input">
+              <div class="item-inner">
+                <div class="item-title item-floating-label">To Date</div>
+                <div class="item-input-wrap">
+                  <input type="text" value="{{ToDate}}" name="ToDate">
+                </div>
+              </div>
+            </li>
+          </ul>
+        </form>
+        <a href="#" @click="rejectedCoupon" style="width:100px; text-transform:none; margin: 8px 0 16px 16px;" class="button button-raised button-fill font-1x">Search
+        </a>
+      </div>
 
       <div class="data-table">
 
@@ -29,9 +53,27 @@
     on: {
       pageInit: function () {
         ShowNotificationCount();
+        var FromDateCalendar = app.calendar.create({
+          inputEl: '#rejectedcoupon-history-page input[name=FromDate]',
+          openIn: 'customModal',
+          header: true,
+          dateFormat: 'dd-M-yyyy',
+          closeOnSelect: true
+        });
+        var ToDateCalendar = app.calendar.create({
+          inputEl: '#rejectedcoupon-history-page input[name=ToDate]',
+          openIn: 'customModal',
+          header: true,
+          dateFormat: 'dd-M-yyyy',
+          closeOnSelect: true
+        });
+      }
+    },
+    methods: {
+      rejectedCoupon: function () {
         var UserData = JSON.parse(localStorage.User);
-        var FromDate = moment().subtract(3, 'months').format('DD-MMM-Y');
-        var ToDate = moment().format('DD-MMM-Y');
+        var FromDate = $$('#rejected-coupon-form input[name=FromDate]').val();
+        var ToDate = $$('#rejected-coupon-form input[name=ToDate]').val();
         if (this.$route.params.ContractorContactNo) {
           var MobileNo = this.$route.params.ContractorContactNo;
         }
@@ -91,16 +133,24 @@
               }
             }
             else {
-              $$('#rejectedcoupon-history-page .page-content .data-table').append(`<div class="block no-margin text-align-center color-gray">
-                <i style="font-size:125px; margin-top: 30vh;" class="f7-icons">box</i>
-                <p class="no-margin">No Data Found!</p>
-              </div>`);
+              $$('#rejectedcoupon-history-page .page-content .data-table').html('');
+              app.dialog.alert(data.ErrorMessage);
+              // $$('#rejectedcoupon-history-page .page-content .data-table').append(`<div class="block no-margin text-align-center color-gray">
+              //   <i style="font-size:125px; margin-top: 30vh;" class="f7-icons">box</i>
+              //   <p class="no-margin">No Data Found!</p>
+              // </div>`);
             }
           },
           complete: function (xhr, status) {
             SpinnerPlugin.activityStop();
           }
         })
+      }
+    },
+    data: function () {
+      return {
+        FromDate: moment().format('DD-MMM-Y'),
+        ToDate: moment().format('DD-MMM-Y')
       }
     },
   }
