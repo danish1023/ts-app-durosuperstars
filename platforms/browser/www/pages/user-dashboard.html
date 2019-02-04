@@ -10,7 +10,7 @@
         <div class="title color-white">Dashboard</div>
         <div class="right">
           <a href="/notifications/" class="link icon-only">
-            <i class="icon material-icons">notifications</i>
+            <i class="icon material-icons">notifications<span class="badge NotificationCount color-blue">0</span></i>
           </a>
         </div>
       </div>
@@ -39,6 +39,7 @@
   return {
     on: {
       pageInit: function (e, page) {
+        ShowNotificationCount();
         var User = localStorage.User;
         var UserData = JSON.parse(User);
         var obj = {
@@ -65,7 +66,7 @@
 
               }
               else {
-                var contractor_list_btn = '<a style="width:125px" class="button button-fill button-raised margin" href="/contractorlist-upper/">View Details</a>';
+                var contractor_list_btn = '<a style="width:125px" class="button button-outline button-round margin" href="/contractorlist-upper/">View Details</a>';
               }
               var html1 = `<div class="card" style="box-shadow:none;">
                 <div class="card-content card-content-padding text-align-center" style="background: mistyrose;">

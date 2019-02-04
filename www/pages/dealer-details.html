@@ -10,7 +10,7 @@
                 <div class="title color-white">Dealer Details</div>
                 <div class="right">
                     <a href="/notifications/" class="link icon-only">
-                      <i class="icon material-icons">notifications</i>
+                        <i class="icon material-icons">notifications<span class="badge NotificationCount color-blue">0</span></i>
                     </a>
                 </div>
             </div>
@@ -26,6 +26,7 @@
     return {
         on: {
             pageInit: function (e, page) {
+                ShowNotificationCount();
                 var User = localStorage.User;
                 var UserData = JSON.parse(User);
                 var DealerMobileNo = this.$route.params.DealerMobileNo;
@@ -57,9 +58,11 @@
                                     var PointsEarned = DealerWiseContractorPerformance[i].PointsEarned;
                                     var CountofCouponsSubmitted = DealerWiseContractorPerformance[i].CountofCouponsSubmitted;
                                     var TierName = DealerWiseContractorPerformance[i].TierName;
+                                    var MobileNo = DealerWiseContractorPerformance[i].MobileNo;
                                     var tbody_el = `
                                     <tr>
                                         <td class="label-cell">${ContractorName}</td>
+                                        <td class="label-cell">${MobileNo}</td>
                                         <td class="label-cell">${PointsEarned}</td>
                                         <td class="label-cell">${CountofCouponsSubmitted}</td>
                                         <td class="label-cell">${TierName}</td>
@@ -70,6 +73,7 @@
                                 <thead>
                                     <tr>
                                     <th class="label-cell color-red">Contractor Name</th>
+                                    <th class="label-cell color-red">Mobile Number</th>
                                     <th class="label-cell color-red">Points Earned</th>
                                     <th class="label-cell color-red">Coupons Submitted</th>
                                     <th class="label-cell color-red">Tier Name</th>

@@ -10,7 +10,7 @@
         <div class="title color-white">Training Videos</div>
         <div class="right">
           <a href="/notifications/" class="link icon-only">
-            <i class="icon material-icons">notifications</i>
+            <i class="icon material-icons">notifications<span class="badge NotificationCount color-blue">0</span></i>
           </a>
         </div>
       </div>
@@ -26,6 +26,7 @@
   return {
     on: {
       pageInit: function () {
+        ShowNotificationCount();
         var UserData = JSON.parse(localStorage.User);
         var obj = {
           MobileNo: UserData.MobileNo,

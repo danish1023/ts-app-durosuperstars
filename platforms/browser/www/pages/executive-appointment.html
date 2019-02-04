@@ -10,7 +10,7 @@
         <div class="title color-white">Executive Appointment</div>
         <div class="right">
           <a href="/notifications/" class="link icon-only">
-            <i class="icon material-icons">notifications</i>
+            <i class="icon material-icons">notifications<span class="badge NotificationCount color-blue">0</span></i>
           </a>
         </div>
       </div>
@@ -57,6 +57,7 @@
   return {
     on: {
       pageInit: function () {
+        ShowNotificationCount();
         app.calendar.create({
           inputEl: '#executive-appointment-page input[name=DateofAppointment]',
           openIn: 'customModal',

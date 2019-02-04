@@ -9,20 +9,26 @@
         </div>
         <div class="title color-white">Mapped Dealers</div>
         <div class="right">
-          <a class="link icon-only searchbar-enable" data-searchbar=".searchbar-dealer">
+          <!-- <a class="link icon-only searchbar-enable" data-searchbar=".searchbar-dealer">
             <i class="icon material-icons md-only">search</i>
+          </a> -->
+          <a href="/notifications/" class="link icon-only">
+            <i class="icon material-icons">notifications<span class="badge NotificationCount color-blue">0</span></i>
           </a>
         </div>
-        <form class="searchbar searchbar-expandable searchbar-dealer searchbar-init">
-          <div class="searchbar-inner">
-            <div class="searchbar-input-wrap">
-              <input @keydown="checkLength" @keyup="checkLength" type="search" placeholder="Mobile Number">
-              <i class="searchbar-icon"></i>
-              <span class="input-clear-button"></span>
+        <div class="subnavbar">
+          <!-- Searchbar inside of Subnavbar -->
+          <form class="searchbar searchbar-dealer searchbar-init">
+            <div class="searchbar-inner">
+              <div class="searchbar-input-wrap">
+                <input @keydown="checkLength" @keyup="checkLength" type="search" placeholder="Mobile Number">
+                <i class="searchbar-icon"></i>
+                <span class="input-clear-button"></span>
+              </div>
+              <span class="searchbar-disable-button">Cancel</span>
             </div>
-            <span class="searchbar-disable-button">Cancel</span>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
     <div class="page-content bg-color-white">
@@ -40,6 +46,7 @@
     },
     on: {
       pageInit: function (e, page) {
+        ShowNotificationCount();
         // var searchbar = app.searchbar.create({
         //   el: '.searchbar',
         // })

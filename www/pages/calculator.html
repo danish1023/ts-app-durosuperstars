@@ -10,7 +10,7 @@
         <div class="title color-white">Calculator</div>
         <div class="right">
           <a href="/notifications/" class="link icon-only">
-            <i class="icon material-icons">notifications</i>
+            <i class="icon material-icons">notifications<span class="badge NotificationCount color-blue">0</span></i>
           </a>
         </div>
       </div>
@@ -41,6 +41,11 @@
 </template>
 <script>
   return {
+    on: {
+      pageInit: function () {
+        ShowNotificationCount();
+      }
+    },
     methods: {
       calculator: function () {
         var UserData = JSON.parse(localStorage.User);

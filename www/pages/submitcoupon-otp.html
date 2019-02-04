@@ -10,7 +10,7 @@
                 <div class="title color-white">One Time Password</div>
                 <div class="right">
                     <a href="/notifications/" class="link icon-only">
-                      <i class="icon material-icons">notifications</i>
+                        <i class="icon material-icons">notifications<span class="badge NotificationCount color-blue">0</span></i>
                     </a>
                 </div>
             </div>
@@ -73,6 +73,7 @@
         },
         on: {
             pageInit: function () {
+                ShowNotificationCount();
                 var User = localStorage.User;
                 var UserData = JSON.parse(User);
                 var UserName = UserData.MembershipId;

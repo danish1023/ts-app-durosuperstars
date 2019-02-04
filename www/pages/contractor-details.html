@@ -10,7 +10,7 @@
                 <div class="title color-white">Contractor Details</div>
                 <div class="right">
                     <a href="/notifications/" class="link icon-only">
-                        <i class="icon material-icons">notifications</i>
+                        <i class="icon material-icons">notifications<span class="badge NotificationCount color-blue">0</span></i>
                     </a>
                 </div>
             </div>
@@ -24,6 +24,7 @@
     return {
         on: {
             pageInit: function (e, page) {
+                ShowNotificationCount();
                 var User = localStorage.User;
                 var UserData = JSON.parse(User);
                 var ContractorMobileNo = this.$route.params.ContractorMobileNo;
@@ -50,7 +51,6 @@
                         alert("Error: " + status);
                     },
                     success: function (data, status, xhr) {
-                        console.log(data);
                         if (data.ErrorCode == '0') {
                             var MembershipID = data.MembershipID;
                             var MemberName = data.MemberName;
@@ -61,6 +61,7 @@
                             var PointExpiry1 = data.PointExpiry1;
                             var PointExpiry2 = data.PointExpiry2;
                             var ContractorMobileNo = data.ContractorMobileNo;
+                            var LastCouponSubmissionDate = data.LastCouponSubmissionDate;
                             var pe1_a = 'NA';
                             var pe1_b = 'NA';
                             var pe2_a = 'NA';
@@ -134,6 +135,12 @@
                                     </div>
                                 </li>
                             </ul>
+                        </div>
+                        <div class="row text-align-center margin" style="border: 1px solid #ccc">
+                            <div class="col">
+                                <p><strong>Last Coupon Submission Date</strong></p>
+                                <p>${LastCouponSubmissionDate}</p>
+                            </div>
                         </div>
                         <div class="row text-align-center margin" style="border: 1px solid #ccc">
                             <div class="col">

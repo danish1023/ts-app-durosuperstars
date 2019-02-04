@@ -206,3 +206,26 @@ function notificationClick(NotificationId, Flag) {
 function hideLoader(){
   $$('.preloader-parent').hide();
 }
+
+function ShowNotificationCount(){
+  var User = localStorage.User;
+  var UserData = JSON.parse(User);
+  var obj = {
+    MobileNo: UserData.MobileNo,
+  };
+  app.request({
+    url: BaseURL + '/GetNotification',
+    method: 'POST',
+    dataType: 'json',
+    data: obj,
+    contentType: 'application/json',
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+    },
+    success: function (data, status, xhr) {
+      if (data.ErrorCode == '0') {
+        $$('.NotificationCount').html(data.Response.NotificationDetails.length);
+      }
+    }
+  })
+}

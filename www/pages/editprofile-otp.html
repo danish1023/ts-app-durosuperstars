@@ -10,7 +10,7 @@
               <div class="title color-white">One Time Password</div>
               <div class="right">
                 <a href="/notifications/" class="link icon-only">
-                  <i class="icon material-icons">notifications</i>
+                  <i class="icon material-icons">notifications<span class="badge NotificationCount color-blue">0</span></i>
                 </a>
               </div>
             </div>
@@ -76,6 +76,7 @@
           },
           on: {
             pageInit: function (e,page) {
+              ShowNotificationCount();
               var EditProfileData = JSON.parse(page.route.context.edit_profile);
               var MembershipId = EditProfileData.MembershipId;
               var MobileNo = EditProfileData.MobileNo;
