@@ -148,7 +148,7 @@ function login() {
         alert("Error: " + status);
       },
       success: function (data, status, xhr) {
-        console.log(data.ErrorCode);
+        console.log(data);
         console.log(JSON.stringify(obj));
         if (data.ErrorCode == '-1016') {
           app.router.navigate({

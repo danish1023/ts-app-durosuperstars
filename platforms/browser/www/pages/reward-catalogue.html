@@ -15,13 +15,61 @@
                 </div>
             </div>
         </div>
+        <div class="toolbar tabbar">
+            <div class="toolbar-inner">
+                <a href="#tab-reward" class="tab-link tab-link-active">Reward Catalogue</a>
+                <a href="#tab-orderhistory" class="tab-link">Order History</a>
+            </div>
+        </div>
+        <div class="tabs">
+            <div id="tab-reward" class="page-content tab tab-active">
+                <iframe @load="hideLoader" src="http://sardaplydemo.netcarrots.in/Default.aspx?UserId={{UserId}}&MobileNo={{MobileNo}}"
+                    width="100%" height="100%" style="border: none;">
+                </iframe>
+                <div class="preloader-parent" style="height:100vh">
+                    <div style="position: absolute;transform: translate(-50%,-50%);left: 46%;top: 46%;" class="preloader color-red"></div>
+                </div>
+            </div>
+            <div id="tab-orderhistory" class="page-content tab">
+                <div class="block no-margin">
+                    <form class="list show-hairlines-ios no-hairlines text-align-left no-margin-bottom margin-top"
+                        id="order-history-form">
+                        <ul class="no-hairlines-between">
+                            <li class="item-content item-input">
+                                <div class="item-inner">
+                                    <div class="item-title item-floating-label">From Date</div>
+                                    <div class="item-input-wrap">
+                                        <input type="text" value="{{FromDate}}" name="FromDate">
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item-content item-input">
+                                <div class="item-inner">
+                                    <div class="item-title item-floating-label">To Date</div>
+                                    <div class="item-input-wrap">
+                                        <input type="text" value="{{ToDate}}" name="ToDate">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </form>
+                    <a href="#" @click="orderHistory" style="width:100px; text-transform:none; margin: 8px 0 16px 16px;"
+                        class="button button-raised button-fill font-1x">Search
+                    </a>
+                </div>
+
+                <div class="data-table">
+
+                </div>
+            </div>
+        </div>
         <div class="page-content">
-            <iframe @load="hideLoader" src="http://sardaplydemo.netcarrots.in/Default.aspx?UserId={{UserId}}&MobileNo={{MobileNo}}"
+            <!-- <iframe @load="hideLoader" src="http://sardaplydemo.netcarrots.in/Default.aspx?UserId={{UserId}}&MobileNo={{MobileNo}}"
                 width="100%" height="100%" style="border: none;">
             </iframe>
             <div class="preloader-parent" style="height:100vh">
                 <div style="position: absolute;transform: translate(-50%,-50%);left: 46%;top: 46%;" class="preloader color-red"></div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
@@ -45,17 +93,131 @@
             return {
                 UserId: UserId,
                 MobileNo: MobileNo,
+                FromDate: moment().format('DD-MMM-Y'),
+                ToDate: moment().format('DD-MMM-Y')
             }
         },
         on: {
             pageInit: function () {
+                var FromDateCalendar = app.calendar.create({
+                    inputEl: '#reward-catalogue-page input[name=FromDate]',
+                    openIn: 'customModal',
+                    header: true,
+                    dateFormat: 'dd-M-yyyy',
+                    closeOnSelect: true
+                });
+                var ToDateCalendar = app.calendar.create({
+                    inputEl: '#reward-catalogue-page input[name=ToDate]',
+                    openIn: 'customModal',
+                    header: true,
+                    dateFormat: 'dd-M-yyyy',
+                    closeOnSelect: true
+                });
                 ShowNotificationCount();
+            },
+            tabShow: function (tab) {
+                var target_id = tab.target.id;
+                if(target_id == 'tab-orderhistory'){
+                    $$('#reward-catalogue-page .navbar-inner .title').text('Order History');
+                }
+                else{
+                    $$('#reward-catalogue-page .navbar-inner .title').text('Reward Catalogue');
+                }
             }
         },
         methods: {
             hideLoader: function () {
                 $$('#reward-catalogue-page .preloader-parent').hide();
             },
+            orderHistory: function () {
+                var UserData = JSON.parse(localStorage.User);
+                if (this.$route.params.MobileNo) {
+                    var MobileNo = this.$route.params.MobileNo;
+                }
+                else {
+                    var MobileNo = UserData.MobileNo;
+                }
+                var FromDate = $$('#order-history-form input[name=FromDate]').val();
+                var ToDate = $$('#order-history-form input[name=ToDate]').val();
+
+                var obj = {
+                    MobileNo: MobileNo,
+                    FromDate: FromDate,
+                    ToDate: ToDate,
+                    Status: 'A',
+                };
+                app.request({
+                    url: BaseURL + '/OrderHistoryAPI',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: obj,
+                    contentType: 'application/json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+                        var spinnerOptions = { dimBackground: false };
+                        SpinnerPlugin.activityStart(null, spinnerOptions);
+                    },
+                    error: function (xhr, status) {
+                        alert("Error: " + status);
+                    },
+                    success: function (data, status, xhr) {
+                        if (data.ErrorCode == '0') {
+                            $$('#tab-orderhistory .data-table').html('');
+                            var OrderHistoryDetails = data.Response.OrderHistoryDetails;
+                            if (OrderHistoryDetails) {
+                                var tbody = '';
+                                for (var i = 0; i < OrderHistoryDetails.length; i++) {
+                                    var MembershipId = OrderHistoryDetails[i].MembershipId;
+                                    var SubOrderId = OrderHistoryDetails[i].SubOrderId;
+                                    var MainOrderNumber = OrderHistoryDetails[i].MainOrderNumber;
+                                    var ProductName = OrderHistoryDetails[i].ProductName;
+                                    var OrderDate = OrderHistoryDetails[i].OrderDate;
+                                    var Status = OrderHistoryDetails[i].Status;
+                                    var StatusChangedDate = OrderHistoryDetails[i].StatusChangedDate;
+                                    var Remarks = OrderHistoryDetails[i].Remarks;
+                                    var tbody_el = `
+                                    <tr>
+                                        <td class="label-cell">${MembershipId}</td>
+                                        <td class="label-cell">${SubOrderId}</td>
+                                        <td class="label-cell">${MainOrderNumber}</td>
+                                        <td class="label-cell">${ProductName}</td>
+                                        <td class="label-cell">${OrderDate}</td>
+                                        <td class="label-cell">${Status}</td>
+                                        <td class="label-cell">${StatusChangedDate}</td>
+                                        <td class="label-cell">${Remarks}</td>
+                                    </tr>`;
+                                    tbody = tbody + tbody_el;
+                                }
+                                var table = `<table>
+                                <thead>
+                                    <tr>
+                                    <th class="label-cell color-red">Membership ID</th>
+                                    <th class="label-cell color-red">Sub-Order ID</th>
+                                    <th class="label-cell color-red">Main Order Number</th>
+                                    <th class="label-cell color-red">Product Name</th>
+                                    <th class="label-cell color-red">Order Date</th>
+                                    <th class="label-cell color-red">Status</th>
+                                    <th class="label-cell color-red">Status Changed Date</th>
+                                    <th class="label-cell color-red">Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${tbody}
+                                </tbody>
+                                </table>`;
+                                $$('#tab-orderhistory .data-table').append(table);
+                            }
+                        }
+                        else {
+                            $$('#tab-orderhistory .data-table').html('');
+                            app.dialog.alert(data.ErrorMessage);
+                        }
+                    },
+                    complete: function (xhr, status) {
+                        SpinnerPlugin.activityStop();
+                    }
+                })
+            }
         }
     }
 </script>

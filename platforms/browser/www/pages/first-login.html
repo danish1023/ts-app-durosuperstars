@@ -63,7 +63,10 @@
           UserName: UserName,
           OTP: OTP,
           DeviceId: DeviceId,
-          OSType: device.platform
+          OSType: device.platform,
+          // OTP: "",
+          // Password: "",
+          // ConfirmPassword: "",
         };
         app.request({
           url: BaseURL + '/Login',
@@ -81,6 +84,7 @@
           },
           success: function (data, status, xhr) {
             console.log(data);
+            console.log(obj);
             if (data.ErrorCode == '-1021') {
               app.router.navigate({
                 name: 'set-password',

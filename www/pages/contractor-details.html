@@ -51,6 +51,7 @@
                         alert("Error: " + status);
                     },
                     success: function (data, status, xhr) {
+                        console.log(data);
                         if (data.ErrorCode == '0') {
                             var MembershipID = data.MembershipID;
                             var MemberName = data.MemberName;
@@ -66,15 +67,19 @@
                             var pe1_b = 'NA';
                             var pe2_a = 'NA';
                             var pe2_b = 'NA';
+                            var pe1 = '';
+                            var pe2 = '';
                             if(PointExpiry1 != ''){
                                 var EXP_PointExpiry1 = PointExpiry1.split("~");
                                 pe1_a = EXP_PointExpiry1[0];
                                 pe1_b = EXP_PointExpiry1[1];
+                                pe1 = `<p><strong>Point Expire on ${pe1_b} : ${pe1_a}</strong></p>`;
                             }
                             if(PointExpiry2 != ''){
                                 var EXP_PointExpiry2 = PointExpiry2.split("~");
                                 pe2_a = EXP_PointExpiry2[0];
                                 pe2_b = EXP_PointExpiry2[1];
+                                pe2 = `<p class="no-margin-top"><strong>Point Expire on ${pe2_b} : ${pe2_a}</strong></p>`;
                             }
                             var html = `<div class="list no-hairlines margin-top no-margin-bottom">
                             <ul>
@@ -143,13 +148,11 @@
                             </div>
                         </div>
                         <div class="row text-align-center margin" style="border: 1px solid #ccc">
-                            <div class="col">
-                                <p><strong>Point Expiry 1: ${pe1_a}</strong></p>
-                                <p>${pe1_b}</p>
+                            <div class="col-100">
+                                ${pe1}
                             </div>
-                            <div class="col">
-                                <p><strong>Point Expiry 2: ${pe2_a}</strong></p>
-                                <p>${pe2_b}</p>
+                            <div class="col-100">
+                                ${pe2}
                             </div>
                         </div>
                         <div class="row text-align-center" style="margin-top: 24px; margin-bottom: 24px;">
