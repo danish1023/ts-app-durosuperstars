@@ -14719,7 +14719,7 @@
           app.emit('accordionClosed', $el[0]);
         }
       });
-      $contentEl.css('height', (($contentEl[0].scrollHeight) + "px"));
+      //$contentEl.css('height', (($contentEl[0].scrollHeight) + "px"));
       $el.trigger('accordion:open');
       $el.addClass('accordion-item-opened');
       app.emit('accordionOpen', $el[0]);
