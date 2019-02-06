@@ -63,10 +63,11 @@
             if (data.ErrorCode == '0') {
               if (data.UserTypeCode == 'S') {
                 var contractor_list_btn = '<a style="width:125px" class="button button-outline button-round margin" href="/contractor-list/">View Details</a>';
-
               }
               else {
                 var contractor_list_btn = '<a style="width:125px" class="button button-outline button-round margin" href="/contractorlist-upper/">View Details</a>';
+                $$('#UserHomePage .swiper-wrapper').addClass('swiper-no-swiping');
+                $$('#UserHomePage .tab-link').removeAttr('href');
               }
               var html1 = `<div class="card" style="box-shadow:none;">
                 <div class="card-content card-content-padding text-align-center" style="background: mistyrose;">

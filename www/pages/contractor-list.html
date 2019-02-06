@@ -61,6 +61,7 @@
             alert("Error: " + status);
           },
           success: function (data, status, xhr) {
+            console.log(data);
             if (data.ErrorCode == '0') {
               var TotalMappedContractors = data.TotalMappedContractors;
               var ActiveMappedContractors = data.ActiveMappedContractors;

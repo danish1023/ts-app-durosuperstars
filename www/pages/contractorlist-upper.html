@@ -45,6 +45,7 @@
                         alert("Error: " + status);
                     },
                     success: function (data, status, xhr) {
+                        console.log(data);
                         if (data.ErrorCode == '0') {
                             var Level1Details = data.Level1Details;
                             if (Level1Details) {
@@ -72,10 +73,11 @@
                                     var Level3InactiveMemberCount = Level3Details[k].Level3InactiveMemberCount;
                                 }
                             }
-                            var html = `
-                            <div class="list no-hairlines accordion-list margin-top">
-                            <ul>
-                                <li class="accordion-item accordion-item-opened padding-bottom">
+                            var html1 = '';
+                            var html2 = '';
+                            var html3 = '';
+                            if(Level1Id != null){
+                                html1 = `<li class="accordion-item accordion-item-opened padding-bottom">
                                 <a href="#" class="item-link item-content bg-color-orange color-white">
                                     <div class="item-inner">
                                     <div class="item-title">${Level1Name}</div>
@@ -88,7 +90,7 @@
                                         <div class="item-content">
                                             <div class="item-inner">
                                             <div class="item-title">Enrolled Members</div>
-                                            <div class="item-after"> <span class="badge">${Level1MappedContractorCount}</span></div>
+                                            <div class="item-after"> <span class="badge">${zeroIFNULL(Level1MappedContractorCount)}</span></div>
                                             </div>
                                         </div>
                                         </li>
@@ -96,7 +98,7 @@
                                         <div class="item-content">
                                             <div class="item-inner">
                                             <div class="item-title">Active Members</div>
-                                            <div class="item-after"> <span class="badge">${Level1ActiveMemberCount}</span></div>
+                                            <div class="item-after"> <span class="badge">${zeroIFNULL(Level1ActiveMemberCount)}</span></div>
                                             </div>
                                         </div>
                                         </li>
@@ -104,15 +106,17 @@
                                         <div class="item-content">
                                             <div class="item-inner">
                                             <div class="item-title">Inactive Members</div>
-                                            <div class="item-after"> <span class="badge">${Level1InactiveMemberCount}</span></div>
+                                            <div class="item-after"> <span class="badge">${zeroIFNULL(Level1InactiveMemberCount)}</span></div>
                                             </div>
                                         </div>
                                         </li>
                                     </ul>
                                     </div>
                                 </div>
-                                </li>
-                                <li class="accordion-item padding-bottom">
+                                </li>`;
+                            }
+                            if(Level2Id != null){
+                                html2 = `<li class="accordion-item padding-bottom">
                                 <a href="#" class="item-link item-content bg-color-blue color-white">
                                     <div class="item-inner">
                                     <div class="item-title">${Level2Name}</div>
@@ -125,7 +129,7 @@
                                         <div class="item-content">
                                             <div class="item-inner">
                                             <div class="item-title">Enrolled Members</div>
-                                            <div class="item-after"> <span class="badge">${Level2MappedContractorCount}</span></div>
+                                            <div class="item-after"> <span class="badge">${zeroIFNULL(Level2MappedContractorCount)}</span></div>
                                             </div>
                                         </div>
                                         </li>
@@ -133,7 +137,7 @@
                                         <div class="item-content">
                                             <div class="item-inner">
                                             <div class="item-title">Active Members</div>
-                                            <div class="item-after"> <span class="badge">${Level2ActiveMemberCount}</span></div>
+                                            <div class="item-after"> <span class="badge">${zeroIFNULL(Level2ActiveMemberCount)}</span></div>
                                             </div>
                                         </div>
                                         </li>
@@ -141,15 +145,17 @@
                                         <div class="item-content">
                                             <div class="item-inner">
                                             <div class="item-title">Inactive Members</div>
-                                            <div class="item-after"> <span class="badge">${Level3InactiveMemberCount}</span></div>
+                                            <div class="item-after"> <span class="badge">${zeroIFNULL(Level3InactiveMemberCount)}</span></div>
                                             </div>
                                         </div>
                                         </li>
                                     </ul>
                                     </div>
                                 </div>
-                                </li>
-                                <li class="accordion-item">
+                                </li>`;
+                            }
+                            if(Level3Id != null){
+                                html3 = `<li class="accordion-item">
                                 <a href="#" class="item-link item-content bg-color-green color-white">
                                     <div class="item-inner">
                                     <div class="item-title">${Level3Name}</div>
@@ -162,7 +168,7 @@
                                         <div class="item-content">
                                             <div class="item-inner">
                                             <div class="item-title">Enrolled Members</div>
-                                            <div class="item-after"> <span class="badge">${Level3MappedContractorCount}</span></div>
+                                            <div class="item-after"> <span class="badge">${zeroIFNULL(Level3MappedContractorCount)}</span></div>
                                             </div>
                                         </div>
                                         </li>
@@ -170,7 +176,7 @@
                                         <div class="item-content">
                                             <div class="item-inner">
                                             <div class="item-title">Active Members</div>
-                                            <div class="item-after"> <span class="badge">${Level3ActiveMemberCount}</span></div>
+                                            <div class="item-after"> <span class="badge">${zeroIFNULL(Level3ActiveMemberCount)}</span></div>
                                             </div>
                                         </div>
                                         </li>
@@ -178,17 +184,25 @@
                                         <div class="item-content">
                                             <div class="item-inner">
                                             <div class="item-title">Inactive Members</div>
-                                            <div class="item-after"> <span class="badge">${Level3InactiveMemberCount}</span></div>
+                                            <div class="item-after"> <span class="badge">${zeroIFNULL(Level3InactiveMemberCount)}</span></div>
                                             </div>
                                         </div>
                                         </li>
                                     </ul>
                                     </div>
                                 </div>
-                                </li>
+                                </li>`;
+                            }
+
+                            var html = html1+html2+html3;
+                            
+                            var html_final = `
+                            <div class="list no-hairlines accordion-list margin-top">
+                            <ul>
+                                ${html}
                             </ul>
                             </div>`;
-                            $$('#contractorlist-upper-page .page-content').html(html);
+                            $$('#contractorlist-upper-page .page-content').html(html_final);
                         }
                         else {
                             app.dialog.alert(data.ErrorMessage);

@@ -72,6 +72,15 @@ function NA(input) {
   }
 }
 
+function zeroIFNULL(input){
+  if (input == null) {
+    return '0';
+  }
+  else {
+    return input;
+  }
+}
+
 function checkVersion() {
   app.request({
     url: BaseURL + '/GetAPPVersionAPI',
