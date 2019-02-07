@@ -197,6 +197,10 @@ li.with-border{
   bottom: 0 !important;
 }
 
+.no-arrow{
+  background-image: none !important;
+}
+
 /* .scrollbar-visible::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 5px;
