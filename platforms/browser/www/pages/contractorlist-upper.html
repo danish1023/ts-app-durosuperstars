@@ -16,17 +16,11 @@
             </div>
         </div>
         <div class="page-content bg-color-white">
-            <div class="data-table">
-                <table>
-                    <thead>
-                        <tr>
-                        <th class="label-cell color-red">Name</th>
-                        <th class="label-cell color-red">Enrolled</th>
-                        <th class="label-cell color-red">Active</th>
-                        <th class="label-cell color-red">Inactive</th>
-                        </tr>
-                    </thead>
-                </table>
+            <div class="row text-align-center" style="padding: 16px 32px 16px 0;">
+                <div class="col-25 color-red">Name</div>
+                <div class="col-25 color-red">Enrolled</div>
+                <div class="col-25 color-red">Active</div>
+                <div class="col-25 color-red">Inactive</div>
             </div>
             <div class="list no-hairlines accordion-list no-margin-top">
                 <ul class="top-accordion">
@@ -73,58 +67,36 @@
                                     var Level1ActiveMemberCount = Level1Details[i].Level1ActiveMemberCount;
                                     var Level1InactiveMemberCount = Level1Details[i].Level1InactiveMemberCount;
                                     var Level2Details = Level1Details[i].Level2Details;
-
                                     var level2html = '';
-                                    var level2enrolledcount = 0;
-                                    var tbody2 = '';
                                     for (var j = 0; j < Level2Details.length; j++) {
                                         var Level2Id = Level2Details[j].Level2Id;
                                         var Level2Name = Level2Details[j].Level2Name;
                                         var Level2MappedContractorCount = Level2Details[j].Level2MappedContractorCount;
                                         var Level2ActiveMemberCount = Level2Details[j].Level2ActiveMemberCount;
                                         var Level2InactiveMemberCount = Level2Details[j].Level2InactiveMemberCount;
-                                        level2enrolledcount = level2enrolledcount+parseInt(Level2MappedContractorCount);
-                                        var tbody_el2 = `
-                                        <tr>
-                                            <td class="label-cell">${Level2Name}</td>
-                                            <td class="label-cell">${Level2MappedContractorCount}</td>
-                                            <td class="label-cell">${Level2ActiveMemberCount}</td>
-                                            <td class="label-cell">${Level2InactiveMemberCount}</td>
-                                        </tr>`;
-                                        tbody2 = tbody2+tbody_el2;
                                         var Level3Details = Level2Details[j].Level3Details;
-                                        var tbody3 = '';
-                                        var level3enrolledcount = 0;
                                         for (var k = 0; k < Level3Details.length; k++) {
                                             var Level3Id = Level3Details[k].Level3Id;
                                             var Level3Name = Level3Details[k].Level3Name;
                                             var Level3MappedContractorCount = Level3Details[k].Level3MappedContractorCount;
                                             var Level3ActiveMemberCount = Level3Details[k].Level3ActiveMemberCount;
                                             var Level3InactiveMemberCount = Level3Details[k].Level3InactiveMemberCount;
-                                            level3enrolledcount = level3enrolledcount+parseInt(Level3MappedContractorCount);
-                                            var tbody_el3 = `
-                                            <tr>
-                                                <td class="label-cell">${Level3Name}</td>
-                                                <td class="label-cell">${Level3MappedContractorCount}</td>
-                                                <td class="label-cell">${Level3ActiveMemberCount}</td>
-                                                <td class="label-cell">${Level3InactiveMemberCount}</td>
-                                            </tr>`;
-                                            tbody3 = tbody3+tbody_el3;
                                         }
-
                                         var html = `<li class="accordion-item padding-bottom">
                                         <a class="item-link item-content bg-color-blue color-white">
-                                            <div class="item-inner">
-                                            <div class="item-title">${Level2Name}</div>
+                                            <div class="item-inner row text-align-center">
+                                                <div class="col-25">${Level2Name}</div>
+                                                <div class="col-25">${Level2MappedContractorCount}</div>
+                                                <div class="col-25">${Level2ActiveMemberCount}</div>
+                                                <div class="col-25">${Level2InactiveMemberCount}</div>
                                             </div>
                                         </a>
                                         <div class="accordion-item-content">
-                                            <div class="data-table">
-                                                <table>
-                                                    <tbody>
-                                                        ${tbody3}
-                                                    </tbody>
-                                                </table>
+                                            <div class="row text-align-center bg-color-green" style="padding: 16px 32px 16px 0;font-size: 16px;">
+                                                <div class="col-25 color-white">${Level3Name}</div>
+                                                <div class="col-25 color-white">${Level3MappedContractorCount}</div>
+                                                <div class="col-25 color-white">${Level3ActiveMemberCount}</div>
+                                                <div class="col-25 color-white">${Level3InactiveMemberCount}</div>
                                             </div>
                                         </div>
                                         </li>`;
@@ -133,18 +105,14 @@
 
                                     var html = `<li class="accordion-item padding-bottom">
                                     <a href="#" class="item-link item-content bg-color-orange color-white">
-                                        <div class="item-inner">
-                                        <div class="item-title">${Level1Name}</div>
+                                        <div class="item-inner row text-align-center">
+                                        <div class="col-25">${Level1Name}</div>
+                                        <div class="col-25">${Level1MappedContractorCount}</div>
+                                        <div class="col-25">${Level1ActiveMemberCount}</div>
+                                        <div class="col-25">${Level1InactiveMemberCount}</div>
                                         </div>
                                     </a>
                                     <div class="accordion-item-content">
-                                        <div class="data-table">
-                                            <table>
-                                                <tbody>
-                                                    ${tbody2}
-                                                </tbody>
-                                            </table>
-                                        </div>
                                         <div class="list no-hairlines accordion-list">
                                             <ul class="top-accordion">
                                                 ${level2html}
