@@ -162,6 +162,14 @@ function login() {
             params: { 'UserName': UserName },
           });
         }
+        else if (data.ErrorCode == '-1022') {
+          app.dialog.alert(data.ErrorMessage, function () {
+            app.router.navigate({
+              name: 'set-password',
+              params: { 'UserName': UserName, 'OTP': '' },
+            });
+          });
+        }
         else {
           app.dialog.alert(data.ErrorMessage);
         }

@@ -17284,9 +17284,20 @@
     },
     blur: function blur(inputEl) {
       var $inputEl = $(inputEl);
-      $inputEl.parents('.item-input').removeClass('item-input-focused');
-      $inputEl.parents('.input').removeClass('input-focused');
-      $inputEl.removeClass('input-focused');
+      var $itemInputEl = $inputEl.parents('.item-input');
+      var $inputWrapEl = $inputEl.parents('.input');
+      if($itemInputEl[0].className == 'item-content item-input item-input-custom' || $itemInputEl[0].className == 'item-content item-input item-input-custom item-input-focused'){
+        $itemInputEl.addClass('item-input-with-value');
+        $inputWrapEl.addClass('input-with-value');
+        $inputEl.addClass('input-with-value');
+        $inputEl.trigger('input:notempty');
+        $inputEl.parents('.item-input').removeClass('item-input-focused');
+      }
+      else{
+        $inputEl.parents('.item-input').removeClass('item-input-focused');
+        $inputEl.parents('.input').removeClass('input-focused');
+        $inputEl.removeClass('input-focused');
+      }
     },
     checkEmptyState: function checkEmptyState(inputEl) {
       var $inputEl = $(inputEl);
@@ -17298,6 +17309,7 @@
       var value = $inputEl.val();
       var $itemInputEl = $inputEl.parents('.item-input');
       var $inputWrapEl = $inputEl.parents('.input');
+
       if ((value && (typeof value === 'string' && value.trim() !== '')) || (Array.isArray(value) && value.length > 0)) {
         $itemInputEl.addClass('item-input-with-value');
         $inputWrapEl.addClass('input-with-value');
@@ -17309,6 +17321,7 @@
         $inputEl.removeClass('input-with-value');
         $inputEl.trigger('input:empty');
       }
+      
     },
     scrollIntoView: function scrollIntoView(inputEl, duration, centered, force) {
       if ( duration === void 0 ) duration = 0;

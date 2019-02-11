@@ -63,7 +63,7 @@
               </div>
             </div>
           </li>
-          <li class="item-content item-input">
+          <li class="item-content item-input item-input-custom">
             <div class="item-inner">
               <div class="item-title item-floating-label">State*</div>
               <div class="item-input-wrap input-dropdown-wrap">
@@ -73,12 +73,12 @@
               </div>
             </div>
           </li>
-          <li class="item-content item-input">
+          <li class="item-content item-input item-input-custom">
             <div class="item-inner">
               <div class="item-title item-floating-label">City*</div>
               <div class="item-input-wrap input-dropdown-wrap">
                 <select name="CityName" placeholder="Please choose...">
-
+                  <option>Select</option>
                 </select>
               </div>
             </div>
@@ -91,12 +91,12 @@
               </div>
             </div>
           </li>
-          <li class="item-content item-input">
+          <li class="item-content item-input item-input-custom">
             <div class="item-inner">
               <div class="item-title item-floating-label">Govt ID Proof</div>
               <div class="item-input-wrap input-dropdown-wrap">
                 <select name="GovtProofId" placeholder="Please choose...">
-
+                  
                 </select>
               </div>
             </div>
@@ -228,11 +228,14 @@
           },
           success: function (data, status, xhr) {
             if (data.ErrorCode == '0') {
+              var optionhtml = $$('<option value="">Select</option>');
+              $$('#signup-form select[name=GovtProofId]').append(optionhtml);
               for (var i = 0; i < data.Response.GovtProofIdDetails.length; i++) {
                 var GovtProofName = data.Response.GovtProofIdDetails[i].Name;
                 var html = $$('<option value="' + GovtProofName + '">' + GovtProofName + '</option>');
-                $$('#signup-form select[name=GovtProofId').append(html);
-                $$('#signup-form select[name=GovtProofId').val('');
+                $$('#signup-form select[name=GovtProofId]').append(html);
+                $$('#signup-form select[name=GovtProofId]').trigger('blur');
+                $$('#signup-form select[name=GovtProofId]').val('');
               }
             }
             else {
@@ -259,12 +262,15 @@
           },
           success: function (data, status, xhr) {
             if (data.ErrorCode == '0') {
+              var optionhtml = $$('<option value="">Select</option>');
+              $$('#signup-form select[name=StateName]').append(optionhtml);
               var stateArr = data.StateTypeDetails;
               for (var i = 0; i < stateArr.length; i++) {
                 var StateId = stateArr[i].StateId;
                 var StateName = stateArr[i].StateName;
                 var html = $$('<option value="' + StateName + '">' + StateName + '</option>');
                 $$('#signup-form select[name=StateName]').append(html);
+                $$('#signup-form select[name=StateName]').trigger('blur');
                 $$('#signup-form select[name=StateName]').val('');
               }
 
@@ -276,13 +282,16 @@
                   var cityArr = stateArr[i].CityTypeDetails;
                   if (StateName == selected_state) {
                     $$('#signup-form select[name=CityName]').html('');
+                    var optionhtml = $$('<option value="">Select</option>');
+                    $$('#signup-form select[name=CityName]').append(optionhtml);
+                    $$('#signup-form select[name=CityName]').trigger('blur');
+                    $$('#signup-form select[name=CityName]').val('');
                     for (var j = 0; j < cityArr.length; j++) {
                       var cityId = cityArr[j].CityId;
                       var CityName = cityArr[j].CityName;
                       var html = $$('<option value="' + CityName + '">' + CityName + '</option>');
                       $$('#signup-form select[name=CityName]').append(html);
                     }
-                    $$('#signup-form select[name=CityName]').val('');
                   }
                 }
               });
