@@ -166,7 +166,7 @@ function login() {
           app.dialog.alert(data.ErrorMessage, function () {
             app.router.navigate({
               name: 'set-password',
-              params: { 'UserName': UserName, 'OTP': '' },
+              params: { 'UserName': UserName },
             });
           });
         }
