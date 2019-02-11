@@ -13,7 +13,7 @@ var routes = [
   },
   // Set Password
   {
-    path: '/set-password/:UserName/:OTP/',
+    path: '/set-password/:UserName/',
     componentUrl: './pages/set-password.html',
     name: 'set-password',
   },
