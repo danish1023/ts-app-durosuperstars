@@ -10,41 +10,42 @@
         <div class="title color-white">Login</div>
       </div>
     </div>
-    <div class="page-content bg-color-white no-padding-top">
-      <div class="block no-margin" style="position:relative; height: 100%;">
-        <div class="" style="position:absolute; transform:translateX(0%) translateY(0%);left:0;top:15%;">
-          <div class="text-align-center">
-            <img src="img/logo-transparent.png" style="width:60%;" />
-          </div>
-          <form class="list show-hairlines-ios no-hairlines text-align-left" id="login-form-2">
-            <ul class="no-hairlines-between">
-              <li class="item-content item-input">
-                <div class="item-inner">
-                  <div class="item-title item-floating-label">Enter Username*</div>
-                  <div class="item-input-wrap">
-                    <input type="text" name="UserName" value="{{UserName}}">
-                  </div>
-                </div>
-              </li>
-              <li class="item-content item-input">
-                <div class="item-inner">
-                  <div class="item-title item-floating-label">Enter Password*</div>
-                  <div class="item-input-wrap">
-                    <input type="password" name="Password">
-                    <div @click="hideshowPassword" class="hideshow-toggle" style="position: absolute;top: 50%;user-select: none;right: 0px;margin-top: -11.5px;display: block;"><i class="material-icons color-darkgray">visibility</i></div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </form>
-          <p style="text-align:right; margin-top:-15px">
-            <a href="#" @click="forgotPassword" style="text-transform:none; margin: 16px 16px 0 16px;" class="">Forgot
-              Password?</a>
-          </p>
-          <a href="#" @click="login" style="text-transform:none; margin: 16px 16px 0 16px;" class="button button-raised button-fill button-big font-1x">Submit
-          </a>
+    <div class="page-content bg-color-white">
+      <div class="block color-theme-white bg-color-white">
+        <div class="text-align-center" style="width: 180px; margin: 0 auto">
+          <img width="100%" src="img/logo-transparent.png" />
         </div>
       </div>
+      <form class="list show-hairlines-ios no-hairlines text-align-left" id="login-form-2">
+        <ul class="no-hairlines-between">
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Enter Username*</div>
+              <div class="item-input-wrap">
+                <input type="text" name="UserName" value="{{UserName}}">
+              </div>
+            </div>
+          </li>
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Enter Password*</div>
+              <div class="item-input-wrap">
+                <input type="password" name="Password">
+                <div @click="hideshowPassword" class="hideshow-toggle"
+                  style="position: absolute;top: 50%;user-select: none;right: 0px;margin-top: -11.5px;display: block;">
+                  <i class="material-icons color-darkgray">visibility</i></div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </form>
+      <p style="text-align:right; margin-top:-15px">
+        <a href="#" @click="forgotPassword" style="text-transform:none; margin: 16px 16px 0 16px;" class="">Forgot
+          Password?</a>
+      </p>
+      <a href="#" @click="login" style="text-transform:none; margin: 16px 16px 0 16px;"
+        class="button button-raised button-fill button-big font-1x">Submit
+      </a>
     </div>
   </div>
 </template>
@@ -55,15 +56,15 @@
         var PasswordType = $$('#login-form-2 input[name=Password]').prop('type');
         if (PasswordType === "password") {
           $$('#login-form-2 .hideshow-toggle i').text('visibility_off');
-          $$('#login-form-2 input[name=Password]').prop('type','text');
+          $$('#login-form-2 input[name=Password]').prop('type', 'text');
         } else {
           $$('#login-form-2 .hideshow-toggle i').text('visibility');
-          $$('#login-form-2 input[name=Password]').prop('type','password');
+          $$('#login-form-2 input[name=Password]').prop('type', 'password');
         }
       },
       login: function () {
         var DeviceId = localStorage.fcm_token;
-        if(!DeviceId){
+        if (!DeviceId) {
           DeviceId = 'null';
         }
         var UserName = $$('#login-form-2 input[name=UserName]').val();
