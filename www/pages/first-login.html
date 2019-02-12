@@ -11,40 +11,40 @@
       </div>
     </div>
     <div class="page-content bg-color-white no-padding-top">
-      <div class="block no-margin" style="position:relative; height: 100%;">
-        <div class="" style="position:absolute; transform:translateX(0%) translateY(0%);left:0;top:15%;">
-          <div class="text-align-center">
-            <img src="img/logo-transparent.png" style="width:60%;" />
-          </div>
-          <form class="list show-hairlines-ios no-hairlines text-align-left" id="firstlogin-form">
-            <ul class="no-hairlines-between">
-              <li class="item-content item-input">
-                <div class="item-inner">
-                  <div class="item-title item-floating-label">Enter Username*</div>
-                  <div class="item-input-wrap">
-                    <input type="text" name="UserName" value="{{UserName}}">
-                  </div>
-                </div>
-              </li>
-              <li class="item-content item-input">
-                <div class="item-inner">
-                  <div class="item-title item-floating-label">Enter OTP*</div>
-                  <div class="item-input-wrap">
-                    <input type="number" name="OTP">
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </form>
-          <p style="text-align:right; margin-top:-15px">
-            <a href="#" @click="resendOTP" style="text-transform:none; margin: 16px 16px 0 16px;" class="">Resend OTP</a>
-          </p>
-          <a href="#" @click="submitOTP" style="text-transform:none; margin: 16px 16px 0 16px;" class="button button-raised button-fill button-big font-1x">Submit
-            OTP</a>
-          <div class="block color-theme-orange">
-            Note: In case of first time login, you will receive OTP to set password.
-          </div>
+      <div class="block color-theme-white bg-color-white">
+        <div class="text-align-center padding-top" style="width: 250px; margin: 0 auto">
+          <img class="padding-top" width="100%" src="img/logo-transparent.png" />
         </div>
+      </div>
+      <form class="list show-hairlines-ios no-hairlines text-align-left" id="firstlogin-form">
+        <ul class="no-hairlines-between">
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Enter Username*</div>
+              <div class="item-input-wrap">
+                <input type="text" name="UserName" value="{{UserName}}">
+              </div>
+            </div>
+          </li>
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-floating-label">Enter OTP*</div>
+              <div class="item-input-wrap">
+                <input type="number" name="OTP">
+              </div>
+            </div>
+          </li>
+        </ul>
+      </form>
+      <p style="text-align:right; margin-top:-15px">
+        <a href="#" @click="resendOTP" style="text-transform:none; margin: 16px 16px 0 16px;" class="">Resend
+          OTP</a>
+      </p>
+      <a href="#" @click="submitOTP" style="text-transform:none; margin: 16px 16px 0 16px;"
+        class="button button-raised button-fill button-big font-1x">Submit
+        OTP</a>
+      <div class="block color-theme-orange">
+        Note: In case of first time login, you will receive OTP to set password.
       </div>
     </div>
   </div>
@@ -54,7 +54,7 @@
     methods: {
       submitOTP: function () {
         var DeviceId = localStorage.fcm_token;
-        if(!DeviceId){
+        if (!DeviceId) {
           DeviceId = 'null';
         }
         var UserName = $$('#firstlogin-form input[name=UserName]').val();
@@ -99,7 +99,7 @@
       },
       resendOTP: function () {
         var DeviceId = localStorage.fcm_token;
-        if(!DeviceId){
+        if (!DeviceId) {
           DeviceId = 'null';
         }
         var UserName = $$('#firstlogin-form input[name=UserName]').val();
