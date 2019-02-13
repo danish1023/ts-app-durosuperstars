@@ -16,29 +16,27 @@
       </div>
     </div>
     <div class="page-content" id="MemberHomePage">
-      <div class="card" style="box-shadow:none;">
-        <div class="card-content card-content-padding" style="background: mistyrose;">
-          <div class="row text-align-center">
-            <div class="col">
-              <h2 class="no-margin-top Name"></h2>
-            </div>
-          </div>
+      <h2 class="text-align-center Name"></h3>
+      <div class="card no-margin" style="box-shadow:none;">
+        <div class="card-content card-content-padding bg-color-red">
           <div class="row text-align-center color-black">
-            <div class="col bg-color-white padding">
-              <h3 class="no-margin">Tier</h3>
-              <div class="chip TierColor">
+            <div class="col padding TierColor" style="border: 2px solid #fff">
+              <h4 class="no-margin color-TierColor">TIER</h4>
+              <p class="TierName no-margin color-TierColor"></p>
+              <!-- <div class="chip TierColor">
                 <div class="chip-label color-white TierName"></div>
-              </div>
+              </div> -->
             </div>
-            <div class="col bg-color-white padding">
-              <h3 class="no-margin">Point Balance</h3>
-              <div class="chip TierColor">
+            <div class="col padding TierColor" style="border: 2px solid #fff">
+              <h4 class="no-margin color-TierColor">POINT BALANCE</h4>
+              <p class="PointBalance no-margin color-TierColor"></p>
+              <!-- <div class="chip TierColor">
                 <div class="chip-label color-white PointBalance"></div>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="row padding-top">
-            <div class="col ExpiryDetails text-align-center">
+            <div class="col color-white ExpiryDetails text-align-center">
 
             </div>
           </div>
@@ -182,6 +180,12 @@
               var TierName = DashboardDetail.TierName;
               var TierColor = DashboardDetail.TierColor;
               var ExpiryDetails = DashboardDetail.ExpiryDetails;
+              if(TierName == 'RED' || TierName == 'Red'|| TierName == 'red'|| TierName == 'TITANIUM'|| TierName == 'Titanium'|| TierName == 'titanium'){
+                $$('#MemberHomePage .color-TierColor').css("color", '#ffffff');
+              }
+              else{
+                $$('#MemberHomePage .color-TierColor').css("color", '#000000');
+              }
               $$('#MemberHomePage .Name').text(Name);
               $$('#MemberHomePage .TierName').text(TierName);
               $$('#MemberHomePage .TierColor').css("background-color", TierColor);
@@ -190,7 +194,7 @@
               if (ExpiryDetails) {
                 for (var i = 0; i < ExpiryDetails.length; i++) {
                   var PointExpiryDate = ExpiryDetails[i].PointExpiryDate;
-                  var html = `<h4>${PointExpiryDate}</h4>`;
+                  var html = `<h4 class="no-margin">${PointExpiryDate}</h4>`;
                   $$('#MemberHomePage .ExpiryDetails').append(html);
                 }
               }
@@ -238,7 +242,7 @@
               if (ExpiryDetails) {
                 for (var i = 0; i < ExpiryDetails.length; i++) {
                   var PointExpiryDate = ExpiryDetails[i].PointExpiryDate;
-                  var html = `<h4>${PointExpiryDate}</h4>`;
+                  var html = `<h4 class="no-margin">${PointExpiryDate}</h4>`;
                   $$('#MemberHomePage .ExpiryDetails').append(html);
                 }
               }

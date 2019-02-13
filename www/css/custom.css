@@ -132,11 +132,11 @@ li.with-border{
 }
 
 .dashboard-bottom-border {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #f44336;
 }
 
 .dashboard-right-border {
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #f44336;
   height: 130px;
 }
 
@@ -181,7 +181,7 @@ li.with-border{
 
 .dashboard-menu-block{
   position: absolute;
-  top: 350px;
+  top: 290px;
   left: 0px;
   right: 0px;
   bottom: 0px;

@@ -32,7 +32,7 @@
       </div>
     </div>
     <div class="page-content bg-color-white">
-
+      
     </div>
   </div>
 </template>
@@ -47,9 +47,6 @@
     on: {
       pageInit: function (e, page) {
         ShowNotificationCount();
-        // var searchbar = app.searchbar.create({
-        //   el: '.searchbar',
-        // })
         var User = localStorage.User;
         var UserData = JSON.parse(User);
         var obj = {
@@ -78,6 +75,7 @@
               if (DealerListDetails) {
                 var tbody_active = '';
                 var tbody_inactive = '';
+                var tbody_all = '';
                 for (var i = 0; i < DealerListDetails.length; i++) {
                   var DealerName = DealerListDetails[i].DealerName;
                   var DealerMobileNo = DealerListDetails[i].DealerMobileNo;
@@ -93,6 +91,7 @@
                       <td class="label-cell"><a href="/dealer-details/${DealerMobileNo}/">${CouponPending}</a></td>
                       <td class="label-cell"><a href="/dealer-details/${DealerMobileNo}/">${CouponClaimed}</a></td>
                     </tr>`;
+                  tbody_all = tbody_all + tbody_el;
                   if (DealerStatus == 'Yes') {
                     tbody_active = tbody_active + tbody_el;
                   }
@@ -102,71 +101,23 @@
                 }
               }
               var html = `
-              <div class="list no-hairlines accordion-list margin-top">
-                <ul>
-                  <li class="accordion-item">
-                    <div class="item-content">
-                      <div class="item-inner">
-                        <div class="item-title">Enrolled Members</div>
-                        <div class="item-after" style="padding-right: 26px">${TotalMappedDealer}</div>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="accordion-item">
-                    <a href="#" class="item-link item-content">
-                      <div class="item-inner">
-                        <div class="item-title">Active Members</div>
-                        <div class="item-after">${ActiveMappedDealer}</div>
-                      </div>
-                    </a>
-                    <div class="accordion-item-content active-dealers">
-                        <div class="data-table">
-                          <table>
-                            <thead>
-                              <tr>
-                                <th class="label-cell">Dealer Name</th>
-                                <th class="label-cell">Dealer Mobile</th>
-                                <th class="label-cell">Copoun Alloted</th>
-                                <th class="label-cell">Coupon Pending</th>
-                                <th class="label-cell">Coupon Claimed</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              ${tbody_active}
-                            </tbody>
-                          </table>
-                        </div>
-                    </div>
-                  </li>
-                  <li class="accordion-item">
-                    <a href="#" class="item-link item-content">
-                      <div class="item-inner">
-                        <div class="item-title">Inactive Members</div>
-                        <div class="item-after">${InActiveMappedDealer}</div>
-                      </div>
-                    </a>
-                    <div class="accordion-item-content inactive-dealers">
-                        <div class="data-table">
-                          <table>
-                            <thead>
-                              <tr>
-                                <th class="label-cell">Dealer Name</th>
-                                <th class="label-cell">Dealer Mobile</th>
-                                <th class="label-cell">Copoun Alloted</th>
-                                <th class="label-cell">Coupon Pending</th>
-                                <th class="label-cell">Coupon Claimed</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              ${tbody_inactive}
-                            </tbody>
-                          </table>
-                        </div>
-                    </div>
-                  </li>
-                </ul>
+              <div class="data-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th class="label-cell">Dealer Name</th>
+                      <th class="label-cell">Dealer Mobile</th>
+                      <th class="label-cell">Copoun Alloted</th>
+                      <th class="label-cell">Coupon Pending</th>
+                      <th class="label-cell">Coupon Claimed</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${tbody_all}
+                  </tbody>
+                </table>
               </div>`;
-            $$('#dealer-list-page .page-content').html(html);
+              $$('#dealer-list-page .page-content').html(html);
             }
             else {
               app.dialog.alert(data.ErrorMessage);

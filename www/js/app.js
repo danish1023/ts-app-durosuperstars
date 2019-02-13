@@ -12,13 +12,13 @@ if (User) {
   if (UserData.UserType == 'M') {
     $$('.panel-left a.profile').attr('href', '/member-profile/');
     $$('.panel-left .ScanCouponMenu').show();
-    $$('.panel-left .TCMenu').hide();
+    $$('.panel-left .ACMenu').hide();
     $$('.panel-left .RedeemRewardMenu').hide();
   }
   else {
     $$('.panel-left a.profile').attr('href', '/user-profile/');
     $$('.panel-left .ScanCouponMenu').hide();
-    $$('.panel-left .TCMenu').show();
+    $$('.panel-left .ACMenu').show();
     $$('.panel-left .RedeemRewardMenu').show();
   }
 }
@@ -245,4 +245,73 @@ function ShowNotificationCount(){
       }
     }
   })
+}
+
+function orderStatusSubmit(){
+  var Remarks = $$('#OrderStatusForm input[name=Remarks]').val();
+  var MobileNo = $$('#OrderStatusForm input[name=MobileNo]').val();
+  var SubOrderNumber = $$('#OrderStatusForm input[name=SubOrderId]').val();
+  var Response = $$('#OrderStatusForm input[name=Response]:checked').val();
+  var obj = {
+    MobileNo: MobileNo,
+    SubOrderNumber: SubOrderNumber,
+    Response: Response,
+    Remarks: Remarks
+  };
+  app.request({
+    url: BaseURL + '/RedemptionOrderStatusFeedbackAPI',
+    method: 'POST',
+    dataType: 'json',
+    data: obj,
+    contentType: 'application/json',
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+      var spinnerOptions = { dimBackground: false };
+      SpinnerPlugin.activityStart(null, spinnerOptions);
+    },
+    error: function (xhr, status) {
+        alert("Error: " + status);
+    },
+    success: function (data, status, xhr) {
+      console.log(data);
+      app.dialog.close();
+      window.plugins.toast.show(data.ErrorMessage, 'long', 'bottom');
+    },
+    complete: function (xhr, status) {
+        SpinnerPlugin.activityStop();
+    }
+  })
+}
+
+function orderStatus(MobileNo,SubOrderId){
+  var dialog = app.dialog.create({
+    title: 'Order Received',
+    destroyOnClose: true,
+    closeByBackdropClick: true,
+    text: `<form id="OrderStatusForm">
+    <div class="row">
+    <div class="col-50"><label class="radio"><input type="radio" name="Response" value="Y" checked><i style="display: inline-block;margin-right: 10px;vertical-align: sub;" class="icon-radio"></i>Yes</label></div>
+    <div class="col-50"><label class="radio"><input type="radio" name="Response" value="N"><i style="display: inline-block;margin-right: 10px;vertical-align: sub;" class="icon-radio"></i>No</label></div>
+    </div>
+    <div class="row">
+      <div class="col-100">
+        <div class="list no-hairlines no-margin">
+          <ul>
+            <li class="item-content item-input no-padding">
+              <div class="item-inner">
+                <div class="item-input-wrap">
+                  <input type="text" name="Remarks" placeholder="Enter Remarks">
+                  <input type="hidden" name="MobileNo" value="${MobileNo}">
+                  <input type="hidden" name="SubOrderId" value="${SubOrderId}">
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <button onclick="orderStatusSubmit()" type="button" class="margin-top button button-fill SubmitButton">Submit</button>
+      </div>
+    </div>
+    </form>
+    `,
+  }).open();
 }

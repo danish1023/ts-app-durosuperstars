@@ -51,6 +51,20 @@
                                     </div>
                                 </div>
                             </li>
+                            <li class="item-content item-input">
+                                <div class="item-inner">
+                                    <div class="item-title item-floating-label">Status</div>
+                                    <div class="item-input-wrap input-dropdown-wrap">
+                                        <select name="Status" placeholder="Please choose...">
+                                            <option value="A">All</option>
+                                            <option value="O">Ordered</option>
+                                            <option value="Z">Out Of Stock</option>
+                                            <option value="D">Delivered</option>
+                                            <option value="F">Cancelled/Closed</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
                     </form>
                     <a href="#" @click="orderHistory" style="width:100px; text-transform:none; margin: 8px 0 16px 16px;"
@@ -139,12 +153,13 @@
                 }
                 var FromDate = $$('#order-history-form input[name=FromDate]').val();
                 var ToDate = $$('#order-history-form input[name=ToDate]').val();
+                var Status = $$('#order-history-form select[name=Status]').val();
 
                 var obj = {
                     MobileNo: MobileNo,
                     FromDate: FromDate,
                     ToDate: ToDate,
-                    Status: 'A',
+                    Status: Status,
                 };
                 app.request({
                     url: BaseURL + '/OrderHistoryAPI',
@@ -175,30 +190,46 @@
                                     var Status = OrderHistoryDetails[i].Status;
                                     var StatusChangedDate = OrderHistoryDetails[i].StatusChangedDate;
                                     var Remarks = OrderHistoryDetails[i].Remarks;
-                                    var tbody_el = `
-                                    <tr>
-                                        <td class="label-cell">${MembershipId}</td>
-                                        <td class="label-cell">${SubOrderId}</td>
-                                        <td class="label-cell">${MainOrderNumber}</td>
-                                        <td class="label-cell">${ProductName}</td>
-                                        <td class="label-cell">${OrderDate}</td>
-                                        <td class="label-cell">${Status}</td>
-                                        <td class="label-cell">${StatusChangedDate}</td>
-                                        <td class="label-cell">${Remarks}</td>
-                                    </tr>`;
+                                    if(Status == 'Delivered'){
+                                        var tbody_el = `
+                                        <tr>
+                                            <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${MembershipId}</a></td>
+                                            <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${SubOrderId}</a></td>
+                                            <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${MainOrderNumber}</a></td>
+                                            <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${ProductName}</a></td>
+                                            <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${OrderDate}</a></td>
+                                            <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${Status}</a></td>
+                                            <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${StatusChangedDate}</a></td>
+                                            <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${Remarks}</a></td>
+                                        </tr>`;
+                                    }
+                                    else{
+                                        var tbody_el = `
+                                        <tr>
+                                            <td class="label-cell">${MembershipId}</td>
+                                            <td class="label-cell">${SubOrderId}</td>
+                                            <td class="label-cell">${MainOrderNumber}</td>
+                                            <td class="label-cell">${ProductName}</td>
+                                            <td class="label-cell">${OrderDate}</td>
+                                            <td class="label-cell">${Status}</td>
+                                            <td class="label-cell">${StatusChangedDate}</td>
+                                            <td class="label-cell">${Remarks}</td>
+                                        </tr>`;
+                                    }
+                                    
                                     tbody = tbody + tbody_el;
                                 }
                                 var table = `<table>
                                 <thead>
                                     <tr>
-                                    <th class="label-cell color-red">Membership ID</th>
-                                    <th class="label-cell color-red">Sub-Order ID</th>
-                                    <th class="label-cell color-red">Main Order Number</th>
-                                    <th class="label-cell color-red">Product Name</th>
-                                    <th class="label-cell color-red">Order Date</th>
-                                    <th class="label-cell color-red">Status</th>
-                                    <th class="label-cell color-red">Status Changed Date</th>
-                                    <th class="label-cell color-red">Remarks</th>
+                                    <th class="label-cell">Membership ID</th>
+                                    <th class="label-cell">Sub-Order ID</th>
+                                    <th class="label-cell">Main Order Number</th>
+                                    <th class="label-cell">Product Name</th>
+                                    <th class="label-cell">Order Date</th>
+                                    <th class="label-cell">Status</th>
+                                    <th class="label-cell">Status Changed Date</th>
+                                    <th class="label-cell">Remarks</th>
                                     </tr>
                                 </thead>
                                 <tbody>

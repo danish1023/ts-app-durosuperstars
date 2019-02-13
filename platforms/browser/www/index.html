@@ -71,7 +71,7 @@
                   </div>
                 </a>
               </li> -->
-              <li class="with-border">
+              <li class="with-border ACMenu" style="display:none">
                 <a href="/account-statement/" class="item-link item-content panel-close">
                   <div class="item-media">
                     <i class="material-icons color-darkgray">assignment</i>
@@ -91,13 +91,23 @@
                   </div>
                 </a>
               </li>
-              <li class="with-border TCMenu" style="display:none">
+              <li class="with-border">
                 <a href="#" class="item-link item-content">
                   <div class="item-media">
                     <i class="material-icons color-darkgray">import_contacts</i>
                   </div>
                   <div class="item-inner no-background-image">
                     <div class="item-title">T & C</div>
+                  </div>
+                </a>
+              </li>
+              <li class="with-border">
+                <a href="#" class="item-link item-content">
+                  <div class="item-media">
+                    <i class="material-icons color-darkgray">forum</i>
+                  </div>
+                  <div class="item-inner no-background-image">
+                    <div class="item-title">FAQ</div>
                   </div>
                 </a>
               </li>
@@ -194,7 +204,7 @@
                 <ul class="no-hairlines-between">
                   <li class="item-content item-input">
                     <div class="item-inner">
-                      <div class="item-title item-floating-label custom-item-floating-label">Username*</div>
+                      <div style="font-size:13px" class="item-title item-floating-label custom-item-floating-label">Username / Mobile Number*</div>
                       <div class="item-input-wrap custom-item-input-wrap">
                         <input type="text" name="username">
                       </div>
@@ -205,8 +215,8 @@
                 <a onclick="login()" style="width:100px" href="#" class="button-signup button button-round button-outline">Next</a>
               </form>
               <div class="block text-align-center">
-                <p class="no-margin">New User?</p>
-                <a style="text-decoration:underline" href="/sign-up/" class="">Register Here</a>
+                <p class="no-margin font-16">New User?</p>
+                <a style="text-decoration:underline" href="/sign-up/" class="font-16">Register Here</a>
               </div>
             </div>
           </div>
@@ -272,7 +282,7 @@
           return;
         }
       }
-      else if (app.views.main.router.currentRoute.url == "/login/" || app.views.main.router.currentRoute.url == "/otp/") {
+      else if (app.views.main.router.currentRoute.url == "/login/") {
         mainView.router.back('/', {
           force: true,
         });

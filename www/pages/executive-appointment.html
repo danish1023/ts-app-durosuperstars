@@ -29,7 +29,7 @@
                 </div>
               </div>
             </li>
-            <li class="item-content item-input">
+            <li class="item-content item-input" style="display:none">
               <div class="item-inner">
                 <div class="item-title item-floating-label">Date of Appointment*</div>
                 <div class="item-input-wrap">
@@ -107,7 +107,8 @@
         var UserData = JSON.parse(localStorage.User);
         var RequestType = $$('#executive-appointment-form select[name=RequestType]').val();
         var Reason = $$('#executive-appointment-form textarea[name=Reason]').val();
-        var DateofAppointment = $$('#executive-appointment-form input[name=DateofAppointment]').val();
+        //var DateofAppointment = $$('#executive-appointment-form input[name=DateofAppointment]').val();
+        var DateofAppointment = moment().format('DD-MMM-Y');
         var obj = {
           MobileNo: UserData.MobileNo,
           RequestType: RequestType,

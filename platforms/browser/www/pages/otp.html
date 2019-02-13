@@ -1,9 +1,9 @@
 <template>
-  <div class="page">
+  <div class="page" id="otp-page">
     <div class="navbar">
       <div class="navbar-inner sliding bg-color-red color-theme-white">
         <div class="left">
-          <a href="/" data-force="true" class="link back">
+          <a href="#" class="link back">
             <i class="material-icons">arrow_back</i>
           </a>
         </div>
@@ -71,6 +71,10 @@
             alert("Error: " + status);
           },
           success: function (data, status, xhr) {
+            app.router.navigate('/otp/', {
+                ignoreCache  : true,
+                reloadCurrent : true
+            });
             app.dialog.alert(data.ErrorMessage);
           },
           complete: function (xhr, status) {
