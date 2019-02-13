@@ -28,13 +28,16 @@
               </div>
             </li>
           </ul>
-          <div class="padding-left"><b>Note: </b>Amount must be multiple of 10,000</div>
+          <div class="padding-left"><b>Note: </b>Amount before GST</div>
         </form>
         <a href="#" @click="calculator" style="text-transform:none; margin: 16px 16px 0 16px;" class="button button-raised button-fill button-big font-1x">Submit
         </a>
       </div>
       <div class="block block-result margin-left">
         
+      </div>
+      <div class="block" style="position:absolute; bottom:0">
+        <p style="border-top: 1px solid #ccc;padding-top: 15px;">Get 1 coupon on purchase of Rs 10,000 value of DURO Products</p>
       </div>
     </div>
   </div>
@@ -71,7 +74,7 @@
           success: function (data, status, xhr) {
             if (data.ErrorCode == '0') {
               $$('#calculator-page .block-result').html('');
-              $$('#calculator-page .block-result').append(`Number of coupons: <span class="badge color-green">${data.CountofCoupons}</span>`);
+              $$('#calculator-page .block-result').append(`<span style="font-size:20px">Number of coupons:</span> <span style="font-size:20px;padding: 0px 10px 0px 10px;" class="badge color-green">${data.CountofCoupons}</span>`);
               //app.dialog.alert("Coupons: " + data.CountofCoupons);
             }
             else{
