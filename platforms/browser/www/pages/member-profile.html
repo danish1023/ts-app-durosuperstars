@@ -297,6 +297,7 @@
         $$('#member-profile-page select[name=City]').trigger('focus');
       },
       editProfile: function () {
+        var User = localStorage.User;
         var UserData = JSON.parse(User);
         var MembershipId = UserData.MembershipId;
         var MobileNo = $$('#editprofile-form input[name=MobileNo]').val();
