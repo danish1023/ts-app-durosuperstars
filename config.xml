@@ -12,6 +12,10 @@
     </platform>
     <platform name="ios">
         <resource-file src="GoogleService-Info.plist" />
+        <hook type="before_build" src="plugins/cordova-plugin-qrscanner/scripts/swift-support.js" />
+        <config-file target="*-Info.plist" parent="NSCameraUsageDescription">
+        <string>The camera is used to scan QR codes.</string>
+        </config-file>
     </platform>
     <content src="index.html" />
     <access origin="*" />
