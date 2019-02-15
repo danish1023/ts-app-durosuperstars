@@ -226,3 +226,64 @@ li.with-border{
   background-color: rgba(0,0,0,.4);
 }
 
+.page-previous{
+  display: none !important;
+}
+
+.qr-visible-block{
+  background: white;
+  height: 45%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.qr-scan-box {
+  margin: 0 auto;
+  background: transparent;
+  width: 90%;
+  height: 35%;
+  position: relative;
+}
+
+.qr-left-top {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  border-left: 4px solid #2196f3;
+  border-top: 4px solid #2196f3;
+}
+
+.qr-left-bottom {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  border-left: 4px solid #2196f3;
+  border-bottom: 4px solid #2196f3;
+}
+
+.qr-right-top {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  border-right: 4px solid #2196f3;
+  border-top: 4px solid #2196f3;
+}
+
+.qr-right-bottom {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  border-right: 4px solid #2196f3;
+  border-bottom: 4px solid #2196f3;
+}
+
+

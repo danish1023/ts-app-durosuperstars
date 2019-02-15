@@ -366,6 +366,20 @@ module.exports = [
         "clobbers": [
             "streamingMedia"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-qrscanner/www/www.min.js",
+        "id": "cordova-plugin-qrscanner.QRScanner",
+        "pluginId": "cordova-plugin-qrscanner",
+        "clobbers": [
+            "QRScanner"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-qrscanner/src/browser/plugin.min.js",
+        "id": "cordova-plugin-qrscanner.QRScannerProxy",
+        "pluginId": "cordova-plugin-qrscanner",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -389,7 +403,8 @@ module.exports.metadata =
     "cordova-plugin-document-viewer": "0.9.10",
     "cordova-plugin-inappbrowser": "1.7.2",
     "cordova-plugin-android-native-pdfviewer": "0.0.1",
-    "cordova-plugin-streaming-media": "2.2.0"
+    "cordova-plugin-streaming-media": "2.2.0",
+    "cordova-plugin-qrscanner": "2.5.0"
 }
 // BOTTOM OF METADATA
 });

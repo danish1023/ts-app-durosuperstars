@@ -6,6 +6,9 @@
     <feature name="Device">
         <param name="browser-package" value="Device" />
     </feature>
+    <feature name="QRScanner">
+        <param name="browser-package" value="QRScanner" />
+    </feature>
     <name>Duro Superstars</name>
     <description>
         Udaan Sitaron Ki
