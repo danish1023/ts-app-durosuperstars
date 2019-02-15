@@ -12,10 +12,6 @@
     </platform>
     <platform name="ios">
         <resource-file src="GoogleService-Info.plist" />
-        <hook type="before_build" src="plugins/cordova-plugin-qrscanner/scripts/swift-support.js" />
-        <config-file target="*-Info.plist" parent="NSCameraUsageDescription">
-        <string>The camera is used to scan QR codes.</string>
-        </config-file>
     </platform>
     <content src="index.html" />
     <access origin="*" />
@@ -39,7 +35,7 @@
     <preference name="FadeSplashScreen" value="false" />
     <preference name="Orientation" value="portrait" />
     <preference name="StatusBarBackgroundColor" value="#ba0002" />
-    <preference name="UseSwiftLanguageVersion" value="3" />
+    <preference name="UseLegacySwiftLanguageVersion" value="true" />
     <plugin name="cordova-plugin-statusbar" spec="~2.4.2" />
     <plugin name="cordova-plugin-splashscreen" spec="~5.0.2" />
     <plugin name="cordova-plugin-spinner" spec="~1.1.0" />
@@ -53,5 +49,5 @@
     <plugin name="phonegap-plugin-push" spec="~2.2.3" />
     <!-- <plugin name="phonegap-plugin-barcodescanner" spec="~8.0.1" /> -->
     <plugin name="cordova-plugin-add-swift-support" spec="~1.7.2" />
-    <plugin name="cordova-plugin-qrscanner" spec="~2.3.4" />
+    <plugin name="cordova-plugin-qrscanner" spec="~2.6.0" />
 </widget>
