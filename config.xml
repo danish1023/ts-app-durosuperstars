@@ -46,6 +46,6 @@
     <plugin name="cordova-plugin-inappbrowser" spec="~1.7.1" />
     <plugin name="cordova-plugin-streaming-media" spec="~2.2.0" />
     <plugin name="phonegap-plugin-push" spec="~2.2.3" />
-    <plugin name="phonegap-plugin-barcodescanner" spec="~8.0.1" />
-    <plugin name="cordova-plugin-qrscanner" spec="~2.4.0" />
+    <!-- <plugin name="phonegap-plugin-barcodescanner" spec="~8.0.1" /> -->
+    <plugin name="cordova-plugin-qrscanner" spec="~2.5.0" />
 </widget>
