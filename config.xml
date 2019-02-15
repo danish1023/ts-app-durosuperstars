@@ -35,6 +35,7 @@
     <preference name="FadeSplashScreen" value="false" />
     <preference name="Orientation" value="portrait" />
     <preference name="StatusBarBackgroundColor" value="#ba0002" />
+    <preference name="UseSwiftLanguageVersion" value="4" />
     <!-- <plugin name="cordova-plugin-statusbar" spec="~2.4.2" />
     <plugin name="cordova-plugin-splashscreen" spec="~5.0.2" />
     <plugin name="cordova-plugin-spinner" spec="~1.1.0" />
@@ -47,5 +48,6 @@
     <plugin name="cordova-plugin-streaming-media" spec="~2.2.0" /> -->
     <!-- <plugin name="phonegap-plugin-push" spec="~2.2.3" /> -->
     <!-- <plugin name="phonegap-plugin-barcodescanner" spec="~8.0.1" /> -->
-    <plugin name="cordova-plugin-qrscanner" spec="~2.5.0" />
+    <plugin name="cordova-plugin-add-swift-support" spec="~1.7.2" />
+    <plugin name="cordova-plugin-qrscanner" spec="~2.6.0" />
 </widget>
