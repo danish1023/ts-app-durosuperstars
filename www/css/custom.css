@@ -227,7 +227,8 @@ li.with-border{
 }
 
 .page-previous{
-  display: none !important;
+  /* display: none; */
+  visibility: hidden;
 }
 
 .qr-visible-block{
