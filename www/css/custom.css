@@ -226,10 +226,10 @@ li.with-border{
   background-color: rgba(0,0,0,.4);
 }
 
-.page-previous{
-  /* display: none; */
+/* .page-previous{
+  display: none;
   visibility: hidden;
-}
+} */
 
 .qr-visible-block{
   background: white;
