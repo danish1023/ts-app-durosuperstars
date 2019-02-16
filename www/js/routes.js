@@ -8,8 +8,26 @@ var routes = [
   // About
   {
     path: '/about/',
-    url: './pages/about.html',
+    componentUrl: './pages/about.html',
     name: 'about',
+  },
+  // Contact
+  {
+    path: '/contact/',
+    componentUrl: './pages/contact.html',
+    name: 'contact',
+  },
+  // FAQ
+  {
+    path: '/faq/',
+    componentUrl: './pages/faq.html',
+    name: 'faq',
+  },
+  // T & C
+  {
+    path: '/tnc/',
+    componentUrl: './pages/tnc.html',
+    name: 'tnc',
   },
   // Set Password
   {
@@ -39,7 +57,7 @@ var routes = [
     // },
   },
   // Signup
-   {
+  {
     path: '/sign-up/',
     componentUrl: './pages/sign-up.html',
     name: 'sign-up',
@@ -127,8 +145,8 @@ var routes = [
     name: 'contractor-list',
   },
 
-   // Contractor List Upper
-   {
+  // Contractor List Upper
+  {
     path: '/contractorlist-upper/',
     componentUrl: './pages/contractorlist-upper.html',
     name: 'contractorlist-upper',
@@ -253,7 +271,7 @@ var routes = [
     name: 'news',
   },
 
-   // Notifications
+  // Notifications
   {
     path: '/notifications/',
     componentUrl: './pages/notifications.html',

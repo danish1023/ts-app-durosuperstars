@@ -226,10 +226,9 @@ li.with-border{
   background-color: rgba(0,0,0,.4);
 }
 
-/* .page-previous{
-  display: none;
+.page-previous{
   visibility: hidden;
-} */
+}
 
 .qr-visible-block{
   background: white;
@@ -237,6 +236,7 @@ li.with-border{
   position: absolute;
   bottom: 0;
   width: 100%;
+  overflow: scroll;
 }
 
 .qr-scan-box {
