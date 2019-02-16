@@ -118,8 +118,9 @@
               contentType: 'application/json',
               beforeSend: function (xhr) {
                 xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
-                var spinnerOptions = { dimBackground: false };
-                SpinnerPlugin.activityStart(null, spinnerOptions);
+                var spinnerOptions = { dimBackground: true };
+                //SpinnerPlugin.activityStart(null, spinnerOptions);
+                SpinnerPlugin.activityStart('Please wait...', spinnerOptions);
               },
               error: function (xhr, status) {
                 alert("Error: " + status);
@@ -158,9 +159,9 @@
               },
               complete: function (xhr, status) {
                 SpinnerPlugin.activityStop();
+                QRScanner.scan(displayContents);
               }
             })
-            QRScanner.scan(displayContents);
           }
           else {
             alert('Something went wrong');
