@@ -226,9 +226,9 @@ li.with-border{
   background-color: rgba(0,0,0,.4);
 }
 
-.page-previous{
+/* .page-previous{
   visibility: hidden;
-}
+} */
 
 .qr-visible-block{
   background: white;
