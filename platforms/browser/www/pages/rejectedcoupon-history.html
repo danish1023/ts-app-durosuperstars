@@ -111,17 +111,17 @@
               $$('#rejectedcoupon-history-page .page-content .badge-status').html(`
               <div class="row text-align-center">
                 <div class="col-33 padding-top">
-                  <span class="badge color-orange font-16" style="padding: 8px 16px 8px 16px;">0</span>
+                  <span class="badge color-orange font-16" style="padding: 8px 16px 8px 16px;">${data.TotalInvalidCouponCount}</span>
                   <p class="no-margin-bottom">Invalid
                     <br/>Code</p>
                 </div>
                 <div class="col-33 padding-top">
-                  <span class="badge bg-color-red font-16" style="padding: 8px 16px 8px 16px;">0</span>
+                  <span class="badge bg-color-red font-16" style="padding: 8px 16px 8px 16px;">${data.TotalNotAllocatedSeriesCount}</span>
                   <p class="no-margin-bottom">Series
                     <br/>Inactivated</p>
                 </div>
                 <div class="col-33 padding-top">
-                  <span class="badge bg-color-green font-16" style="padding: 8px 16px 8px 16px;">0</span>
+                  <span class="badge bg-color-green font-16" style="padding: 8px 16px 8px 16px;">${data.TotalAlreadySubmittedCouponCount}</span>
                   <p class="no-margin-bottom">Coupon
                     <br/>Already Used</p>
                 </div>

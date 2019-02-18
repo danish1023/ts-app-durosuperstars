@@ -64,7 +64,7 @@ var AuthPassword = '!!Novatis!!';
 
 // Custom Functions
 function NA(input) {
-  if (input == '') {
+  if (input == '' || input == null) {
     return 'NA';
   }
   else {
@@ -72,7 +72,7 @@ function NA(input) {
   }
 }
 
-function zeroIFNULL(input){
+function zeroIFNULL(input) {
   if (input == null) {
     return '0';
   }
@@ -93,7 +93,7 @@ function checkVersion() {
     success: function (data, status, xhr) {
       if (platform == 'ios') {
         if (data.AppVersionIOS > AppVersionIOS) {
-          app.dialog.confirm('A new version of the application is available. Please update your app.', 'New Version Available', 
+          app.dialog.confirm('A new version of the application is available. Please update your app.', 'New Version Available',
             function () {
               navigator.app.exitApp();
             },
@@ -105,7 +105,7 @@ function checkVersion() {
       }
       if (platform == 'android') {
         if (data.AppVersionAndroid > AppVersionAndroid) {
-          app.dialog.confirm('A new version of the application is available. Please update your app.', 'New Version Available', 
+          app.dialog.confirm('A new version of the application is available. Please update your app.', 'New Version Available',
             function () {
               window.location.href = "https://play.google.com/store/apps/details?id=com.techstreet.durosuperstars";
               navigator.app.exitApp();
@@ -123,7 +123,7 @@ function checkVersion() {
 
 function login() {
   var DeviceId = localStorage.fcm_token;
-  if(!DeviceId){
+  if (!DeviceId) {
     DeviceId = 'null';
   }
   var UserName = $$('#login-form-1 input[name=username]').val();
@@ -220,11 +220,11 @@ function notificationClick(NotificationId, Flag) {
   })
 }
 
-function hideLoader(){
+function hideLoader() {
   $$('.preloader-parent').hide();
 }
 
-function ShowNotificationCount(){
+function ShowNotificationCount() {
   var User = localStorage.User;
   var UserData = JSON.parse(User);
   var obj = {
@@ -247,7 +247,7 @@ function ShowNotificationCount(){
   })
 }
 
-function orderStatusSubmit(){
+function orderStatusSubmit() {
   var Remarks = $$('#OrderStatusForm input[name=Remarks]').val();
   var MobileNo = $$('#OrderStatusForm input[name=MobileNo]').val();
   var SubOrderNumber = $$('#OrderStatusForm input[name=SubOrderId]').val();
@@ -270,7 +270,7 @@ function orderStatusSubmit(){
       SpinnerPlugin.activityStart(null, spinnerOptions);
     },
     error: function (xhr, status) {
-        alert("Error: " + status);
+      alert("Error: " + status);
     },
     success: function (data, status, xhr) {
       console.log(data);
@@ -278,12 +278,12 @@ function orderStatusSubmit(){
       window.plugins.toast.show(data.ErrorMessage, 'long', 'bottom');
     },
     complete: function (xhr, status) {
-        SpinnerPlugin.activityStop();
+      SpinnerPlugin.activityStop();
     }
   })
 }
 
-function orderStatus(MobileNo,SubOrderId){
+function orderStatus(MobileNo, SubOrderId) {
   var dialog = app.dialog.create({
     title: 'Order Received',
     destroyOnClose: true,
