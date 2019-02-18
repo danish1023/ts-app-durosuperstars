@@ -227,12 +227,12 @@ li.with-border{
 }
 
 .page.page-previous #MemberHomePage{
-  display: none !important;
+  display: none;
 }
 
-/* .page.page-previous#MemberDashboardPage{
-  background: transparent !important;
-} */
+.page.page-previous#MemberDashboardPage{
+  background: transparent;
+}
 
 .qr-visible-block{
   background: white;

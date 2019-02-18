@@ -104,29 +104,35 @@
         }
         var displayContents = function (err, contents) {
           if (!err) {
-            var obj = {
-              ContractorNumber: ContractorNumber,
-              CouponCode: contents,
-              UserName: UserName,
-            };
-            app.request({
-              url: BaseURL + '/ScanValidateCouponCodeAPI',
-              method: 'POST',
-              dataType: 'json',
-              data: obj,
-              contentType: 'application/json',
-              beforeSend: function (xhr) {
-                xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
-                var spinnerOptions = { dimBackground: true };
-                //SpinnerPlugin.activityStart(null, spinnerOptions);
-                SpinnerPlugin.activityStart('Please wait...', spinnerOptions);
-              },
-              error: function (xhr, status) {
-                alert("Error: " + status);
-              },
-              success: function (data, status, xhr) {
-                if (data.ErrorCode == '0') {
-                  var statusHTML = `
+            var prev_qr = localStorage.qr;
+            if (prev_qr && prev_qr == contents) {
+              //do nothing
+              alert('prev qr code');
+            }
+            else {
+              var obj = {
+                ContractorNumber: ContractorNumber,
+                CouponCode: contents,
+                UserName: UserName,
+              };
+              app.request({
+                url: BaseURL + '/ScanValidateCouponCodeAPI',
+                method: 'POST',
+                dataType: 'json',
+                data: obj,
+                contentType: 'application/json',
+                beforeSend: function (xhr) {
+                  xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+                  var spinnerOptions = { dimBackground: true };
+                  //SpinnerPlugin.activityStart(null, spinnerOptions);
+                  SpinnerPlugin.activityStart('Please wait...', spinnerOptions);
+                },
+                error: function (xhr, status) {
+                  alert("Error: " + status);
+                },
+                success: function (data, status, xhr) {
+                  if (data.ErrorCode == '0') {
+                    var statusHTML = `
                     <div class="col-100 margin-bottom" style="overflow-x: scroll;">
                     <h2 style="border:1px solid #ccc;width:fit-content;margin:0 auto;padding:0 8px 0 8px">${contents}</h2>
                     </div>
@@ -136,12 +142,12 @@
                         <div class="chip-label">${data.ErrorMessage}</div>
                       </div>
                     </div>`;
-                  $$('#scan-code-page .coupon-status').html(statusHTML);
-                  var coupon_submitted = $$('#scan-code-page .coupon-submitted').text();
-                  $$('#scan-code-page .coupon-submitted').text(parseInt(coupon_submitted) + 1);
-                }
-                else {
-                  var statusHTML = `
+                    $$('#scan-code-page .coupon-status').html(statusHTML);
+                    var coupon_submitted = $$('#scan-code-page .coupon-submitted').text();
+                    $$('#scan-code-page .coupon-submitted').text(parseInt(coupon_submitted) + 1);
+                  }
+                  else {
+                    var statusHTML = `
                     <div class="col-100 margin-bottom" style="overflow-x: scroll;">
                     <h2 style="border:1px solid #ccc;width:fit-content;margin:0 auto;padding:0 8px 0 8px">${contents}</h2>
                     </div>
@@ -151,16 +157,18 @@
                         <div class="chip-label">${data.ErrorMessage}</div>
                       </div>
                     </div>`;
-                  $$('#scan-code-page .coupon-status').html(statusHTML);
-                  var coupon_rejected = $$('#scan-code-page .coupon-rejected').text();
-                  $$('#scan-code-page .coupon-rejected').text(parseInt(coupon_rejected) + 1);
+                    $$('#scan-code-page .coupon-status').html(statusHTML);
+                    var coupon_rejected = $$('#scan-code-page .coupon-rejected').text();
+                    $$('#scan-code-page .coupon-rejected').text(parseInt(coupon_rejected) + 1);
+                  }
+                },
+                complete: function (xhr, status) {
+                  localStorage.setItem("qr", contents);
+                  SpinnerPlugin.activityStop();
+                  QRScanner.scan(displayContents);
                 }
-              },
-              complete: function (xhr, status) {
-                SpinnerPlugin.activityStop();
-                QRScanner.scan(displayContents);
-              }
-            })
+              })
+            }
           }
         };
         QRScanner.scan(displayContents);
@@ -169,7 +177,6 @@
         });
       },
       pageInit: function () {
-        //$$('.page-current').css('display', 'none');
         $$('#MemberHomePage').css('display', 'none');
         $$('#MemberDashboardPage').css('background', 'transparent');
         var UserData = JSON.parse(localStorage.User);
@@ -183,29 +190,35 @@
         }
         var displayContents = function (err, contents) {
           if (!err) {
-            var obj = {
-              ContractorNumber: ContractorNumber,
-              CouponCode: contents,
-              UserName: UserName,
-            };
-            app.request({
-              url: BaseURL + '/ScanValidateCouponCodeAPI',
-              method: 'POST',
-              dataType: 'json',
-              data: obj,
-              contentType: 'application/json',
-              beforeSend: function (xhr) {
-                xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
-                var spinnerOptions = { dimBackground: true };
-                //SpinnerPlugin.activityStart(null, spinnerOptions);
-                SpinnerPlugin.activityStart('Please wait...', spinnerOptions);
-              },
-              error: function (xhr, status) {
-                alert("Error: " + status);
-              },
-              success: function (data, status, xhr) {
-                if (data.ErrorCode == '0') {
-                  var statusHTML = `
+            var prev_qr = localStorage.qr;
+            if (prev_qr && prev_qr == contents) {
+              //do nothing
+              alert('prev qr code');
+            }
+            else {
+              var obj = {
+                ContractorNumber: ContractorNumber,
+                CouponCode: contents,
+                UserName: UserName,
+              };
+              app.request({
+                url: BaseURL + '/ScanValidateCouponCodeAPI',
+                method: 'POST',
+                dataType: 'json',
+                data: obj,
+                contentType: 'application/json',
+                beforeSend: function (xhr) {
+                  xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+                  var spinnerOptions = { dimBackground: true };
+                  //SpinnerPlugin.activityStart(null, spinnerOptions);
+                  SpinnerPlugin.activityStart('Please wait...', spinnerOptions);
+                },
+                error: function (xhr, status) {
+                  alert("Error: " + status);
+                },
+                success: function (data, status, xhr) {
+                  if (data.ErrorCode == '0') {
+                    var statusHTML = `
                     <div class="col-100 margin-bottom" style="overflow-x: scroll;">
                     <h2 style="border:1px solid #ccc;width:fit-content;margin:0 auto;padding:0 8px 0 8px">${contents}</h2>
                     </div>
@@ -215,12 +228,12 @@
                         <div class="chip-label">${data.ErrorMessage}</div>
                       </div>
                     </div>`;
-                  $$('#scan-code-page .coupon-status').html(statusHTML);
-                  var coupon_submitted = $$('#scan-code-page .coupon-submitted').text();
-                  $$('#scan-code-page .coupon-submitted').text(parseInt(coupon_submitted) + 1);
-                }
-                else {
-                  var statusHTML = `
+                    $$('#scan-code-page .coupon-status').html(statusHTML);
+                    var coupon_submitted = $$('#scan-code-page .coupon-submitted').text();
+                    $$('#scan-code-page .coupon-submitted').text(parseInt(coupon_submitted) + 1);
+                  }
+                  else {
+                    var statusHTML = `
                     <div class="col-100 margin-bottom" style="overflow-x: scroll;">
                     <h2 style="border:1px solid #ccc;width:fit-content;margin:0 auto;padding:0 8px 0 8px">${contents}</h2>
                     </div>
@@ -230,16 +243,18 @@
                         <div class="chip-label">${data.ErrorMessage}</div>
                       </div>
                     </div>`;
-                  $$('#scan-code-page .coupon-status').html(statusHTML);
-                  var coupon_rejected = $$('#scan-code-page .coupon-rejected').text();
-                  $$('#scan-code-page .coupon-rejected').text(parseInt(coupon_rejected) + 1);
+                    $$('#scan-code-page .coupon-status').html(statusHTML);
+                    var coupon_rejected = $$('#scan-code-page .coupon-rejected').text();
+                    $$('#scan-code-page .coupon-rejected').text(parseInt(coupon_rejected) + 1);
+                  }
+                },
+                complete: function (xhr, status) {
+                  localStorage.setItem("qr", contents);
+                  SpinnerPlugin.activityStop();
+                  QRScanner.scan(displayContents);
                 }
-              },
-              complete: function (xhr, status) {
-                SpinnerPlugin.activityStop();
-                QRScanner.scan(displayContents);
-              }
-            })
+              })
+            }
           }
         };
         QRScanner.scan(displayContents);
@@ -261,8 +276,7 @@
         //console.log(this.$route.params.ContractorContactNo);
       },
       pageBeforeout: function () {
-        $$('#MemberHomePage').css('display', 'block');
-        $$('#MemberDashboardPage').css('background', '#ffffff');
+        $$('.page-previous').css('background', '#ffffff');
         QRScanner.destroy(function (status) {
           console.log(status);
         });
