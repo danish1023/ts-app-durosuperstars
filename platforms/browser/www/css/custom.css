@@ -226,6 +226,18 @@ li.with-border{
   background-color: rgba(0,0,0,.4);
 }
 
+.page.page-previous #MemberHomePage{
+  display: none !important;
+}
+
+.page.page-previous#MemberDashboardPage{
+  background: transparent !important;
+}
+
+.page.page-current#scan-code-page{
+  background: transparent !important;
+}
+
 /* .page.page-previous#scan-code-page{
   background: #fff !important;
 }
