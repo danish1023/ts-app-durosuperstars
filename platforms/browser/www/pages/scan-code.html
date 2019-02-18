@@ -171,6 +171,7 @@
       },
       pageInit: function () {
         //$$('.page-current').css('display', 'none');
+        $$('#MemberHomePage').css('display', 'none');
         $$('#MemberDashboardPage').css('background', 'transparent');
         var UserData = JSON.parse(localStorage.User);
         if (this.$route.params.ContractorContactNo) {
@@ -262,6 +263,7 @@
       },
       pageBeforeout: function () {
         //$$('.page-previous').css('display', 'block');
+        $$('#MemberHomePage').css('display', 'block');
         $$('#MemberDashboardPage').css('background', '#ffffff');
         QRScanner.destroy(function (status) {
           console.log(status);
