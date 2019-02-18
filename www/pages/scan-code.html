@@ -196,9 +196,11 @@
           if (!err) {
             var prev_qr = localStorage.qr;
             if (prev_qr && prev_qr == contents) {
+              alert('hi');
               QRScanner.scan(displayContents);
             }
             else {
+              alert('hello');
               var obj = {
                 ContractorNumber: ContractorNumber,
                 CouponCode: contents,
