@@ -246,9 +246,10 @@ li.with-border{
 .qr-scan-box {
   margin: 0 auto;
   background: transparent;
-  width: 60%;
+  width: 55%;
   height: 30%;
   position: relative;
+  margin-top: 15%;
 }
 
 .qr-left-top {
