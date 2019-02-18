@@ -227,11 +227,11 @@ li.with-border{
 }
 
 .page.page-previous#MemberDashboardPage{
-  display: none !important;
+  background: transparent !important;
 }
 
 .page.page-current#MemberDashboardPage{
-  display: block !important;
+  background: #fff !important;
 }
 
 .page.page-previous#scan-code-page{
