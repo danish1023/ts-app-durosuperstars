@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="page" id="MemberDashboardPage">
     <div class="navbar">
       <div class="navbar-inner sliding bg-color-red color-theme-white">
         <div class="left">
@@ -10,124 +10,153 @@
         <div class="title color-white">Dashboard</div>
         <div class="right">
           <a href="/notifications/" class="link icon-only">
-            <i class="icon material-icons">notifications<span class="badge NotificationCount color-blue">0</span></i>
+            <i class="icon material-icons">notifications
+              <span class="badge NotificationCount color-blue">0</span>
+            </i>
           </a>
         </div>
       </div>
     </div>
     <div class="page-content" id="MemberHomePage">
-      <h2 style="margin:10px 0 10px 0" class="text-align-center Name"></h3>
-      <div class="card no-margin" style="box-shadow:none;">
-        <div class="card-content card-content-padding bg-color-red">
-          <div class="row text-align-center color-black">
-            <div class="col padding TierColor" style="border: 2px solid #fff">
-              <h4 class="no-margin color-TierColor">TIER</h4>
-              <p class="TierName no-margin color-TierColor"></p>
-              <!-- <div class="chip TierColor">
+      <h2 style="margin:10px 0 10px 0" class="text-align-center Name">
+        </h3>
+        <div class="card no-margin" style="box-shadow:none;">
+          <div class="card-content card-content-padding bg-color-red">
+            <div class="row text-align-center color-black">
+              <div class="col padding TierColor" style="border: 2px solid #fff">
+                <h4 class="no-margin color-TierColor">TIER</h4>
+                <p class="TierName no-margin color-TierColor"></p>
+                <!-- <div class="chip TierColor">
                 <div class="chip-label color-white TierName"></div>
               </div> -->
-            </div>
-            <div class="col padding TierColor" style="border: 2px solid #fff">
-              <h4 class="no-margin color-TierColor">POINT BALANCE</h4>
-              <p class="PointBalance no-margin color-TierColor"></p>
-              <!-- <div class="chip TierColor">
+              </div>
+              <div class="col padding TierColor" style="border: 2px solid #fff">
+                <h4 class="no-margin color-TierColor">POINT BALANCE</h4>
+                <p class="PointBalance no-margin color-TierColor"></p>
+                <!-- <div class="chip TierColor">
                 <div class="chip-label color-white PointBalance"></div>
               </div> -->
+              </div>
             </div>
-          </div>
-          <div class="row padding-top">
-            <div class="col color-white ExpiryDetails text-align-center">
+            <div class="row padding-top">
+              <div class="col color-white ExpiryDetails text-align-center">
 
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="block dashboard-menu-block text-align-center no-margin scrollbar-visible" style="padding: 0 8px 0 8px">
-        <div class="row dashboard-bottom-border">
-          <div class="col padding-top padding-bottom dashboard-right-border">
-            <a href="/program-booklet/" class="color-black">
-              <div><img src="img/info.svg" width="50" /></div>
-              <div>Program Information<br/>Booklet</div>
-            </a>
+        <div class="block dashboard-menu-block text-align-center no-margin scrollbar-visible" style="padding: 0 8px 0 8px">
+          <div class="row dashboard-bottom-border">
+            <div class="col padding-top padding-bottom dashboard-right-border">
+              <a href="/program-booklet/" class="color-black">
+                <div>
+                  <img src="img/info.svg" width="50" />
+                </div>
+                <div>Program Information
+                  <br/>Booklet</div>
+              </a>
+            </div>
+            <div class="col padding-top padding-bottom">
+              <a href="/scan-code/" class="color-black">
+                <div>
+                  <img src="img/barcode.svg" width="50" />
+                </div>
+                <div>Scan/Enter
+                  <br/>Coupon Code</div>
+              </a>
+            </div>
           </div>
-          <div class="col padding-top padding-bottom">
-            <a href="/scan-code/" class="color-black">
-              <div><img src="img/barcode.svg" width="50" /></div>
-              <div>Scan/Enter<br/>Coupon Code</div>
-            </a>
+          <div class="row dashboard-bottom-border">
+            <div class="col padding-top padding-bottom dashboard-right-border">
+              <a href="/campaign/" class="color-black">
+                <div>
+                  <img src="img/campaign.svg" width="50" />
+                </div>
+                <div>Campaign</div>
+              </a>
+            </div>
+            <div class="col padding-top padding-bottom">
+              <a href="/account-statement/" class="color-black">
+                <div>
+                  <img src="img/statement.svg" width="50" />
+                </div>
+                <div>Account Statement</div>
+              </a>
+            </div>
+          </div>
+          <div class="row dashboard-bottom-border">
+            <div class="col padding-top padding-bottom dashboard-right-border">
+              <a href="/query/" class="color-black">
+                <div>
+                  <img src="img/query.svg" width="50" />
+                </div>
+                <div>Query / Complaints</div>
+              </a>
+            </div>
+            <div class="col padding-top padding-bottom">
+              <a href="/executive-appointment/" class="color-black">
+                <div>
+                  <img src="img/appointment.svg" width="50" />
+                </div>
+                <div>Executive Appointment</div>
+              </a>
+            </div>
+          </div>
+          <div class="row dashboard-bottom-border">
+            <div class="col padding-top padding-bottom dashboard-right-border">
+              <a href="/reward-catalogue/" class="color-black">
+                <div>
+                  <img src="img/reward.svg" width="50" />
+                </div>
+                <div>Reward Catalogue</div>
+              </a>
+            </div>
+            <div class="col padding-top padding-bottom">
+              <a href="/news/" class="color-black">
+                <div>
+                  <img src="img/news.svg" width="50" />
+                </div>
+                <div>News & Updates</div>
+              </a>
+            </div>
+          </div>
+          <div class="row dashboard-bottom-border">
+            <div class="col padding-top padding-bottom dashboard-right-border">
+              <a href="/user-guide/" class="color-black">
+                <div>
+                  <img src="img/guide.svg" width="50" />
+                </div>
+                <div>User Guide</div>
+              </a>
+            </div>
+            <div class="col padding-top padding-bottom">
+              <a href="/calculator/" class="color-black">
+                <div>
+                  <img src="img/calculator.svg" width="50" />
+                </div>
+                <div>Coupon Calculator</div>
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col padding-top padding-bottom dashboard-right-border">
+              <a href="/training-videos/" class="color-black">
+                <div>
+                  <img src="img/video.svg" width="50" />
+                </div>
+                <div>Video</div>
+              </a>
+            </div>
+            <div class="col padding-top padding-bottom">
+              <a href="/company-profile/" class="color-black">
+                <div>
+                  <img src="img/company.svg" width="50" />
+                </div>
+                <div>Company Profile</div>
+              </a>
+            </div>
           </div>
         </div>
-        <div class="row dashboard-bottom-border">
-          <div class="col padding-top padding-bottom dashboard-right-border">
-            <a href="/campaign/" class="color-black">
-              <div><img src="img/campaign.svg" width="50" /></div>
-              <div>Campaign</div>
-            </a>
-          </div>
-          <div class="col padding-top padding-bottom">
-            <a href="/account-statement/" class="color-black">
-              <div><img src="img/statement.svg" width="50" /></div>
-              <div>Account Statement</div>
-            </a>
-          </div>
-        </div>
-        <div class="row dashboard-bottom-border">
-          <div class="col padding-top padding-bottom dashboard-right-border">
-            <a href="/query/" class="color-black">
-              <div><img src="img/query.svg" width="50" /></div>
-              <div>Query / Complaints</div>
-            </a>
-          </div>
-          <div class="col padding-top padding-bottom">
-            <a href="/executive-appointment/" class="color-black">
-              <div><img src="img/appointment.svg" width="50" /></div>
-              <div>Executive Appointment</div>
-            </a>
-          </div>
-        </div>
-        <div class="row dashboard-bottom-border">
-          <div class="col padding-top padding-bottom dashboard-right-border">
-            <a href="/reward-catalogue/" class="color-black">
-              <div><img src="img/reward.svg" width="50" /></div>
-              <div>Reward Catalogue</div>
-            </a>
-          </div>
-          <div class="col padding-top padding-bottom">
-            <a href="/news/" class="color-black">
-              <div><img src="img/news.svg" width="50" /></div>
-              <div>News & Updates</div>
-            </a>
-          </div>
-        </div>
-        <div class="row dashboard-bottom-border">
-          <div class="col padding-top padding-bottom dashboard-right-border">
-            <a href="/user-guide/" class="color-black">
-              <div><img src="img/guide.svg" width="50" /></div>
-              <div>User Guide</div>
-            </a>
-          </div>
-          <div class="col padding-top padding-bottom">
-            <a href="/calculator/" class="color-black">
-              <div><img src="img/calculator.svg" width="50" /></div>
-              <div>Coupon Calculator</div>
-            </a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col padding-top padding-bottom dashboard-right-border">
-            <a href="/training-videos/" class="color-black">
-              <div><img src="img/video.svg" width="50" /></div>
-              <div>Video</div>
-            </a>
-          </div>
-          <div class="col padding-top padding-bottom">
-            <a href="/company-profile/" class="color-black">
-              <div><img src="img/company.svg" width="50" /></div>
-              <div>Company Profile</div>
-            </a>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -151,7 +180,7 @@
       }
     },
     on: {
-      pageInit: function(e, page){
+      pageInit: function (e, page) {
         ShowNotificationCount();
         var User = localStorage.User;
         var UserData = JSON.parse(User);
@@ -180,10 +209,10 @@
               var TierName = DashboardDetail.TierName;
               var TierColor = DashboardDetail.TierColor;
               var ExpiryDetails = DashboardDetail.ExpiryDetails;
-              if(TierName == 'RED' || TierName == 'Red'|| TierName == 'red'|| TierName == 'TITANIUM'|| TierName == 'Titanium'|| TierName == 'titanium'){
+              if (TierName == 'RED' || TierName == 'Red' || TierName == 'red' || TierName == 'TITANIUM' || TierName == 'Titanium' || TierName == 'titanium') {
                 $$('#MemberHomePage .color-TierColor').css("color", '#ffffff');
               }
-              else{
+              else {
                 $$('#MemberHomePage .color-TierColor').css("color", '#000000');
               }
               $$('#MemberHomePage .Name').text(Name);
