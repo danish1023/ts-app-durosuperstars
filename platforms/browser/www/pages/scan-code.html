@@ -254,13 +254,9 @@
               })
             }
           }
-          else {
-            alert('b');
-          }
         };
-        QRScanner.scan(displayContents);
         QRScanner.show(function (status) {
-          alert('a');
+          QRScanner.scan(displayContents);
         });
 
         ShowNotificationCount();
