@@ -261,16 +261,10 @@
       },
       pageBeforeout: function () {
         //$$('.page-previous').css('display', 'block');
-        QRScanner.hide(function (status) {
+        QRScanner.destroy(function (status) {
           console.log(status);
         });
       },
-      pageBeforeremove: function () {
-        //$$('.page-previous').css('display', 'block');
-        QRScanner.hide(function (status) {
-          console.log(status);
-        });
-      }
     },
     methods: {
       submitCode: function () {
