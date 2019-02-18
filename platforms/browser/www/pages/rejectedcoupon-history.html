@@ -175,7 +175,7 @@
     },
     data: function () {
       return {
-        FromDate: moment().format('DD-MMM-Y'),
+        FromDate: moment().startOf('month').format('DD-MMM-Y'),
         ToDate: moment().format('DD-MMM-Y')
       }
     },

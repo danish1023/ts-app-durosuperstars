@@ -10,7 +10,9 @@
         <div class="title color-white">Account Statement</div>
         <div class="right">
           <a href="/notifications/" class="link icon-only">
-            <i class="icon material-icons">notifications<span class="badge NotificationCount color-blue">0</span></i>
+            <i class="icon material-icons">notifications
+              <span class="badge NotificationCount color-blue">0</span>
+            </i>
           </a>
         </div>
       </div>
@@ -42,7 +44,7 @@
       </div>
 
       <div class="data-table">
-        
+
       </div>
 
     </div>
@@ -62,7 +64,7 @@
           var ContractorMobileNo = '';
         }
 
-        if(UserType == 'U'){
+        if (UserType == 'U') {
           $$('#account-statement-page form ul').prepend(`<li class="item-content item-input">
               <div class="item-inner">
                 <div class="item-title item-floating-label">Contractor Number</div>
@@ -73,7 +75,7 @@
           </li>`);
           //$$('#account-statement-form input[name=MobileNo]').focus();
         }
-        
+
         var FromDateCalendar = app.calendar.create({
           inputEl: '#account-statement-page input[name=FromDate]',
           openIn: 'customModal',
@@ -97,7 +99,7 @@
         var ToDate = $$('#account-statement-form input[name=ToDate]').val();
         var UserType = UserData.UserType;
         var MobileNo = UserData.MobileNo;
-        if(UserType == 'U'){
+        if (UserType == 'U') {
           MobileNo = $$('#account-statement-form input[name=MobileNo]').val();
         }
         var obj = {
@@ -145,7 +147,7 @@
                     <td class="label-cell">${RedeemedPoints}</td>
                     <td class="label-cell">${TotalAvailablePointBalance}</td>
                   </tr>`;
-                  tbody = tbody+tbody_el;
+                  tbody = tbody + tbody_el;
                 }
                 var table = `<table>
                   <thead>
@@ -179,7 +181,7 @@
     },
     data: function () {
       return {
-        FromDate: moment().format('DD-MMM-Y'),
+        FromDate: moment().startOf('month').format('DD-MMM-Y'),
         ToDate: moment().format('DD-MMM-Y')
       }
     },
