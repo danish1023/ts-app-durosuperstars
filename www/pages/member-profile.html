@@ -308,6 +308,18 @@
         if (Address != Prev_Address && MobileNo != Prev_MobileNo) {
           var Flag = 'O';
         }
+        else if (State != Prev_State && MobileNo != Prev_MobileNo) {
+          var Flag = 'O';
+        }
+        else if (City != Prev_City && MobileNo != Prev_MobileNo) {
+          var Flag = 'O';
+        }
+        else if (State != Prev_State) {
+          var Flag = 'A';
+        }
+        else if (City != Prev_City) {
+          var Flag = 'A';
+        }
         else if (Address != Prev_Address) {
           var Flag = 'A';
         }
@@ -328,6 +340,8 @@
           OTP: '',
         };
 
+        console.log(obj);
+
         app.request({
           url: BaseURL + '/UpdateRequestProfileAPI',
           method: 'POST',
@@ -343,6 +357,7 @@
             alert("Error: " + status);
           },
           success: function (data, status, xhr) {
+            console.log(data);
             if (data.ErrorCode == '0') {
               window.plugins.toast.show(data.ErrorMessage, 'long', 'bottom');
               app.views.main.router.back('/dashboard/', {
