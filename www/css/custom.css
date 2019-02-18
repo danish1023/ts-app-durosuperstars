@@ -226,7 +226,7 @@ li.with-border{
   background-color: rgba(0,0,0,.4);
 }
 
-.page-previous #MemberDashboardPage{
+.page.page-previous#MemberDashboardPage{
   display: none !important;
 }
 
