@@ -230,19 +230,7 @@ li.with-border{
   display: none !important;
 }
 
-.page.page-previous#MemberDashboardPage{
-  background: transparent !important;
-}
-
-.page.page-current#scan-code-page{
-  background: transparent !important;
-}
-
-/* .page.page-previous#scan-code-page{
-  background: #fff !important;
-}
-
-.page.page-current#scan-code-page{
+/* .page.page-previous#MemberDashboardPage{
   background: transparent !important;
 } */
 
