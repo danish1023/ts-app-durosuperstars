@@ -1,5 +1,5 @@
 <template>
-  <div class="page" id="scan-code-page">
+  <div class="page" id="scan-code-page" style="background: transparent">
     <div class="navbar">
       <div class="navbar-inner sliding bg-color-red color-theme-white">
         <div class="left">
@@ -93,7 +93,8 @@
     },
     on: {
       pageReinit: function () {
-        //$$('.page.page-previous#MemberDashboardPage').css('display', 'none');
+        $$('#MemberHomePage').css('display', 'none');
+        $$('#MemberDashboardPage').css('background', 'transparent');
         var UserData = JSON.parse(localStorage.User);
         if (this.$route.params.ContractorContactNo) {
           var ContractorNumber = this.$route.params.ContractorContactNo;
