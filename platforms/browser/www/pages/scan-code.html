@@ -106,8 +106,7 @@
           if (!err) {
             var prev_qr = localStorage.qr;
             if (prev_qr && prev_qr == contents) {
-              //do nothing
-              alert('prev qr code');
+              QRScanner.scan(displayContents);
             }
             else {
               var obj = {
@@ -192,8 +191,7 @@
           if (!err) {
             var prev_qr = localStorage.qr;
             if (prev_qr && prev_qr == contents) {
-              //do nothing
-              alert('prev qr code');
+              QRScanner.scan(displayContents);
             }
             else {
               var obj = {
@@ -276,6 +274,7 @@
         //console.log(this.$route.params.ContractorContactNo);
       },
       pageBeforeout: function () {
+        $$('#MemberHomePage').css('display', 'block');
         $$('.page-previous').css('background', '#ffffff');
         QRScanner.destroy(function (status) {
           console.log(status);
