@@ -1,5 +1,5 @@
 <template>
-  <div class="page" id="scan-code-page" style="background: transparent">
+  <div class="page" id="scan-code-page">
     <div class="navbar">
       <div class="navbar-inner sliding bg-color-red color-theme-white">
         <div class="left">
@@ -92,8 +92,11 @@
       }
     },
     on: {
+      pageReinit: function () {
+        //$$('.page.page-previous#MemberDashboardPage').css('display', 'none');
+      },
       pageInit: function () {
-        $$('.page-current').css('display', 'none');
+        //$$('.page-current').css('display', 'none');
         var UserData = JSON.parse(localStorage.User);
         if (this.$route.params.ContractorContactNo) {
           var ContractorNumber = this.$route.params.ContractorContactNo;
@@ -163,9 +166,6 @@
               }
             })
           }
-          else {
-            alert('Something went wrong');
-          }
         };
         QRScanner.scan(displayContents);
         QRScanner.show(function (status) {
@@ -186,7 +186,7 @@
         //console.log(this.$route.params.ContractorContactNo);
       },
       pageBeforeOut: function () {
-        $$('.page-previous').css('display', 'block');
+        //$$('.page-previous').css('display', 'block');
         QRScanner.hide(function (status) {
           console.log(status);
         });
