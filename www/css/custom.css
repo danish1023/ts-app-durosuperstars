@@ -226,13 +226,13 @@ li.with-border{
   background-color: rgba(0,0,0,.4);
 }
 
-.page.page-previous#MemberDashboardPage{
+/* .page.page-previous#MemberDashboardPage{
   display: none !important;
 }
 
 .page.page-current#MemberDashboardPage{
   display: block !important;
-}
+} */
 
 .page.page-previous#scan-code-page{
   background: #fff !important;
