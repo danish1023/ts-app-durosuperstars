@@ -59,8 +59,8 @@ var mainView = app.views.create('.view-main', {
 });
 
 // Basic Authorization
-var AuthUsername = 'Novatis';
-var AuthPassword = '!!Novatis!!';
+var AuthUsername = 'lakshya';
+var AuthPassword = 'lakshya@001';
 
 // Custom Functions
 function NA(input) {
