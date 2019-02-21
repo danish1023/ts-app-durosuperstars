@@ -40,7 +40,7 @@ var app = new Framework7({
     xhrCache: false,
   },
   dialog: {
-    title: 'Duro Superstars',
+    title: 'DURO Superstars',
   },
   routes: routes,
 });
