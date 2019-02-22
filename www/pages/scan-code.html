@@ -26,7 +26,7 @@
         <span class="qr-right-bottom"></span>
       </div>
       <div class="block no-margin no-padding qr-visible-block">
-        <video autoplay></video>
+        <video id="preview"></video>
         <h3 style="margin:16px 0 0" class="text-align-center">OR</h3>
         <p class="text-align-center no-margin">Enter coupon code below</p>
         <form class="list show-hairlines-ios no-hairlines text-align-left no-margin" id="scan-code-form">
@@ -179,15 +179,19 @@
       pageInit: function () {
 
         //Test
-        var qr = QCodeDecoder();
-        var video = document.querySelector('video');
-        qr.decodeFromCamera(video, function (err,result) {
-          if (err){
-            alert('Error:'+err);
+        
+        let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+        scanner.addListener('scan', function (content) {
+          console.log(content);
+        });
+        Instascan.Camera.getCameras().then(function (cameras) {
+          if (cameras.length > 0) {
+            scanner.start(cameras[0]);
+          } else {
+            alert('No cameras found.');
           }
-          else{
-            alert(result);
-          }
+        }).catch(function (e) {
+          alert(e);
         });
 
 
