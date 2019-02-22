@@ -16,7 +16,7 @@
             <string>To scan barcodes</string>
         </edit-config>
         <plugin name="phonegap-plugin-barcodescanner" spec="~8.0.1" />
-        <preference name="swift-version" value="3.0" />
+        <preference name="swift-version" value="4.0" />
     </platform>
     <content src="index.html" />
     <access origin="*" />
