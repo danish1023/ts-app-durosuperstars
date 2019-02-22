@@ -319,3 +319,23 @@ function orderStatus(MobileNo, SubOrderId) {
     `,
   }).open();
 }
+
+function checkLengthContractor(){
+  var MobileNo = $$('.searchbar-contractor input[type=search]').val();
+  if (MobileNo.length == 10) {
+    app.router.navigate({
+      name: 'contractor-details',
+      params: { 'ContractorMobileNo': MobileNo },
+    });
+  }
+}
+
+function checkLengthDealer(){
+  var MobileNo = $$('.searchbar-dealer input[type=search]').val();
+  if (MobileNo.length == 10) {
+    app.router.navigate({
+      name: 'dealersearch-details',
+      params: { 'DealerMobileNo': MobileNo },
+    });
+  }
+}

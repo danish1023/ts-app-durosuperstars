@@ -61,8 +61,30 @@
           },
           success: function (data, status, xhr) {
             if (data.ErrorCode == '0') {
+              var contractor_search_input = '';
+              var dealer_search_input = '';
               if (data.UserTypeCode == 'S') {
                 var contractor_list_btn = '<a style="width:125px" class="button button-outline button-round margin" href="/contractor-list/">View Details</a>';
+                contractor_search_input = `<form class="searchbar searchbar-contractor searchbar-init" style="border: 1px solid #f44336">
+                  <div class="searchbar-inner">
+                    <div class="searchbar-input-wrap">
+                      <input onkeydown="checkLengthContractor()" onkeyup="checkLengthContractor()" type="search" placeholder="Mobile Number">
+                      <i class="searchbar-icon"></i>
+                      <span class="input-clear-button"></span>
+                    </div>
+                    <span class="searchbar-disable-button">Cancel</span>
+                  </div>
+                </form>`;
+                dealer_search_input = `<form class="searchbar searchbar-dealer searchbar-init" style="border: 1px solid #f44336">
+                  <div class="searchbar-inner">
+                    <div class="searchbar-input-wrap">
+                      <input onkeydown="checkLengthDealer()" onkeyup="checkLengthDealer()" type="search" placeholder="Mobile Number">
+                      <i class="searchbar-icon"></i>
+                      <span class="input-clear-button"></span>
+                    </div>
+                    <span class="searchbar-disable-button">Cancel</span>
+                  </div>
+                </form>`;
               }
               else {
                 var contractor_list_btn = '<a style="width:125px" class="button button-outline button-round margin" href="/contractorlist-upper/">View Details</a>';
@@ -128,6 +150,7 @@
                   </ul>
                 </div>
                 ${contractor_list_btn}
+                ${contractor_search_input}
               </div>`;
               var html2 = `<div class="card" style="box-shadow:none;">
                 <div class="card-content card-content-padding text-align-center" style="background: mistyrose;">
@@ -196,6 +219,7 @@
                   </ul>
                 </div>
                 <a style="width:125px" class="button button-outline button-round margin" href="/dealer-list/">View Details</a>
+                ${dealer_search_input}
               </div>`;
               $$('#UserHomePage #tab-1').html(html1);
               $$('#UserHomePage #tab-2').html(html2);
@@ -208,6 +232,9 @@
             SpinnerPlugin.activityStop();
           }
         })
+      },
+      pageReinit: function(e,page){
+        $$('input[type=search]').val('');
       }
     }
   }
