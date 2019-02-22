@@ -90,12 +90,12 @@
             }
             else if (data.ErrorCode == '-1022') {
               app.dialog.alert(data.ErrorMessage, function () {
-              app.router.navigate({
-              name: 'set-password',
-              params: { 'UserName': UserName },
-            });
-          });
-        }
+                app.router.navigate({
+                  name: 'set-password',
+                  params: { 'UserName': UserName },
+                });
+              });
+            }
             else {
               app.dialog.alert(data.ErrorMessage);
             }

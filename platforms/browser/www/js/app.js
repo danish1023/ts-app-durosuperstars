@@ -31,7 +31,7 @@ var app = new Framework7({
   id: 'com.techstreet.durosuperstars',
   root: '#app',
   theme: 'md',
-  name: 'Duro Superstars',
+  name: 'DURO Superstars',
   touch: {
     materialRipple: false
   },
@@ -40,7 +40,7 @@ var app = new Framework7({
     xhrCache: false,
   },
   dialog: {
-    title: 'Duro Superstars',
+    title: 'DURO Superstars',
   },
   routes: routes,
 });
