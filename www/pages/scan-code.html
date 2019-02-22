@@ -26,7 +26,6 @@
         <span class="qr-right-bottom"></span>
       </div>
       <div class="block no-margin no-padding qr-visible-block">
-        <video id="preview"></video>
         <h3 style="margin:16px 0 0" class="text-align-center">OR</h3>
         <p class="text-align-center no-margin">Enter coupon code below</p>
         <form class="list show-hairlines-ios no-hairlines text-align-left no-margin" id="scan-code-form">
@@ -177,26 +176,6 @@
         });
       },
       pageInit: function () {
-
-        //Test
-        
-        let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-        scanner.addListener('scan', function (content) {
-          alert(content);
-        });
-        Instascan.Camera.getCameras().then(function (cameras) {
-          if (cameras.length > 0) {
-            scanner.start(cameras[0]);
-          } else {
-            alert('No cameras found.');
-          }
-        }).catch(function (e) {
-          alert(e);
-        });
-
-
-
-
         $$('#MemberHomePage').css('display', 'none');
         $$('#MemberDashboardPage').css('background', 'transparent');
         var UserData = JSON.parse(localStorage.User);
@@ -276,9 +255,9 @@
             }
           }
         };
-        // QRScanner.show(function (status) {
-        //   QRScanner.scan(displayContents);
-        // });
+        QRScanner.show(function (status) {
+          QRScanner.scan(displayContents);
+        });
 
         ShowNotificationCount();
         if (this.$route.params.ContractorContactNo) {
