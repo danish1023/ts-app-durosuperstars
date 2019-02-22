@@ -9,9 +9,14 @@
     </author>
     <platform name="android">
         <resource-file src="google-services.json" target="app/google-services.json" />
+        <plugin name="cordova-plugin-qrscanner" spec="~2.6.0" />
     </platform>
     <platform name="ios">
         <resource-file src="GoogleService-Info.plist" />
+        <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
+            <string>To scan barcodes</string>
+        </edit-config>
+        <plugin name="phonegap-plugin-barcodescanner" spec="~8.0.1" />
     </platform>
     <content src="index.html" />
     <access origin="*" />
@@ -26,9 +31,6 @@
     <icon src="icon-60@3x.png" platform="ios" width="180" height="180" />
     <splash src="splash.png" />
     <splash src="Default@2x~universal~anyany.png" platform="ios" />
-    <!-- <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
-        <string>To scan barcodes</string>
-    </edit-config> -->
     <preference name="phonegap-version" value="cli-8.1.1" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="ShowSplashScreenSpinner" value="false" />
@@ -46,6 +48,4 @@
     <plugin name="cordova-plugin-inappbrowser" spec="~1.7.1" />
     <plugin name="cordova-plugin-streaming-media" spec="~2.2.0" />
     <plugin name="phonegap-plugin-push" spec="~2.2.3" />
-    <!-- <plugin name="phonegap-plugin-barcodescanner" spec="~8.0.1" /> -->
-    <plugin name="cordova-plugin-qrscanner" spec="~2.6.0" />
 </widget>
