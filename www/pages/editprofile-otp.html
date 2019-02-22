@@ -137,6 +137,9 @@
                         });
                       });
                     }
+                    else{
+                      app.dialog.alert(data.ErrorMessage);
+                    }
                   },
                   complete: function (xhr, status) {
                     SpinnerPlugin.activityStop();

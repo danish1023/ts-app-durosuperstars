@@ -7,7 +7,7 @@
             <i class="material-icons">arrow_back</i>
           </a>
         </div>
-        <div class="title color-white">Profile</div>
+        <div class="title color-white">My Profile</div>
         <div class="right">
           <a href="#" @click="edit" class="link icon-only">
             <i class="icon material-icons">edit</i>
@@ -134,6 +134,34 @@
             <li>
               <div class="item-content">
                 <div class="item-inner">
+                  <div class="item-subtitle color-red">Membership ID</div>
+                  <div class="item-title-row">
+                    <div class="item-title">${NA(data.MembershipID)}</div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="MobileNo-View">
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-subtitle color-red">Mobile Number</div>
+                  <div class="item-title-row">
+                    <div class="item-title ContractorContactNo">${NA(data.MobileNo)}</div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="item-content item-input item-input-with-value MobileNo-Edit" style="display:none">
+                <div class="item-inner">
+                    <div class="item-title item-floating-label color-red">Mobile Number</div>
+                    <div class="item-input-wrap">
+                        <input type="tel" maxlength="10" value="${data.MobileNo}" name="MobileNo">
+                    </div>
+                </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
                   <div class="item-subtitle color-red">First Name</div>
                   <div class="item-title-row">
                     <div class="item-title">${NA(data.ContractorFirstName)}</div>
@@ -160,34 +188,6 @@
                   </div>
                 </div>
               </div>
-            </li>
-            <li>
-              <div class="item-content">
-                <div class="item-inner">
-                  <div class="item-subtitle color-red">Membership ID</div>
-                  <div class="item-title-row">
-                    <div class="item-title">${NA(data.MembershipID)}</div>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="MobileNo-View">
-              <div class="item-content">
-                <div class="item-inner">
-                  <div class="item-subtitle color-red">Mobile Number</div>
-                  <div class="item-title-row">
-                    <div class="item-title ContractorContactNo">${NA(data.MobileNo)}</div>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="item-content item-input item-input-with-value MobileNo-Edit" style="display:none">
-                <div class="item-inner">
-                    <div class="item-title item-floating-label color-red">Mobile Number</div>
-                    <div class="item-input-wrap">
-                        <input type="tel" maxlength="10" value="${data.MobileNo}" name="MobileNo">
-                    </div>
-                </div>
             </li>
             <li class="Address-View">
               <div class="item-content">
