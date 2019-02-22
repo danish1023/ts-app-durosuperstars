@@ -26,6 +26,7 @@
         <span class="qr-right-bottom"></span>
       </div>
       <div class="block no-margin no-padding qr-visible-block">
+        <video autoplay></video>
         <h3 style="margin:16px 0 0" class="text-align-center">OR</h3>
         <p class="text-align-center no-margin">Enter coupon code below</p>
         <form class="list show-hairlines-ios no-hairlines text-align-left no-margin" id="scan-code-form">
@@ -176,6 +177,22 @@
         });
       },
       pageInit: function () {
+
+        //Test
+        var qr = QCodeDecoder();
+        var video = document.querySelector('video');
+        qr.decodeFromCamera(video, function (err,result) {
+          if (err){
+            alert('Error:'+err);
+          }
+          else{
+            alert(result);
+          }
+        });
+
+
+
+
         $$('#MemberHomePage').css('display', 'none');
         $$('#MemberDashboardPage').css('background', 'transparent');
         var UserData = JSON.parse(localStorage.User);
