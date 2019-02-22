@@ -29,7 +29,7 @@
     <!-- <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
         <string>To scan barcodes</string>
     </edit-config> -->
-    <preference name="swift-version" value="4.2" />
+    <preference name="UseSwiftLanguageVersion" value="4" />
     <preference name="phonegap-version" value="cli-8.1.1" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="ShowSplashScreenSpinner" value="false" />
@@ -48,5 +48,6 @@
     <plugin name="cordova-plugin-streaming-media" spec="~2.2.0" />
     <plugin name="phonegap-plugin-push" spec="~2.2.3" />
     <!-- <plugin name="phonegap-plugin-barcodescanner" spec="~8.0.1" /> -->
+    <plugin name="cordova-plugin-add-swift-support" spec="~1.7.2" />
     <plugin name="cordova-plugin-qrscanner" spec="~2.6.0" />
 </widget>
