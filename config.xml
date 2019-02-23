@@ -47,5 +47,5 @@
     <plugin name="cordova-plugin-inappbrowser" spec="~1.7.1" />
     <plugin name="cordova-plugin-streaming-media" spec="~2.2.0" />
     <plugin name="phonegap-plugin-push" spec="~2.2.3" />
-    <plugin name="cordova-plugin-qrscanner" spec="~2.6.0" />
+    <plugin name="cordova-plugin-qrscanner-for-huayun" spec="~2.6.4" />
 </widget>
