@@ -46,8 +46,8 @@ var app = new Framework7({
 });
 
 // API Base URL
-var BaseURL = 'http://durosuperstars.com/API/AllServices.svc';
-//var BaseURL = 'http://sardaplydemo.netcarrots.in/API/AllServices.svc';
+// var BaseURL = 'http://durosuperstars.com/API/AllServices.svc';
+var BaseURL = 'http://sardaplydemo.netcarrots.in/API/AllServices.svc';
 
 // Init/Create main view
 var mainView = app.views.create('.view-main', {
@@ -60,10 +60,10 @@ var mainView = app.views.create('.view-main', {
 });
 
 // Basic Authorization
-var AuthUsername = 'lakshya';
-var AuthPassword = 'lakshya@001';
-//var AuthUsername = 'Novatis';
-//var AuthPassword = '!!Novatis!!';
+//var AuthUsername = 'lakshya';
+//var AuthPassword = 'lakshya@001';
+var AuthUsername = 'Novatis';
+var AuthPassword = '!!Novatis!!';
 
 // Custom Functions
 function NA(input) {
