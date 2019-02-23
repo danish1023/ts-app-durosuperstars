@@ -3,7 +3,7 @@
     <div class="navbar">
       <div class="navbar-inner sliding bg-color-red color-theme-white">
         <div class="left">
-          <a href="#" class="link back">
+          <a href="/submitcoupon-otp/{{ContractorContactNo}}/" data-force="true" class="link">
             <i class="material-icons">arrow_back</i>
           </a>
         </div>
@@ -176,7 +176,6 @@
         });
       },
       pageInit: function () {
-        console.log(app.views.main.router.previousRoute);
         $$('#MemberHomePage').css('display', 'none');
         $$('#MemberDashboardPage').css('background', 'transparent');
         var UserData = JSON.parse(localStorage.User);
