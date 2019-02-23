@@ -15,14 +15,6 @@
                 <div class="video">
                     <video id="barcodeScanStream"></video>
                 </div>
-        
-                <div class="inputControls">
-                    <div id="deviceready">
-                        <button onclick="scan()" id="scanButton">Scan barcode</button>
-                        <!-- 0 is the front camera, 1 is the back camera -->
-                        <input type="text" id="barcodeScanDevice" placeholder="1">
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -34,7 +26,7 @@
                 cordova.plugins.barcodeScanner.scan(
                     function (result) {
                         if (!result.cancelled) {
-                            alert(result);
+                            alert(result.text);
                         }
                     },
                     function (error) {
