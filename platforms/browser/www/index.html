@@ -288,9 +288,7 @@
         });
       }
       else if (app.views.main.router.currentRoute.route.path == "/scan-code/:ContractorContactNo/") {
-        mainView.router.back(app.views.main.router.currentRoute.url, {
-          force: true,
-        });
+        mainView.router.back();
       }
       else {
         mainView.router.back();
