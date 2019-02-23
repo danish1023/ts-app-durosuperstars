@@ -1,4 +1,4 @@
-# PhoneGap Plugin BarcodeScanner
+# PhoneGap Plugin BarcodeScanner, now with ACTUAL browser support
 ================================
 
 [![Build Status](https://travis-ci.org/phonegap/phonegap-plugin-barcodescanner.svg)](https://travis-ci.org/phonegap/phonegap-plugin-barcodescanner)
@@ -7,21 +7,26 @@ Cross-platform BarcodeScanner for Cordova / PhoneGap.
 
 Follows the [Cordova Plugin spec](https://cordova.apache.org/docs/en/latest/plugin_ref/spec.html), so that it works with [Plugman](https://github.com/apache/cordova-plugman).
 
-## Installation
+UPDATE: THIS IS THE FIRST WORKING VERSION OF THE BROWSER SUPPORT. PLEASE SEE _Browser usage_ FOR MORE DETAILS.
 
+It only supports QR, ITF, and Code128 and only detects a barcode when you fill the entire width of the screen with the barcode. But it works, and it's better than nothing.
+Please note any issues or improvements you find on github!
+
+
+## Installation
 
 This requires phonegap 7.1.0+ ( current stable v8.0.0 )
 
-    phonegap plugin add phonegap-plugin-barcodescanner
+    phonegap plugin add cordova-plugin-barcodescanner-browser-support
 
 It is also possible to install via repo url directly ( unstable )
 
-    phonegap plugin add https://github.com/phonegap/phonegap-plugin-barcodescanner.git
+    phonegap plugin add https://github.com/Tjieco/phonegap-plugin-barcodescanner-browser-support
 
 Optional variables:
 This plugin requires the Android support library v4. The minimum version is `24.1.0`. Default value is `27.+`.  Check out the latest version [here](https://developer.android.com/topic/libraries/support-library/revisions.html).
 ```
-phonegap plugin add phonegap-plugin-barcodescanner --variable ANDROID_SUPPORT_V4_VERSION="27.1.1"
+phonegap plugin add cordova-plugin-barcodescanner-browser-support --variable ANDROID_SUPPORT_V4_VERSION="27.1.1"
 ```
 ### Supported Platforms
 
@@ -59,24 +64,26 @@ The plugin creates the object `cordova.plugins.barcodeScanner` with the method `
 
 The following barcode types are currently supported:
 
-|  Barcode Type | Android | iOS | Windows  |
-|---------------|:-------:|:---:|:--------:|
-| QR_CODE       |    ✔    |  ✔  |     ✔    |
-| DATA_MATRIX   |    ✔    |  ✔  |     ✔    |
-| UPC_A         |    ✔    |  ✔  |     ✔    |
-| UPC_E         |    ✔    |  ✔  |     ✔    |
-| EAN_8         |    ✔    |  ✔  |     ✔    |
-| EAN_13        |    ✔    |  ✔  |     ✔    |
-| CODE_39       |    ✔    |  ✔  |     ✔    |
-| CODE_93       |    ✔    |  ✖  |     ✔    |
-| CODE_128      |    ✔    |  ✔  |     ✔    |
-| CODABAR       |    ✔    |  ✖  |     ✔    |
-| ITF           |    ✔    |  ✔  |     ✔    |
-| RSS14         |    ✔    |  ✖  |     ✔    |
-| PDF417        |    ✔    |  ✖  |     ✔    |
-| RSS_EXPANDED  |    ✔    |  ✖  |     ✖    |
-| MSI           |    ✖    |  ✖  |     ✔    |
-| AZTEC         |    ✖    |  ✖  |     ✔    |
+|  Barcode Type | Android | iOS | Windows  | Browser |
+|---------------|:-------:|:---:|:--------:|:-------:|
+| QR_CODE       |    ✔    |  ✔  |     ✔    |   ✔   |
+| DATA_MATRIX   |    ✔    |  ✔  |     ✔    |   ✖   |
+| UPC_A         |    ✔    |  ✔  |     ✔    |   ✖   |
+| UPC_E         |    ✔    |  ✔  |     ✔    |   ✖   |
+| EAN_8         |    ✔    |  ✔  |     ✔    |   ✖   |
+| EAN_13        |    ✔    |  ✔  |     ✔    |   ✖   |
+| CODE_39       |    ✔    |  ✔  |     ✔    |   ✖   |
+| CODE_93       |    ✔    |  ✖  |     ✔    |   ✖   |
+| CODE_128      |    ✔    |  ✔  |     ✔    |   ✔   |
+| CODABAR       |    ✔    |  ✖  |     ✔    |   ✖   |
+| ITF           |    ✔    |  ✔  |     ✔    |   ✔   |
+| RSS14         |    ✔    |  ✖  |     ✔    |   ✖   |
+| PDF417        |    ✔    |  ✖  |     ✔    |   ✖   |
+| RSS_EXPANDED  |    ✔    |  ✖  |     ✖    |   ✖   |
+| MSI           |    ✖    |  ✖  |     ✔    |   ✖   |
+| AZTEC         |    ✖    |  ✖  |     ✔    |   ✖   |
+
+More browser barcode support will be added with future updates of available ports.
 
 `success` and `fail` are callback functions. Success is passed an object with data, type and cancelled properties. Data is the text representation of the barcode data, type is the type of barcode detected and cancelled is whether or not the user cancelled the scan.
 
@@ -108,6 +115,35 @@ A full example could be:
    );
 ```
 
+## Browser usage ##
+
+This fork uses the browser functionalities to open the user media, allowing the camera to be used.
+The javascript code to decode a barcode comes from: https://github.com/zxing-js/library
+
+The "scan" functionality to enter the barcode manually still works. This ensures that existing applications do not break with the addition of this feature.
+However, you can add a video element to your page. The plugin will look for a HTML element with the id "barcodeScanStream".
+If the plugin detects the element, it will open the user media and place the camera stream inside the video element.
+
+The default camera will be the back camera. This can be changed using an html element with the id "barcodeScanDevice".
+Defaultly taking the back camera, or the remaining camera if that does not exist.
+
+```
+An example could be:
+
+        <div class="video">
+            <video id="barcodeScanStream"></video>
+        </div>
+
+        <div class="inputControls">
+            <div id="deviceready">
+                <button onclick="scan()" id="scanButton">Scan barcode</button>
+                <!-- 0 is the front camera, 1 is the back camera -->
+                <input type="text" id="barcodeScanDevice" placeholder="1">
+            </div>
+        </div>
+```
+
+
 ## Encoding a Barcode ##
 
 The plugin creates the object `cordova.plugins.barcodeScanner` with the method `encode(type, data, success, fail)`.
@@ -129,6 +165,12 @@ A full example could be:
           }
         );
 ```
+
+## Browser quirks ##
+
+Currently, a barcode only gets detected when it takes up almost the entire horizontal space.
+There's also an issue where the camera does not focus properly. It takes a while for it to adjust.
+Since node modules with cordova browser works differently than cordova plugins, I could not manage to create a node dependency. The code to scan a barcode is thus minified and copied into the plugin. Unfortunately, I could not forsee a better solution.
 
 ## iOS quirks ##
 

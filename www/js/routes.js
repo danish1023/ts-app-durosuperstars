@@ -299,6 +299,13 @@ var routes = [
     name: 'rejectedcoupon-history',
   },
 
+  // Test
+  {
+    path: '/test/',
+    componentUrl: './pages/test.html',
+    name: 'test',
+  },
+
   // Default route (404 page). MUST BE THE LAST
   {
     path: '(.*)',
