@@ -174,5 +174,13 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "phonegap-plugin-2mundos-barcodescanner-custom-ui": {
+        "source": {
+            "type": "registry",
+            "id": "phonegap-plugin-2mundos-barcodescanner-custom-ui@7.0.15-2M"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

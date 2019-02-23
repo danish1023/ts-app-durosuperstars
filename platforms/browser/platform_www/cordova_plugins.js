@@ -380,6 +380,20 @@ module.exports = [
         "id": "cordova-plugin-qrscanner.QRScannerProxy",
         "pluginId": "cordova-plugin-qrscanner",
         "runs": true
+    },
+    {
+        "file": "plugins/phonegap-plugin-2mundos-barcodescanner-custom-ui/www/barcodescanner.js",
+        "id": "phonegap-plugin-2mundos-barcodescanner-custom-ui.BarcodeScanner",
+        "pluginId": "phonegap-plugin-2mundos-barcodescanner-custom-ui",
+        "clobbers": [
+            "cordova.plugins.barcodeScanner"
+        ]
+    },
+    {
+        "file": "plugins/phonegap-plugin-2mundos-barcodescanner-custom-ui/src/browser/BarcodeScannerProxy.js",
+        "id": "phonegap-plugin-2mundos-barcodescanner-custom-ui.BarcodeScannerProxy",
+        "pluginId": "phonegap-plugin-2mundos-barcodescanner-custom-ui",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -404,7 +418,8 @@ module.exports.metadata =
     "cordova-plugin-inappbrowser": "1.7.2",
     "cordova-plugin-android-native-pdfviewer": "0.0.1",
     "cordova-plugin-streaming-media": "2.2.0",
-    "cordova-plugin-qrscanner": "2.5.0"
+    "cordova-plugin-qrscanner": "2.5.0",
+    "phonegap-plugin-2mundos-barcodescanner-custom-ui": "7.0.0"
 }
 // BOTTOM OF METADATA
 });

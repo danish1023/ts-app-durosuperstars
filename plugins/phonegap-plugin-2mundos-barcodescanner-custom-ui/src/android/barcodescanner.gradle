@@ -1,0 +1,30 @@
+def DEFAULT_MIN_SDK_VERSION = 15
+def minSdk = Math.max(DEFAULT_MIN_SDK_VERSION, cdvHelpers.getConfigPreference('android-minSdkVersion',0) as Integer);
+if (cdvMinSdkVersion == null || Integer.parseInt('' + cdvMinSdkVersion) < minSdk ) {
+    ext.cdvMinSdkVersion = minSdk;
+}
+
+repositories{
+    jcenter()
+    flatDir{
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:23.+'
+    compile 'com.github.felfontes:barcodescanner-lib-aar-custom-ui:2.1.13-2m6'
+}
+
+android {
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}

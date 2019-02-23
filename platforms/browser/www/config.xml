@@ -9,6 +9,9 @@
     <feature name="QRScanner">
         <param name="browser-package" value="QRScanner" />
     </feature>
+    <feature name="BarcodeScanner">
+        <param name="browser-package" value="BarcodeScanner" />
+    </feature>
     <name>DURO Superstars</name>
     <description>
         Udaan Sitaron Ki

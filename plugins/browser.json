@@ -60,6 +60,9 @@
         },
         "cordova-plugin-qrscanner": {
             "PACKAGE_NAME": "com.techstreet.durosuperstars"
+        },
+        "phonegap-plugin-2mundos-barcodescanner-custom-ui": {
+            "PACKAGE_NAME": "com.techstreet.durosuperstars"
         }
     },
     "dependent_plugins": {
