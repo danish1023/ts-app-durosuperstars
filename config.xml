@@ -48,6 +48,5 @@
     <plugin name="cordova-plugin-inappbrowser" spec="~1.7.1" />
     <plugin name="cordova-plugin-streaming-media" spec="~2.2.0" />
     <plugin name="phonegap-plugin-push" spec="~2.2.3" />
-    <plugin name="cordova-plugin-webrtc" spec="~0.1.1" />
     <plugin name="cordova-plugin-barcodescanner-browser-support" spec="~7.1.22" />
 </widget>
