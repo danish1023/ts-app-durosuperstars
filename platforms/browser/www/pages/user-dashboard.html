@@ -61,35 +61,15 @@
           },
           success: function (data, status, xhr) {
             if (data.ErrorCode == '0') {
-              var contractor_search_input = '';
-              var dealer_search_input = '';
               if (data.UserTypeCode == 'S') {
                 var contractor_list_btn = '<a style="width:125px" class="button button-outline button-round margin" href="/contractor-list/">View Details</a>';
-                contractor_search_input = `<form class="searchbar searchbar-contractor searchbar-init" style="border: 1px solid #f44336">
-                  <div class="searchbar-inner">
-                    <div class="searchbar-input-wrap">
-                      <input onkeydown="checkLengthContractor()" onkeyup="checkLengthContractor()" type="search" placeholder="Mobile Number">
-                      <i class="searchbar-icon"></i>
-                      <span class="input-clear-button"></span>
-                    </div>
-                    <span class="searchbar-disable-button">Cancel</span>
-                  </div>
-                </form>`;
-                dealer_search_input = `<form class="searchbar searchbar-dealer searchbar-init" style="border: 1px solid #f44336">
-                  <div class="searchbar-inner">
-                    <div class="searchbar-input-wrap">
-                      <input onkeydown="checkLengthDealer()" onkeyup="checkLengthDealer()" type="search" placeholder="Mobile Number">
-                      <i class="searchbar-icon"></i>
-                      <span class="input-clear-button"></span>
-                    </div>
-                    <span class="searchbar-disable-button">Cancel</span>
-                  </div>
-                </form>`;
+                var dealer_list_btn = '<a style="width:125px" class="button button-outline button-round margin" href="/dealer-list/">View Details</a>';
               }
               else {
                 var contractor_list_btn = '<a style="width:125px" class="button button-outline button-round margin" href="/contractorlist-upper/">View Details</a>';
-                $$('#UserHomePage .swiper-wrapper').addClass('swiper-no-swiping');
-                $$('#UserHomePage .tab-link').removeAttr('href');
+                var dealer_list_btn = '<a style="width:125px" class="button button-outline button-round margin" href="/dealerlist-upper/">View Details</a>';
+                // $$('#UserHomePage .swiper-wrapper').addClass('swiper-no-swiping');
+                // $$('#UserHomePage .tab-link').removeAttr('href');
               }
               var html1 = `<div class="card" style="box-shadow:none;">
                 <div class="card-content card-content-padding text-align-center" style="background: mistyrose;">
@@ -100,8 +80,8 @@
                   </div>
                   <div class="row margin-bottom">
                     <div class="col">
-                      <h3 class="no-margin">Employee Code</h3>
-                      <p class="no-margin">${data.EmployeeCode}</p>
+                      <h3 class="no-margin">Employee Name</h3>
+                      <p class="no-margin">${data.EmployeeName}</p>
                     </div>
                     <div class="col">
                       <h3 class="no-margin">Total Points</h3>
@@ -150,33 +130,37 @@
                   </ul>
                 </div>
                 ${contractor_list_btn}
-                ${contractor_search_input}
+                <form class="searchbar searchbar-contractor searchbar-init" style="border: 2px solid #f44336;border-radius: 30px;">
+                  <div class="searchbar-inner">
+                    <div class="searchbar-input-wrap">
+                      <input onkeydown="checkLengthContractor()" onkeyup="checkLengthContractor()" type="search" placeholder="Mobile Number">
+                      <i class="searchbar-icon"></i>
+                      <span class="input-clear-button"></span>
+                    </div>
+                    <span class="searchbar-disable-button">Cancel</span>
+                  </div>
+                </form>
               </div>`;
               var html2 = `<div class="card" style="box-shadow:none;">
                 <div class="card-content card-content-padding text-align-center" style="background: mistyrose;">
                   <div class="row margin-bottom">
                     <div class="col">
-                      <h1 class="no-margin">${data.EmployeeName}</h1>
-                    </div>
-                  </div>
-                  <div class="row margin-bottom">
-                    <div class="col">
-                      <h3 class="no-margin">Employee Code</h3>
-                      <p class="no-margin">${data.EmployeeCode}</p>
-                    </div>
-                    <div class="col">
-                      <h3 class="no-margin">State</h3>
-                      <p class="no-margin">${data.StateName}</p>
-                    </div>
-                  </div>
-                  <div class="row margin-bottom">
-                    <div class="col">
-                      <h3 class="no-margin">City</h3>
-                      <p class="no-margin">${data.CityName}</p>
+                      <h3 class="no-margin">Employee Name</h3>
+                      <p class="no-margin">${data.EmployeeName}</p>
                     </div>
                     <div class="col">
                       <h3 class="no-margin">Total Points</h3>
                       <p class="no-margin">${data.TotalPoints}</p>
+                    </div>
+                  </div>
+                  <div class="row margin-bottom">
+                    <div class="col">
+                      <h3 class="no-margin">State</h3>
+                      <p class="no-margin">${data.StateName}</p>
+                    </div>
+                    <div class="col">
+                      <h3 class="no-margin">City</h3>
+                      <p class="no-margin">${data.CityName}</p>
                     </div>
                   </div>
                 </div>
@@ -218,8 +202,17 @@
                     </li>
                   </ul>
                 </div>
-                <a style="width:125px" class="button button-outline button-round margin" href="/dealer-list/">View Details</a>
-                ${dealer_search_input}
+                ${dealer_list_btn}
+                <form class="searchbar searchbar-dealer searchbar-init" style="border: 2px solid #f44336;border-radius: 30px;">
+                  <div class="searchbar-inner">
+                    <div class="searchbar-input-wrap">
+                      <input onkeydown="checkLengthDealer()" onkeyup="checkLengthDealer()" type="search" placeholder="Mobile Number">
+                      <i class="searchbar-icon"></i>
+                      <span class="input-clear-button"></span>
+                    </div>
+                    <span class="searchbar-disable-button">Cancel</span>
+                  </div>
+                </form>
               </div>`;
               $$('#UserHomePage #tab-1').html(html1);
               $$('#UserHomePage #tab-2').html(html2);
