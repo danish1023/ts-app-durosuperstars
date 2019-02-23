@@ -152,6 +152,13 @@ var routes = [
     name: 'contractorlist-upper',
   },
 
+  // Dealer List Upper
+  {
+    path: '/dealerlist-upper/',
+    componentUrl: './pages/dealerlist-upper.html',
+    name: 'dealerlist-upper',
+  },
+
   // Contractor Details
   {
     path: '/contractor-details/:ContractorMobileNo/',

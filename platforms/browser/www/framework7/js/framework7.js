@@ -14719,6 +14719,8 @@
           app.emit('accordionClosed', $el[0]);
         }
       });
+      // Danish
+      $contentEl.css('height', '100%');
       //$contentEl.css('height', (($contentEl[0].scrollHeight) + "px"));
       $el.trigger('accordion:open');
       $el.addClass('accordion-item-opened');

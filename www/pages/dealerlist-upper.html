@@ -1,5 +1,5 @@
 <template>
-    <div class="page" id="contractorlist-upper-page">
+    <div class="page" id="dealerlist-upper-page">
         <div class="navbar">
             <div class="navbar-inner sliding bg-color-red color-theme-white">
                 <div class="left">
@@ -7,7 +7,7 @@
                         <i class="material-icons">arrow_back</i>
                     </a>
                 </div>
-                <div class="title color-white">Mapped Contractors</div>
+                <div class="title color-white">Mapped Dealers</div>
                 <div class="right">
                     <a href="/notifications/" class="link icon-only">
                         <i class="icon material-icons">notifications<span class="badge NotificationCount color-blue">0</span></i>
@@ -41,7 +41,7 @@
                     UserName: UserData.MembershipId,
                 };
                 app.request({
-                    url: BaseURL + '/UserMappingAPI',
+                    url: BaseURL + '/UserMappingDealerAPI',
                     method: 'POST',
                     dataType: 'json',
                     data: obj,
@@ -57,32 +57,32 @@
                     success: function (data, status, xhr) {
                         console.log(data);
                         if (data.ErrorCode == '0') {
-                            var Level1Details = data.Level1Details;
-                            if (Level1Details) {
-                                $$('#contractorlist-upper-page .page-content .top-accordion').html('');
+                            var DealerLevel1Details = data.DealerLevel1Details;
+                            if (DealerLevel1Details) {
+                                $$('#dealerlist-upper-page .page-content .top-accordion').html('');
                                 var level1html = '';
-                                for (var i = 0; i < Level1Details.length; i++) {
-                                    var Level1Id = Level1Details[i].Level1Id;
-                                    var Level1Name = Level1Details[i].Level1Name;
-                                    var Level1MappedContractorCount = Level1Details[i].Level1MappedContractorCount;
-                                    var Level1ActiveMemberCount = Level1Details[i].Level1ActiveMemberCount;
-                                    var Level1InactiveMemberCount = Level1Details[i].Level1InactiveMemberCount;
-                                    var Level2Details = Level1Details[i].Level2Details;
+                                for (var i = 0; i < DealerLevel1Details.length; i++) {
+                                    var Level1Id = DealerLevel1Details[i].Level1Id;
+                                    var Level1Name = DealerLevel1Details[i].Level1Name;
+                                    var Level1MappedDealerCount = DealerLevel1Details[i].Level1MappedDealerCount;
+                                    var Level1ActiveDealerCount = DealerLevel1Details[i].Level1ActiveDealerCount;
+                                    var Level1InactiveDealerCount = DealerLevel1Details[i].Level1InactiveDealerCount;
+                                    var Level2Details = DealerLevel1Details[i].Level2Details;
                                     var level2html = '';
                                     var level1_arrow_check = '';
                                     for (var j = 0; j < Level2Details.length; j++) {
                                         var Level2Id = Level2Details[j].Level2Id;
                                         var Level2Name = Level2Details[j].Level2Name;
-                                        var Level2MappedContractorCount = Level2Details[j].Level2MappedContractorCount;
-                                        var Level2ActiveMemberCount = Level2Details[j].Level2ActiveMemberCount;
-                                        var Level2InactiveMemberCount = Level2Details[j].Level2InactiveMemberCount;
+                                        var Level2MappedDealerCount = Level2Details[j].Level2MappedDealerCount;
+                                        var Level2ActiveDealerCount = Level2Details[j].Level2ActiveDealerCount;
+                                        var Level2InactiveDealerCount = Level2Details[j].Level2InactiveDealerCount;
                                         var Level3Details = Level2Details[j].Level3Details;
                                         for (var k = 0; k < Level3Details.length; k++) {
                                             var Level3Id = Level3Details[k].Level3Id;
                                             var Level3Name = Level3Details[k].Level3Name;
-                                            var Level3MappedContractorCount = Level3Details[k].Level3MappedContractorCount;
-                                            var Level3ActiveMemberCount = Level3Details[k].Level3ActiveMemberCount;
-                                            var Level3InactiveMemberCount = Level3Details[k].Level3InactiveMemberCount;
+                                            var Level3MappedDealerCount = Level3Details[k].Level3MappedDealerCount;
+                                            var Level3ActiveDealerCount = Level3Details[k].Level3ActiveDealerCount;
+                                            var Level3InactiveDealerCount = Level3Details[k].Level3InactiveDealerCount;
                                         }
                                         var html = '';
                                         if(Level2Id != null){
@@ -93,9 +93,9 @@
                                                     <a class="item-link item-content bg-color-green color-white">
                                                         <div class="item-inner row text-align-center font-16 no-arrow">
                                                             <div class="col-25">${Level3Name}</div>
-                                                            <div class="col-25">${Level3MappedContractorCount}</div>
-                                                            <div class="col-25">${Level3ActiveMemberCount}</div>
-                                                            <div class="col-25">${Level3InactiveMemberCount}</div>
+                                                            <div class="col-25">${Level3MappedDealerCount}</div>
+                                                            <div class="col-25">${Level3ActiveDealerCount}</div>
+                                                            <div class="col-25">${Level3InactiveDealerCount}</div>
                                                         </div>
                                                     </a>
                                                     </div>
@@ -109,9 +109,9 @@
                                             <a class="item-link item-content bg-color-blue color-white">
                                                 <div class="item-inner row text-align-center ${arrow_check}">
                                                     <div class="col-25">${Level2Name}</div>
-                                                    <div class="col-25">${Level2MappedContractorCount}</div>
-                                                    <div class="col-25">${Level2ActiveMemberCount}</div>
-                                                    <div class="col-25">${Level2InactiveMemberCount}</div>
+                                                    <div class="col-25">${Level2MappedDealerCount}</div>
+                                                    <div class="col-25">${Level2ActiveDealerCount}</div>
+                                                    <div class="col-25">${Level2InactiveDealerCount}</div>
                                                 </div>
                                             </a>
                                             ${level3html}
@@ -128,9 +128,9 @@
                                     <a href="#" class="item-link item-content bg-color-orange color-white">
                                         <div class="item-inner row text-align-center ${level1_arrow_check}">
                                         <div class="col-25">${Level1Name}</div>
-                                        <div class="col-25">${Level1MappedContractorCount}</div>
-                                        <div class="col-25">${Level1ActiveMemberCount}</div>
-                                        <div class="col-25">${Level1InactiveMemberCount}</div>
+                                        <div class="col-25">${Level1MappedDealerCount}</div>
+                                        <div class="col-25">${Level1ActiveDealerCount}</div>
+                                        <div class="col-25">${Level1InactiveDealerCount}</div>
                                         </div>
                                     </a>
                                     <div class="accordion-item-content">
@@ -143,7 +143,7 @@
                                     </li>`;
                                     level1html = level1html+html;
                                 }
-                                $$('#contractorlist-upper-page .page-content .top-accordion').html(level1html);
+                                $$('#dealerlist-upper-page .page-content .top-accordion').html(level1html);
                             }
                         }
                         else {
