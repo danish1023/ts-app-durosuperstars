@@ -176,6 +176,7 @@
         });
       },
       pageInit: function () {
+        console.log(app.views.main.router.previousRoute);
         $$('#MemberHomePage').css('display', 'none');
         $$('#MemberDashboardPage').css('background', 'transparent');
         var UserData = JSON.parse(localStorage.User);
