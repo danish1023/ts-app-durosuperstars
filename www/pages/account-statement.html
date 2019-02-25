@@ -22,20 +22,24 @@
         <form class="list show-hairlines-ios no-hairlines text-align-left no-margin-bottom margin-top" id="account-statement-form">
           <ul class="no-hairlines-between">
             <li class="item-content item-input">
-              <div class="item-inner">
-                <div class="item-title item-floating-label">From Date</div>
-                <div class="item-input-wrap">
-                  <input type="text" value="{{FromDate}}" name="FromDate">
+                <div class="row">
+                  <div class="col-50">
+                      <div class="item-inner">
+                        <div class="item-title item-floating-label">From Date</div>
+                        <div class="item-input-wrap">
+                          <input type="text" value="{{FromDate}}" name="FromDate">
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-50">
+                      <div class="item-inner">
+                        <div class="item-title item-floating-label">To Date</div>
+                        <div class="item-input-wrap">
+                          <input type="text" value="{{ToDate}}" name="ToDate">
+                        </div>
+                      </div>
+                  </div>
                 </div>
-              </div>
-            </li>
-            <li class="item-content item-input">
-              <div class="item-inner">
-                <div class="item-title item-floating-label">To Date</div>
-                <div class="item-input-wrap">
-                  <input type="text" value="{{ToDate}}" name="ToDate">
-                </div>
-              </div>
             </li>
           </ul>
         </form>
