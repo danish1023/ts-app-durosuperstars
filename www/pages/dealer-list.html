@@ -49,8 +49,14 @@
         ShowNotificationCount();
         var User = localStorage.User;
         var UserData = JSON.parse(User);
+        if (this.$route.params.UserName) {
+          var UserName = this.$route.params.UserName;
+        }
+        else {
+          var UserName = UserData.MembershipId;
+        }
         var obj = {
-          UserName: UserData.MembershipId,
+          UserName: UserName,
         };
         app.request({
           url: BaseURL + '/ListDealerAPI',

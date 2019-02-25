@@ -70,6 +70,7 @@
                                     var Level2Details = DealerLevel1Details[i].Level2Details;
                                     var level2html = '';
                                     var level1_arrow_check = '';
+                                    var level1_href = '#';
                                     for (var j = 0; j < Level2Details.length; j++) {
                                         var Level2Id = Level2Details[j].Level2Id;
                                         var Level2Name = Level2Details[j].Level2Name;
@@ -88,9 +89,10 @@
                                         if(Level2Id != null){
                                             if(Level3Id != null){
                                                 var arrow_check = '';
+                                                var level2_href = '#';
                                                 var level3html = `<div class="accordion-item-content">
                                                     <div class="accordion-item">
-                                                    <a class="item-link item-content bg-color-green color-white">
+                                                    <a href="/dealer-list/${Level3Id}/" class="item-link item-content bg-color-green color-white">
                                                         <div class="item-inner row text-align-center font-16 no-arrow">
                                                             <div class="col-25">${Level3Name}</div>
                                                             <div class="col-25">${Level3MappedDealerCount}</div>
@@ -104,9 +106,10 @@
                                             else{
                                                 var level3html = '';
                                                 var arrow_check = 'no-arrow';
+                                                var level2_href = '/dealer-list/'+Level2Id+'/';
                                             }
                                             html = `<li class="accordion-item">
-                                            <a class="item-link item-content bg-color-blue color-white">
+                                            <a href="${level2_href}" class="item-link item-content bg-color-blue color-white">
                                                 <div class="item-inner row text-align-center ${arrow_check}">
                                                     <div class="col-25">${Level2Name}</div>
                                                     <div class="col-25">${Level2MappedDealerCount}</div>
@@ -122,10 +125,11 @@
 
                                     if(Level2Details[0].Level2Id == null){
                                         level1_arrow_check = 'no-arrow';
+                                        level1_href = '/dealer-list/'+Level1Id+'/';
                                     }
                                     
                                     var html = `<li class="accordion-item">
-                                    <a href="#" class="item-link item-content bg-color-orange color-white">
+                                    <a href="${level1_href}" class="item-link item-content bg-color-orange color-white">
                                         <div class="item-inner row text-align-center ${level1_arrow_check}">
                                         <div class="col-25">${Level1Name}</div>
                                         <div class="col-25">${Level1MappedDealerCount}</div>

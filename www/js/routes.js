@@ -145,6 +145,13 @@ var routes = [
     name: 'contractor-list',
   },
 
+  // Contractor List With Params
+  {
+    path: '/contractor-list/:UserName/',
+    componentUrl: './pages/contractor-list.html',
+    name: 'contractor-list',
+  },
+
   // Contractor List Upper
   {
     path: '/contractorlist-upper/',
@@ -169,6 +176,13 @@ var routes = [
   // Dealer List
   {
     path: '/dealer-list/',
+    componentUrl: './pages/dealer-list.html',
+    name: 'dealer-list',
+  },
+
+  // Dealer List With Param
+  {
+    path: '/dealer-list/:UserName/',
     componentUrl: './pages/dealer-list.html',
     name: 'dealer-list',
   },
