@@ -229,8 +229,14 @@ li.with-border{
 .page.page-previous #MemberHomePage{
   display: none;
 }
+.page.page-previous #submitcoupon-otp-pagecontent{
+  display: none;
+}
 
 .page.page-previous#MemberDashboardPage{
+  background: transparent;
+}
+.page.page-previous#submitcoupon-otp-page{
   background: transparent;
 }
 
