@@ -148,7 +148,7 @@ function login() {
         SpinnerPlugin.activityStart(null, spinnerOptions);
       },
       error: function (xhr, status) {
-        alert("Error: " + status);
+        alert("No Network Connection");
       },
       success: function (data, status, xhr) {
         console.log(data);
@@ -274,7 +274,7 @@ function orderStatusSubmit() {
       SpinnerPlugin.activityStart(null, spinnerOptions);
     },
     error: function (xhr, status) {
-      alert("Error: " + status);
+      alert("No Network Connection");
     },
     success: function (data, status, xhr) {
       console.log(data);

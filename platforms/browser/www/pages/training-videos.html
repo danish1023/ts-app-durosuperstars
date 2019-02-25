@@ -43,9 +43,10 @@
             SpinnerPlugin.activityStart(null, spinnerOptions);
           },
           error: function (xhr, status) {
-            alert("Error: " + status);
+            alert("No Network Connection");
           },
           success: function (data, status, xhr) {
+            console.log(data);
             if (data.ErrorCode == '0') {
               $$('#training-videos-page .page-content .block').html('');
               var TrainingVideoDetails = data.Response.TrainingVideoDetails;

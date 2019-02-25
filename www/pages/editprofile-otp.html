@@ -60,7 +60,7 @@
             SpinnerPlugin.activityStart(null, spinnerOptions);
           },
           error: function (xhr, status) {
-            alert("Error: " + status);
+            alert("No Network Connection");
           },
           success: function (data, status, xhr) {
             app.dialog.alert(data.ErrorMessage);
@@ -125,7 +125,7 @@
                     SpinnerPlugin.activityStart(null, spinnerOptions);
                   },
                   error: function (xhr, status) {
-                    alert("Error: " + status);
+                    alert("No Network Connection");
                   },
                   success: function (data, status, xhr) {
                     window.plugins.toast.show(data.ErrorMessage, 'long', 'bottom');
