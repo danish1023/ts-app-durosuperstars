@@ -1,0 +1,312 @@
+.no-background-image{
+  background-image: none !important;
+}
+.margin-top-8px{
+  margin-top: 8px !important
+}
+.bg-image{
+  background: url('../img/background.png');
+  background-size:100% 100%;
+  background-position: center;
+  /* background-size: cover; */
+}
+.color-white{
+  color: #ffffff !important;
+}
+.i-color-white{
+  color: #ffffff;
+}
+.i-color-red{
+  color: #f44336;
+}
+.color-red{
+  color: #f44336 !important;
+}
+.icon-2x{
+  font-size: 60px;
+}
+.font-1x{
+  font-size:large;
+}
+.bg-layer{
+  background-color: rgba(255, 255, 255, 0.66);
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+}
+.color-darkgray{
+  color: #777;
+}
+li.with-border{
+  border-bottom: 1px solid rgba(0,0,0,.12);
+}
+.ios .show-hairlines-ios {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.md .show-hairlines-ios {
+  border-top: none;
+  border-bottom: none;
+}
+
+.img-center{
+  display: block;
+  position: absolute;
+  width: 50%;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button-auth{
+  display: block;
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button-login{
+  width: 180px;
+  text-transform:none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button-signup{
+  width: 180px;
+  text-transform:none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.custom-item-input-wrap:after{
+  background-color: #ffffff !important;
+}
+
+.custom-item-floating-label{
+  color:#ffffff !important;
+}
+
+.block.passcode-input {
+  position: relative;
+  z-index: 5;
+}
+.block.passcode-numpad {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 0;
+  max-width: none;
+  z-index: 10;
+}
+#demo-numpad-inline {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  .border-box();
+  border: none;
+  background: none;
+  border-radius: 0 0 0 0;
+  .box-shadow(none);
+  display: block;
+  padding: 0 0 0 5px;
+  margin: 0;
+  width: 100%;
+  height: 43px;
+  color: #000;
+  font-size: 17px;
+  font-family: inherit;
+  letter-spacing: 5px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 300;
+}
+
+.dashboard-top-border {
+  border-top: 1px solid #ccc;
+}
+
+.dashboard-bottom-border {
+  border-bottom: 1px solid #f44336;
+}
+
+.dashboard-right-border {
+  border-right: 1px solid #f44336;
+  height: 130px;
+}
+
+.font-16{
+  font-size: 16px !important;
+}
+
+.color-gray{
+  color: gray !important;
+}
+
+/* Seperated input box */
+
+#partitioned {
+  padding-left: 11px;
+  letter-spacing: 26px;
+  border: 0;
+  background-image: linear-gradient(to left, black 70%, rgba(255, 255, 255, 0) 0%);
+  background-position: bottom;
+  background-size: 35px 1px;
+  background-repeat: repeat-x;
+  background-position-x: 28px;
+}
+
+#divInner{
+  left: 0;
+  position: sticky;
+  margin: 0 auto;
+  width:312px;
+}
+
+#divOuter{
+  padding-left: 16px;
+  padding-right: 16px;
+  width:100%;
+  overflow:hidden
+}
+
+.overflow-wrap{
+  overflow-wrap: break-word;
+}
+
+.dashboard-menu-block{
+  position: absolute;
+  top: 280px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  overflow-y: scroll;
+}
+
+.card-read{
+  background: #E8E8E8;
+}
+
+.t50vh{
+  top: 50vh !important;
+  bottom: 0 !important;
+}
+
+.no-arrow{
+  background-image: none !important;
+}
+
+/* .scrollbar-visible::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 5px;
+  height: 5px;
+}
+.scrollbar-visible::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: rgba(0,0,0,.4);
+} */
+
+.scrollbar-hide::-webkit-scrollbar {
+  width: 0px !important;
+  height: 0px !important;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: rgba(0,0,0,.4);
+}
+
+.page.page-previous #MemberHomePage{
+  display: none;
+}
+.page.page-previous #submitcoupon-otp-pagecontent{
+  display: none;
+}
+
+.page.page-previous#MemberDashboardPage{
+  background: transparent;
+}
+.page.page-previous#submitcoupon-otp-page{
+  background: transparent;
+}
+
+.qr-visible-block{
+  background: white;
+  height: 40%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  overflow: scroll;
+}
+
+.qr-scan-box {
+  margin: 0 auto;
+  background: transparent;
+  width: 55%;
+  height: 30%;
+  position: relative;
+  margin-top: 17%;
+}
+
+@media only screen and (max-height: 600px) {
+  .qr-scan-box {
+    margin: 0 auto;
+    background: transparent;
+    width: 55%;
+    height: 30%;
+    position: relative;
+    margin-top: 12%;
+  }
+}
+
+.qr-left-top {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  border-left: 4px solid #2196f3;
+  border-top: 4px solid #2196f3;
+}
+
+.qr-left-bottom {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  border-left: 4px solid #2196f3;
+  border-bottom: 4px solid #2196f3;
+}
+
+.qr-right-top {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  border-right: 4px solid #2196f3;
+  border-top: 4px solid #2196f3;
+}
+
+.qr-right-bottom {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  border-right: 4px solid #2196f3;
+  border-bottom: 4px solid #2196f3;
+}
+
+

@@ -80,6 +80,7 @@
                   var Title = CompanyDetails[i].Title;
                   var Description = CompanyDetails[i].Description;
                   var FilePath = CompanyDetails[i].FilePath;
+                  var ThumbnailImage = CompanyDetails[i].ThumbnailImage;
                   var Type = CompanyDetails[i].Type;
                   if (Type == 'C') {
                     no_pdf = no_pdf+1;
@@ -106,7 +107,7 @@
                   if (Type == 'V') {
                     no_video = no_video+1;
                     var html = `<div class="card demo-card-header-pic no-margin margin-top">
-                      <div onclick="playVideo('${FilePath}')" style="background-image:url(img/video-thumb.png)" valign="bottom" class="card-header"></div>
+                      <div onclick="playVideo('${FilePath}')" style="background-image:url('${ThumbnailImage}')" valign="bottom" class="card-header"></div>
                       <div class="card-content card-content-padding">
                         <p class="date">${Title}</p>
                         <p>${Description}</p>

@@ -54,8 +54,9 @@
                 for (var i = 0; i < TrainingVideoDetails.length; i++) {
                   var video = TrainingVideoDetails[i].UploadedVideo;
                   var video_title = TrainingVideoDetails[i].VedioTitle;
+                  var video_thumb = TrainingVideoDetails[i].ThumbnailImage;
                   var html = `<div class="card card-outline">
-                                <div class="card-content card-content-padding"><img onclick="playVideo('${video}');" style="width:100%" src="img/video-thumb.png" /></div>
+                                <div class="card-content card-content-padding"><img onclick="playVideo('${video}');" style="width:100%" onerror="this.src='img/video-thumb.png'" src="${video_thumb}" /></div>
                                 <div class="card-footer">
                                   <div class="text-align-center" style="width:100%">${video_title}</div>
                                 </div>
