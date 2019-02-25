@@ -9,14 +9,14 @@
     </author>
     <platform name="android">
         <resource-file src="google-services.json" target="app/google-services.json" />
-        <!-- <plugin name="cordova-plugin-qrscanner" spec="~2.6.0" /> -->
+        <plugin name="cordova-plugin-qrscanner" spec="~2.6.0" />
     </platform>
     <platform name="ios">
         <resource-file src="GoogleService-Info.plist" />
         <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
             <string>To scan barcodes</string>
         </edit-config>
-        <!-- <plugin name="phonegap-plugin-barcodescanner" spec="~8.0.1" /> -->
+        <plugin name="phonegap-plugin-barcodescanner" spec="~8.0.1" />
     </platform>
     <content src="index.html" />
     <access origin="*" />
@@ -48,5 +48,4 @@
     <plugin name="cordova-plugin-inappbrowser" spec="~1.7.1" />
     <plugin name="cordova-plugin-streaming-media" spec="~2.2.0" />
     <plugin name="phonegap-plugin-push" spec="~2.2.3" />
-    <plugin name="cordova-plugin-qrscanner" spec="~2.6.0" />
 </widget>
