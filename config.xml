@@ -16,8 +16,6 @@
         <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
             <string>To scan barcodes</string>
         </edit-config>
-        <plugin name="cordova-custom-config" spec="~5.0.3" />
-        <custom-preference name="ios-XCBuildConfiguration-SWIFT_VERSION" value="3.2" />
         <!-- <plugin name="phonegap-plugin-barcodescanner" spec="~8.0.1" /> -->
     </platform>
     <content src="index.html" />
