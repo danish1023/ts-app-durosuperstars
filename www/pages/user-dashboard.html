@@ -60,6 +60,7 @@
             alert("No Network Connection");
           },
           success: function (data, status, xhr) {
+            localStorage.setItem('UserTypeCode',data.UserTypeCode);
             if (data.ErrorCode == '0') {
               if (data.UserTypeCode == 'S') {
                 var contractor_list_btn = '<a style="width:125px" class="button button-outline button-round margin" href="/contractor-list/">View Details</a>';

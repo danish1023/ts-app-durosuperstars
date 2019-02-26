@@ -78,19 +78,15 @@
                                         var Level2ActiveMemberCount = Level2Details[j].Level2ActiveMemberCount;
                                         var Level2InactiveMemberCount = Level2Details[j].Level2InactiveMemberCount;
                                         var Level3Details = Level2Details[j].Level3Details;
+                                        var level3html = '';
                                         for (var k = 0; k < Level3Details.length; k++) {
                                             var Level3Id = Level3Details[k].Level3Id;
                                             var Level3Name = Level3Details[k].Level3Name;
                                             var Level3MappedContractorCount = Level3Details[k].Level3MappedContractorCount;
                                             var Level3ActiveMemberCount = Level3Details[k].Level3ActiveMemberCount;
                                             var Level3InactiveMemberCount = Level3Details[k].Level3InactiveMemberCount;
-                                        }
-                                        var html = '';
-                                        if(Level2Id != null){
                                             if(Level3Id != null){
-                                                var arrow_check = '';
-                                                var level2_href = '#';
-                                                var level3html = `<div class="accordion-item-content">
+                                               var html = `<div class="accordion-item-content">
                                                     <div class="accordion-item">
                                                     <a href="/contractor-list/${Level3Id}/" class="item-link item-content bg-color-green color-white">
                                                         <div class="item-inner row text-align-center font-16 no-arrow">
@@ -104,13 +100,23 @@
                                                 </div>`;
                                             }
                                             else{
-                                                var level3html = '';
-                                                var arrow_check = 'no-arrow';
+                                                var html = '';
+                                            }
+                                            level3html = level3html+html;
+                                        }
+                                        
+                                        if(Level2Id != null){
+                                            if(level3html == ''){
+                                                var level2_arrow_check = 'no-arrow';
                                                 var level2_href = '/contractor-list/'+Level2Id+'/';
                                             }
-                                            html = `<li class="accordion-item">
+                                            else{
+                                                var level2_arrow_check = '';
+                                                var level2_href = '#';
+                                            }
+                                            var html = `<li class="accordion-item">
                                             <a href="${level2_href}" class="item-link item-content bg-color-blue color-white">
-                                                <div class="item-inner row text-align-center ${arrow_check}">
+                                                <div class="item-inner row text-align-center ${level2_arrow_check}">
                                                     <div class="col-25">${Level2Name}</div>
                                                     <div class="col-25">${Level2MappedContractorCount}</div>
                                                     <div class="col-25">${Level2ActiveMemberCount}</div>
@@ -119,6 +125,9 @@
                                             </a>
                                             ${level3html}
                                             </li>`;
+                                        }
+                                        else{
+                                            var html = '';
                                         }
                                         level2html = level2html+html;
                                     }

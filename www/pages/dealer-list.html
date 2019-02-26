@@ -78,6 +78,7 @@
               var ActiveMappedDealer = data.ActiveMappedDealer;
               var InActiveMappedDealer = data.InActiveMappedDealer;
               var DealerListDetails = data.Response.DealerListDetails;
+              console.log(DealerListDetails);
               if (DealerListDetails) {
                 var tbody_active = '';
                 var tbody_inactive = '';
@@ -89,13 +90,19 @@
                   var CopounAlloted = DealerListDetails[i].CopounAlloted;
                   var CouponPending = DealerListDetails[i].CouponPending;
                   var CouponClaimed = DealerListDetails[i].CouponClaimed;
+                  var color = 'color-black';
+                  var td_DealerName = '<a href="/dealer-details/'+DealerMobileNo+'/">'+DealerName+'</a>';
+                  var td_DealerMobileNo = '<a href="/dealer-details/'+DealerMobileNo+'/">'+DealerMobileNo+'</a>';
+                  var td_CopounAlloted = '<a href="/dealer-details/'+DealerMobileNo+'/">'+CopounAlloted+'</a>';
+                  var td_CouponClaimed = '<a href="/dealer-details/'+DealerMobileNo+'/">'+CouponClaimed+'</a>';
+                  var td_CouponPending = '<a href="/dealer-details/'+DealerMobileNo+'/">'+CouponPending+'</a>';
                   var tbody_el = `
                     <tr>
-                      <td class="label-cell"><a href="/dealer-details/${DealerMobileNo}/">${DealerName}</a></td>
-                      <td class="label-cell"><a href="/dealer-details/${DealerMobileNo}/">${DealerMobileNo}</a></td>
-                      <td class="label-cell"><a href="/dealer-details/${DealerMobileNo}/">${CopounAlloted}</a></td>
-                      <td class="label-cell"><a href="/dealer-details/${DealerMobileNo}/">${CouponClaimed}</a></td>
-                      <td class="label-cell"><a href="/dealer-details/${DealerMobileNo}/">${CouponPending}</a></td>
+                      <td class="label-cell">${td_DealerName}</td>
+                      <td class="label-cell">${td_DealerMobileNo}</td>
+                      <td class="label-cell">${td_CopounAlloted}</td>
+                      <td class="label-cell">${td_CouponClaimed}</td>
+                      <td class="label-cell">${td_CouponPending}</td>
                     </tr>`;
                   tbody_all = tbody_all + tbody_el;
                   if (DealerStatus == 'Yes') {
@@ -111,11 +118,11 @@
                 <table>
                   <thead>
                     <tr>
-                      <th class="label-cell">Dealer Name</th>
-                      <th class="label-cell">Mobile Number</th>
-                      <th class="label-cell">Coupons Allocated</th>
-                      <th class="label-cell">Coupons Claimed</th>
-                      <th class="label-cell">Coupons Pending</th>
+                      <th class="label-cell ${color}">Dealer Name</th>
+                      <th class="label-cell ${color}">Mobile Number</th>
+                      <th class="label-cell ${color}">Coupons Allocated</th>
+                      <th class="label-cell ${color}">Coupons Claimed</th>
+                      <th class="label-cell ${color}">Coupons Pending</th>
                     </tr>
                   </thead>
                   <tbody>

@@ -46,7 +46,7 @@ var app = new Framework7({
 });
 
 // API Base URL
-// var BaseURL = 'http://durosuperstars.com/API/AllServices.svc';
+//var BaseURL = 'http://durosuperstars.com/API/AllServices.svc';
 var BaseURL = 'http://sardaplydemo.netcarrots.in/API/AllServices.svc';
 
 // Init/Create main view
@@ -191,6 +191,7 @@ function logout() {
   localStorage.removeItem("User");
   localStorage.removeItem("SignUpData");
   localStorage.removeItem("qr");
+  localStorage.removeItem("UserTypeCode");
   localStorage.removeItem("MyProfile");
   app.router.navigate('/');
 }

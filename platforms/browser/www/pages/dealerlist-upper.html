@@ -78,19 +78,15 @@
                                         var Level2ActiveDealerCount = Level2Details[j].Level2ActiveDealerCount;
                                         var Level2InactiveDealerCount = Level2Details[j].Level2InactiveDealerCount;
                                         var Level3Details = Level2Details[j].Level3Details;
+                                        var level3html = '';
                                         for (var k = 0; k < Level3Details.length; k++) {
                                             var Level3Id = Level3Details[k].Level3Id;
                                             var Level3Name = Level3Details[k].Level3Name;
                                             var Level3MappedDealerCount = Level3Details[k].Level3MappedDealerCount;
                                             var Level3ActiveDealerCount = Level3Details[k].Level3ActiveDealerCount;
                                             var Level3InactiveDealerCount = Level3Details[k].Level3InactiveDealerCount;
-                                        }
-                                        var html = '';
-                                        if(Level2Id != null){
                                             if(Level3Id != null){
-                                                var arrow_check = '';
-                                                var level2_href = '#';
-                                                var level3html = `<div class="accordion-item-content">
+                                                var html = `<div class="accordion-item-content">
                                                     <div class="accordion-item">
                                                     <a href="/dealer-list/${Level3Id}/" class="item-link item-content bg-color-green color-white">
                                                         <div class="item-inner row text-align-center font-16 no-arrow">
@@ -104,13 +100,23 @@
                                                 </div>`;
                                             }
                                             else{
-                                                var level3html = '';
-                                                var arrow_check = 'no-arrow';
-                                                var level2_href = '/dealer-list/'+Level2Id+'/';
+                                                var html = '';
                                             }
-                                            html = `<li class="accordion-item">
+                                            level3html = level3html+html;
+                                        }
+
+                                        if(Level2Id != null){
+                                            if(level3html == ''){
+                                                var level2_arrow_check = 'no-arrow';
+                                                var level2_href = '/contractor-list/'+Level2Id+'/';
+                                            }
+                                            else{
+                                                var level2_arrow_check = '';
+                                                var level2_href = '#';
+                                            }
+                                            var html = `<li class="accordion-item">
                                             <a href="${level2_href}" class="item-link item-content bg-color-blue color-white">
-                                                <div class="item-inner row text-align-center ${arrow_check}">
+                                                <div class="item-inner row text-align-center ${level2_arrow_check}">
                                                     <div class="col-25">${Level2Name}</div>
                                                     <div class="col-25">${Level2MappedDealerCount}</div>
                                                     <div class="col-25">${Level2ActiveDealerCount}</div>
@@ -119,6 +125,9 @@
                                             </a>
                                             ${level3html}
                                             </li>`;
+                                        }
+                                        else{
+                                            var html = '';
                                         }
                                         level2html = level2html+html;
                                     }

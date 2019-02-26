@@ -191,6 +191,7 @@ function logout() {
   localStorage.removeItem("User");
   localStorage.removeItem("SignUpData");
   localStorage.removeItem("qr");
+  localStorage.removeItem("UserTypeCode");
   localStorage.removeItem("MyProfile");
   app.router.navigate('/');
 }
