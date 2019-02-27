@@ -265,6 +265,7 @@
       });
 
       push.on('registration', (data) => {
+        alert(data.registrationId);
         localStorage.setItem("fcm_token", data.registrationId);
       });
 
