@@ -11090,6 +11090,7 @@ body > .progressbar-infinite,
 }
 .accordion-item-opened > .accordion-item-content {
   height: auto;
+  overflow: visible;
 }
 html.device-android-4 .accordion-item-content {
   -webkit-transform: none;
