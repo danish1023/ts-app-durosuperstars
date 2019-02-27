@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="page-content">
-            <iframe @load="hideLoader" src="http://durosuperstars.com/faq.htm" width="100%" height="100%" style="border: none;">
+            <iframe @load="hideLoader" src="{{HomeURL}}/faq.htm" width="100%" height="100%" style="border: none;">
             </iframe>
             <div class="preloader-parent">
                 <div style="position: absolute;transform: translate(-50%,-50%);left: 46%;top: 46%;" class="preloader color-red"></div>
@@ -36,6 +36,11 @@
         methods: {
             hideLoader: function () {
                 $$('#faq-page .preloader-parent').hide();
+            }
+        },
+        data: function(){
+            return{
+                HomeURL: HomeURL,
             }
         }
     }
