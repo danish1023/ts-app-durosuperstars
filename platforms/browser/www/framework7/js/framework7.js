@@ -14697,6 +14697,8 @@
       var $el = $(el);
       var $list = $el.parents('.accordion-list').eq(0);
       var $contentEl = $el.children('.accordion-item-content');
+      // Danish
+      $contentEl.css('height', '100%');
       $contentEl.removeAttr('aria-hidden');
       if ($contentEl.length === 0) { $contentEl = $el.find('.accordion-item-content'); }
       if ($contentEl.length === 0) { return; }
@@ -14719,8 +14721,6 @@
           app.emit('accordionClosed', $el[0]);
         }
       });
-      // Danish
-      $contentEl.css('height', '100%');
       //$contentEl.css('height', (($contentEl[0].scrollHeight) + "px"));
       $el.trigger('accordion:open');
       $el.addClass('accordion-item-opened');
