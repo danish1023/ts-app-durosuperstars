@@ -9,26 +9,11 @@
         </div>
         <div class="title color-white">Mapped Contractors</div>
         <div class="right">
-          <!-- <a class="link icon-only searchbar-enable" data-searchbar=".searchbar-contractor">
-            <i class="icon material-icons md-only">search</i>
-          </a> -->
           <a href="/notifications/" class="link icon-only">
             <i class="icon material-icons">notifications<span class="badge NotificationCount color-blue">0</span></i>
           </a>
         </div>
-        <div class="subnavbar">
-          <!-- Searchbar inside of Subnavbar -->
-          <form class="searchbar searchbar-contractor searchbar-init" style="border: 1px solid #f44336">
-            <div class="searchbar-inner">
-              <div class="searchbar-input-wrap">
-                <input @keydown="checkLength" @keyup="checkLength" type="search" placeholder="Mobile Number">
-                <i class="searchbar-icon"></i>
-                <span class="input-clear-button"></span>
-              </div>
-              <span class="searchbar-disable-button">Cancel</span>
-            </div>
-          </form>
-        </div>
+        {{SearchBar}}
       </div>
     </div>
     <div class="page-content bg-color-white">
@@ -203,6 +188,26 @@
       },
       pageReinit: function(e,page){
         app.searchbar.disable('.searchbar');
+      }
+    },
+    data: function () {
+      var SearchBar = '';
+      if(localStorage.UserTypeCode == 'S'){
+        SearchBar = `<div class="subnavbar">
+          <form class="searchbar searchbar-contractor searchbar-init" style="border: 1px solid #f44336">
+            <div class="searchbar-inner">
+              <div class="searchbar-input-wrap">
+                <input @keydown="checkLength" @keyup="checkLength" type="search" placeholder="Mobile Number">
+                <i class="searchbar-icon"></i>
+                <span class="input-clear-button"></span>
+              </div>
+              <span class="searchbar-disable-button">Cancel</span>
+            </div>
+          </form>
+        </div>`;
+      }
+      return {
+        SearchBar: SearchBar,
       }
     },
     methods: {
