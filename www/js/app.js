@@ -45,7 +45,6 @@ var app = new Framework7({
   panel: {
     swipe: 'left',
     swipeOnlyClose: true,
-    swipeNoFollow: true
   },
   routes: routes,
 });
