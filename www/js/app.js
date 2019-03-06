@@ -42,6 +42,11 @@ var app = new Framework7({
   dialog: {
     title: 'DURO Superstars',
   },
+  panel: {
+    swipe: 'left',
+    swipeOnlyClose: true,
+    swipeNoFollow: true
+  },
   routes: routes,
 });
 
