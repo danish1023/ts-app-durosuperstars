@@ -12,6 +12,7 @@
     </platform>
     <platform name="ios">
         <resource-file src="GoogleService-Info.plist" />
+        <preference name="UseSwiftLanguageVersion" value="4.2" />
     </platform>
     <content src="index.html" />
     <access origin="*" />
