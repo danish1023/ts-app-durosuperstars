@@ -96,7 +96,7 @@
                   if (Type == 'I') {
                     no_image = no_image+1;
                     var html = `<div class="card demo-card-header-pic no-margin margin-top">
-                      <div style="background-image:url(${FilePath})" valign="bottom" class="card-header"></div>
+                      <div class="card-header no-padding"><img style="width:100%" src="${FilePath}"/></div>
                       <div class="card-content card-content-padding">
                         <p class="date">${Title}</p>
                         <p>${Description}</p>
@@ -107,7 +107,7 @@
                   if (Type == 'V') {
                     no_video = no_video+1;
                     var html = `<div class="card demo-card-header-pic no-margin margin-top">
-                      <div onclick="playVideo('${FilePath}')" style="background-image:url('${ThumbnailImage}')" valign="bottom" class="card-header"></div>
+                      <div onclick="playVideo('${FilePath}')" class="card-header no-padding"><img onerror="this.src='img/video-thumb.png'" style="width:100%" src="${ThumbnailImage}"/></div>
                       <div class="card-content card-content-padding">
                         <p class="date">${Title}</p>
                         <p>${Description}</p>

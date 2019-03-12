@@ -190,7 +190,7 @@ div.demo-lazy {
 }
 /* Cards Demo */
 .demo-card-header-pic .card-header {
-  height: 100vw;
+  /* height: 100vw; */
   background-size: cover;
   background-position: center;
   color: #fff;

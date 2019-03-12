@@ -55,7 +55,7 @@
                   var Description = NewsDetails[i].Description;
                   var Image = NewsDetails[i].Image;
                   var html = `<div class="card demo-card-header-pic no-margin margin-top">
-                    <div style="background-image:url('${Image}')" valign="bottom" class="card-header"></div>
+                    <div class="card-header no-padding"><img style="width:100%" src="${Image}"/></div>
                     <div class="card-content card-content-padding">
                       <p class="date overflow-wrap">${Code}</p>
                       <p class="overflow-wrap">${Description}</p>
