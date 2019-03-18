@@ -75,14 +75,36 @@ var offline_codes = [];
 
 function addToOffline(ContractorNumber, CouponCode, UserName) {
   var obj = { "ContractorNumber": ContractorNumber, "CouponCode": CouponCode, "UserName": UserName};
+  var statusHTML = `
+  <div class="col-100 margin-top margin-bottom" style="overflow-x: scroll;">
+    <h2 style="border:1px solid #ccc;width:fit-content;margin:0 auto;padding:0 8px 0 8px">${CouponCode}</h2>
+  </div>
+  <div class="col-100">
+    <div class="chip">
+      <div class="chip-media bg-color-orange"><i class="icon material-icons md-only">priority_high</i></div>
+      <div class="chip-label">Pending verification</div>
+    </div>
+  </div>`;
   if (localStorage.offline_codes) {
     offline_codes = JSON.parse(localStorage.offline_codes);
   }
   for (var i in offline_codes) {
     if (offline_codes[i].CouponCode == CouponCode) {
+      var statusHTML = `
+      <div class="col-100 margin-top margin-bottom" style="overflow-x: scroll;">
+        <h2 style="border:1px solid #ccc;width:fit-content;margin:0 auto;padding:0 8px 0 8px">${CouponCode}</h2>
+      </div>
+      <div class="col-100">
+        <div class="chip">
+          <div class="chip-media bg-color-orange"><i class="icon material-icons md-only">priority_high</i></div>
+          <div class="chip-label">Coupon already submitted</div>
+        </div>
+      </div>`;
+      $$('#scan-code-page .coupon-status').html(statusHTML);
       return;
     }
   }
+  $$('#scan-code-page .coupon-status').html(statusHTML);
   offline_codes.push(obj);
   localStorage.offline_codes = JSON.stringify(offline_codes);
 }
