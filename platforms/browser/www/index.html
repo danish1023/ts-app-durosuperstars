@@ -264,10 +264,10 @@
               }
               for (var i in offline_codes) {
                 if (offline_codes[i].ContractorNumber == ContractorNumber && offline_codes[i].CouponCode == CouponCode && offline_codes[i].UserName == UserName) {
+                  alert(offline_codes[i].CouponCode);
                   offline_codes.splice(i, 1);
                   localStorage.offline_codes = JSON.stringify(offline_codes);
-                  alert($$('#scan-code-page .last-coupon-code').text());
-                  alert($$('#scan-code-page .last-coupon-msg').text());
+                  //alert($$('#scan-code-page .last-coupon-code').text());
                   return;
                 }
               }
