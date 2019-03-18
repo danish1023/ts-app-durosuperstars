@@ -48,10 +48,10 @@
             </li>
           </ul>
         </form>
-        <a @click="submitCode" href="#" style="text-transform:none;width:100px; margin: 16px auto;" class="button button-raised button-fill font-1x"
+        <!-- <a @click="submitCode" href="#" style="text-transform:none;width:100px; margin: 16px auto;" class="button button-raised button-fill font-1x"
           id="submit-button">
           Submit
-        </a>
+        </a> -->
         <div class="block no-margin">
           <div class="row text-align-center coupon-status">
 
@@ -304,6 +304,7 @@
           CouponCode: CouponCode,
           UserName: UserName,
         };
+        
         app.request({
           url: BaseURL + '/ScanValidateCouponCodeAPI',
           method: 'POST',
@@ -316,7 +317,12 @@
             SpinnerPlugin.activityStart(null, spinnerOptions);
           },
           error: function (xhr, status) {
-            alert("No Network Connection");
+            if(status == '0'){
+              addToOffline(ContractorNumber, CouponCode, UserName);
+            }
+            else{
+              alert("No Network Connection");
+            }
           },
           success: function (data, status, xhr) {
             $$('#scan-code-form input[name=CouponCode]').val('');
@@ -337,7 +343,7 @@
             }
             else {
               var statusHTML = `
-              <div class="col-100 margin-bottom" style="overflow-x: scroll;">
+              <div class="col-100 margin-top margin-bottom" style="overflow-x: scroll;">
                 <h2 style="border:1px solid #ccc;width:fit-content;margin:0 auto;padding:0 8px 0 8px">${CouponCode}</h2>
               </div>
               <div class="col-100">
@@ -355,6 +361,28 @@
             SpinnerPlugin.activityStop();
           }
         })
+      },
+      offlineSubmitCode: function () {
+        var UserData = JSON.parse(localStorage.User);
+        var CouponCode = $$('#scan-code-form input[name=CouponCode]').val();
+
+        if (this.$route.params.ContractorContactNo) {
+          var ContractorNumber = this.$route.params.ContractorContactNo;
+          var UserName = UserData.MembershipId;
+        }
+        else {
+          var ContractorNumber = UserData.MobileNo;
+          var UserName = "";
+        }
+
+        var obj = {
+          ContractorNumber: ContractorNumber,
+          CouponCode: CouponCode,
+          UserName: UserName,
+        };
+
+        alert(JSON.stringify(obj));
+
       },
       scanCode: function () {
         var UserData = JSON.parse(localStorage.User);
@@ -437,7 +465,8 @@
       stopCaret: function () {
         var obj = document.getElementById('partitioned');
         if (obj.value.length > 8) {
-          $$('#scan-code-page #submit-button').focus();
+          this.submitCode();
+          //$$('#scan-code-page #submit-button').focus();
         }
       },
     }

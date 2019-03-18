@@ -70,6 +70,23 @@ var mainView = app.views.create('.view-main', {
   }
 });
 
+// Cart
+var offline_codes = [];
+
+function addToOffline(ContractorNumber, CouponCode, UserName) {
+  var obj = { "ContractorNumber": ContractorNumber, "CouponCode": CouponCode, "UserName": UserName};
+  if (localStorage.offline_codes) {
+    offline_codes = JSON.parse(localStorage.offline_codes);
+  }
+  for (var i in offline_codes) {
+    if (offline_codes[i].CouponCode == CouponCode) {
+      return;
+    }
+  }
+  offline_codes.push(obj);
+  localStorage.offline_codes = JSON.stringify(offline_codes);
+}
+
 function testMe(){
   console.log(app.panel.get('left').opened);
 }
