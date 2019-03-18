@@ -240,7 +240,12 @@
     
     function onDeviceReady() {
       document.addEventListener("online", onOnline, false);
+      document.addEventListener("online", onOffline, false);
+      function onOffline() {
+        $$('#offline-img').show();
+      }
       function onOnline() {
+        $$('#offline-img').hide();
         if (localStorage.offline_codes) {
           offline_codes = JSON.parse(localStorage.offline_codes);
         }
