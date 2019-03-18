@@ -63,6 +63,9 @@
         },
         "phonegap-plugin-2mundos-barcodescanner-custom-ui": {
             "PACKAGE_NAME": "com.techstreet.durosuperstars"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.techstreet.durosuperstars"
         }
     },
     "dependent_plugins": {
