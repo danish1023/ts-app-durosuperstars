@@ -259,22 +259,18 @@
               xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
             },
             success: function (data, status, xhr) {
-              if (localStorage.offline_codes) {
-                offline_codes = JSON.parse(localStorage.offline_codes);
-              }
-              for (var i in offline_codes) {
-                if (offline_codes[i].ContractorNumber == ContractorNumber && offline_codes[i].CouponCode == CouponCode && offline_codes[i].UserName == UserName) {
-                  alert(offline_codes[i].CouponCode);
-                  offline_codes.splice(i, 1);
-                  localStorage.offline_codes = JSON.stringify(offline_codes);
-                  //alert($$('#scan-code-page .last-coupon-code').text());
-                  return;
-                }
+              if (offline_codes[i].ContractorNumber == ContractorNumber && offline_codes[i].CouponCode == CouponCode && offline_codes[i].UserName == UserName) {
+                offline_codes.splice(i, 1);
+                localStorage.offline_codes = JSON.stringify(offline_codes);
+                return;
               }
             },
           })
         }
+        //alert($$('#scan-code-page .last-coupon-code').text());
+        $$('#scan-code-page .coupon-status').html('');
       }
+
       var User = localStorage.User;
       if (User) {
         var UserData = JSON.parse(User);
