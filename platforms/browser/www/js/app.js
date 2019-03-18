@@ -92,12 +92,12 @@ function addToOffline(ContractorNumber, CouponCode, UserName) {
     if (offline_codes[i].ContractorNumber == ContractorNumber && offline_codes[i].CouponCode == CouponCode && offline_codes[i].UserName == UserName) {
       var statusHTML = `
       <div class="col-100 margin-top margin-bottom" style="overflow-x: scroll;">
-        <h2 style="border:1px solid #ccc;width:fit-content;margin:0 auto;padding:0 8px 0 8px">${CouponCode}</h2>
+        <h2 class="last-coupon-code" style="border:1px solid #ccc;width:fit-content;margin:0 auto;padding:0 8px 0 8px">${CouponCode}</h2>
       </div>
       <div class="col-100">
         <div class="chip">
           <div class="chip-media bg-color-orange"><i class="icon material-icons md-only">priority_high</i></div>
-          <div class="chip-label">Coupon already submitted</div>
+          <div class="chip-label last-coupon-msg">Coupon already submitted</div>
         </div>
       </div>`;
       $$('#scan-code-page .coupon-status').html(statusHTML);
