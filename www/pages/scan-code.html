@@ -319,6 +319,7 @@
           error: function (xhr, status) {
             if(status == '0'){
               $$('#scan-code-form input[name=CouponCode]').val('');
+              $$('#scan-code-form input[name=CouponCode]').blur();
               addToOffline(ContractorNumber, CouponCode, UserName);
             }
             else{
@@ -327,6 +328,7 @@
           },
           success: function (data, status, xhr) {
             $$('#scan-code-form input[name=CouponCode]').val('');
+            $$('#scan-code-form input[name=CouponCode]').blur();
             if (data.ErrorCode == '0') {
               var statusHTML = `
               <div class="col-100 margin-bottom" style="overflow-x: scroll;">
@@ -466,7 +468,7 @@
       stopCaret: function () {
         var obj = document.getElementById('partitioned');
         if (obj.value.length > 8) {
-          $$('#scan-code-page #submit-button').focus();
+          //$$('#scan-code-page #submit-button').focus();
           this.submitCode();
         }
       },
