@@ -244,6 +244,7 @@
         if (localStorage.offline_codes) {
           offline_codes = JSON.parse(localStorage.offline_codes);
         }
+        var last_msg = '';
         for (var i in offline_codes) {
           var ContractorNumber = offline_codes[i].ContractorNumber;
           var CouponCode = offline_codes[i].CouponCode;
@@ -262,13 +263,14 @@
               if (offline_codes[i].ContractorNumber == ContractorNumber && offline_codes[i].CouponCode == CouponCode && offline_codes[i].UserName == UserName) {
                 offline_codes.splice(i, 1);
                 localStorage.offline_codes = JSON.stringify(offline_codes);
+                last_msg = data.ErrorMessage;
                 return;
               }
             },
           })
         }
-        //alert($$('#scan-code-page .last-coupon-code').text());
-        $$('#scan-code-page .coupon-status').html('');
+        alert(last_msg);
+        //$$('#scan-code-page .coupon-status').html('');
       }
 
       var User = localStorage.User;
