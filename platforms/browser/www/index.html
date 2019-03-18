@@ -237,36 +237,38 @@
   <script>
     document.addEventListener("deviceready", onDeviceReady, false);
     document.addEventListener("backbutton", onBackKeyDown, false);
-    document.addEventListener("online", onOnline, false);
-    function onOnline() {
-      alert('ok');
-      // if (localStorage.offline_codes) {
-      //   offline_codes = JSON.parse(localStorage.offline_codes);
-      // }
-      // for (var i in offline_codes) {
-      //   var ContractorNumber = offline_codes[i].ContractorNumber;
-      //   var CouponCode = offline_codes[i].CouponCode;
-      //   var UserName = offline_codes[i].UserName;
-      //   var obj = { "ContractorNumber": ContractorNumber, "CouponCode": CouponCode, "UserName": UserName};
-      //   app.request({
-      //     url: BaseURL + '/ScanValidateCouponCodeAPI',
-      //     method: 'POST',
-      //     dataType: 'json',
-      //     data: obj,
-      //     contentType: 'application/json',
-      //     beforeSend: function (xhr) {
-      //       xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
-      //     },
-      //     success: function (data, status, xhr) {
-      //       //alert(localStorage.offline_codes);
-      //     },
-      //     complete: function (xhr, status) {
-      //       alert(localStorage.offline_codes);
-      //     }
-      //   })
-      // }
-    }
+    // function onOnline() {
+    //   if (localStorage.offline_codes) {
+    //     offline_codes = JSON.parse(localStorage.offline_codes);
+    //   }
+    //   for (var i in offline_codes) {
+    //     var ContractorNumber = offline_codes[i].ContractorNumber;
+    //     var CouponCode = offline_codes[i].CouponCode;
+    //     var UserName = offline_codes[i].UserName;
+    //     var obj = { "ContractorNumber": ContractorNumber, "CouponCode": CouponCode, "UserName": UserName};
+    //     app.request({
+    //       url: BaseURL + '/ScanValidateCouponCodeAPI',
+    //       method: 'POST',
+    //       dataType: 'json',
+    //       data: obj,
+    //       contentType: 'application/json',
+    //       beforeSend: function (xhr) {
+    //         xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+    //       },
+    //       success: function (data, status, xhr) {
+    //         //alert(localStorage.offline_codes);
+    //       },
+    //       complete: function (xhr, status) {
+    //         alert(localStorage.offline_codes);
+    //       }
+    //     })
+    //   }
+    // }
     function onDeviceReady() {
+      document.addEventListener("online", onOnline, false);
+      function onOnline() {
+        alert('ok');
+      }
       var User = localStorage.User;
       if (User) {
         var UserData = JSON.parse(User);
