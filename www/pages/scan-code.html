@@ -331,7 +331,7 @@
             $$('#scan-code-form input[name=CouponCode]').blur();
             if (data.ErrorCode == '0') {
               var statusHTML = `
-              <div class="col-100 margin-bottom" style="overflow-x: scroll;">
+              <div class="col-100 margin-top margin-bottom" style="overflow-x: scroll;">
                 <h2 style="border:1px solid #ccc;width:fit-content;margin:0 auto;padding:0 8px 0 8px">${CouponCode}</h2>
               </div>
               <div class="col-100">
@@ -417,7 +417,12 @@
                   SpinnerPlugin.activityStart(null, spinnerOptions);
                 },
                 error: function (xhr, status) {
-                  alert("No Network Connection");
+                  if(status == '0'){
+                    addToOffline(ContractorNumber, result.text, UserName);
+                  }
+                  else{
+                    alert("No Network Connection");
+                  }
                 },
                 success: function (data, status, xhr) {
                   if (data.ErrorCode == '0') {
