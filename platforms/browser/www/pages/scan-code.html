@@ -318,6 +318,7 @@
           },
           error: function (xhr, status) {
             if(status == '0'){
+              $$('#scan-code-form input[name=CouponCode]').blur();
               $$('#scan-code-form input[name=CouponCode]').val('');
               addToOffline(ContractorNumber, CouponCode, UserName);
             }
