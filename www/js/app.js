@@ -89,7 +89,7 @@ function addToOffline(ContractorNumber, CouponCode, UserName) {
     offline_codes = JSON.parse(localStorage.offline_codes);
   }
   for (var i in offline_codes) {
-    if (offline_codes[i].CouponCode == CouponCode) {
+    if (offline_codes[i].ContractorNumber == ContractorNumber && offline_codes[i].CouponCode == CouponCode && offline_codes[i].UserName == UserName) {
       var statusHTML = `
       <div class="col-100 margin-top margin-bottom" style="overflow-x: scroll;">
         <h2 style="border:1px solid #ccc;width:fit-content;margin:0 auto;padding:0 8px 0 8px">${CouponCode}</h2>

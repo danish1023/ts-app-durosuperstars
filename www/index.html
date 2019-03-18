@@ -259,7 +259,16 @@
               xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
             },
             success: function (data, status, xhr) {
-              //alert(localStorage.offline_codes);
+              if (localStorage.offline_codes) {
+                offline_codes = JSON.parse(localStorage.offline_codes);
+              }
+              for (var i in offline_codes) {
+                if (offline_codes[i].ContractorNumber == ContractorNumber && offline_codes[i].CouponCode == CouponCode && offline_codes[i].UserName == UserName) {
+                  offline_codes.splice(i, 1);
+                  localStorage.offline_codes = JSON.stringify(offline_codes);
+                  return;
+                }
+              }
             },
             complete: function (xhr, status) {
               alert(localStorage.offline_codes);
