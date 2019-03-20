@@ -55,7 +55,7 @@
                         SpinnerPlugin.activityStart(null, spinnerOptions);
                     },
                     error: function (xhr, status) {
-                        alert("No Network Connection");
+                        alert(statusMessage(status));
                     },
                     success: function (data, status, xhr) {
                         app.dialog.alert(data.ErrorMessage);
@@ -97,7 +97,7 @@
                         SpinnerPlugin.activityStart(null, spinnerOptions);
                     },
                     error: function (xhr, status) {
-                        alert("No Network Connection");
+                        alert(statusMessage(status));
                     },
                     success: function (data, status, xhr) {
                         if (data.ErrorCode == '0') {
@@ -143,7 +143,7 @@
                                         SpinnerPlugin.activityStart(null, spinnerOptions);
                                     },
                                     error: function (xhr, status) {
-                                        alert("No Network Connection");
+                                        alert(statusMessage(status));
                                     },
                                     success: function (data, status, xhr) {
                                         if (data.ErrorCode == '0') {

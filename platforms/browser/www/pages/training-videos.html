@@ -43,7 +43,7 @@
             SpinnerPlugin.activityStart(null, spinnerOptions);
           },
           error: function (xhr, status) {
-            alert("No Network Connection");
+            alert(statusMessage(status));
           },
           success: function (data, status, xhr) {
             console.log(data);

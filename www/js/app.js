@@ -113,6 +113,21 @@ function testMe(){
   console.log(app.panel.get('left').opened);
 }
 
+function statusMessage(status) {
+  if (status == 0) {
+    return 'No Network connection';
+  }
+  else if (status == 500) {
+    return 'Internal Server Error';
+  }
+  else if (status == 400) {
+    return 'Bad Request';
+  }
+  else {
+    return 'Something went wrong';
+  }
+}
+
 // Custom Functions
 function NA(input) {
   if (input == '' || input == null) {
@@ -196,7 +211,7 @@ function login() {
         SpinnerPlugin.activityStart(null, spinnerOptions);
       },
       error: function (xhr, status) {
-        alert("No Network Connection");
+        alert(statusMessage(status));
       },
       success: function (data, status, xhr) {
         console.log(data);
@@ -323,7 +338,7 @@ function orderStatusSubmit() {
       SpinnerPlugin.activityStart(null, spinnerOptions);
     },
     error: function (xhr, status) {
-      alert("No Network Connection");
+      alert(statusMessage(status));
     },
     success: function (data, status, xhr) {
       console.log(data);

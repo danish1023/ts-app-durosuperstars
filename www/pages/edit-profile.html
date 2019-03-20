@@ -115,7 +115,7 @@
                         SpinnerPlugin.activityStart(null, spinnerOptions);
                     },
                     error: function (xhr, status) {
-                        alert("No Network Connection");
+                        alert(statusMessage(status));
                     },
                     success: function (data, status, xhr) {
                         if (data.ErrorCode == '0') {
@@ -162,7 +162,7 @@
                         SpinnerPlugin.activityStart(null, spinnerOptions);
                     },
                     error: function (xhr, status) {
-                        alert("No Network Connection");
+                        alert(statusMessage(status));
                     },
                     success: function (data, status, xhr) {
                         $$('#editprofile-form input[name=MobileNo]').val(data.MobileNo);
@@ -184,7 +184,7 @@
                                 SpinnerPlugin.activityStart(null, spinnerOptions);
                             },
                             error: function (xhr, status) {
-                                alert("No Network Connection");
+                                alert(statusMessage(status));
                             },
                             success: function (data, status, xhr) {
                                 if (data.ErrorCode == '0') {

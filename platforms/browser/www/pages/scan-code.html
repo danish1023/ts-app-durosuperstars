@@ -130,7 +130,7 @@
                   SpinnerPlugin.activityStart('Please wait...', spinnerOptions);
                 },
                 error: function (xhr, status) {
-                  alert("No Network Connection");
+                  alert(statusMessage(status));
                 },
                 success: function (data, status, xhr) {
                   if (data.ErrorCode == '0') {
@@ -217,7 +217,7 @@
                   SpinnerPlugin.activityStart('Please wait...', spinnerOptions);
                 },
                 error: function (xhr, status) {
-                  alert("No Network Connection");
+                  alert(statusMessage(status));
                 },
                 success: function (data, status, xhr) {
                   if (data.ErrorCode == '0') {
@@ -323,7 +323,7 @@
               addToOffline(ContractorNumber, CouponCode, UserName);
             }
             else{
-              alert("No Network Connection");
+              alert(statusMessage(status));
             }
           },
           success: function (data, status, xhr) {
@@ -421,7 +421,7 @@
                     addToOffline(ContractorNumber, result.text, UserName);
                   }
                   else{
-                    alert("No Network Connection");
+                    alert(statusMessage(status));
                   }
                 },
                 success: function (data, status, xhr) {
