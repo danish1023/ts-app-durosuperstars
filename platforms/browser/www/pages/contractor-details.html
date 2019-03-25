@@ -36,6 +36,7 @@
                     FromDate: FromDate,
                     ToDate: ToDate,
                 };
+                console.log(obj);
                 app.request({
                     url: BaseURL + '/SearchContractorAPI',
                     method: 'POST',
@@ -55,6 +56,7 @@
                         if (data.ErrorCode == '0') {
                             var MembershipID = data.MembershipID;
                             var MemberName = data.MemberName;
+                            var DateofBirth = data.DateofBirth;
                             var MembershipDate = data.MembershipDate;
                             var DealerName = data.DealerName;
                             var TierName = data.TierName;
@@ -110,8 +112,8 @@
                                 <li>
                                     <div class="item-content">
                                         <div class="item-inner">
-                                            <div class="item-title">Membership Date</div>
-                                            <div class="item-after">${MembershipDate}</div>
+                                            <div class="item-title">Date of Birth</div>
+                                            <div class="item-after">${DateofBirth}</div>
                                         </div>
                                     </div>
                                 </li>
