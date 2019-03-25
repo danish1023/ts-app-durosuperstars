@@ -88,7 +88,7 @@
                       selected = ' selected';
                     }
 
-                    var html = $$('<option value="' + StateName + '"' + selected + '>' + StateName + '</option>');
+                    var html = $$('<option value="' + StateId + '"' + selected + '>' + StateName + '</option>');
 
                     $$('#editprofile-form select[name=State]').append(html);
                     $$('#editprofile-form select[name=State]').val('');
@@ -100,7 +100,7 @@
                       var StateId = stateArr[i].StateId;
                       var StateName = stateArr[i].StateName;
                       var cityArr = stateArr[i].CityTypeDetails;
-                      if (StateName == selected_state) {
+                      if (StateId == selected_state) {
                         $$('#editprofile-form select[name=City]').html('');
                         for (var j = 0; j < cityArr.length; j++) {
                           var cityId = cityArr[j].CityId;
@@ -109,7 +109,7 @@
                           if (CityName == Prev_City) {
                             selected = ' selected';
                           }
-                          var html = $$('<option value="' + CityName + '"' + selected + '>' + CityName + '</option>');
+                          var html = $$('<option value="' + cityId + '"' + selected + '>' + CityName + '</option>');
                           $$('#editprofile-form select[name=City]').append(html);
                         }
                         $$('#editprofile-form select[name=City]').val('');

@@ -95,6 +95,14 @@
       }
     },
     on: {
+      pageMounted: function(){
+        $$('#MemberHomePage').css('display', 'none');
+        $$('#MemberDashboardPage').css('background', 'transparent');
+        if (this.$route.params.ContractorContactNo) {
+          $$('#submitcoupon-otp-page').css('display', 'none');
+          $$('.page-previous').css('background', 'transparent');
+        }
+      },
       pageReinit: function () {
         var UserData = JSON.parse(localStorage.User);
         if (this.$route.params.ContractorContactNo) {
