@@ -191,13 +191,16 @@
                                     var Status = OrderHistoryDetails[i].Status;
                                     var StatusChangedDate = OrderHistoryDetails[i].StatusChangedDate;
                                     var Remarks = OrderHistoryDetails[i].Remarks;
-                                    if(Status == 'Delivered'){
+                                    var Response = OrderHistoryDetails[i].Response;
+                                    var ProductPointValue = OrderHistoryDetails[i].ProductPointValue;
+                                    if(Status == 'Delivered' && Response == 'N'){
                                         var tbody_el = `
                                         <tr>
                                             <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${MembershipId}</a></td>
                                             <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${SubOrderId}</a></td>
                                             <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${MainOrderNumber}</a></td>
                                             <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${ProductName}</a></td>
+                                            <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${ProductPointValue}</a></td>
                                             <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${OrderDate}</a></td>
                                             <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${Status}</a></td>
                                             <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${StatusChangedDate}</a></td>
@@ -211,6 +214,7 @@
                                             <td class="label-cell">${SubOrderId}</td>
                                             <td class="label-cell">${MainOrderNumber}</td>
                                             <td class="label-cell">${ProductName}</td>
+                                            <td class="label-cell">${ProductPointValue}</td>
                                             <td class="label-cell">${OrderDate}</td>
                                             <td class="label-cell">${Status}</td>
                                             <td class="label-cell">${StatusChangedDate}</td>
@@ -227,6 +231,7 @@
                                     <th class="label-cell">Sub-Order ID</th>
                                     <th class="label-cell">Main Order Number</th>
                                     <th class="label-cell">Product Name</th>
+                                    <th class="label-cell">Product Point Value</th>
                                     <th class="label-cell">Order Date</th>
                                     <th class="label-cell">Status</th>
                                     <th class="label-cell">Status Changed Date</th>

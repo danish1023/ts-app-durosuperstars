@@ -60,9 +60,10 @@
             alert(statusMessage(status));
           },
           success: function (data, status, xhr) {
+            console.log(data);
             localStorage.setItem('UserTypeCode',data.UserTypeCode);
             if (data.ErrorCode == '0') {
-              if (data.UserTypeCode == 'S') {
+              //if (data.UserTypeCode == 'S') {
                 var contractor_lowerpart = `<a style="width:125px" class="button button-outline button-round margin" href="/contractor-list/">View Details</a>
                 <form class="searchbar searchbar-contractor searchbar-init" style="border: 2px solid #f44336;border-radius: 30px;    box-shadow: none;">
                   <div class="searchbar-inner">
@@ -87,13 +88,13 @@
                   </div>
                 </form>
                 `;
-              }
-              else {
-                var contractor_lowerpart = '<a style="width:125px" class="button button-outline button-round margin" href="/contractorlist-upper/">View Details</a>';
-                var dealer_lowerpart = '<a style="width:125px" class="button button-outline button-round margin" href="/dealerlist-upper/">View Details</a>';
-                // $$('#UserHomePage .swiper-wrapper').addClass('swiper-no-swiping');
-                // $$('#UserHomePage .tab-link').removeAttr('href');
-              }
+              //}
+              // else {
+              //   var contractor_lowerpart = '<a style="width:125px" class="button button-outline button-round margin" href="/contractorlist-upper/">View Details</a>';
+              //   var dealer_lowerpart = '<a style="width:125px" class="button button-outline button-round margin" href="/dealerlist-upper/">View Details</a>';
+              //   // $$('#UserHomePage .swiper-wrapper').addClass('swiper-no-swiping');
+              //   // $$('#UserHomePage .tab-link').removeAttr('href');
+              // }
               var html1 = `<div class="card" style="box-shadow:none;">
                 <div class="card-content card-content-padding text-align-center" style="background: mistyrose;">
                   <div class="row margin-bottom">
@@ -103,8 +104,8 @@
                   </div>
                   <div class="row margin-bottom">
                     <div class="col">
-                      <h3 class="no-margin">Employee Name</h3>
-                      <p class="no-margin">${data.EmployeeName}</p>
+                      <h3 class="no-margin">Employee Code</h3>
+                      <p class="no-margin">${data.EmployeeCode}</p>
                     </div>
                     <div class="col">
                       <h3 class="no-margin">Total Points</h3>

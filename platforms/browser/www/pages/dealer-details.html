@@ -49,6 +49,7 @@
                         alert(statusMessage(status));
                     },
                     success: function (data, status, xhr) {
+                        console.log(data);
                         if (data.ErrorCode == '0') {
                             var DealerWiseContractorPerformance = data.Response.DealerWiseContractorPerformance;
                             if (DealerWiseContractorPerformance) {
@@ -59,10 +60,12 @@
                                     var CountofCouponsSubmitted = DealerWiseContractorPerformance[i].CountofCouponsSubmitted;
                                     var TierName = DealerWiseContractorPerformance[i].TierName;
                                     var MobileNo = DealerWiseContractorPerformance[i].MobileNo;
+                                    var CityName = DealerWiseContractorPerformance[i].CityName;
                                     var tbody_el = `
                                     <tr>
                                         <td class="label-cell">${ContractorName}</td>
                                         <td class="label-cell">${MobileNo}</td>
+                                        <td class="label-cell">${CityName}</td>
                                         <td class="label-cell">${PointsEarned}</td>
                                         <td class="label-cell">${CountofCouponsSubmitted}</td>
                                         <td class="label-cell">${TierName}</td>
@@ -74,6 +77,7 @@
                                     <tr>
                                     <th class="label-cell color-red">Contractor Name</th>
                                     <th class="label-cell color-red">Mobile Number</th>
+                                    <th class="label-cell color-red">City</th>
                                     <th class="label-cell color-red">Points Earned</th>
                                     <th class="label-cell color-red">Coupons Submitted</th>
                                     <th class="label-cell color-red">Tier Name</th>

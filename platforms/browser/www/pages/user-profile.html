@@ -52,12 +52,7 @@
           },
           success: function (data, status, xhr) {
             if (data.ErrorCode == '0') {
-              var html = `<div class="block text-align-center no-margin bg-color-red">
-                <div style="width: fit-content;margin: 0 auto;padding: 16px;">
-                <h2 class="no-margin color-white">${data.EmployeeName}</h2>
-                <p class="no-margin color-white">${data.MobileNo}</p>
-                </div>
-              </div>
+              var html = `
               <div class="list media-list no-hairlines no-margin">
                 <ul class="user-profile-info">
                   <li>
@@ -116,16 +111,6 @@
                         <div class="item-subtitle color-red">City</div>
                         <div class="item-title-row">
                           <div class="item-title">${data.CityName}</div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="item-content">
-                      <div class="item-inner">
-                        <div class="item-subtitle color-red">Address</div>
-                        <div class="item-title-row">
-                          <div class="item-title">${NA(data.Address)}</div>
                         </div>
                       </div>
                     </div>
