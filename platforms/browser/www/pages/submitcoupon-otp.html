@@ -10,7 +10,8 @@
                 <div class="title color-white">One Time Password</div>
                 <div class="right">
                     <a href="/notifications/" class="link icon-only">
-                        <i class="icon material-icons">notifications<span class="badge NotificationCount color-blue">0</span></i>
+                        <i class="icon material-icons">notifications<span
+                                class="badge NotificationCount color-blue">0</span></i>
                     </a>
                 </div>
             </div>
@@ -58,7 +59,12 @@
                         alert(statusMessage(status));
                     },
                     success: function (data, status, xhr) {
-                        app.dialog.alert(data.ErrorMessage);
+                        app.dialog.alert(data.ErrorMessage, function () {
+                            app.router.navigate(app.views.main.router.url, {
+                                ignoreCache: true,
+                                reloadCurrent: true
+                            });
+                        });
                     },
                     complete: function (xhr, status) {
                         SpinnerPlugin.activityStop();
@@ -102,7 +108,7 @@
                     },
                     success: function (data, status, xhr) {
                         if (data.ErrorCode == '0') {
-                            
+
                         }
                         else {
                             app.dialog.alert(data.ErrorMessage);
@@ -148,10 +154,15 @@
                                     },
                                     success: function (data, status, xhr) {
                                         if (data.ErrorCode == '0') {
-                                            app.router.navigate('/scan-code/'+ContractorContactNo+'/');
+                                            app.router.navigate('/scan-code/' + ContractorContactNo + '/');
                                         }
                                         else {
-                                            app.dialog.alert(data.ErrorMessage);
+                                            app.dialog.alert(data.ErrorMessage, function () {
+                                                app.router.navigate(app.views.main.router.url, {
+                                                    ignoreCache: true,
+                                                    reloadCurrent: true
+                                                });
+                                            });
                                         }
                                     },
                                     complete: function (xhr, status) {
