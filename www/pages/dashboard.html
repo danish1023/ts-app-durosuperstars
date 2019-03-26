@@ -266,8 +266,15 @@
               var CurrentBalance = DashboardDetail.CurrentBalance;
               var TierName = DashboardDetail.TierName;
               var ExpiryDetails = DashboardDetail.ExpiryDetails;
+              if (TierName == 'RED' || TierName == 'Red' || TierName == 'red' || TierName == 'TITANIUM' || TierName == 'Titanium' || TierName == 'titanium') {
+                $$('#MemberHomePage .color-TierColor').css("color", '#ffffff');
+              }
+              else {
+                $$('#MemberHomePage .color-TierColor').css("color", '#000000');
+              }
               $$('#MemberHomePage .Name').text(Name);
-              $$('#MemberHomePage .Tier').text(TierName);
+              $$('#MemberHomePage .TierName').text(TierName);
+              $$('#MemberHomePage .TierColor').css("background-color", TierColor);
               $$('#MemberHomePage .PointBalance').text(CurrentBalance);
               $$('#MemberHomePage .ExpiryDetails').html('');
               if (ExpiryDetails) {
