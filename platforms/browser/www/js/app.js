@@ -387,6 +387,7 @@ function orderStatus(MobileNo, SubOrderId) {
 function checkLengthContractor(){
   var MobileNo = $$('.searchbar-contractor input[type=search]').val();
   if (MobileNo.length == 10) {
+    $$('input[type=search]').blur();
     app.router.navigate({
       name: 'contractor-details',
       params: { 'ContractorMobileNo': MobileNo },
@@ -397,6 +398,7 @@ function checkLengthContractor(){
 function checkLengthDealer(){
   var MobileNo = $$('.searchbar-dealer input[type=search]').val();
   if (MobileNo.length == 10) {
+    $$('input[type=search]').blur();
     app.router.navigate({
       name: 'dealersearch-details',
       params: { 'DealerMobileNo': MobileNo },
