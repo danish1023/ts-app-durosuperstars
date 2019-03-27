@@ -13,6 +13,18 @@
                         <i class="icon material-icons">notifications<span class="badge NotificationCount color-blue">0</span></i>
                     </a>
                 </div>
+                <div class="subnavbar">
+                    <form class="searchbar searchbar-contractor searchbar-init" style="border: 1px solid #f44336">
+                        <div class="searchbar-inner">
+                        <div class="searchbar-input-wrap">
+                            <input @keydown="checkLength" @keyup="checkLength" type="search" placeholder="Mobile Number">
+                            <i class="searchbar-icon"></i>
+                            <span class="input-clear-button"></span>
+                        </div>
+                        <span class="searchbar-disable-button">Cancel</span>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="page-content bg-color-white">
@@ -168,6 +180,20 @@
                     }
                 })
             },
+            pageReinit: function(e,page){
+                app.searchbar.disable('.searchbar');
+            }
+        },
+        methods: {
+            checkLength: function () {
+                var MobileNo = $$('#contractorlist-upper-page input[type=search]').val();
+                if (MobileNo.length == 10) {
+                app.router.navigate({
+                    name: 'contractor-details',
+                    params: { 'ContractorMobileNo': MobileNo },
+                });
+                }
+            }
         }
     }
 </script>
