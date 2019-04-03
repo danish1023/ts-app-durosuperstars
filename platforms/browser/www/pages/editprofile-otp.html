@@ -38,7 +38,7 @@
   return {
     methods: {
       resendOTP: function (e, page) {
-        var EditProfileData = JSON.parse(page.route.context.edit_profile);
+        var EditProfileData = JSON.parse(this.$route.context.edit_profile);
         var obj = {
           MembershipId: EditProfileData.MembershipId,
           MobileNo: EditProfileData.MobileNo,
@@ -63,6 +63,15 @@
             alert(statusMessage(status));
           },
           success: function (data, status, xhr) {
+            app.router.navigate('/editprofile-otp/', {
+              route: {
+                context: {
+                  edit_profile: JSON.stringify(obj),
+                }
+              },
+              ignoreCache: true,
+              reloadCurrent: true
+            });
             app.dialog.alert(data.ErrorMessage);
           },
           complete: function (xhr, status) {
@@ -137,7 +146,7 @@
                         });
                       });
                     }
-                    else{
+                    else {
                       app.dialog.alert(data.ErrorMessage);
                     }
                   },
