@@ -86,8 +86,8 @@
                     no_pdf = no_pdf+1;
                     var html = `<div class="card">
                       <div class="card-content card-content-padding">
-                        <h4 style="overflow-wrap: break-word;" class="no-margin">${Title}</h4>
-                        <p style="overflow-wrap: break-word;">${Description}</p>
+                        <h4 style="word-break: break-all;" class="no-margin">${Title}</h4>
+                        <p style="word-break: break-all;">${Description}</p>
                         <iframe onload="hideLoader()" src="https://docs.google.com/viewer?url=${FilePath}&embedded=true" width="100%" height="100%" style="border: none;height:70vh"></iframe>
                       </div>
                     </div>`;
@@ -98,8 +98,8 @@
                     var html = `<div class="card demo-card-header-pic no-margin margin-top">
                       <div class="card-header no-padding"><img style="width:100%" src="${FilePath}"/></div>
                       <div class="card-content card-content-padding">
-                        <p class="date">${Title}</p>
-                        <p>${Description}</p>
+                        <p style="word-break: break-all;" class="date">${Title}</p>
+                        <p style="word-break: break-all;">${Description}</p>
                       </div>
                     </div>`;
                     $$('#company-profile-page #tab-2 .block').append(html);
@@ -109,8 +109,8 @@
                     var html = `<div class="card demo-card-header-pic no-margin margin-top">
                       <div onclick="playVideo('${FilePath}')" class="card-header no-padding"><img onerror="this.src='img/video-thumb.png'" style="width:100%" src="${ThumbnailImage}"/></div>
                       <div class="card-content card-content-padding">
-                        <p class="date">${Title}</p>
-                        <p>${Description}</p>
+                        <p style="word-break: break-all;" class="date">${Title}</p>
+                        <p style="word-break: break-all;">${Description}</p>
                       </div>
                     </div>`;
                     $$('#company-profile-page #tab-3 .block').append(html);
