@@ -28,7 +28,7 @@ Framework7.use(Framework7Keypad);
 
 // Init App
 var app = new Framework7({
-  id: 'com.techstreet.durosuperstars',
+  id: 'com.sarda.durosuperstars',
   root: '#app',
   theme: 'md',
   name: 'DURO Superstars',
@@ -49,16 +49,16 @@ var app = new Framework7({
   routes: routes,
 });
 
-//var HomeURL = 'http://durosuperstars.com';
-var HomeURL = 'http://sardaplydemo.netcarrots.in';
+var HomeURL = 'http://durosuperstars.com';
+//var HomeURL = 'http://sardaplydemo.netcarrots.in';
 
-//var BaseURL = 'http://durosuperstars.com/API/AllServices.svc';
-var BaseURL = 'http://sardaplydemo.netcarrots.in/API/AllServices.svc';
+var BaseURL = 'http://durosuperstars.com/API/AllServices.svc';
+//var BaseURL = 'http://sardaplydemo.netcarrots.in/API/AllServices.svc';
 
-//var AuthUsername = 'lakshya';
-//var AuthPassword = 'lakshya@001';
-var AuthUsername = 'Novatis';
-var AuthPassword = '!!Novatis!!';
+var AuthUsername = 'lakshya';
+var AuthPassword = 'lakshya@001';
+//var AuthUsername = 'Novatis';
+//var AuthPassword = '!!Novatis!!';
 
 // Init/Create main view
 var mainView = app.views.create('.view-main', {
