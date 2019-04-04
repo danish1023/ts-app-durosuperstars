@@ -8,32 +8,63 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:613223308725:android:ba59c7e92326901f",
+        "mobilesdk_app_id": "1:613223308725:android:46e1ed61bc28d5f7",
         "android_client_info": {
           "package_name": "com.sarda.durosuperstars"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "613223308725-qsaak55mvrm55elspv0kqbflo5gqn577.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
           "current_key": "AIzaSyAunYY7zUA__cgxJDp4xhh-LYUuURy7-Wo"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "613223308725-qsaak55mvrm55elspv0kqbflo5gqn577.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "613223308725-7ucom36f0gcakm4qbo1urgnli1283cvd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.techstreet.durosuperstars"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:613223308725:android:ba59c7e92326901f",
+        "android_client_info": {
+          "package_name": "com.techstreet.durosuperstars"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAunYY7zUA__cgxJDp4xhh-LYUuURy7-Wo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "613223308725-qsaak55mvrm55elspv0kqbflo5gqn577.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "613223308725-7ucom36f0gcakm4qbo1urgnli1283cvd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.techstreet.durosuperstars"
+              }
+            }
+          ]
         }
       }
     }
