@@ -27,41 +27,10 @@
               "client_type": 3
             },
             {
-              "client_id": "613223308725-7ucom36f0gcakm4qbo1urgnli1283cvd.apps.googleusercontent.com",
+              "client_id": "613223308725-k6vm0nk4lkomsv5m1kmm3u9g4c2h8ak2.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.techstreet.durosuperstars"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:613223308725:android:ba59c7e92326901f",
-        "android_client_info": {
-          "package_name": "com.techstreet.durosuperstars"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAunYY7zUA__cgxJDp4xhh-LYUuURy7-Wo"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "613223308725-qsaak55mvrm55elspv0kqbflo5gqn577.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "613223308725-7ucom36f0gcakm4qbo1urgnli1283cvd.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.techstreet.durosuperstars"
+                "bundle_id": "com.sarda.durosuperstars"
               }
             }
           ]
