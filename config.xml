@@ -26,7 +26,6 @@
     <splash src="splash.png" />
     
     <!-- IOS -->
-    <icon src="res/icon/ios/icon.png" platform="ios" />
     <splash src="res/icon/ios/Default@2x~universal~anyany.png" platform="ios" />
 
     <!-- iPhone 6 / 6+ -->
