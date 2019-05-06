@@ -165,6 +165,7 @@ function checkVersion() {
       xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
     },
     success: function (data, status, xhr) {
+      console.log(data);
       if (platform == 'ios') {
         if (data.AppVersionIOS > AppVersionIOS) {
           app.dialog.confirm('A new version of the application is available. Please update your app.', 'New Version Available',
