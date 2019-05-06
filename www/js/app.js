@@ -256,6 +256,7 @@ function logout() {
   localStorage.removeItem("qr");
   localStorage.removeItem("UserTypeCode");
   localStorage.removeItem("MyProfile");
+  $$('.version-number').text('Version: ' + localStorage.app_version);
   app.router.navigate('/');
 }
 

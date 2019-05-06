@@ -240,8 +240,8 @@
     
     function onDeviceReady() {
       cordova.getAppVersion.getVersionNumber(function (version) {
+        $$('.version-number').text('Version: ' + version);
         localStorage.setItem("app_version", version);
-        $$('.version-number').text('Version: ' + localStorage.app_version);
       });
       document.addEventListener("online", onOnline, false);
       document.addEventListener("offline", onOffline, false);
