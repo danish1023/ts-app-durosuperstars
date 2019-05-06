@@ -239,6 +239,10 @@
     document.addEventListener("backbutton", onBackKeyDown, false);
     
     function onDeviceReady() {
+      cordova.getAppVersion.getVersionNumber(function (version) {
+        localStorage.setItem("app_version", version);
+        $$('.version-number').text('Version: ' + localStorage.app_version);
+      });
       document.addEventListener("online", onOnline, false);
       document.addEventListener("offline", onOffline, false);
       function onOffline() {
@@ -304,9 +308,6 @@
         localStorage.setItem("fcm_token", data.registrationId);
       });
 
-      cordova.getAppVersion.getVersionNumber(function (version) {
-        $$('.version-number').text('Version: ' + version);
-      });
       checkVersion();
     }
     function onBackKeyDown(e) {
