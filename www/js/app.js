@@ -182,7 +182,7 @@ function checkVersion() {
         if (data.AppVersionAndroid > AppVersionAndroid) {
           app.dialog.confirm('A new version of the application is available. Please update your app.', 'New Version Available',
             function () {
-              window.location.href = "https://play.google.com/store/apps/details?id=com.techstreet.durosuperstars";
+              window.location.href = "https://play.google.com/store/apps/details?id=com.sarda.durosuperstars";
               navigator.app.exitApp();
             },
             function () {
