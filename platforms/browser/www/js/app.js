@@ -67,6 +67,14 @@ var mainView = app.views.create('.view-main', {
     init: function (event, page) {
       console.log('App initialized');
     },
+    pageInit: function (page) {
+      if(page.route.path == '/'){
+        //$$('.version-number').text('Version: ' + localStorage.app_version);
+        cordova.getAppVersion.getVersionNumber(function (version) {
+          $$('.version-number').text('Version: ' + version);
+        });
+      }
+    },
   }
 });
 
@@ -256,7 +264,6 @@ function logout() {
   localStorage.removeItem("qr");
   localStorage.removeItem("UserTypeCode");
   localStorage.removeItem("MyProfile");
-  $$('.version-number').text('Version: ' + localStorage.app_version);
   app.router.navigate('/');
 }
 
