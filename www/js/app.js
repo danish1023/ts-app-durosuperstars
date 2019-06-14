@@ -49,16 +49,16 @@ var app = new Framework7({
   routes: routes,
 });
 
-var HomeURL = 'http://durosuperstars.com';
-//var HomeURL = 'http://sardaplydemo.netcarrots.in';
+//var HomeURL = 'http://durosuperstars.com';
+var HomeURL = 'http://sardaplydemo.netcarrots.in';
 
-var BaseURL = 'http://durosuperstars.com/API/AllServices.svc';
-//var BaseURL = 'http://sardaplydemo.netcarrots.in/API/AllServices.svc';
+//var BaseURL = 'http://durosuperstars.com/API/AllServices.svc';
+var BaseURL = 'http://sardaplydemo.netcarrots.in/API/AllServices.svc';
 
-var AuthUsername = 'lakshya';
-var AuthPassword = 'lakshya@001';
-//var AuthUsername = 'Novatis';
-//var AuthPassword = '!!Novatis!!';
+//var AuthUsername = 'lakshya';
+//var AuthPassword = 'lakshya@001';
+var AuthUsername = 'Novatis';
+var AuthPassword = '!!Novatis!!';
 
 // Init/Create main view
 var mainView = app.views.create('.view-main', {
@@ -68,7 +68,7 @@ var mainView = app.views.create('.view-main', {
       console.log('App initialized');
     },
     pageInit: function (page) {
-      if(page.route.path == '/'){
+      if (page.route.path == '/') {
         //$$('.version-number').text('Version: ' + localStorage.app_version);
         cordova.getAppVersion.getVersionNumber(function (version) {
           $$('.version-number').text('Version: ' + version);
@@ -82,7 +82,7 @@ var mainView = app.views.create('.view-main', {
 var offline_codes = [];
 
 function addToOffline(ContractorNumber, CouponCode, UserName) {
-  var obj = { "ContractorNumber": ContractorNumber, "CouponCode": CouponCode, "UserName": UserName};
+  var obj = { "ContractorNumber": ContractorNumber, "CouponCode": CouponCode, "UserName": UserName };
   var statusHTML = `
   <div class="col-100 margin-top margin-bottom" style="overflow-x: scroll;">
     <h2 style="border:1px solid #ccc;width:fit-content;margin:0 auto;padding:0 8px 0 8px">${CouponCode}</h2>
@@ -117,7 +117,7 @@ function addToOffline(ContractorNumber, CouponCode, UserName) {
   localStorage.offline_codes = JSON.stringify(offline_codes);
 }
 
-function testMe(){
+function testMe() {
   console.log(app.panel.get('left').opened);
 }
 
@@ -393,7 +393,7 @@ function orderStatus(MobileNo, SubOrderId) {
   }).open();
 }
 
-function checkLengthContractor(){
+function checkLengthContractor() {
   var MobileNo = $$('.searchbar-contractor input[type=search]').val();
   if (MobileNo.length == 10) {
     $$('input[type=search]').blur();
@@ -404,7 +404,7 @@ function checkLengthContractor(){
   }
 }
 
-function checkLengthDealer(){
+function checkLengthDealer() {
   var MobileNo = $$('.searchbar-dealer input[type=search]').val();
   if (MobileNo.length == 10) {
     $$('input[type=search]').blur();
