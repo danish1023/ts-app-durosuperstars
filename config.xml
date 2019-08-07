@@ -9,6 +9,9 @@
     </author>
     <platform name="android">
         <resource-file src="google-services.json" target="app/google-services.json" />
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:usesCleartextTraffic="true" />
+        </edit-config>
     </platform>
     <platform name="ios">
         <resource-file src="GoogleService-Info.plist" />
