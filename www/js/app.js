@@ -3,8 +3,8 @@ var $$ = Dom7;
 // Platform
 var platform = 'android';
 // API Version
-var AppVersionAndroid = '1.3';
-var AppVersionIOS = '1.0';
+var AppVersionAndroid = '1.4'; // 1.3
+var AppVersionIOS = '1.1'; // 1.0
 
 var User = localStorage.User;
 if (User) {
