@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.sarda.durosuperstars" version="1.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.sarda.durosuperstars" version="1.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android" >
     <name>DURO Superstars</name>
     <description>
         Udaan Sitaron Ki
@@ -9,7 +9,7 @@
     </author>
     <platform name="android">
         <resource-file src="google-services.json" target="app/google-services.json" />
-        <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application">
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
             <application android:usesCleartextTraffic="true" />
         </edit-config>
     </platform>
