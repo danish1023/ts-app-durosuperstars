@@ -43,6 +43,7 @@
     <icon height="40" platform="ios" src="res/icon/ios/icon-40.png" width="40" />
     <icon height="80" platform="ios" src="res/icon/ios/icon-40@2x.png" width="80" />
     <icon height="120" platform="ios" src="res/icon/ios/icon-40@3x.png" width="120" />
+    <preference name="android-targetSdkVersion" value="28" />
     <preference name="phonegap-version" value="cli-8.1.1" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="ShowSplashScreenSpinner" value="false" />
