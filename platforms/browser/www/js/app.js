@@ -1,7 +1,7 @@
 // Dom7
 var $$ = Dom7;
 // Platform
-var platform = 'android';
+var platform = 'ios';
 // API Version
 var AppVersionAndroid = '1.4'; // 1.3
 var AppVersionIOS = '1.1'; // 1.0
