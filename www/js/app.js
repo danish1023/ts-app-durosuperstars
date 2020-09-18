@@ -49,8 +49,8 @@ var app = new Framework7({
   routes: routes,
 });
 
-var HomeURL = 'http://durosuperstars.com';
-//var HomeURL = 'http://sardaplydemo.netcarrots.in';
+//var HomeURL = 'http://durosuperstars.com';
+var HomeURL = 'http://sardaplydemo.netcarrots.in';
 
 //var BaseURL = 'http://durosuperstars.com/API/AllServices.svc';
 var BaseURL = 'http://sardaplydemo.netcarrots.in/API/AllServices.svc';
