@@ -1,7 +1,7 @@
 // Dom7
 var $$ = Dom7;
 // Platform
-var platform = 'ios';
+var platform = 'android';
 // API Version
 var AppVersionAndroid = '1.4'; // 1.3
 var AppVersionIOS = '1.1'; // 1.0
@@ -49,16 +49,16 @@ var app = new Framework7({
   routes: routes,
 });
 
-var HomeURL = 'http://durosuperstars.com';
-//var HomeURL = 'http://sardaplydemo.netcarrots.in';
+//var HomeURL = 'http://durosuperstars.com';
+var HomeURL = 'http://sardaplydemo.netcarrots.in';
 
-var BaseURL = 'http://durosuperstars.com/API/AllServices.svc';
-//var BaseURL = 'http://sardaplydemo.netcarrots.in/API/AllServices.svc';
+//var BaseURL = 'http://durosuperstars.com/API/AllServices.svc';
+var BaseURL = 'http://sardaplydemo.netcarrots.in/API/AllServices.svc';
 
-var AuthUsername = 'lakshya';
-var AuthPassword = 'lakshya@001';
-//var AuthUsername = 'Novatis';
-//var AuthPassword = '!!Novatis!!';
+//var AuthUsername = 'lakshya';
+//var AuthPassword = 'lakshya@001';
+var AuthUsername = 'APIUser';
+var AuthPassword = '!!Dem@!!';
 
 // Init/Create main view
 var mainView = app.views.create('.view-main', {

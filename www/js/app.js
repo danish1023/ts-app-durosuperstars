@@ -57,8 +57,8 @@ var BaseURL = 'http://sardaplydemo.netcarrots.in/API/AllServices.svc';
 
 //var AuthUsername = 'lakshya';
 //var AuthPassword = 'lakshya@001';
-var AuthUsername = 'Novatis';
-var AuthPassword = '!!Novatis!!';
+var AuthUsername = 'APIUser';
+var AuthPassword = '!!Dem@!!';
 
 // Init/Create main view
 var mainView = app.views.create('.view-main', {
