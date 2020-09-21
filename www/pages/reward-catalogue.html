@@ -23,11 +23,16 @@
         </div>
         <div class="tabs">
             <div id="tab-reward" class="page-content tab tab-active">
-                <iframe @load="hideLoader" src="{{HomeURL}}/default.aspx?UserId={{UserId}}&MobileNo={{MobileNo}}"
+                <!-- <iframe @load="hideLoader" src="{{HomeURL}}/default.aspx?UserId={{UserId}}&MobileNo={{MobileNo}}"
                     width="100%" height="100%" style="border: none;">
                 </iframe>
                 <div class="preloader-parent" style="height:100vh">
                     <div style="position: absolute;transform: translate(-50%,-50%);left: 46%;top: 46%;" class="preloader color-red"></div>
+                </div> -->
+                <div class="text-align-center">
+                    <a href="#" @click="openBrowser" style="width:100px; text-transform:none; margin: 100px auto;"
+                        class="button button-raised button-fill font-1x">Next
+                    </a>
                 </div>
             </div>
             <div id="tab-orderhistory" class="page-content tab">
@@ -143,6 +148,23 @@
         methods: {
             hideLoader: function () {
                 $$('#reward-catalogue-page .preloader-parent').hide();
+            },
+            openBrowser: function () {
+                var UserData = JSON.parse(localStorage.User);
+                var UserType = UserData.UserType;
+                if (this.$route.params.MobileNo) {
+                    var MobileNo = this.$route.params.MobileNo;
+                }
+                else {
+                    var MobileNo = UserData.MobileNo;
+                }
+                if (UserType == 'M') {
+                    var UserId = '';
+                }
+                else {
+                    var UserId = UserData.MembershipId;
+                }
+                cordova.InAppBrowser.open("http://sardaplydemo.netcarrots.in/Default.aspx?UserId="+UserId+"&MobileNo="+MobileNo+"");
             },
             orderHistory: function () {
                 var UserData = JSON.parse(localStorage.User);
