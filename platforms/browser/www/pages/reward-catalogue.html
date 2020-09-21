@@ -164,7 +164,7 @@
                 else {
                     var UserId = UserData.MembershipId;
                 }
-                cordova.InAppBrowser.open("http://sardaplydemo.netcarrots.in/Default.aspx?UserId="+UserId+"&MobileNo="+MobileNo+"', '_blank', 'location=yes");
+                cordova.InAppBrowser.open("http://sardaplydemo.netcarrots.in/Default.aspx?UserId="+UserId+"&MobileNo="+MobileNo, "_blank", "location=yes");
             },
             orderHistory: function () {
                 var UserData = JSON.parse(localStorage.User);
