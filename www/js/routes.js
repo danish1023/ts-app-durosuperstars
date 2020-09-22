@@ -229,6 +229,20 @@ var routes = [
     name: 'reward-catalogue',
   },
 
+  // Order History
+  {
+    path: '/order-history/',
+    componentUrl: './pages/order-history.html',
+    name: 'order-history',
+  },
+
+  // Order History
+  {
+    path: '/order-history/:MobileNo/',
+    componentUrl: './pages/order-history.html',
+    name: 'order-history',
+  },
+
   // Training Videos
   {
     path: '/training-videos/',

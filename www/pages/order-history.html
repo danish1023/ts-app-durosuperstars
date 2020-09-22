@@ -1,0 +1,224 @@
+<template>
+    <div class="page" id="order-history-page">
+        <div class="navbar">
+            <div class="navbar-inner sliding bg-color-red color-theme-white">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="material-icons">arrow_back</i>
+                    </a>
+                </div>
+                <div class="title color-white">Order History</div>
+                <div class="right">
+                    <a href="/notifications/" class="link icon-only">
+                        <i class="icon material-icons">notifications<span class="badge NotificationCount color-blue">0</span></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="page-orderhistory" class="page-content">
+            <div class="block no-margin">
+                <form class="list show-hairlines-ios no-hairlines text-align-left no-margin-bottom margin-top"
+                    id="order-history-form">
+                    <ul class="no-hairlines-between">
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-floating-label">From Date</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" value="{{FromDate}}" name="FromDate">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-floating-label">To Date</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" value="{{ToDate}}" name="ToDate">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-floating-label">Status</div>
+                                <div class="item-input-wrap input-dropdown-wrap">
+                                    <select name="Status" placeholder="Please choose...">
+                                        <option value="A">All</option>
+                                        <option value="O">Ordered</option>
+                                        <option value="Z">Out Of Stock</option>
+                                        <option value="D">Delivered</option>
+                                        <option value="F">Cancelled/Closed</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </form>
+                <a href="#" @click="orderHistory" style="width:100px; text-transform:none; margin: 8px 0 16px 16px;"
+                    class="button button-raised button-fill font-1x">Search
+                </a>
+            </div>
+
+            <div class="data-table">
+
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    return {
+        data: function () {
+            var UserData = JSON.parse(localStorage.User);
+            var UserType = UserData.UserType;
+            if (this.$route.params.MobileNo) {
+                var MobileNo = this.$route.params.MobileNo;
+            }
+            else {
+                var MobileNo = UserData.MobileNo;
+            }
+            if (UserType == 'M') {
+                var UserId = '';
+            }
+            else {
+                var UserId = UserData.MembershipId;
+            }
+            return {
+                UserId: UserId,
+                MobileNo: MobileNo,
+                FromDate: moment().format('DD-MMM-Y'),
+                ToDate: moment().format('DD-MMM-Y'),
+                HomeURL: HomeURL
+            }
+        },
+        on: {
+            pageInit: function () {
+                var FromDateCalendar = app.calendar.create({
+                    inputEl: '#order-history-page input[name=FromDate]',
+                    openIn: 'customModal',
+                    header: true,
+                    dateFormat: 'dd-M-yyyy',
+                    closeOnSelect: true
+                });
+                var ToDateCalendar = app.calendar.create({
+                    inputEl: '#order-history-page input[name=ToDate]',
+                    openIn: 'customModal',
+                    header: true,
+                    dateFormat: 'dd-M-yyyy',
+                    closeOnSelect: true
+                });
+                ShowNotificationCount();
+            },
+        },
+        methods: {
+            orderHistory: function () {
+                var UserData = JSON.parse(localStorage.User);
+                if (this.$route.params.MobileNo) {
+                    var MobileNo = this.$route.params.MobileNo;
+                }
+                else {
+                    var MobileNo = UserData.MobileNo;
+                }
+                var FromDate = $$('#order-history-form input[name=FromDate]').val();
+                var ToDate = $$('#order-history-form input[name=ToDate]').val();
+                var Status = $$('#order-history-form select[name=Status]').val();
+
+                var obj = {
+                    MobileNo: MobileNo,
+                    FromDate: FromDate,
+                    ToDate: ToDate,
+                    Status: Status,
+                };
+                app.request({
+                    url: BaseURL + '/OrderHistoryAPI',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: obj,
+                    contentType: 'application/json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Authorization", "Basic " + btoa(AuthUsername + ":" + AuthPassword));
+                        var spinnerOptions = { dimBackground: false };
+                        SpinnerPlugin.activityStart(null, spinnerOptions);
+                    },
+                    error: function (xhr, status) {
+                        alert(statusMessage(status));
+                    },
+                    success: function (data, status, xhr) {
+                        if (data.ErrorCode == '0') {
+                            $$('#page-orderhistory .data-table').html('');
+                            var OrderHistoryDetails = data.Response.OrderHistoryDetails;
+                            if (OrderHistoryDetails) {
+                                var tbody = '';
+                                for (var i = 0; i < OrderHistoryDetails.length; i++) {
+                                    var MembershipId = OrderHistoryDetails[i].MembershipId;
+                                    var SubOrderId = OrderHistoryDetails[i].SubOrderId;
+                                    var MainOrderNumber = OrderHistoryDetails[i].MainOrderNumber;
+                                    var ProductName = OrderHistoryDetails[i].ProductName;
+                                    var OrderDate = OrderHistoryDetails[i].OrderDate;
+                                    var Status = OrderHistoryDetails[i].Status;
+                                    var StatusChangedDate = OrderHistoryDetails[i].StatusChangedDate;
+                                    var Remarks = OrderHistoryDetails[i].Remarks;
+                                    var Response = OrderHistoryDetails[i].Response;
+                                    var ProductPointValue = OrderHistoryDetails[i].ProductPointValue;
+                                    if(Status == 'Delivered' && Response == 'N'){
+                                        var tbody_el = `
+                                        <tr>
+                                            <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${MembershipId}</a></td>
+                                            <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${SubOrderId}</a></td>
+                                            <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${MainOrderNumber}</a></td>
+                                            <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${ProductName}</a></td>
+                                            <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${ProductPointValue}</a></td>
+                                            <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${OrderDate}</a></td>
+                                            <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${Status}</a></td>
+                                            <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${StatusChangedDate}</a></td>
+                                            <td class="label-cell"><a onclick="orderStatus('${MobileNo}','${SubOrderId}')" href="#">${Remarks}</a></td>
+                                        </tr>`;
+                                    }
+                                    else{
+                                        var tbody_el = `
+                                        <tr>
+                                            <td class="label-cell">${MembershipId}</td>
+                                            <td class="label-cell">${SubOrderId}</td>
+                                            <td class="label-cell">${MainOrderNumber}</td>
+                                            <td class="label-cell">${ProductName}</td>
+                                            <td class="label-cell">${ProductPointValue}</td>
+                                            <td class="label-cell">${OrderDate}</td>
+                                            <td class="label-cell">${Status}</td>
+                                            <td class="label-cell">${StatusChangedDate}</td>
+                                            <td class="label-cell">${Remarks}</td>
+                                        </tr>`;
+                                    }
+                                    
+                                    tbody = tbody + tbody_el;
+                                }
+                                var table = `<table>
+                                <thead>
+                                    <tr>
+                                    <th class="label-cell">Membership ID</th>
+                                    <th class="label-cell">Sub-Order ID</th>
+                                    <th class="label-cell">Main Order Number</th>
+                                    <th class="label-cell">Product Name</th>
+                                    <th class="label-cell">Product Point Value</th>
+                                    <th class="label-cell">Order Date</th>
+                                    <th class="label-cell">Status</th>
+                                    <th class="label-cell">Status Changed Date</th>
+                                    <th class="label-cell">Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${tbody}
+                                </tbody>
+                                </table>`;
+                                $$('#page-orderhistory .data-table').append(table);
+                            }
+                        }
+                        else {
+                            $$('#page-orderhistory .data-table').html('');
+                            app.dialog.alert(data.ErrorMessage);
+                        }
+                    },
+                    complete: function (xhr, status) {
+                        SpinnerPlugin.activityStop();
+                    }
+                })
+            }
+        }
+    }
+</script>
