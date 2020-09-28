@@ -73,11 +73,10 @@
         },
         methods: {
             loadStartCallBack: function () {
-                var spinnerOptions = { dimBackground: false };
-                SpinnerPlugin.activityStart(null, spinnerOptions);
+                app.preloader.show();
             },
             loadStopCallBack: function () {
-                SpinnerPlugin.activityStop();
+                app.preloader.hide();
             },
             openBrowser: function () {
                 var UserData = JSON.parse(localStorage.User);
@@ -95,8 +94,8 @@
                     var UserId = UserData.MembershipId;
                 }
                 var inAppBrowserRef = cordova.InAppBrowser.open("http://sardaplydemo.netcarrots.in/Default.aspx?UserId="+UserId+"&MobileNo="+MobileNo, "_blank", "location=no");
-                inAppBrowserRef.addEventListener('loadstart', loadStartCallBack);  
-                inAppBrowserRef.addEventListener('loadstop', loadStopCallBack);
+                inAppBrowserRef.addEventListener('loadstart', this.loadStartCallBack);  
+                inAppBrowserRef.addEventListener('loadstop', this.loadStopCallBack);
             },
             orderHistory: function () {
                 app.router.navigate('/order-history/');
