@@ -72,6 +72,12 @@
             },
         },
         methods: {
+            loadStartCallBack: function () {
+                app.preloader.show();
+            },
+            loadStopCallBack: function () {
+                app.preloader.hide();
+            },
             openBrowser: function () {
                 var UserData = JSON.parse(localStorage.User);
                 var UserType = UserData.UserType;
@@ -87,7 +93,10 @@
                 else {
                     var UserId = UserData.MembershipId;
                 }
-                cordova.InAppBrowser.open("http://sardaplydemo.netcarrots.in/Default.aspx?UserId="+UserId+"&MobileNo="+MobileNo, "_blank", "location=yes");
+                var inAppBrowserRef = cordova.InAppBrowser.open("http://sardaplydemo.netcarrots.in/Default.aspx?UserId="+UserId+"&MobileNo="+MobileNo, "_blank", "location=no");
+                inAppBrowserRef.addEventListener('loadstart', this.loadStartCallBack());  
+                inAppBrowserRef.addEventListener('loadstop', this.loadStopCallBack());
+                inAppBrowserRef.addEventListener('loaderror', this.loadStopCallBack());  
             },
             orderHistory: function () {
                 app.router.navigate('/order-history/');
