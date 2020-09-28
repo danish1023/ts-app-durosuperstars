@@ -417,18 +417,24 @@ function checkLengthDealer() {
 
 function loadstartCallBack() {
   app.preloader.show();
+  var spinnerOptions = { dimBackground: false };
+  SpinnerPlugin.activityStart(null, spinnerOptions);
 }
 
 function loaderrorCallBack() {
   app.preloader.hide();
+  SpinnerPlugin.activityStop();
 }
 
 function loadstopCallBack() {
   app.preloader.hide();
+  SpinnerPlugin.activityStop();
 }
 
 function beforeloadCallBack() {
   app.preloader.show();
+  var spinnerOptions = { dimBackground: false };
+  SpinnerPlugin.activityStart(null, spinnerOptions);
 }
 
 function exitCallBack() {
