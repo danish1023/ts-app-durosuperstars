@@ -88,11 +88,11 @@
                     var UserId = UserData.MembershipId;
                 }
                 var inAppBrowserRef = cordova.InAppBrowser.open("http://sardaplydemo.netcarrots.in/Default.aspx?UserId="+UserId+"&MobileNo="+MobileNo, "_blank", "location=no");
-                inAppBrowserRef.addEventListener('beforeload', beforeloadCallBack);
-                inAppBrowserRef.addEventListener('loadstart', loadstartCallBack);  
-                inAppBrowserRef.addEventListener('loadstop', loadstopCallBack);
-                inAppBrowserRef.addEventListener('loaderror', loaderrorCallBack);
-                inAppBrowserRef.addEventListener('exit', exitCallBack); 
+                // inAppBrowserRef.addEventListener('beforeload', beforeloadCallBack);
+                // inAppBrowserRef.addEventListener('loadstart', loadstartCallBack);  
+                // inAppBrowserRef.addEventListener('loadstop', loadstopCallBack);
+                // inAppBrowserRef.addEventListener('loaderror', loaderrorCallBack);
+                // inAppBrowserRef.addEventListener('exit', exitCallBack); 
             },
             orderHistory: function () {
                 app.router.navigate('/order-history/');
