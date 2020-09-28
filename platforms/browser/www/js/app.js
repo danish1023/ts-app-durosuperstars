@@ -414,3 +414,23 @@ function checkLengthDealer() {
     });
   }
 }
+
+function loadstartCallBack() {
+  app.preloader.show();
+}
+
+function loaderrorCallBack() {
+  app.preloader.hide();
+}
+
+function loadstopCallBack() {
+  app.preloader.hide();
+}
+
+function beforeloadCallBack() {
+  app.preloader.show();
+}
+
+function exitCallBack() {
+  app.preloader.hide();
+}

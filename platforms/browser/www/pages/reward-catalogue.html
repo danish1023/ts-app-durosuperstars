@@ -72,12 +72,6 @@
             },
         },
         methods: {
-            loadStartCallBack: function () {
-                app.preloader.show();
-            },
-            loadStopCallBack: function () {
-                app.preloader.hide();
-            },
             openBrowser: function () {
                 var UserData = JSON.parse(localStorage.User);
                 var UserType = UserData.UserType;
@@ -94,9 +88,11 @@
                     var UserId = UserData.MembershipId;
                 }
                 var inAppBrowserRef = cordova.InAppBrowser.open("http://sardaplydemo.netcarrots.in/Default.aspx?UserId="+UserId+"&MobileNo="+MobileNo, "_blank", "location=no");
-                inAppBrowserRef.addEventListener('loadstart', this.loadStartCallBack());  
-                inAppBrowserRef.addEventListener('loadstop', this.loadStopCallBack());
-                inAppBrowserRef.addEventListener('loaderror', this.loadStopCallBack());  
+                inAppBrowserRef.addEventListener('beforeload', beforeloadCallBack);
+                inAppBrowserRef.addEventListener('loadstart', loadstartCallBack);  
+                inAppBrowserRef.addEventListener('loadstop', loadstopCallBack);
+                inAppBrowserRef.addEventListener('loaderror', loaderrorCallBack);
+                inAppBrowserRef.addEventListener('exit', exitCallBack); 
             },
             orderHistory: function () {
                 app.router.navigate('/order-history/');
